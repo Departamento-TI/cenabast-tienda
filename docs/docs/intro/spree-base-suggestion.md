@@ -37,9 +37,9 @@ The following design is an architecture **proposal** which can be modified or ad
 
 :::tip
 👉 Cart should be related to SubOrganizations (aka "Destinatario").\
-👉 Cart logic will be different depending on the [Type of Purchase](/proyectos/nueva-tienda-digital/functionalities/purchase-type.md).\
-👉 Product Catalog should be related to [Type or Purchase](/proyectos/nueva-tienda-digital/functionalities/purchase-type.md) (aka "Canal").\
-👉 Checkout workflow will be different depending on the [Type of Purchase](/proyectos/nueva-tienda-digital/functionalities/purchase-type.md).\
+👉 Cart logic will be different depending on the [Type of Purchase](../functionalities/purchase-type.md).\
+👉 Product Catalog should be related to [Type or Purchase](../functionalities/purchase-type.md) (aka "Canal").\
+👉 Checkout workflow will be different depending on the [Type of Purchase](../functionalities/purchase-type.md).\
 :::
 
 

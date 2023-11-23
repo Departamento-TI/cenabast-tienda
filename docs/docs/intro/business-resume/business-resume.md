@@ -26,10 +26,10 @@ Your content here
 👉 4. During the year, Cenabast schedules and control the Programmed delivery from each Vendor to each public institution.
 :::
 
-- [1. Forecast](/proyectos/nueva-tienda-digital/business-resume/forecast.md)
-- [2. Auction](/proyectos/nueva-tienda-digital/business-resume/auction.md)
-- [3. Award Auction & Contract](/proyectos/nueva-tienda-digital/business-resume/award-contract.md)
-- [4. Management](/proyectos/nueva-tienda-digital/business-resume/management.md)
+- [1. Forecast](forecast.md)
+- [2. Auction](auction.md)
+- [3. Award Auction & Contract](award-contract.md)
+- [4. Management](management.md)
 
 
 

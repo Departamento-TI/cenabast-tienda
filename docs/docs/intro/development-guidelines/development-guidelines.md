@@ -15,5 +15,5 @@ dateCreated: 2023-10-25T14:31:19.130Z
 # Development Guidelines
 
 - [Gitflow standard](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
-- [Ruby development Guidelines](/proyectos/nueva-tienda-digital/development-guidelines/ruby-development.md)
+- [Ruby development Guidelines](ruby-development.md)
 

@@ -10,7 +10,7 @@ dateCreated: 2023-11-06T15:43:14.854Z
 
 :::note
 User will login using <kbd>Clave Unica</kbd> IdP.\
-[Login](/proyectos/nueva-tienda-digital/api-rest-services/login.md) will be implemented using a Single Sign On (SSO) solution, like keycloak.\
+[Login](login.md) will be implemented using a Single Sign On (SSO) solution, like keycloak.\
 :::
 
 :::note

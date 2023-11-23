@@ -18,4 +18,4 @@ PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8v
 
 # Servicio
 
-- [API REST Login Diagram *Buyer user*](/proyectos/nueva-tienda-digital/api-rest-services/login)
+- [API REST Login Diagram *Buyer user*](../api-rest-services/login.md)
