@@ -10,18 +10,18 @@ dateCreated: 2023-10-30T14:47:13.898Z
 
 **Already available at Spree base:**
 
-[!IMPORTANT]
+:::tip
 ✅ Single currency CLP\
 ✅ Unique language Spanish\
 ✅ Unique (single) store\
 ✅ Unique tax calculation IVA\
 ✅ Unique payment method Purchase Order\
 ✅ Multi-Vendor => Multi-Warehouse\
-
+:::
 
 **Missing at Spree base:**
 
-[!IMPORTANT]
+:::warning[Missing Features]
 ⚠️ Single Sign On SSO\
 ⚠️ B2B user/organization relation\
 ⚠️ Product Data sincronization from external system.\
@@ -31,12 +31,12 @@ dateCreated: 2023-10-30T14:47:13.898Z
 ⚠️ Cart conditions per purchase mechanism\
 ⚠️ Custom Cart Logic per purchase mecanism\
 ⚠️ Purchase Order integration with external system.\
-
+:::
 
 
 # NOT included in Project Scope
 
-[!WARNING]
+:::danger
 ⛔ Quotation
-
+:::
 

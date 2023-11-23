@@ -4,4 +4,6 @@ sidebar_position: 1
 
 # Intro
 
-⚠️ **Pending intro**
+The following documention is intended for the new Cenabast store project.
+
+![cenabast-store.png](/images/2023-11-23_17-16.png)
