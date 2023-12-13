@@ -28,7 +28,7 @@ After user is authenticated, using the user RUT we should request organizations 
 Request: **RUT usuario** (Ej. **16338556**)\
 :::
 
-```ruby
+```jsx
 curl --request GET \
   --url https://<<HOST>>/proyectosti/apiusuarios/v1/recurso/tienda/destinatarios/16338556
 ```
@@ -58,7 +58,7 @@ El siguiente servicio "deseable" **sólo responde con los organismos solicitante
 
 ### Full JSON response
 
-```json
+```jsx
 [
   {
     "rut_usuario": 16338556,

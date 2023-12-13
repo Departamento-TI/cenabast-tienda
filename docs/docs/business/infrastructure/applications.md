@@ -11,16 +11,38 @@ All applications must be deployed using Docker container.
 Ideally, we need to build the image locally.
 :::
 
-:::tip[Database]
-Both Keycloak and Spree Commerce should use the same database service.
-:::
+
 
 # Docker
 
+:::tip
+Al applications must be deploy as docker images.
+:::
+
 ## Docker PostgreSQL
+
+:::tip[Database]
+Both Keycloak and Spree Commerce should use the same postgres service.
+:::
+
+Docker Repo:
+
+https://github.com/docker-library/postgres
 
 ## Docker Keycloak
 
+Docker info:
+
+https://www.keycloak.org/server/containers
+
+
 ## Docker Spree Commerce
 
+:::info
+This is our custom Spree Project. \
+Please deploy branch `spree-4-7-development-with-frontend`
+:::
+
+
+https://github.com/Departamento-TI/cenabast-tienda/
 

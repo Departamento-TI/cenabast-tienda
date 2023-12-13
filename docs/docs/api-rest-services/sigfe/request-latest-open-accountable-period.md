@@ -15,7 +15,7 @@ This service returns the latest open accountable period. It should be given the 
 
 **Request**
 
-```ruby
+```jsx
 curl --request POST \
   --url https://www.sigfe.gob.cl/cxf/public/chileCompra/buscarPeriodo \
   --header 'Authorization: Basic aW50ZXJNUFNJR0ZFOnNaMDBNNE5C' \

@@ -15,7 +15,7 @@ Pending
 
 > **Request**
 
-```ruby
+```jsx
 curl --request POST \
   --url https://testaplicacionesweb.cenabast.cl:7001/proyectosti/apiusuarios/v1/usuario/login \
   --header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJyb2xlIjoiUHJvdmVlZG9yIiwibmJmIjoxNjk5MzkzMzQ2LCJleHAiOjE2OTkzOTUxNDYsImlhdCI6MTY5OTM5MzM0NiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdC8iLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0LyJ9.jJqWnXQlFImiunTFNF3BZU1S607NYFYkJ4j32w5_2mQ' \
@@ -28,7 +28,7 @@ curl --request POST \
 
 > **Response**:
 
-```ruby
+```jsx
 {
   "token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTY5OTM5Nzk5MSwiaXNzIjoiQ0VOQUJBU1QtUFJPWS1USSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxMTUifQ.wgO9KRIb-G1X9xhzOOqiQ2-7vxPeZgkRU3slrHvRbjY"
 }

@@ -38,7 +38,7 @@ GET  `https://<<HOST>>/WebApi2/api/v2/Public/distribucion`
 
 JSON
 
-```json
+```jsx
 [
   {
     "IdDistribucion": 5226545,
