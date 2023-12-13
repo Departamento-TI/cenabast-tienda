@@ -11,6 +11,10 @@ All applications must be deployed using Docker container.
 Ideally, we need to build the image locally.
 :::
 
+:::tip[Database]
+Both Keycloak and Spree Commerce should use the same database service.
+:::
+
 # Docker
 
 ## Docker PostgreSQL
