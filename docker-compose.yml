@@ -1,5 +1,6 @@
 version: '3.7'
 services:
+
   postgres:
     image: postgres:13-alpine
     environment:
@@ -8,12 +9,14 @@ services:
       - "5432:5432"
     volumes:
       - 'postgres:/var/lib/postgresql/data'
+
   redis:
     image: redis:6.2-alpine
     ports:
       - "6379:6379"
     volumes:
       - 'redis:/data'
+
   web:
     depends_on:
       - 'postgres'
@@ -33,6 +36,7 @@ services:
       DB_HOST: postgres
       DB_PORT: 5432
       DISABLE_SPRING: 1
+
   worker:
     depends_on:
       - 'postgres'
@@ -50,6 +54,27 @@ services:
       DB_HOST: postgres
       DB_PORT: 5432
       DISABLE_SPRING: 1
+
+  keycloak:
+    build:
+      context: .
+      dockerfile: Dockerfile.keycloak
+    image: keycloak:custom
+    environment:
+      KEYCLOAK_DATABASE_HOST: postgres
+      KEYCLOAK_DATABASE_NAME: keycloak
+      KEYCLOAK_DATABASE_USER: keycloak
+      KEYCLOAK_DATABASE_PASSWORD: u_J91CEema4S
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: owwIZLI#6m65
+      KEYCLOAK_HOSTNAME_URL: https://login-dev.cenabast.gob.cl/
+      KEYCLOAK_PROXY: edge
+      KEYCLOAK_HOSTNAME_STRICT: false
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "9990:9990"
+    command: ["start", "--https-key-store-file=/opt/keycloak/conf/server.keystore", "--https-key-store-password=pa55w0rd", "--optimized", "--db-url=jdbc:postgresql://postgres/keycloak", "--db-username=keycloak", "--db-password=u_J91CEema4S", "--proxy=edge", "--hostname-strict=false", "--hostname=login-dev.cenabast.gob.cl"]
 
 volumes:
   redis:
