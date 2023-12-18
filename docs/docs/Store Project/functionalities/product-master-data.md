@@ -18,7 +18,7 @@ Request:
 
 
 
-```ruby
+```jsx
 GET https://<<aplicacionweb>>/WebApi2/api/v2/material/listacatalogo
 ```
 
@@ -26,7 +26,7 @@ Response:
 
 
 
-```json
+```jsx
 [
   {
     "CODIGO_PRODUCTO": "100000000",

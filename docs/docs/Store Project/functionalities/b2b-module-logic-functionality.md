@@ -38,9 +38,9 @@ User/organization [Image Structure](/2023-10-26_17-05.png)
 
 # User
 
-For each user, we will need to the following data:
+For each user, we will need to the following data, which should be fetchend from the [User API Service](../../api-rest-services/users.md)
 
-```ruby
+```jsx
 User First Name
 User Last Name
 User RUT (primary key)

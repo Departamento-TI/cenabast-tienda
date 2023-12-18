@@ -25,12 +25,11 @@ User will need to complete the following information:
 
 :::warning
 After user is authenticated, using the user RUT we should request organizations related to the user.\
-Request: **RUT usuario** (Ej. **16338556**)\
+Request: **RUT usuario**\
 :::
 
 ```jsx
-curl --request GET \
-  --url https://<<HOST>>/proyectosti/apiusuarios/v1/recurso/tienda/destinatarios/16338556
+GET https://<<HOST>>/proyectosti/apiusuarios/v1/recurso/tienda/destinatarios/<<RUT>>
 ```
   	
 
@@ -57,6 +56,10 @@ El siguiente servicio "deseable" **sólo responde con los organismos solicitante
 ![2023-11-08_10-34.png](/images/2023-11-08_10-34.png)
 
 ### Full JSON response
+
+```jsx
+GET https://<<HOST>>/proyectosti/apiusuarios/v1/recurso/tienda/destinatarios/16338556
+```
 
 ```jsx
 [

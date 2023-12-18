@@ -6,8 +6,9 @@ editor: markdown
 dateCreated: 2023-11-07T16:11:59.720Z
 ---
 
-# Resume
+# Rubocop
 
 :::warning
-Pending
-::::
+Rubocop will be in charge for review all PRs. 🧐
+:::
+

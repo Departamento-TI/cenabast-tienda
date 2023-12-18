@@ -21,9 +21,8 @@ Your content here
 **Request**:
 
 ```jsx
-curl --request GET \
-  --url https://testaplicacionesweb.cenabast.cl:7001/WebApi2/api/v2/material/listacatalogo \
-  --header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJyb2xlIjoiUHJvdmVlZG9yIiwibmJmIjoxNjk5MjgzMDEzLCJleHAiOjE2OTkyODQ4MTMsImlhdCI6MTY5OTI4MzAxMywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdC8iLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0LyJ9.rFaQ4Ge_InmlxEEpdZ7JaVXMzpWCe48jc-Jdeg9Pf9s'
+GET /WebApi2/api/v2/material/listacatalogo\
+  --header 'Authorization: token'
 ```
 
 **Response**:

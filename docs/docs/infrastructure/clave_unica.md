@@ -4,10 +4,15 @@
 All Government institutions, are required to use a unique password for all Chilean citizen. This service is provided by [Clave Unica](https://claveunica.cl/).
 :::
 
+:::tip[💡]
+Clave Unica is integrated as an Identity Provider throught [Keycloak](keycloak.md)
+:::
+
 ## Domain
 
 :::info[Domain]
-The domain `login-dev.cenabast.gob.cl` will be used for authentication with Clave Unica.
+The domain `login-dev.cenabast.gob.cl` will be used for authentication with Clave Unica. (**Development**)\
+The domain `login.cenabast.gob.cl` will be used for authentication with Clave Unica. (**production**)
 :::
 
 ## Clave Unica DEV Credentials
@@ -22,3 +27,4 @@ Client Secret QA: c587e1dce57a4c209bed73d776ea9990\
 Client ID Producción: 191686e57a3e4b8994f63b7b4e90014c\
 Client Secret Producción: 1e8c36c5dc22450bbf999fce62a22a72\
 ```
+

@@ -16,7 +16,7 @@ Ideally, we need to build the image locally.
 # Docker
 
 :::tip
-Al applications must be deploy as docker images.
+Al applications must be deploy as docker images using the followng [Docker-Compose file](https://github.com/Departamento-TI/cenabast-tienda/blob/spree-4-7-development-with-frontend/docker-compose.yml)
 :::
 
 ## Docker PostgreSQL

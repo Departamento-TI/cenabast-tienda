@@ -7,13 +7,15 @@ dateCreated: 2023-10-25T14:31:19.130Z
 ---
 
 # Resumen
-> **Pending information**
 
-
+:::danger[CommitsFlow]
+You must follow the [Gitflow standard](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).\
+So, all new features must born from the `develop` branch.\
+Once a feature is finished, a Pull Request **should be added** to the `develop` branch. The PR should be assigned to the proper technical leader.
+:::
 
 
 # Development Guidelines
 
-- [Gitflow standard](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 - [Ruby development Guidelines](ruby-development.md)
 
