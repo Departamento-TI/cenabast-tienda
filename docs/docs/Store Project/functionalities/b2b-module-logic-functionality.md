@@ -6,34 +6,34 @@ editor: markdown
 dateCreated: 2023-10-26T16:12:31.748Z
 ---
 
-# Resume
+### Resume
 :::tip
-Users will log into the Store using their personal Credentials.
+Users will log into the Store using their personal Credentials.\
+Once users are logged in, the [User API Service](../../api-rest-services/users.md) will return all related information to the user.
 :::
 
-User/organization [Image Structure](/2023-10-26_17-05.png)
+The following image shows a typical user/organization structure:
+
+![Image Structure](/2023-10-26_17-05.png)
+
+The above structure, we should be able to view it in the top header at all times:
+
+![header](/img/2023-12-19_09-41.png)
 
 
 # B2B Business Logic
 
-:::note
-👉 Logged Users belongs to **organizations** 
-(User could belong to multiple organizations.) (Ex. Apple, Google, IBM, Microsoft)
-:::
-
-:::note
-👉 Each organizations has **sub-organizations**. 
-(For Google, it could be like: Youtube, Google Cloud, Android, etc)
-:::
-
-:::tip
-👉 Each sub-organizations **<mark>can have different Cost Centers</mark>** 
+:::danger[Organizations]
+👉 Logged Users belongs to **organizations** \
+(User could belong to multiple organizations.) (Ex. Apple, Google, IBM, Microsoft)\
+👉 Each organizations has **sub-organizations**.\
+(For Google, it could be like: Youtube, Google Cloud, Android, etc)\
+👉 Each sub-organizations **<mark>can have different Cost Centers</mark>**\
 (For Youtube, it could be like: Finance, IT Department, HR Department, etc).
 :::
 
-:::tip
-👉 Each Cost Center can have different Shipping Address.
-(⚠️ Not sure) => Maybe Shipping Address belong to the Sub-Organization.
+:::warning[Shipping Address]
+👉 Each Sub-Organization can have different Shipping Address.\
 :::
 
 # User
