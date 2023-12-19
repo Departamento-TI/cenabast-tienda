@@ -1,5 +1,7 @@
 # Clave Única
 
+### Resume
+
 :::info
 All Government institutions, are required to use a unique password for all Chilean citizen. This service is provided by [Clave Unica](https://claveunica.cl/).
 :::
@@ -28,3 +30,8 @@ Client ID Producción: 191686e57a3e4b8994f63b7b4e90014c\
 Client Secret Producción: 1e8c36c5dc22450bbf999fce62a22a72\
 ```
 
+### Technical Documentation
+
+:::tip[Document]
+[Here](https://digital.gob.cl/transformacion-digital/estandares-y-guias/guia-tecnica-para-integracion-de-claveunica/) you can find the latest technical document regarding Clave Unica.
+:::
