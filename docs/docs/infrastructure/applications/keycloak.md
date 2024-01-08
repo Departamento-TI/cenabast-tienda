@@ -3,7 +3,7 @@
 ### Resume
 
 :::tip
-Single Sign On\
+Single Sign On
 
 URL: https://login-dev.cenabast.gob.cl/admin/ \
 KEYCLOAK_USER: `admin`\
@@ -14,7 +14,7 @@ KEYCLOAK_PASSWORD: `owwIZLI#6m65`
 # Keycloak Setup
 
 :::info[Setup]
-After Keycloak docker is deployed, the following configurations needs to be done in order to integrate with Clave Unica.
+After Keycloak docker is deployed, the following configurations needs to be done in order to integrate with [Clave Unica](../clave_unica.md).
 :::
 
 ### Create Cenabast Realm
