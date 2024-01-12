@@ -27,7 +27,7 @@ Your content here
 :::
 
 <details>
-  <summary>Business Model stages 👇</summary>
+  <summary>Business Model stages (click to expand 👇)</summary>
   <div>
 - [1. Forecast](1_forecast.md)
 - [2. Auction](2_auction.md)

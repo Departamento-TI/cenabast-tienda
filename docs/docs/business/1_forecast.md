@@ -15,13 +15,21 @@ dateCreated: 2023-11-06T12:45:16.353Z
 
 # Individual Year Forecast
 
-Cenabast send a request to each health institution to estimate a 12 or 18 month proyection. For example, "Hospital A" has estimated the following product proyection for the next 12 months for products “ABC”, “XYZ” y “JKL”:
+Cenabast send a request to **each health institution** (~850) to estimate a 12 or 18 month proyection. For example, "Hospital A" has estimated the following product proyection for the next 12 months for products “ABC”, “XYZ” y “JKL”:
+
+:::danger[💣Product distinction 💣]
+There are two types of products:\
+<kbd>ZGEN</kbd> 👉 <mark>Generic</mark> product component request, **unbranded**. (ex. "Paracetamolum 500 mg")\
+<kbd>ZCEN</kbd> 👉 **Branded** product, after a Seller has won an auction.\
+Check more info [here](products)
+:::
 
 ![imageforecast](/img/2023-12-18_16-55.png)
 
 :::tip
 Cenabast raise forecast information from **each public institution**.\
-Forecast is estimated **monthly**. 
+Forecast is estimated **monthly**. \
+The forecast is for the <mark>Generic product</mark> (ZGEN)
 :::
 
 # Grouped Year Forecast
