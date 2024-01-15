@@ -12,7 +12,7 @@ Cenabast has **huge differences** between the each sales channel ("Canal").\
 :::
 
 
-## Purchase Type: Standard Channel (aka: "67 eCommerce")
+## Purchase Type: Standard Channel (aka: "67 eCommerce" or "compra espontánea)
 
 :::tip
 The Standard Purchase Type is the typical ecommerce purchase logic flow:

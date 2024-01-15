@@ -19,3 +19,9 @@ Once a feature is finished, a Pull Request **should be added** to the `develop` 
 
 - [Ruby development Guidelines](ruby-development.md)
 
+# Documentation
+
+:::info
+Documentation must be included as part of the process.
+
+:::

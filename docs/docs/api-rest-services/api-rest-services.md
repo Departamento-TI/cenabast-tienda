@@ -6,7 +6,12 @@ editor: markdown
 dateCreated: 2023-10-25T14:36:36.278Z
 ---
 
-# Resume
+##  Resume
+
+:::danger[Watch out ⚠️]
+Currently, there are 3 different Cenabast API endpoints 🙄. 
+:::
+
 
 The Store will need to handle multiple connections or integrations with third party services:\
 👉 GET ERP (SAP) for fetching product data.\
