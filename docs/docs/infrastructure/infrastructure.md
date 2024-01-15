@@ -1,5 +1,5 @@
 # Infrastructure
 
 :::info
-Intro here
+Currently we are working just with this [development server](/docs/infrastructure/dev-server).
 :::

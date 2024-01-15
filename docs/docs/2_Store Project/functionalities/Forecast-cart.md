@@ -11,6 +11,10 @@ Users **CANNOT** modify the cart when the `intermediacion` channel is active.
 Users should be able to switch and view the next 3 month programmed carts.
 :::
 
+:::danger[only ZGEN products]
+The Forecast car should only show <kbd>ZGEN</kbd> products.
+:::
+
 ### Expected Behaviour
 
 :::info[`Intermediacion`` Cart]
