@@ -6,20 +6,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    opensearch:
-      image: opensearchproject/opensearch:2
-      container_name: opensearch
-      env:
-        discovery.type: single-node
-        node.name: opensearch
-        # Disables Security plugin
-        DISABLE_SECURITY_PLUGIN: 'true'
-        OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m"
-      ports:
-        - 9200:9200
-        - 9600:9600
-
     services:
+      opensearch:
+        image: opensearchproject/opensearch:2
+        env:
+          discovery.type: single-node
+          node.name: opensearch
+          # Disables Security plugin
+          DISABLE_SECURITY_PLUGIN: 'true'
+          OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m"
+        ports:
+          - 9200:9200
+          - 9600:9600
       postgres:
         image: postgres:13-alpine
         env:
@@ -37,12 +35,12 @@ jobs:
       with:
         ruby-version: 3.2.2
         bundler-cache: true
-    - name: Setup DB, Run tests
-        env:
-          RAILS_ENV: test
-          DB_HOST: postgres
-          DB_PORT: 5432
-          OPENSEARCH_URL: http://opensearch:9200
-        run: |
-          bin/rails db:create db:schema:load
-          bundle exec rspec
+    - name: 'Setup DB, Run tests'
+      env:
+        RAILS_ENV: test
+        DB_HOST: postgres
+        DB_PORT: 5432
+        OPENSEARCH_URL: http://opensearch:9200
+      run: |
+        bin/rails db:create db:schema:load
+        bundle exec rspec
