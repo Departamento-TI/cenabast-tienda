@@ -14,6 +14,7 @@ Cenabast B2B project:
 * [Rubocop](https://github.com/rubocop/rubocop) for code style linting.
 * [Brakeman](https://github.com/presidentbeef/brakeman) for static analyze of security vulnerabilities
 * [Slim-Lint](https://github.com/sds/slim-lint) for linting of Slim templates
+* [Overcommit](https://github.com/sds/overcommit) for management of Git hooks used in the project
 
 
 ## Local Instalation
@@ -51,7 +52,7 @@ bin/start-docker
 By default, webserver will be exposed on port 4000.
 Opensearch dashboard will be exposed on port 5601.
 
-### Install tools for style/security checks locally and to run Git hooks
+### Install tools for style/security checks locally and to run Git hooks (Overcommit)
 
 ```
 gem install overcommit
@@ -62,6 +63,8 @@ gem install rubocop-rails -v 2.22.1
 gem install brakeman -v 6.1.1
 gem install bundle-audit -v 0.1.0
 gem install slim_lint -v 0.26.0
+
+overcommit --install
 ```
 
 ## Opensearch Dashboard simple usage
