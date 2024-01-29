@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_31_154171) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_29_131472) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -520,6 +520,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_154171) do
     t.index ["position"], name: "index_spree_option_values_on_position"
   end
 
+  create_table "spree_order_commissions", id: :serial, force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "vendor_id"
+    t.float "amount"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.index ["order_id", "vendor_id"], name: "index_spree_order_commissions_on_order_id_and_vendor_id", unique: true
+    t.index ["order_id"], name: "index_spree_order_commissions_on_order_id"
+    t.index ["vendor_id"], name: "index_spree_order_commissions_on_vendor_id"
+  end
+
   create_table "spree_order_promotions", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "promotion_id"
@@ -763,6 +774,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_154171) do
     t.jsonb "private_metadata"
     t.string "status", default: "draft", null: false
     t.datetime "make_active_at", precision: nil
+    t.bigint "vendor_id"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
@@ -773,6 +785,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_154171) do
     t.index ["status", "deleted_at"], name: "index_spree_products_on_status_and_deleted_at"
     t.index ["status"], name: "index_spree_products_on_status"
     t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
+    t.index ["vendor_id"], name: "index_spree_products_on_vendor_id"
   end
 
   create_table "spree_products_stores", force: :cascade do |t|
@@ -1136,8 +1149,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_154171) do
     t.string "code"
     t.jsonb "public_metadata"
     t.jsonb "private_metadata"
+    t.bigint "vendor_id"
     t.index ["deleted_at"], name: "index_spree_shipping_methods_on_deleted_at"
     t.index ["tax_category_id"], name: "index_spree_shipping_methods_on_tax_category_id"
+    t.index ["vendor_id"], name: "index_spree_shipping_methods_on_vendor_id"
   end
 
   create_table "spree_shipping_rates", force: :cascade do |t|
@@ -1211,11 +1226,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_154171) do
     t.boolean "backorderable_default", default: false
     t.boolean "propagate_all_variants", default: false
     t.string "admin_name"
+    t.bigint "vendor_id"
     t.index ["active"], name: "index_spree_stock_locations_on_active"
     t.index ["backorderable_default"], name: "index_spree_stock_locations_on_backorderable_default"
     t.index ["country_id"], name: "index_spree_stock_locations_on_country_id"
     t.index ["propagate_all_variants"], name: "index_spree_stock_locations_on_propagate_all_variants"
     t.index ["state_id"], name: "index_spree_stock_locations_on_state_id"
+    t.index ["vendor_id"], name: "index_spree_stock_locations_on_vendor_id"
   end
 
   create_table "spree_stock_movements", force: :cascade do |t|
@@ -1526,6 +1543,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_154171) do
     t.jsonb "public_metadata"
     t.jsonb "private_metadata"
     t.string "barcode"
+    t.bigint "vendor_id"
     t.index ["barcode"], name: "index_spree_variants_on_barcode"
     t.index ["deleted_at"], name: "index_spree_variants_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_variants_on_discontinue_on"
@@ -1535,6 +1553,46 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_154171) do
     t.index ["sku"], name: "index_spree_variants_on_sku"
     t.index ["tax_category_id"], name: "index_spree_variants_on_tax_category_id"
     t.index ["track_inventory"], name: "index_spree_variants_on_track_inventory"
+    t.index ["vendor_id"], name: "index_spree_variants_on_vendor_id"
+  end
+
+  create_table "spree_vendor_translations", force: :cascade do |t|
+    t.string "name"
+    t.text "about_us"
+    t.text "contact_us"
+    t.string "slug"
+    t.string "locale", null: false
+    t.bigint "spree_vendor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["locale", "slug"], name: "vendor_unique_slug_per_locale", unique: true
+    t.index ["locale"], name: "index_spree_vendor_translations_on_locale"
+  end
+
+  create_table "spree_vendor_users", id: :serial, force: :cascade do |t|
+    t.bigint "vendor_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_spree_vendor_users_on_user_id"
+    t.index ["vendor_id", "user_id"], name: "index_spree_vendor_users_on_vendor_id_and_user_id", unique: true
+    t.index ["vendor_id"], name: "index_spree_vendor_users_on_vendor_id"
+  end
+
+  create_table "spree_vendors", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.string "state"
+    t.datetime "deleted_at", precision: nil
+    t.string "slug"
+    t.text "about_us"
+    t.text "contact_us"
+    t.float "commission_rate", default: 5.0
+    t.integer "priority"
+    t.string "notification_email"
+    t.index ["deleted_at"], name: "index_spree_vendors_on_deleted_at"
+    t.index ["name"], name: "index_spree_vendors_on_name", unique: true
+    t.index ["slug"], name: "index_spree_vendors_on_slug", unique: true
+    t.index ["state"], name: "index_spree_vendors_on_state"
   end
 
   create_table "spree_webhooks_events", force: :cascade do |t|
@@ -1624,4 +1682,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_154171) do
   add_foreign_key "spree_store_translations", "spree_stores"
   add_foreign_key "spree_taxon_translations", "spree_taxons"
   add_foreign_key "spree_taxonomy_translations", "spree_taxonomies"
+  add_foreign_key "spree_vendor_translations", "spree_vendors"
 end
