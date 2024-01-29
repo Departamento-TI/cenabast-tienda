@@ -1,0 +1,48 @@
+name: Rspec
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    opensearch:
+      image: opensearchproject/opensearch:2
+      container_name: opensearch
+      env:
+        discovery.type: single-node
+        node.name: opensearch
+        # Disables Security plugin
+        DISABLE_SECURITY_PLUGIN: 'true'
+        OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m"
+      ports:
+        - 9200:9200
+        - 9600:9600
+
+    services:
+      postgres:
+        image: postgres:13-alpine
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+        - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Set up Ruby 3.2.2
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2.2
+        bundler-cache: true
+    - name: Setup DB, Run tests
+        env:
+          RAILS_ENV: test
+          DB_HOST: postgres
+          DB_PORT: 5432
+          OPENSEARCH_URL: http://opensearch:9200
+        run: |
+          bin/rails db:create db:schema:load
+          bundle exec rspec
