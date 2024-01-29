@@ -1,4 +1,11 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
 AllCops:
+  # Opt-in to new cops by default
+  NewCops: enable
+
   # Default formatter will be used if no `-f/--format` option is given.
   DefaultFormatter: progress
 
@@ -6,7 +13,7 @@ AllCops:
   # line option.
   UseCache: true
 
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.2
 
   Exclude:
     - db/schema.rb
@@ -20,28 +27,32 @@ AllCops:
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
 
-AlignParameters:
+Layout/ParameterAlignment:
   Enabled: false
 
-ClassLength:
+Metrics/ClassLength:
+  Enabled: true
   CountComments: false
-  Max: 150
+  Max: 200
 
-ModuleLength:
+Metrics/ModuleLength:
+  Enabled: true
   CountComments: false
   Max: 250
 
-Documentation:
+Style/Documentation:
   Enabled: false
 
-LineLength:
+Layout/LineLength:
+  Enabled: true
   Max: 150
 
-MethodLength:
+Metrics/MethodLength:
+  Enabled: true
   CountComments: false
   Max: 50
 
-BlockLength:
+Metrics/BlockLength:
   CountComments: false
   Max: 50
   Exclude:
@@ -96,7 +107,10 @@ Naming/VariableNumber:
 Performance/RegexpMatch:
   Enabled: false
 
-Style/UnneededPercentQ:
+Style/RedundantPercentQ:
+  Enabled: false
+
+Lint/NonDeterministicRequireOrder:
   Enabled: false
 
 Lint/ParenthesesAsGroupedExpression:
