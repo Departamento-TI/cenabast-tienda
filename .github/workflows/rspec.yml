@@ -1,6 +1,6 @@
 name: Rspec
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   build:
@@ -21,6 +21,9 @@ jobs:
       postgres:
         image: postgres:13-alpine
         env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ""
+          POSTGRES_DB: cenabast_test
           POSTGRES_HOST_AUTH_METHOD: trust
         ports:
         - 5432:5432
@@ -36,11 +39,12 @@ jobs:
         ruby-version: 3.2.2
         bundler-cache: true
     - name: 'Setup DB, Run tests'
-      env:
-        RAILS_ENV: test
-        DB_HOST: postgres
-        DB_PORT: 5432
-        OPENSEARCH_URL: http://opensearch:9200
       run: |
+        printenv
         bin/rails db:create db:schema:load
         bundle exec rspec
+      env:
+        RAILS_ENV: test
+        DB_HOST: localhost
+        DB_PORT: ${{ job.services.postgres.ports[5432] }}
+        OPENSEARCH_URL: http://localhost:${{ job.services.opensearch.ports[9200] }}
