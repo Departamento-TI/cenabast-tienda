@@ -5,107 +5,6 @@ GIT
     sassc (2.4.0)
       ffi (~> 1.9)
 
-GIT
-  remote: https://github.com/spree/spree.git
-  revision: 913bbdad50547936444c6a7294a00f4b0b8b4e31
-  branch: main
-  specs:
-    spree (5.0.0.alpha)
-      spree_api (= 5.0.0.alpha)
-      spree_cli (= 5.0.0.alpha)
-      spree_core (= 5.0.0.alpha)
-    spree_api (5.0.0.alpha)
-      bcrypt (~> 3.1)
-      doorkeeper (~> 5.3)
-      jsonapi-serializer (~> 2.1)
-      spree_core (= 5.0.0.alpha)
-    spree_cli (5.0.0.alpha)
-      thor (~> 1.0)
-    spree_core (5.0.0.alpha)
-      actionpack (>= 6.1)
-      actionview (>= 6.1)
-      active_storage_validations (~> 0.9, <= 0.9.5)
-      activejob (>= 6.1)
-      activemerchant (~> 1.67)
-      activemodel (>= 6.1)
-      activerecord (>= 6.1)
-      activerecord-typedstore
-      activestorage (>= 6.1)
-      activesupport (>= 6.1)
-      acts_as_list (>= 0.8)
-      auto_strip_attributes (~> 2.6)
-      awesome_nested_set (~> 3.3, >= 3.3.1)
-      cancancan (~> 3.2)
-      carmen (>= 1.0)
-      friendly_id (~> 5.2, >= 5.2.1)
-      friendly_id-mobility (~> 1.0.4)
-      highline (~> 2.0)
-      image_processing (~> 1.2)
-      kaminari (~> 1.2)
-      mobility (~> 1.2.9)
-      mobility-ransack (~> 1.2.1)
-      monetize (~> 1.9)
-      money (~> 6.13)
-      paranoia (~> 2.4)
-      railties (>= 6.1)
-      ransack (>= 4.1)
-      rexml
-      state_machines-activemodel (~> 0.7)
-      state_machines-activerecord (~> 0.6)
-      stringex
-      validates_zipcode
-    spree_emails (5.0.0.alpha)
-      actionmailer
-      spree_core (>= 5.0.0.alpha)
-      sprockets (>= 4.0)
-    spree_sample (5.0.0.alpha)
-      ffaker (~> 2.9)
-      spree_core (>= 5.0.0.alpha)
-
-GIT
-  remote: https://github.com/spree/spree_backend.git
-  revision: ebaf266ef1811c066b8d0f1cb06e9b8ae14cedb5
-  branch: main
-  specs:
-    spree_backend (5.0.0.alpha)
-      babel-transpiler (~> 0.7)
-      bootstrap (~> 4.0)
-      flag-icons-rails (~> 3.4)
-      flatpickr (~> 4.6)
-      glyphicons (~> 1.0)
-      hotwire-rails
-      inline_svg (~> 1.5)
-      jquery-rails (~> 4.3)
-      jquery-ui-rails (~> 6.0)
-      jsbundling-rails
-      responders
-      sass-rails (>= 5)
-      select2-rails (~> 4.0.6)
-      spree (>= 4.6.0)
-      sprockets (~> 4.0)
-      tinymce-rails (~> 5.0)
-
-GIT
-  remote: https://github.com/spree/spree_rails_frontend.git
-  revision: 6d8b85608a35374b9621a6b95634e005e1f30eaf
-  branch: main
-  specs:
-    spree_frontend (4.6.0)
-      babel-transpiler (~> 0.7)
-      bootstrap (~> 4.0)
-      canonical-rails (~> 0.2, >= 0.2.10)
-      flag-icons-rails (~> 3.4)
-      glyphicons (~> 1.0)
-      inline_svg (~> 1.5)
-      jquery-rails (~> 4.3)
-      jsbundling-rails
-      responders
-      sass-rails (>= 5)
-      spree_api (>= 4.6.0)
-      spree_core (>= 4.6.0)
-      sprockets (~> 4.0)
-      turbo-rails
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -260,7 +159,14 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.16.1, < 2)
       sassc-rails (>= 2.0.0)
+    brakeman (6.1.1)
+      racc
     builder (3.2.4)
+    bundle-audit (0.1.0)
+      bundler-audit
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     cancancan (3.5.0)
     canonical-rails (0.2.15)
       actionview (>= 4.1, <= 7.2)
@@ -296,6 +202,12 @@ GEM
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
     date (3.3.3)
+    deface (1.9.0)
+      actionview (>= 5.2)
+      nokogiri (>= 1.6)
+      polyglot
+      railties (>= 5.2)
+      rainbow (>= 2.1.0)
     devise (4.9.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -306,7 +218,7 @@ GEM
       devise (>= 2.1.0)
     diff-lcs (1.5.0)
     docile (1.4.0)
-    doorkeeper (5.6.6)
+    doorkeeper (5.6.8)
       railties (>= 5)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
@@ -332,7 +244,7 @@ GEM
     flag-icons-rails (3.4.6.1)
       sass-rails
     flamegraph (0.9.5)
-    flatpickr (4.6.13.0)
+    flatpickr (4.6.13.1)
     font_assets (0.1.14)
       rack
     friendly_id (5.4.2)
@@ -354,6 +266,7 @@ GEM
       activesupport (>= 6.1)
     glyphicons (1.0.2)
     hashdiff (1.0.1)
+    hashie (5.0.0)
     highline (2.1.0)
     hotwire-rails (0.1.3)
       rails (>= 6.0.0)
@@ -458,6 +371,9 @@ GEM
       faraday (>= 1, < 3)
       sawyer (~> 0.9)
     oj (3.16.1)
+    opensearch-ruby (3.1.0)
+      faraday (>= 1.0, < 3)
+      multi_json (>= 1.0)
     orm_adapter (0.5.0)
     parallel (1.23.0)
     paranoia (2.6.3)
@@ -466,6 +382,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.4)
+    polyglot (0.3.5)
     popper_js (1.16.1)
     protocol-hpack (1.4.2)
     protocol-http (0.25.0)
@@ -480,7 +397,7 @@ GEM
     psych (5.1.1.1)
       stringio
     public_suffix (5.0.3)
-    puma (6.4.0)
+    puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.2)
     rack (3.0.8)
@@ -597,6 +514,9 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.30.0)
       parser (>= 3.2.1.0)
+    rubocop-performance (1.20.2)
+      rubocop (>= 1.48.1, < 2.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
     rubocop-rails (2.22.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
@@ -620,6 +540,9 @@ GEM
       faraday (>= 0.17.3, < 3)
     scout_apm (5.3.5)
       parser
+    searchkick (5.3.1)
+      activemodel (>= 6.1)
+      hashie
     select2-rails (4.0.13)
     selenium-webdriver (4.15.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -644,11 +567,78 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
+    slim (5.2.1)
+      temple (~> 0.10.0)
+      tilt (>= 2.1.0)
+    slim_lint (0.26.0)
+      rubocop (>= 1.0, < 2.0)
+      slim (>= 3.0, < 6.0)
+    spree (4.7.1)
+      spree_api (= 4.7.1)
+      spree_cli (= 4.7.1)
+      spree_core (= 4.7.1)
+    spree_api (4.7.1)
+      bcrypt (~> 3.1)
+      doorkeeper (~> 5.3)
+      jsonapi-serializer (~> 2.1)
+      spree_core (= 4.7.1)
     spree_auth_devise (4.6.0)
       devise (~> 4.7)
       devise-encryptable (= 0.2.0)
       spree_core (>= 4.5.0)
       spree_extension
+    spree_backend (4.7.2)
+      babel-transpiler (~> 0.7)
+      bootstrap (~> 4.0)
+      flag-icons-rails (~> 3.4)
+      flatpickr (~> 4.6)
+      glyphicons (~> 1.0)
+      hotwire-rails
+      inline_svg (~> 1.5)
+      jquery-rails (~> 4.3)
+      jquery-ui-rails (~> 6.0)
+      jsbundling-rails
+      responders
+      sass-rails (>= 5)
+      select2-rails (~> 4.0.6)
+      spree (>= 4.7.0)
+      sprockets (~> 4.0)
+      tinymce-rails (~> 5.0)
+    spree_cli (4.7.1)
+      thor (~> 1.0)
+    spree_core (4.7.1)
+      actionpack (>= 6.1, < 7.2)
+      actionview (>= 6.1, < 7.2)
+      active_storage_validations (~> 0.9, <= 0.9.5)
+      activejob (>= 6.1, < 7.2)
+      activemerchant (~> 1.67)
+      activemodel (>= 6.1, < 7.2)
+      activerecord (>= 6.1, < 7.2)
+      activerecord-typedstore
+      activestorage (>= 6.1, < 7.2)
+      activesupport (>= 6.1, < 7.2)
+      acts_as_list (>= 0.8)
+      auto_strip_attributes (~> 2.6)
+      awesome_nested_set (~> 3.3, >= 3.3.1)
+      cancancan (~> 3.2)
+      carmen (>= 1.0)
+      friendly_id (~> 5.2, >= 5.2.1)
+      friendly_id-mobility (~> 1.0.4)
+      highline (~> 2.0)
+      image_processing (~> 1.2)
+      kaminari (~> 1.2)
+      mobility (~> 1.2.9)
+      mobility-ransack (~> 1.2.1)
+      monetize (~> 1.9)
+      money (~> 6.13)
+      paranoia (~> 2.4)
+      railties (>= 6.1, < 7.2)
+      ransack (>= 4.1)
+      rexml
+      state_machines-activemodel (~> 0.7)
+      state_machines-activerecord (~> 0.6)
+      stringex
+      validates_zipcode
     spree_dev_tools (0.2.0)
       appraisal
       awesome_print
@@ -677,9 +667,28 @@ GEM
       spree_core
       timecop
       webdrivers (~> 4.3)
+    spree_emails (4.7.1)
+      actionmailer
+      spree_core (>= 4.7.1)
+      sprockets (>= 4.0)
     spree_extension (0.1.0)
       activerecord (>= 4.2)
       spree_core
+    spree_frontend (4.6.0)
+      babel-transpiler (~> 0.7)
+      bootstrap (~> 4.0)
+      canonical-rails (~> 0.2, >= 0.2.10)
+      flag-icons-rails (~> 3.4)
+      glyphicons (~> 1.0)
+      inline_svg (~> 1.5)
+      jquery-rails (~> 4.3)
+      jsbundling-rails
+      responders
+      sass-rails (>= 5)
+      spree_api (>= 4.6.0)
+      spree_core (>= 4.6.0)
+      sprockets (~> 4.0)
+      turbo-rails
     spree_gateway (3.10.0)
       spree_core (>= 3.7.0)
       spree_extension
@@ -689,6 +698,15 @@ GEM
       rails-i18n
       spree_core (>= 4.2.0.rc3)
       spree_extension
+    spree_multi_vendor (2.5.0)
+      deface (~> 1.0)
+      spree (>= 4.6.0)
+      spree_backend (>= 4.6.0)
+      spree_emails (>= 4.6.0)
+      spree_extension
+    spree_sample (4.7.1)
+      ffaker (~> 2.9)
+      spree_core (>= 4.7.1)
     spring (4.1.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
@@ -705,11 +723,12 @@ GEM
     state_machines-activerecord (0.9.0)
       activerecord (>= 6.0)
       state_machines-activemodel (>= 0.9.0)
-    stimulus-rails (1.3.0)
+    stimulus-rails (1.3.3)
       railties (>= 6.0.0)
     stringex (2.8.6)
     stringio (3.0.8)
     syslog_protocol (0.9.2)
+    temple (0.10.3)
     terser (1.1.19)
       execjs (>= 0.3.0, < 3)
     thor (1.3.0)
@@ -717,7 +736,7 @@ GEM
     timecop (0.9.8)
     timeout (0.4.0)
     timers (4.3.5)
-    tinymce-rails (5.10.7.1)
+    tinymce-rails (5.10.9)
       railties (>= 3.1.1)
     traces (0.11.1)
     turbo-rails (1.5.0)
@@ -763,16 +782,20 @@ DEPENDENCIES
   awesome_print
   aws-sdk-s3
   bootsnap
+  brakeman
+  bundle-audit
   dalli
   dotenv-rails (~> 2.1, >= 2.1.1)
   flamegraph
   font_assets
+  jsbundling-rails
   letter_opener
   listen
   memory_profiler
   oj
+  opensearch-ruby
   pg
-  puma
+  puma (>= 6.4.2)
   rack-cache
   rack-cors
   rack-mini-profiler
@@ -781,26 +804,32 @@ DEPENDENCIES
   redis (~> 4.0)
   remote_syslog_logger
   rspec_junit_formatter
+  rubocop-performance
+  rubocop-rails
   sass-rails
   sassc!
   scout_apm
+  searchkick
   sendgrid-actionmailer
   sentry-raven
   sidekiq
-  spree!
-  spree_api!
-  spree_auth_devise
-  spree_backend!
-  spree_core!
+  slim_lint
+  spree (~> 4.7.0)
+  spree_api (~> 4.7.0)
+  spree_auth_devise (~> 4.6.0)
+  spree_backend (~> 4.7.0)
+  spree_core (~> 4.7.0)
   spree_dev_tools
-  spree_emails!
-  spree_frontend!
-  spree_gateway (~> 3.10)
-  spree_i18n
-  spree_sample!
+  spree_emails (~> 4.7.0)
+  spree_frontend
+  spree_gateway (~> 3.10.0)
+  spree_i18n (~> 5.3.0)
+  spree_multi_vendor
+  spree_sample (~> 4.7.0)
   spring
   stackprof
   terser
+  turbo-rails
   vcr
   web-console (~> 4.0)
   webmock

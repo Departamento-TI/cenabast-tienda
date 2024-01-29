@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.2.0'
+ruby '~> 3.2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.1'
@@ -18,7 +18,7 @@ gem 'bootsnap', require: false
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Puma as the app server
-gem 'puma'
+gem 'puma', '>= 6.4.2'
 
 gem 'awesome_print'
 
@@ -69,18 +69,72 @@ gem 'rack-cache' # http caching
 # sidekiq
 gem 'sidekiq'
 
+# NOTE: jsbundling-rails and turbo-rails are prerequisites for spree_frontend.
+# Bundle and transpile JavaScript in Rails with esbuild, rollup.js, or Webpack.
+gem 'jsbundling-rails'
+
+# Use Turbo in your Ruby on Rails app
+gem 'turbo-rails'
+
 # Spree gems
-gem 'spree', github: 'spree/spree', branch: 'main'
-gem 'spree_core', github: 'spree/spree', branch: 'main'
-gem 'spree_api', github: 'spree/spree', branch: 'main'
-gem 'spree_sample', github: 'spree/spree', branch: 'main'
-gem 'spree_emails', github: 'spree/spree', branch: 'main'
-gem 'spree_backend', github: 'spree/spree_backend', branch: 'main'
-gem 'spree_frontend', github: 'spree/spree_rails_frontend', branch: 'main'
-gem 'spree_gateway', '~> 3.10'
-gem 'spree_auth_devise'
-gem 'spree_i18n'
+# A complete open source e-commerce solution with multi-store, multi-currency
+# and multi-language capabilities
+gem 'spree', '~> 4.7.0'
+
+# Spree Models, Helpers, Services and core libraries
+gem 'spree_core', '~> 4.7.0'
+
+# Spree's API
+gem 'spree_api', '~> 4.7.0'
+
+# Optional package containing example data of products, stores,
+# shipping methods, categories and others to quickly setup a demo Spree store
+gem 'spree_sample', '~> 4.7.0'
+
+# Optional transactional emails for Spree such as Order placed or Shipment notification emails
+gem 'spree_emails', '~> 4.7.0'
+
+# Spree Admin Dashboard
+gem 'spree_backend', '~> 4.7.0'
+
+# Huge collection of payment gateways for Spree. Stripe, Braintree, Apple Pay, Authorize.net and many others!
+gem 'spree_gateway', '~> 3.10.0'
+
+# Old Spree Storefront extracted from Spree < 4.3 which was upgraded to Turbo/Hotwire.
+gem 'spree_frontend'
+
+# Provides authentication (user accounts, login & signup) for Spree by using Devise
+gem 'spree_auth_devise', '~> 4.6.0'
+
+# I18n translation files for Spree Commerce.
+gem 'spree_i18n', '~> 5.3.0'
+
+# Spree Developer Tools
 gem 'spree_dev_tools', require: false, group: %w[test development]
+
+# Spree marketplace extension. Create your own marketplace on top of Spree Commerce
+gem 'spree_multi_vendor'
+
+# A RuboCop extension focused on enforcing Rails best practices and coding conventions.
+gem 'rubocop-rails', require: false, group: %w[test development]
+
+# An extension of RuboCop focused on code performance checks.
+gem 'rubocop-performance', require: false, group: %w[test development]
+
+# A static analysis security vulnerability scanner for Ruby on Rails applications
+gem 'brakeman', require: false, group: %w[test development]
+
+# Patch-level verification for Bundler
+gem 'bundle-audit', require: false, group: %w[test development]
+
+# Configurable tool for analyzing Slim templates
+gem 'slim_lint', require: false, group: %w[test development]
+
+# Intelligent search made easy
+gem 'searchkick'
+
+# Ruby Client for OpenSearch
+gem 'opensearch-ruby'
 
 # Sentry Client
 gem 'sentry-raven'
@@ -106,4 +160,4 @@ gem 'oj'
 gem 'sassc', github: 'sass/sassc-ruby', group: :development
 
 # Use Redis for Action Cable
-gem "redis", "~> 4.0"
+gem 'redis', '~> 4.0'

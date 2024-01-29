@@ -1,15 +1,16 @@
-FROM ruby:3.2.0
+FROM ruby:3.2.2
 
 RUN apt-get update -yq \
   && apt-get upgrade -yq \
   #ESSENTIALS
-  && apt-get install -y -qq --no-install-recommends build-essential curl git-core vim passwd unzip cron gcc wget netcat \
+  && apt-get install -y -qq --no-install-recommends build-essential curl git-core vim passwd unzip cron gcc wget netcat-traditional \
   # RAILS PACKAGES NEEDED
   && apt-get update \
   && apt-get install -y --no-install-recommends imagemagick postgresql-client libvips \
   # INSTALL NODE
   && curl -sL https://deb.nodesource.com/setup_16.x | bash - \
   && apt-get install -y --no-install-recommends nodejs \
+  && apt-get install -y --no-install-recommends npm \
   # INSTALL YARN
   && npm install -g yarn
 
