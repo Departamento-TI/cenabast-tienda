@@ -99,6 +99,52 @@ bundle exec rspec
 bundle exec rubocop --parallel
 ```
 
+## Branching strategy
+
+### Create Short-Lived Branch:
+
+Create a short-lived branch based from `master` for a specific feature or bug fix.
+
+If its based on a JIRA issue, use the JIRA prefix of the feature for naming the branch:
+
+```
+<JIRA issue number(s)>-<lowercase-description-of-branch>
+```
+
+Some examples:
+```
+PE188-1-initalize-project
+
+PE188-4-5-6-add-base-instalation-configuration
+```
+
+Then, start your branch like this:
+```
+git checkout master
+git pull origin master
+git checkout -b <your-branch>
+# Begin working on your feature/fixes
+```
+
+### Frequent Integration:
+
+Frequent integration with the main branch ensures continuous testing and validation.
+
+```
+git checkout master
+git pull origin master
+git checkout <your-branch>
+git rebase master
+```
+
+### Pull Request and Code Review:
+
+When the branch is ready to merge, a Pull request is lifted targeting to the `master` branch.
+Developers conduct code reviews before merging into the main branch.
+
+Branch must pass the pipeline validations.
+And a corresponding test coverage must be added into the branch.
+
 ## Useful links
 
 ### Mercado publico quotation detail (Has documentation for proyect requirements)
