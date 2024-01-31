@@ -1,3 +1,6 @@
+## Link to Issue(s) in JIRA:
+- Link here all the related JIRA issues
+
 ## Description
 
 Please, provide here a short description.
@@ -14,5 +17,7 @@ Before you move on, make sure that:
 - [ ] No unintended changes are included
 - [ ] Spelling is correct
 - [ ] There are tests covering new/changed functionality
+- [ ] Rubocop style is passing, and Rspec tests are passing.
+- [ ] Documentation has been written (Docs or code)
 - [ ] Commits have meaningful names and changes. _CR remarks_-like commits are squashed.
 - [ ] Proper labels assigned. Use `WIP` label to indicate that state

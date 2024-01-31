@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: spree_starter_development
+  database: cenabast_development
   host: <%= ENV.fetch('DB_HOST', 'localhost') %>
   username: <%= ENV.fetch('DB_USER', 'postgres') %>
   port: <%= ENV.fetch('DB_PORT', '5432') %>
@@ -60,7 +60,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: spree_starter_test
+  database: cenabast_test
   host: <%= ENV.fetch('DB_HOST', 'localhost') %>
   username: <%= ENV.fetch('DB_USER', 'postgres') %>
   port: <%= ENV.fetch('DB_PORT', '5432') %>

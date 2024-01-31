@@ -1,38 +1,26 @@
-# Spree Starter
+# Cenabast Ecommerce
 
-This a dockerized [Spree Commerce](https://spreecommerce.org) application template ready to for local development and deployment to cloud providers.
+Cenabast B2B project:
 
-## Deploy in the cloud
+* [Spree](https://github.com/spree/spree) for e-commerce base
+* [Spree Starter](https://github.com/spree/spree_starter) for project template
+* [Spree Rails Frontend](https://github.com/spree/spree_rails_frontend) for storefront
+* [Spree Multi Vendor](https://github.com/spree-contrib/spree_multi_vendor) for Marketplace multiprovider structure
+* [searchkick](https://github.com/ankane/searchkick) for store search bar.
+* [PostgreSQL](https://www.postgresql.org/) for relational database.
+* [Sidekiq](https://github.com/sidekiq/sidekiq) for background jobs.
+* [Redis](https://redis.io/) for cache and queues managenment.
+* [Rspec](https://rspec.info/) for unit testing.
+* [Rubocop](https://github.com/rubocop/rubocop) for code style linting.
+* [Brakeman](https://github.com/presidentbeef/brakeman) for static analyze of security vulnerabilities
+* [Slim-Lint](https://github.com/sds/slim-lint) for linting of Slim templates
+* [Overcommit](https://github.com/sds/overcommit) for management of Git hooks used in the project
 
-### Using Heroku
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-### Using Render
-<a href="https://render.com/deploy?repo=https://github.com/spree/spree_starter/tree/main">
-  <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render" height=32>
-</a>
+## Local Instalation
 
-Note that sample data does not automatically get loaded when deploying to Render with the default configuration. In order to add sample data, run the following commands in the web service shell:
-```shell
-bundle exec rails db:seed
-bundle exec rake spree_sample:load
-```
+Project template generated based on [Spree Starter](https://github.com/spree/spree_starter)
 
-#### Deploying to Render with Spree Legacy Frontend
-To deploy to render with the Spree Legacy Frontend, first follow the instructions in the [legacy frontend ReadMe](https://github.com/spree/spree_legacy_frontend#installation) on adding the appropriate gems to your gemfile, and update the web service build command to use `bin/render-build-legacy-frontend.sh`, like so:
-```yaml
-services:
-  - type: web
-    name: spree
-    env: ruby
-    buildCommand: "./bin/render-build-legacy-frontend.sh"
-```
-
-After that, you'll be ready to deploy to render.
-
-## Local Installation
-
-### Using Docker (Recommended)
 #### Install required tools and dependencies:
 
 * [Docker](https://www.docker.com/community-edition#/download)
@@ -49,172 +37,121 @@ bin/setup-docker
 docker compose run web rake spree_sample:load
 ```
 
+### (Optional) create vendor sample (for spree multi vendor) data
+
+```bash
+docker compose run web bundle exec rake spree_multi_vendor:sample:create
+```
+
 #### After the setup is finished, launch the webserver with:
 
 ```bash
 bin/start-docker
 ```
 
-### Using Hybrid installation
-#### Install required tools and dependencies:
+By default, webserver will be exposed on port 4000.
+Opensearch dashboard will be exposed on port 5601.
 
-* [Docker](https://www.docker.com/community-edition#/download)
-* Ruby 3.2.0
-* [libvips](https://www.libvips.org/install.html)
-
-#### Run setup script
-
-```bash
-bin/setup-hybrid
-```
-
-
-#### (Optional) Import sample data such as products, categories, etc
-
-```bash
-bundle exec rake spree_sample:load
-```
-
-#### After loading all docker dependencies launch local server with:
-
-```bash
-bin/start-hybrid
-```
-
-### Without Docker (not recommended for beginners)
-
-#### Install required tools and dependencies
-
-1. HomeBrew - https://brew.sh/
-2. Install required packages: GPG, PostgreSQL, Redis, ImageMagick, and VIPS
-
-      ```bash
-      brew install gpg postgresql redis imagemagick vips
-      createuser -P -d postgres
-      ```
-
-3. RVM - https://rvm.io/
-4. NVM - https://github.com/nvm-sh/nvm
-5. Ruby - `rvm install 3.2.0`
-6. Node - `nvm install`
-7. Yarn - `npm -g install yarn`
-
-#### Run setup script
-
-```bash
-bin/setup-no-docker
-```
-
-## Adding Storefront
-
-Spree is a [headless e-commerce platform](https://dev-docs.spreecommerce.org/getting-started/headless-commerce) which you can use with any storefront you like. We have pre-built integrations with:
-
-* [Next.js Commerce](https://dev-docs.spreecommerce.org/storefronts/next.js-commerce)
-* [Vue Storefront](https://dev-docs.spreecommerce.org/storefronts/vue-storefront)
-
-## Updating
-
-### Connect to the docker container
-```bash
-docker compose run web bash
-```
-
-### Run update commands
+### Install tools for style/security checks locally and to run Git hooks (Overcommit)
 
 ```
-bundle update
-bin/rails spree:install:migrations
-bin/rails db:migrate
+gem install overcommit
+
+gem install rubocop -v 1.57.2
+gem install rubocop-performance -v 1.20.2
+gem install rubocop-rails -v 2.22.1
+gem install brakeman -v 6.1.1
+gem install bundle-audit -v 0.1.0
+gem install slim_lint -v 0.26.0
+
+overcommit --install
 ```
 
-For additional instructions please visit [Spree Upgrade Guides](https://dev-docs.spreecommerce.org/upgrades)
+## Opensearch Dashboard simple usage
 
-## Development
+The default URL should be
+http://localhost:5601/
 
-### Launching rails console
+Default credentials are
 
-```bash
-docker compose run web rails c
+```
+username: admin
+password: admin
 ```
 
-### Launching bash console
+In order to be able to browse data, create an index pattern for `spree_variants_development` on:
 
-```bash
-docker compose run web bash
+http://localhost:5601/app/management/opensearch-dashboards/indexPatterns
+
+Then you can use Data Explorer > Discover to view existing records:
+
+http://localhost:5601/app/data-explorer/discover
+
+## Run tests
+
+```
+bundle exec rspec
 ```
 
-## Customization
-### Adding new gems
+## Run rubocop
 
-Update `Gemfile` and run
-
-```bash
-bundle install
-docker compose build
+```
+bundle exec rubocop --parallel
 ```
 
-You will need to restart the server if running:
+## Branching strategy
 
-```bash
-docker compose restart
+### Create Short-Lived Branch:
+
+Create a short-lived branch based from `main` for a specific feature or bug fix.
+
+If its based on a JIRA issue, use the JIRA prefix of the feature for naming the branch:
+
+```
+<JIRA issue number(s)>-<lowercase-description-of-branch>
 ```
 
-## Environment variables
-
-| variable | description | default value |
-|---|---|---|
-| DEBUG_ASSETS | Enables/disables [asset debugging in development](https://guides.rubyonrails.org/asset_pipeline.html#turning-debugging-off) | false |
-| DB_POOL | database connection pool | 5 |
-| MEMCACHED_POOL_SIZE | memcache connection pool | 5 |
-| SENDGRID_API_KEY | API key to interface Sendgrid API | |
-
-## Troubleshooting
-
-### libvips error
-
-If you are building the application using the latest code, you may encounter the following libvips error:
+Some examples:
 ```
-LoadError: Could not open library 'vips.so.42'
-```
-This error is usually an indication that you do not have libvips installed locally on your machine. Check that libvips is installed with `vips -v`, and if it is not installed, follow [installation instructions here](https://www.libvips.org/install.html).
+PE188-1-initalize-project
 
-### disabled 'Add to Cart' button
-
-This issue is specific to running with [spree_legacy_frontend](https://github.com/spree/spree_legacy_frontend).
-
-If you notice that the 'Add to Cart' button is disabled on product pages, try the [troubleshooting instructions](https://github.com/spree/spree_legacy_frontend#disabled-add-to-cart-button-issue) found in the spree_legacy_frontend ReadMe.
-
-### uninitialized constant Spree::Preference (NameError)
-
-If upgrading your spree app to Rails 7, you may run into the following error:
-```shell
-/lib/spree/core/preferences/store.rb:96:in `should_persist?': 
-uninitialized constant Spree::Preference (NameError)
-```
-To fix this error, you'll need to update your spree config initializer. In `config/initializers/spree.rb`, wrap the `Spree.config` block in a `Rails.application.config.after_initialize` block, like so:
-```ruby
-Rails.application.config.after_initialize do
-  Spree.config do |config|
-    # config settings initialized here
-  end
-end
+PE188-4-5-6-add-base-instalation-configuration
 ```
 
-## License
+Then, start your branch like this:
+```
+git checkout main
+git pull origin main
+git checkout -b <your-branch>
+# Begin working on your feature/fixes
+```
 
-Spree Starter (formerly Spark Starter Kit) is copyright © 2015-2021
-[Spark Solutions Sp. z o.o.][spark]. It is free software,
-and may be redistributed under the terms specified in the
-[LICENSE](LICENSE.md) file.
+### Frequent Integration:
 
-## About Spark Solutions
+Frequent integration with the main branch ensures continuous testing and validation.
 
-[![Spark Solutions](http://sparksolutions.co/wp-content/uploads/2015/01/logo-ss-tr-221x100.png)][spark]
+```
+git checkout main
+git pull origin main
+git checkout <your-branch>
+git rebase main
+```
 
-Spree Starter is maintained and funded by [Spark Solutions Sp. z o.o.](http://sparksolutions.co?utm_source=github)
-The names and logos are trademarks of Spark Solutions Sp. z o.o.
+### Pull Request and Code Review:
 
-We are passionate about open source software.
-We are [available for hire][spark].
+When the branch is ready to merge, a Pull request is lifted targeting to the `main` branch.
+Developers conduct code reviews before merging into the main branch.
 
-[spark]:http://sparksolutions.co?utm_source=github
+Branch must pass the pipeline validations.
+And a corresponding test coverage must be added into the branch.
+
+## Useful links
+
+### Documentation
+https://departamento-ti.github.io/cenabast-tienda/
+
+### Mercado publico quotation detail (Has documentation for proyect requirements)
+https://conveniomarco.mercadopublico.cl/software2022/publicquotes/requestforquote/view/id/39700/
+
+### JIRA
+https://linets.atlassian.net/jira/software/projects/PE188
