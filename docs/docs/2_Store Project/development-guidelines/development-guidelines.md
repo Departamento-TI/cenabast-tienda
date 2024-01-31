@@ -6,12 +6,26 @@ editor: markdown
 dateCreated: 2023-10-25T14:31:19.130Z
 ---
 
-# Resumen
+# Overview
 
-:::danger[CommitsFlow]
-You must follow the [Gitflow standard](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).\
-So, all new features must born from the `develop` branch.\
-Once a feature is finished, a Pull Request **should be added** to the `develop` branch. The PR should be assigned to the proper technical leader.
+:::danger[Commits Flow]
+All contributions must follow a trunk based development approach:
+So, new features must born from the `main` branch.\
+
+If its based on a JIRA issue, use the JIRA prefix of the feature for naming the branch:
+
+```
+<JIRA issue number(s)>-<lowercase-description-of-branch>
+```
+
+Some examples:
+```
+PE188-1-initalize-project
+
+PE188-4-5-6-add-base-instalation-configuration
+```
+
+More information about this can be found in the project README.
 :::
 
 
