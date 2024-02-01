@@ -161,3 +161,9 @@ gem 'sassc', github: 'sass/sassc-ruby', group: :development
 
 # Use Redis for Action Cable
 gem 'redis', '~> 4.0'
+
+# Tailwind CSS for Rails
+gem 'tailwindcss-rails', '~> 2.3'
+
+# A framework for building reusable, testable & encapsulated view components in Ruby on Rails.
+gem 'view_component'

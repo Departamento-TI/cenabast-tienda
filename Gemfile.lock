@@ -728,6 +728,10 @@ GEM
     stringex (2.8.6)
     stringio (3.0.8)
     syslog_protocol (0.9.2)
+    tailwindcss-rails (2.3.0-x86_64-darwin)
+      railties (>= 6.0.0)
+    tailwindcss-rails (2.3.0-x86_64-linux)
+      railties (>= 6.0.0)
     temple (0.10.3)
     terser (1.1.19)
       execjs (>= 0.3.0, < 3)
@@ -749,6 +753,10 @@ GEM
     validates_zipcode (0.5.2)
       activemodel (>= 4.2.0)
     vcr (6.2.0)
+    view_component (3.10.0)
+      activesupport (>= 5.2.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -828,9 +836,11 @@ DEPENDENCIES
   spree_sample (~> 4.7.0)
   spring
   stackprof
+  tailwindcss-rails (~> 2.3)
   terser
   turbo-rails
   vcr
+  view_component
   web-console (~> 4.0)
   webmock
 
