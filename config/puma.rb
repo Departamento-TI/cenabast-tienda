@@ -55,3 +55,6 @@ end
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+
+# https://github.com/rails/tailwindcss-rails
+plugin :tailwindcss if ENV.fetch("RAILS_ENV", "development") == "development"

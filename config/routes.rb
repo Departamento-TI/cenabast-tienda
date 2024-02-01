@@ -9,4 +9,8 @@ Rails.application.routes.draw do
       password == Rails.application.secrets.sidekiq_password
   end
   mount Sidekiq::Web, at: '/sidekiq'
+
+  if Rails.env.development?
+    mount Lookbook::Engine, at: '/lookbook'
+  end
 end

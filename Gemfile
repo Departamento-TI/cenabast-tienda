@@ -40,6 +40,9 @@ group :development, :test do
   gem 'memory_profiler'
 
   gem 'webmock'
+
+  # A UI development environment for Ruby on Rails apps
+  gem 'lookbook', '>= 2.2.0'
 end
 
 group :development do
@@ -135,12 +138,6 @@ gem 'searchkick'
 
 # Ruby Client for OpenSearch
 gem 'opensearch-ruby'
-
-# Sentry Client
-gem 'sentry-raven'
-
-# Scout Client
-gem 'scout_apm'
 
 # Rack CORS Middleware
 gem 'rack-cors'
