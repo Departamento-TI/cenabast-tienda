@@ -1,11 +1,12 @@
 version: '3.7'
 services:
   postgres:
-    image: postgres:13-alpine
+    image: postgres:15-alpine
     environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: "cenabast"
+      POSTGRES_PASSWORD: "yourpassword"
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - 'cenabast-postgres:/var/lib/postgresql/data'
 
@@ -31,6 +32,8 @@ services:
       - 'bundle_cache:/bundle'
       - '.:/app'
       - .env:/app/.env
+    stdin_open: true
+    tty: true
     environment:
       REDIS_URL: redis://redis:6379/0
       DB_HOST: postgres
@@ -86,7 +89,8 @@ services:
       - opensearch
 
 volumes:
-  redis:
   cenabast-postgres:
-  bundle_cache:
+    external: true
   opensearch-data:
+  redis:
+  bundle_cache:

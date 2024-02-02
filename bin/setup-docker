@@ -8,6 +8,17 @@ export DB_HOST=127.0.0.1
 export DB_PORT=5432
 bin/start-db-redis-containers
 
+export DATABASE_VOLUME_NAME="cenabast-postgres"
+
+# Check if the Docker volume already exists
+if docker volume inspect $DATABASE_VOLUME_NAME > /dev/null 2>&1; then
+    echo "Docker volume '$DATABASE_VOLUME_NAME' already exists."
+else
+    # Create the Docker volume
+    docker volume create $DATABASE_VOLUME_NAME
+    echo "Docker volume '$DATABASE_VOLUME_NAME' created successfully."
+fi
+
 docker compose run --rm web bash -c '
   bin/wait-for-services &&
   (bundle check || bundle install) &&

@@ -25,7 +25,8 @@ development:
   <<: *default
   database: cenabast_development
   host: <%= ENV.fetch('DB_HOST', 'localhost') %>
-  username: <%= ENV.fetch('DB_USER', 'postgres') %>
+  password: <%= ENV.fetch('DB_PASSWORD', 'yourpassword') %>
+  username: <%= ENV.fetch('DB_USER', 'cenabast') %>
   port: <%= ENV.fetch('DB_PORT', '5432') %>
 
   # The specified database role being used to connect to postgres.
@@ -62,7 +63,8 @@ test:
   <<: *default
   database: cenabast_test
   host: <%= ENV.fetch('DB_HOST', 'localhost') %>
-  username: <%= ENV.fetch('DB_USER', 'postgres') %>
+  password: <%= ENV.fetch('DB_PASSWORD', 'yourpassword') %>
+  username: <%= ENV.fetch('DB_USER', 'cenabast') %>
   port: <%= ENV.fetch('DB_PORT', '5432') %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
