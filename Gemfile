@@ -50,6 +50,9 @@ group :development do
   gem 'web-console', '~> 4.0'
 
   gem 'letter_opener'
+
+  # Debugging functionality for Ruby
+  gem 'debug', '>= 1.0.0'
 end
 
 group :test do

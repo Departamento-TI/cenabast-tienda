@@ -204,6 +204,9 @@ GEM
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
     date (3.3.3)
+    debug (1.9.1)
+      irb (~> 1.10)
+      reline (>= 0.3.8)
     deface (1.9.0)
       actionview (>= 5.2)
       nokogiri (>= 1.6)
@@ -808,6 +811,7 @@ DEPENDENCIES
   brakeman
   bundle-audit
   dalli
+  debug (>= 1.0.0)
   dotenv-rails (~> 2.1, >= 2.1.1)
   flamegraph
   font_assets
