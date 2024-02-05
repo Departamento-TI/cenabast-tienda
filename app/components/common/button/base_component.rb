@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
-class Common::Button::BaseComponent < ViewComponent::Base
-  # @param text text
-  # @param size select { choices: [sm, md, lg, xl, xxl] }
-  # @param hierarchy select { choices: [primary, secondary_color, secondary_gray, tertiary_color, tertiary_gray, link_color, link_gray] }
-  # @param destructive toggle
-  # @param icon select { choices: [false, leading, trailing, dot, only] }
-  def initialize(text:, hierarchy:, icon:, size: 'md', destructive: false)
+class Common::Button::BaseComponent < ApplicationComponent
+  # @param button_params hash
+  # =>  @param text text
+  # =>  @param size select { choices: [sm, md, lg, xl, xxl] }
+  # =>  @param hierarchy select { choices: [primary, secondary_color, secondary_gray, tertiary_color, tertiary_gray, link_color, link_gray] }
+  # =>  @param destructive toggle
+  def initialize(button_params:)
     super
-    @text = text
-    @hierarchy = hierarchy
-    @icon = icon
-    @size = size
-    @destructive = destructive
+    @text = button_params[:text]
+    @hierarchy = button_params[:hierarchy]
+    @size = button_params[:size] || 'md'
+    @destructive = button_params[:destructive]
   end
 
   private
@@ -35,7 +34,7 @@ class Common::Button::BaseComponent < ViewComponent::Base
     {
       sm: 'text-sm min-w-[106px] min-h-[36px] py-2 px-3.5',
       md: 'text-sm min-w-[110px] min-h-[40px] py-2.5 px-4',
-      lg: 'text-base min-w-[125px] min-h-[44px] py-2.5 px-4.5',
+      lg: 'text-base min-w-[125px] min-h-[44px] py-2.5 px-4',
       xl: 'text-base min-w-[129px] min-h-[48px] py-3 px-5',
       xxl: 'text-lg min-w-[156px] min-h-[60px] py-4 px-7'
     }[@size.to_sym]
