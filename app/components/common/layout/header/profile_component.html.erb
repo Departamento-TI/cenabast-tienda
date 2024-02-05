@@ -1,0 +1,37 @@
+<div class="w-[210px] h-full float-right px-[8px] relative">
+  <button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <% if @is_logged_in %>
+      <%= image_tag @image_url, class: 'h-[40px] w-[40px] rounded-full float-left' %>
+      <div class="w-[124px] px-2 float-left text-left text-sm text-gray-500">
+        <p class="overflow-hidden text-nowrap text-ellipsis font-semibold"><%= !@name.empty? ? @name : Spree.t(:name_unknwown) %></p>
+        <p class="overflow-hidden text-nowrap text-ellipsis"><%= @email %></p>
+      </div>
+      <%= image_tag "icons/arrow-down", class: 'h-[7px] w-[15px] absolute top-[15px] right-[20px]' %>
+    <% else %>
+      <%= image_tag 'icons/user-circle', class: 'h-[40px] w-[40px] rounded-full float-left' %>
+      <div class="w-[124px] px-2 float-left text-left text-sm text-gray-500">
+        <p class="overflow-hidden text-nowrap text-ellipsis font-semibold">Invitado</p>
+        <p class="overflow-hidden text-nowrap text-ellipsis">Inicia Sesión</p>
+      </div>
+      <%= image_tag "icons/arrow-down", class: 'h-[7px] w-[15px] absolute top-[15px] right-[20px]' %>
+    <% end %>
+  </button>
+
+  <% if @is_logged_in %>
+  <div class="absolute right-0 top-[32px] z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-sm ring-1 ring-black ring-opacity-5 focus:outline-none hidden dropdown-menu" aria-orientation="vertical" aria-labelledby="menu-button">
+    <div class="py-1">
+      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
+      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">My Cart</a>
+      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">License</a>
+    </div>
+  </div>
+  <% else %>
+  <div class="absolute right-0 top-[32px] z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-sm ring-1 ring-black ring-opacity-5 focus:outline-none hidden dropdown-menu" aria-orientation="vertical" aria-labelledby="menu-button">
+    <div class="py-1">
+      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+      <%= link_to Spree.t(:login).upcase, spree_login_path, class: 'text-gray-700 block px-4 py-2 text-sm' if defined?(spree_login_path) %>
+    </div>
+  </div>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<div class="w-[152px] xl:w-[202px] 2xl:w-[272px] h-full relative float-left px-[8px]">
+  <button class="w-[120px] xl:w-[170px] 2xl:w-[240px] p-2 float-left text-sm text-gray-500 overflow-hidden text-nowrap text-ellipsis dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="font-semibold hidden xl:inline-block"><%= @title %>: </span>
+    <span><%= @value %></span>
+    <%= image_tag "icons/arrow-down", class: 'h-[7px] w-[15px] absolute top-[15px] right-[20px]' %>
+  </button>
+
+  <div class="absolute right-0 top-[32px] z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-sm ring-1 ring-black ring-opacity-5 focus:outline-none hidden dropdown-menu" aria-orientation="vertical" aria-labelledby="menu-button">
+    <div class="py-1">
+      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
+      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Support</a>
+      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">License</a>
+    </div>
+  </div>
+</div>
