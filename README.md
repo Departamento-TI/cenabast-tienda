@@ -15,7 +15,9 @@ Cenabast B2B project:
 * [Brakeman](https://github.com/presidentbeef/brakeman) for static analyze of security vulnerabilities
 * [Slim-Lint](https://github.com/sds/slim-lint) for linting of Slim templates
 * [Overcommit](https://github.com/sds/overcommit) for management of Git hooks used in the project
-
+* [Tailwind](https://github.com/rails/tailwindcss-rails) CSS Framework
+* [ViewComponent](https://github.com/viewcomponent/view_component) for building reusable and encapsulated view components on RoR
+* [LookBook](https://github.com/ViewComponent/lookbook) as a component browser for the developers
 
 ## Local Instalation
 
