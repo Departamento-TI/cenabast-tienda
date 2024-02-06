@@ -43,6 +43,11 @@ module SpreeStarter
     # adds support for Services
     config.autoload_paths += %W(#{config.root}/services #{config.root}/app/services/concerns)
 
+    # https://viewcomponent.org/guide/testing.html
+    # Add viewcomponent preview paths to be used for testing
+    # purposes
+    config.view_component.preview_paths << "#{Rails.root}/spec/components/previews"
+
     if Rails.env.production?
       # CloudFlare middleware for proper visitors IP addresses
       require "#{Rails.root}/lib/cloud_flare_middleware"

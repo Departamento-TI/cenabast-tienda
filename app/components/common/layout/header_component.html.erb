@@ -30,7 +30,7 @@
   <!-- White bar -->
   <div class="h-20 w-full bg-white drop-shadow">
     <div class="px-8 2xl:px-28 py-4 h-full w-full">
-      <%= image_tag "cenabast-logo.png", class: 'h-full w-auto float-left' %>
+      <%= image_tag "cenabast-logo.png", class: 'h-full w-auto float-left', role: 'header-logo' %>
 
       <div class="float-left pl-[26px]">
         <%= link_to 'Medicamentos', '#', class: 'font-semibold text-base text-gray-500 px-[12px]' %>
@@ -41,7 +41,7 @@
       </div>
 
       <!-- Cart -->
-      <div class="float-right pr-[26px] relative top-[-5px]">
+      <div class="float-right pr-[26px] relative top-[-5px]" role='cart-button-container'>
         <%= link_to spree.cart_path do %>
           <%= render Common::Button::IconComponent.new(
             button_params: {
@@ -56,7 +56,7 @@
       </div>
 
       <!-- Searchbar -->
-      <div class="float-right pr-[26px] relative top-[-5px]">
+      <div class="float-right pr-[26px] relative top-[-5px]" role='searchbar'>
         <form>
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
 

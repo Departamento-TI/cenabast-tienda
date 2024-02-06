@@ -2,8 +2,8 @@
 
 class Common::Layout::Header::ProfileComponent < ApplicationComponent
   # @param user_data hash
-  # => @param title text
-  # => @param value text
+  # => @param name text
+  # => @param email text
   # => @param image_url text
   # => @param is_logged_in toggle
   def initialize(user_data:)

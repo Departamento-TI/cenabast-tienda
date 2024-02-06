@@ -32,6 +32,9 @@ group :development, :test do
 
   gem 'rspec_junit_formatter'
 
+  # Acceptance test framework for web applications
+  gem 'capybara'
+
   # monitoring
   # gem 'bullet'
   gem 'rack-mini-profiler', require: false
