@@ -1,0 +1,11 @@
+<%# leaving #spree-header div for legacy support  %>
+<% cache spree_menu_cache_key('header') do %>
+  <%= render Common::Layout::HeaderComponent.new(
+    user_data: {
+      name: spree_current_user&.full_name,
+      email: spree_current_user&.email,
+      image_url: 'icons/user-circle',
+      is_logged_in: !spree_current_user.nil?
+    }
+  ) %>
+<% end %>

@@ -32,6 +32,9 @@ group :development, :test do
 
   gem 'rspec_junit_formatter'
 
+  # Acceptance test framework for web applications
+  gem 'capybara'
+
   # monitoring
   # gem 'bullet'
   gem 'rack-mini-profiler', require: false
@@ -40,6 +43,9 @@ group :development, :test do
   gem 'memory_profiler'
 
   gem 'webmock'
+
+  # A UI development environment for Ruby on Rails apps
+  gem 'lookbook', '>= 2.2.0'
 end
 
 group :development do
@@ -47,6 +53,9 @@ group :development do
   gem 'web-console', '~> 4.0'
 
   gem 'letter_opener'
+
+  # Debugging functionality for Ruby
+  gem 'debug', '>= 1.0.0'
 end
 
 group :test do
@@ -136,12 +145,6 @@ gem 'searchkick'
 # Ruby Client for OpenSearch
 gem 'opensearch-ruby'
 
-# Sentry Client
-gem 'sentry-raven'
-
-# Scout Client
-gem 'scout_apm'
-
 # Rack CORS Middleware
 gem 'rack-cors'
 
@@ -161,3 +164,9 @@ gem 'sassc', github: 'sass/sassc-ruby', group: :development
 
 # Use Redis for Action Cable
 gem 'redis', '~> 4.0'
+
+# Tailwind CSS for Rails
+gem 'tailwindcss-rails', '~> 2.3'
+
+# A framework for building reusable, testable & encapsulated view components in Ruby on Rails.
+gem 'view_component'

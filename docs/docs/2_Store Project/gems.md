@@ -23,6 +23,9 @@ Dependancies used in the project
 * [Brakeman](https://github.com/presidentbeef/brakeman) for static analyze of security vulnerabilities
 * [Slim-Lint](https://github.com/sds/slim-lint) for linting of Slim templates
 * [Overcommit](https://github.com/sds/overcommit) for management of Git hooks used in the project
+* [Tailwind](https://github.com/rails/tailwindcss-rails) CSS Framework
+* [ViewComponent](https://github.com/viewcomponent/view_component) for building reusable and encapsulated view components on RoR
+* [LookBook](https://github.com/ViewComponent/lookbook) as a component browser for the developers
 
 ## Proposed gems
 
@@ -47,16 +50,6 @@ Trix could be used as a replacement or betterment to edit product information, l
 Prawn is a pure Ruby PDF generation library that provides a lot of great functionality while trying to remain simple and reasonably performant.
 
 Prawn could be useful to generate PDF information of Order Sales, Repors or other store elements.
-
-### [TailwindCSS](https://github.com/rails/tailwindcss-rails)
-
-Tailwind CSS is a utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
-
-CSS Utility classes can help to reduce the complexity required to understand Semantical CSS in long running proyects.
-
-More information about the problematic can be found here:
-
-https://adamwathan.me/css-utility-classes-and-separation-of-concerns/
 
 ### [RestClient](https://github.com/rest-client/rest-client)
 

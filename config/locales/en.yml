@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  spree:
+    name_unknwown: 'Name Unknown'

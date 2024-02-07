@@ -53,4 +53,9 @@ Rails.application.configure do
 
   # disable caching
   config.cache_store = :null_store
+
+  # https://github.com/tailwindlabs/tailwindcss/discussions/6738#discussioncomment-2010199
+  # "Function rgb is missing argument $green" issue
+  # Might be necesary to add this onto production environment later, or find another solution.
+  config.assets.css_compressor = nil
 end

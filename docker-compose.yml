@@ -53,6 +53,7 @@ services:
       - 'bundle_cache:/bundle'
       - '.:/app'
       - .env:/app/.env
+    tty: true
     environment:
       REDIS_URL: redis://redis:6379/0
       DB_HOST: postgres

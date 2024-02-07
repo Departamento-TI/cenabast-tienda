@@ -35,13 +35,18 @@ module SpreeStarter
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = :es
+    config.i18n.default_locale = :en
 
     # use Sidekiq for ActiveJob
     config.active_job.queue_adapter = :sidekiq
 
     # adds support for Services
     config.autoload_paths += %W(#{config.root}/services #{config.root}/app/services/concerns)
+
+    # https://viewcomponent.org/guide/testing.html
+    # Add viewcomponent preview paths to be used for testing
+    # purposes
+    config.view_component.preview_paths << "#{Rails.root}/spec/components/previews"
 
     if Rails.env.production?
       # CloudFlare middleware for proper visitors IP addresses
