@@ -1,6 +1,10 @@
 module Cenabast
   module Spree
     module UserDecorator
+      def self.prepended(base)
+        base.include Cenabast::Spree::User::StorePreference
+      end
+
       def full_name
         "#{first_name} #{last_name}".strip
       end
