@@ -43,6 +43,7 @@ jobs:
         bin/rails db:create db:schema:load
         yarn install
         yarn build
+        bundle exec rake assets:precompile
         bundle exec rspec
       env:
         RAILS_ENV: test
