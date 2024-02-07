@@ -46,6 +46,9 @@ group :development, :test do
 
   # A UI development environment for Ruby on Rails apps
   gem 'lookbook', '>= 2.2.0'
+
+  # Debugging functionality for Ruby
+  gem 'debug', '>= 1.0.0'
 end
 
 group :development do
@@ -53,13 +56,13 @@ group :development do
   gem 'web-console', '~> 4.0'
 
   gem 'letter_opener'
-
-  # Debugging functionality for Ruby
-  gem 'debug', '>= 1.0.0'
 end
 
 group :test do
   gem 'vcr'
+
+  # Simple one-liner tests for common Rails functionality
+  gem 'shoulda-matchers', '~> 6.0'
 end
 
 # Heroku fix
