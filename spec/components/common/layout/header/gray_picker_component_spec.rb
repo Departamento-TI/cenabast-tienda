@@ -16,6 +16,6 @@ RSpec.describe Common::Layout::Header::GrayPickerComponent, type: :component do
     render_preview(:standard)
 
     expect(page).to have_css '.dropdown-menu'
-    expect(page).to have_selector('.dropdown-menu a', count: 3)
+    expect(page).to have_selector('.dropdown-menu form', count: 3)
   end
 end

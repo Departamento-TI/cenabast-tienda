@@ -10,7 +10,7 @@
     <div class="py-1">
       <!-- option button linking to related action -->
       <% @options&.each&.with_index do |option, index| %>
-        <% next unless path = (send(@form_path_method, option_id: option[:id]) rescue nil) %>
+        <% next unless path = (send(@form_path_method, option_id: option[:id]) rescue '#') %>
         <%= button_to(
             option[:title],
             path,

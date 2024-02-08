@@ -6,7 +6,7 @@ module Cenabast
       def toggle_store
         spree_current_user&.toggle_store(@store)
 
-        redirect_back fallback_location: root_path
+        redirect_back fallback_location: spree.root_path
       end
 
       private

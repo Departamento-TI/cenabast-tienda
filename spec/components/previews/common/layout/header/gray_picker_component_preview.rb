@@ -11,7 +11,7 @@ class Common::Layout::Header::GrayPickerComponentPreview < ViewComponent::Previe
         { id: 2, title: 'Prueba' },
         { id: 3, title: 'Cenabast' }
       ],
-      form_base_path: '#'
+      form_path_method: :unexisting
     )
   end
 end
