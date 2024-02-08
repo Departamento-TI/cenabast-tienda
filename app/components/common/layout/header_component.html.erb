@@ -3,24 +3,40 @@
   <div class="h-16 w-full bg-gray-100">
     <div class="px-8 py-[14px] h-full w-full">
 
+      <!-- Applicant picker -->
       <%= render Common::Layout::Header::GrayPickerComponent.new(
         title: 'Solicitante',
-        value: 'SS Met Sur Oriente - 76.817.123-3'
+        value: 'SS Met Sur Oriente - 76.817.123-3',
+        selected: @current_store_id,
+        options: [],
+        form_path_method: '#'
       ) %>
 
+      <!-- Recipient picker -->
       <%= render Common::Layout::Header::GrayPickerComponent.new(
         title: 'Destinatario',
-        value: 'Selecciona destinatario'
+        value: 'Selecciona destinatario',
+        selected: @current_store_id,
+        options: [],
+        form_path_method: '#'
       ) %>
 
+      <!-- Cost center picker -->
       <%= render Common::Layout::Header::GrayPickerComponent.new(
         title: 'Centro de costo',
-        value: 'Selecciona Centro de costo'
+        value: 'Selecciona Centro de costo',
+        selected: @current_store_id,
+        options: [],
+        form_path_method: '#'
       ) %>
 
+      <!-- Store picker -->
       <%= render Common::Layout::Header::GrayPickerComponent.new(
         title: 'Canal',
-        value: 'Selecciona Tipo de Compra'
+        value: @current_store_name,
+        selected: @current_store_id,
+        options: @available_stores,
+        form_path_method: :toggle_store_path
       ) %>
 
       <%= render Common::Layout::Header::ProfileComponent.new(user_data: @user_data) %>

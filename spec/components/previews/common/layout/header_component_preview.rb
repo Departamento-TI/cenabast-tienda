@@ -1,6 +1,14 @@
 class Common::Layout::HeaderComponentPreview < ViewComponent::Preview
   def standard
     render Common::Layout::HeaderComponent.new(
+      header_data: {
+        current_store_name: 'Intermediación',
+        current_store_id: 1,
+        available_stores: [
+          { id: 1, title: 'Intermediación' },
+          { id: 2, title: 'E-commerce' }
+        ]
+      },
       user_data: {
         name: 'John Doe',
         email: 'example@spree.com',

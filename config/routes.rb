@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   end
   mount Sidekiq::Web, at: '/sidekiq'
 
+  # User preferences
+  post 'user_preferences/toggle_store/:option_id',
+    to: 'cenabast/spree/user_preferences#toggle_store',
+    as: :toggle_store
+
   if Rails.env.development?
     mount Lookbook::Engine, at: '/lookbook'
   end
