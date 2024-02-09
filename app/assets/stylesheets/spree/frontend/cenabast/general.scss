@@ -1,0 +1,9 @@
+/*
+  Miscelaneous CSS needed for the application.
+  if this grows too much, might be wise to split into different modules.
+  preffer using tailwind instead of defining custom CSS, use only if necessary
+*/
+
+.dropdown-toggle::after {
+  display: none;
+}

@@ -572,6 +572,8 @@ GEM
       sendgrid-ruby (~> 6.4)
     sendgrid-ruby (6.6.2)
       ruby_http_client (~> 3.4)
+    shoulda-matchers (6.1.0)
+      activesupport (>= 5.2.0)
     sidekiq (7.2.0)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -839,6 +841,7 @@ DEPENDENCIES
   sassc!
   searchkick
   sendgrid-actionmailer
+  shoulda-matchers (~> 6.0)
   sidekiq
   slim_lint
   spree (~> 4.7.0)
