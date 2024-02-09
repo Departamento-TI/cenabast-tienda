@@ -10,6 +10,9 @@ KEYCLOAK_USER: `admin`\
 KEYCLOAK_PASSWORD: `owwIZLI#6m65`
 :::
 
+:::info
+Check Keycloak `docker-compose.yml` deployment [here](../dev-server#docker-compose).
+:::
 
 # Keycloak Setup
 

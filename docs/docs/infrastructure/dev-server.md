@@ -63,13 +63,13 @@ The following docker-compose.yml file might be outdated. The [actual file](https
     ```jsx
 version: '3.7'
 services:
-
   postgres:
-    image: postgres:13-alpine
+    image: postgres:15-alpine
     environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: "cenabast"
+      POSTGRES_PASSWORD: "yourpassword"
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - 'postgres:/var/lib/postgresql/data'
 
@@ -84,6 +84,7 @@ services:
     depends_on:
       - 'postgres'
       - 'redis'
+      - 'opensearch'
     build:
       context: .
       dockerfile: Dockerfile.development
@@ -94,6 +95,8 @@ services:
       - 'bundle_cache:/bundle'
       - '.:/app'
       - .env:/app/.env
+    stdin_open: true
+    tty: true
     environment:
       REDIS_URL: redis://redis:6379/0
       DB_HOST: postgres
@@ -104,6 +107,7 @@ services:
     depends_on:
       - 'postgres'
       - 'redis'
+      - 'opensearch'
     build:
       context: .
       dockerfile: Dockerfile.development
@@ -112,39 +116,68 @@ services:
       - 'bundle_cache:/bundle'
       - '.:/app'
       - .env:/app/.env
+    tty: true
     environment:
       REDIS_URL: redis://redis:6379/0
       DB_HOST: postgres
       DB_PORT: 5432
       DISABLE_SPRING: 1
 
+  opensearch:
+    image: opensearchproject/opensearch:2
+    container_name: opensearch
+    environment:
+      discovery.type: single-node
+      node.name: opensearch
+      # Disables Security plugin
+      DISABLE_SECURITY_PLUGIN: 'true'
+      OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m"
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    ports:
+      - 9200:9200
+      - 9600:9600
+
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:2
+    container_name: opensearch-dashboards
+    ports:
+      - 5601:5601
+    expose:
+      - "5601"
+    environment:
+      # Disables security dashboards plugin in OpenSearch Dashboards
+      DISABLE_SECURITY_DASHBOARDS_PLUGIN: 'true'
+      OPENSEARCH_HOSTS: '["http://opensearch:9200"]'
+    depends_on:
+      - opensearch
+  
   keycloak:
     build:
       context: .
       dockerfile: Dockerfile.keycloak
     image: keycloak:custom
     environment:
-      KEYCLOAK_DECLARATIVE_USER_PROFILE: true
       KEYCLOAK_DATABASE_HOST: postgres
       KEYCLOAK_DATABASE_NAME: keycloak
-      KEYCLOAK_DATABASE_USER: keycloak
-      KEYCLOAK_DATABASE_PASSWORD: u_J91CEema4S
+      KEYCLOAK_DATABASE_USER: cenabast 
+      KEYCLOAK_DATABASE_PASSWORD: yourpassword 
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: owwIZLI#6m65
       KEYCLOAK_HOSTNAME_ADMIN_URL: https://login-dev.cenabast.gob.cl/
       KEYCLOAK_HOSTNAME_URL: https://login-dev.cenabast.gob.cl/
       KEYCLOAK_PROXY: edge
-      KEYCLOAK_HOSTNAME_STRICT: false
     ports:
       - "8080:8080"
       - "8443:8443"
       - "9990:9990"
-    command: ["start", "--https-key-store-file=/opt/keycloak/conf/server.keystore", "--https-key-store-password=pa55w0rd", "--optimized", "--db-url=jdbc:postgresql://postgres/keycloak", "--db-username=keycloak", "--db-password=u_J91CEema4S", "--proxy=edge", "--hostname-strict=false", "--hostname=login-dev.cenabast.gob.cl"]
+    command: ["start", "--https-key-store-file=/opt/keycloak/conf/server.keystore", "--https-key-store-password=pa55w0rd", "--optimized", "--db-url=jdbc:postgresql://postgres/keycloak", "--db-username=cenabast", "--db-password=yourpassword", "--proxy=edge", "--hostname-strict=false", "--hostname=login-dev.cenabast.gob.cl"]
 
 volumes:
-  redis:
   postgres:
-  bundle_cache:    
+  opensearch-data:
+  redis:
+  bundle_cache:
     ```
     </div>
     

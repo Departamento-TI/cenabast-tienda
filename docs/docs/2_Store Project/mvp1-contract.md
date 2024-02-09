@@ -12,6 +12,14 @@
 [This is the RFQ](/img/Requisitos-tecnicos-piloto-tienda.pdf) for the MVP stage of the project.
 :::
 
-### Milestones
+### Original Milestones 🙄
 
 ![milestones](/img/2024-01-15_11-23.png)
+
+### Updated Milestones
+
+:::danger
+Unfortunately, due to the IT director replacement, we were requested to add the "ecommerce channel to the MVP project.
+:::
+
+![Newmilestone](/img/2024-01-17_12-24.png)
