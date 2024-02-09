@@ -39,6 +39,8 @@ bin/setup-docker
 docker compose run web rake spree_sample:load
 ```
 
+**Warning: Store seed data might need to be recreated. See `002_stores.rb` for reference.**
+
 ### (Optional) create vendor sample (for spree multi vendor) data
 
 ```bash
