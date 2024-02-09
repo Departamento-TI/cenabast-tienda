@@ -152,7 +152,7 @@ And a corresponding test coverage must be added into the branch.
 ### Documentation
 https://departamento-ti.github.io/cenabast-tienda/
 
-### Mercado publico quotation detail (Has documentation for proyect requirements)
+### Mercado publico quotation detail (Has documentation for project requirements)
 https://conveniomarco.mercadopublico.cl/software2022/publicquotes/requestforquote/view/id/39700/
 
 ### JIRA
