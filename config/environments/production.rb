@@ -39,13 +39,6 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
-  # Store uploaded files on the local file system (see config/storage.yml for options).
-  if ENV['BUCKETEER_AWS_ACCESS_KEY_ID'].present? && ENV['BUCKETEER_AWS_SECRET_ACCESS_KEY'].present?
-    config.active_storage.service = :amazon
-  else
-    config.active_storage.service = :local
-  end
-
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
