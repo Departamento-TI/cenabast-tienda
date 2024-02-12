@@ -5,8 +5,14 @@ RSpec.describe Cenabast::Spree::UserPreferencesController, type: :request do
     let(:user) { create(:user) }
     let(:stores) { create_list(:store, 3) }
 
+    before do
+      allow_any_instance_of(Spree::StoreController).to receive(:try_spree_current_user).and_return(user)
+      allow_any_instance_of(Spree::StoreController).to receive_messages spree_current_user: user
+    end
+
     it 'can toggle the store to an allowed one' do
       user.availiable_stores << stores
+      user.save
       store = stores.sample
 
       post toggle_store_path(option_id: store.id)
