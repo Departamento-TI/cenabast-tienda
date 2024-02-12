@@ -55,7 +55,11 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 4.0'
 
+  # Preview mail in the browser instead of sending.
   gem 'letter_opener'
+
+  # Gives letter_opener an interface for browsing sent emails.
+  gem 'letter_opener_web', '~> 2.0'
 end
 
 group :test do

@@ -56,6 +56,10 @@ bin/start-docker
 By default, webserver will be exposed on port 4000.
 Opensearch dashboard will be exposed on port 5601.
 
+
+In developer environment, Lookbook UI is accesible via `/lookbook` path.
+Mails are sent using `letter_oppener`, Web UI is accesible via `/letter_opener` path.
+
 ### Install tools for style/security checks locally and to run Git hooks (Overcommit)
 
 ```
@@ -177,7 +181,7 @@ Important: Spree::Store `mail_from_address` must be set to a corresponding value
 
 ## Useful links
 
-### Documentation
+### Documentation (Developer guidelines, Business logic definition)
 https://departamento-ti.github.io/cenabast-tienda/
 
 ### Mercado publico quotation detail (Has documentation for project requirements)
