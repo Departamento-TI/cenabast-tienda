@@ -53,5 +53,26 @@ module SpreeStarter
       require "#{Rails.root}/lib/cloud_flare_middleware"
       config.middleware.insert_before(0, Rack::CloudFlareMiddleware)
     end
+
+    # Store uploaded files on the local file system (see config/storage.yml for options).
+    if ENV['ACCESS_KEY_ID'].present? && ENV['SECRET_ACCESS_KEY'].present?
+      config.active_storage.service = :amazon
+    else
+      config.active_storage.service = :local
+    end
+
+    # SMTP mail
+    if ENV['SMTP_USERNAME'].present?
+      config.action_mailer.delivery_method = :smtp
+      config.action_mailer.smtp_settings = {
+        address:              ENV["SMTP_ADDRESS"],
+        port:                 ENV["SMTP_PORT"].to_i,
+        domain:               ENV["SMTP_DOMAIN"],
+        user_name:            ENV["SMTP_USERNAME"],
+        password:             ENV["SMTP_PASSWORD"],
+        authentication:       ENV["SMTP_AUTH"] || 'plain',
+        enable_starttls_auto: ENV["SMTP_ENABLE_STARTTLS_AUTO"] == "true"
+      }
+    end
   end
 end

@@ -56,6 +56,10 @@ bin/start-docker
 By default, webserver will be exposed on port 4000.
 Opensearch dashboard will be exposed on port 5601.
 
+
+In developer environment, Lookbook UI is accesible via `/lookbook` path.
+Mails are sent using `letter_oppener`, Web UI is accesible via `/letter_opener` path.
+
 ### Install tools for style/security checks locally and to run Git hooks (Overcommit)
 
 ```
@@ -149,9 +153,35 @@ Developers conduct code reviews before merging into the main branch.
 Branch must pass the pipeline validations.
 And a corresponding test coverage must be added into the branch.
 
+## Env variables
+
+For local environments, env variables are copied automatically upon setup. Using .env.sample as the base.
+
+Some additional environment variables might be needed to be set for pre-productive/productive environments:
+
+**Storage Bucket configuration (Store attachments in S3)**
+```
+BUCKET_NAME
+ACCESS_KEY_ID
+SECRET_ACCESS_KEY
+SMTP_ADDRESS
+```
+
+**SMTP Email configuration (Send mails using SMTP service ie. SES)**
+```
+SMTP_PORT
+SMTP_DOMAIN
+SMTP_USERNAME
+SMTP_PASSWORD
+SMTP_AUTH
+SMTP_ENABLE_STARTTLS_AUTO
+```
+
+Important: Spree::Store `mail_from_address` must be set to a corresponding value (email address of sender, that matches domain of the STMP configuration).
+
 ## Useful links
 
-### Documentation
+### Documentation (Developer guidelines, Business logic definition)
 https://departamento-ti.github.io/cenabast-tienda/
 
 ### Mercado publico quotation detail (Has documentation for project requirements)
