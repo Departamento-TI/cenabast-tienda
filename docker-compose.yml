@@ -89,6 +89,37 @@ services:
     depends_on:
       - opensearch
 
+  keycloak:
+    build:
+      context: .
+      dockerfile: Dockerfile.keycloak
+    image: keycloak:custom
+    environment:
+      KEYCLOAK_DATABASE_HOST: postgres
+      KEYCLOAK_DATABASE_NAME: keycloak
+      KEYCLOAK_DATABASE_USER: keycloak
+      KEYCLOAK_DATABASE_PASSWORD: u_J91CEema4S
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: owwIZLI#6m65
+      KEYCLOAK_HOSTNAME_URL: https://login-dev.cenabast.gob.cl/
+      KEYCLOAK_PROXY: edge
+      KEYCLOAK_HOSTNAME_STRICT: 'false'
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "9990:9990"
+    command:
+    - "start"
+    - "--https-key-store-file=/opt/keycloak/conf/server.keystore"
+    - "--https-key-store-password=pa55w0rd"
+    - "--optimized"
+    - "--db-url=jdbc:postgresql://postgres/keycloak"
+    - "--db-username=keycloak"
+    - "--db-password=u_J91CEema4S"
+    - "--proxy=edge"
+    - "--hostname-strict=false"
+    - "--hostname=login-dev.cenabast.gob.cl"
+
 volumes:
   cenabast-postgres:
     external: true
