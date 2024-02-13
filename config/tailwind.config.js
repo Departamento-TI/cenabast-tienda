@@ -16,6 +16,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        roboto: ['Roboto var', ...defaultTheme.fontFamily.sans],
       },
 
       colors: {
