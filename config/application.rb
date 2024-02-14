@@ -74,5 +74,12 @@ module SpreeStarter
         enable_starttls_auto: ENV["SMTP_ENABLE_STARTTLS_AUTO"] == "true"
       }
     end
+
+    # Remove all spree_auth_devise routes
+    # We redefine the spree user routes, so we dont need those.
+    # https://stackoverflow.com/a/53159319
+    initializer(:remove_activestorage_routes, after: :add_routing_paths) do |app|
+      app.routes_reloader.paths.delete_if {|path| path[/spree_auth_devise/] }
+    end
   end
 end

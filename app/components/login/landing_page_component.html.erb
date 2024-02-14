@@ -17,19 +17,23 @@
 
           <!-- Buttons -->
           <div class="py-6">
-            <button class="block maw-w-full max-h-full w-full xl:w-[532px] h-[58px] py-2.5 px-4 text-base underline bg-[#0062CC] text-white focus:shadow-focus my-2 flex items-center justify-center font-roboto">
-              <div class=" w-[20px] h-[20px] mr-2">
-                <%= image_tag "icons/clave-unica", class: 'h-full' %>
-              </div>
-              Iniciar sesión como usuario
-            </button>
+            <%= link_to @login_url, method: :post, data: { turbo: false } do %>
+              <button class="block maw-w-full max-h-full w-full xl:w-[532px] h-[58px] py-2.5 px-4 text-base underline bg-[#0062CC] text-white focus:shadow-focus my-2 flex items-center justify-center font-roboto">
+                <div class=" w-[20px] h-[20px] mr-2">
+                  <%= image_tag "icons/clave-unica", class: 'h-full' %>
+                </div>
+                Iniciar sesión como usuario
+              </button>
+            <% end %>
 
-            <button class="block max-h-full max-h-full w-full xl:w-[532px] h-[58px] py-2.5 px-4 text-base underline bg-white border border-gray-300 text-gray-700 shadow-sm focus:shadow-focus my-2 flex items-center justify-center font-roboto">
-              <div class=" w-[20px] h-[20px] mr-2">
-                <%= image_tag "icons/clave-unica-black", class: 'h-full' %>
-              </div>
-              Iniciar sesión como proveedor
-            </button>
+            <%= link_to @login_url, method: :post, data: { turbo: false } do %>
+              <button class="block max-h-full max-h-full w-full xl:w-[532px] h-[58px] py-2.5 px-4 text-base underline bg-white border border-gray-300 text-gray-700 shadow-sm focus:shadow-focus my-2 flex items-center justify-center font-roboto">
+                <div class=" w-[20px] h-[20px] mr-2">
+                  <%= image_tag "icons/clave-unica-black", class: 'h-full' %>
+                </div>
+                Iniciar sesión como proveedor
+              </button>
+            <% end %>
           </div>
 
           <!-- Helper links -->

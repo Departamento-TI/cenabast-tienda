@@ -13,4 +13,11 @@ class Common::Layout::Header::ProfileComponent < ApplicationComponent
     @image_url = user_data[:image_url]
     @is_logged_in = user_data[:is_logged_in]
   end
+
+  private
+
+  def before_render
+    @login_path = helpers.spree.login_path
+    @logout_path = helpers.spree.logout_path
+  end
 end

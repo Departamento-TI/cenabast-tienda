@@ -2,9 +2,7 @@ module Cenabast
   module Spree
     module UserDecorator
       def self.prepended(base)
-        base.devise :database_authenticatable, :rememberable,
-                    :trackable # , :omniauthable, omniauth_providers: %i[clave_unica]
-
+        base.devise :omniauthable, omniauth_providers: %i[clave_unica]
         base.include Cenabast::Spree::User::StorePreference
       end
 

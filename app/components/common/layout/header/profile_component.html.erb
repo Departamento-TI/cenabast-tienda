@@ -22,13 +22,13 @@
       <div class="py-1">
         <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
         <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">My Cart</a>
-        <%= link_to Spree.t(:logout), spree.logout_path, class: 'text-gray-700 block px-4 py-2 text-sm' if defined?(spree.logout_path) %>
+        <%= link_to Spree.t(:logout), @logout_path, class: 'text-gray-700 block px-4 py-2 text-sm' if defined?(spree.logout_path) %>
       </div>
     </div>
   <% else %>
     <div class="absolute right-0 top-[32px] z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-sm ring-1 ring-black ring-opacity-5 focus:outline-none hidden dropdown-menu" aria-orientation="vertical" aria-labelledby="menu-button">
       <div class="py-1">
-        <%= link_to Spree.t(:login), spree.login_path, class: 'text-gray-700 block px-4 py-2 text-sm' if defined?(spree.login_path) %>
+        <%= link_to Spree.t(:login), @login_path, class: 'text-gray-700 block px-4 py-2 text-sm' if defined?(spree.login_path) %>
       </div>
     </div>
   <% end %>
