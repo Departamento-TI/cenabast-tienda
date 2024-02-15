@@ -81,4 +81,28 @@ Rails.application.configure do
   }
 
   config.hosts.clear
+
+  if ENV['DEVELOPER_SILENCE_LOGS']
+    # Enable env var if you want less noise into your dev environment
+
+    # Silence some logs
+    config.assets.debug = false
+    config.assets.raise_runtime_errors = false
+    config.assets.digest = false
+
+    config.after_initialize do
+      # Silence query logs
+      ActiveRecord::Base.logger = Rails.logger.clone
+      ActiveRecord::Base.logger.level = Logger::WARN
+      # Silence rendering logs
+      ActionView::Base.logger = Rails.logger.clone
+      ActionView::Base.logger.level = Logger::WARN
+    end
+
+    config.active_support.report_deprecations = false
+    
+    initializer 'spree.environment.silence', after: 'spree.environment' do |app|
+      Spree::Deprecation.behavior = :silence
+    end
+  end
 end
