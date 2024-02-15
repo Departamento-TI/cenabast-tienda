@@ -20,7 +20,7 @@ module OmniAuth
       # This is where you pass the options you would pass when
       # initializing your consumer from the OAuth gem.
       option :client_options, {
-        site: ENV.fetch('KEYCLOAK_SITE_URL', nil),
+        site: ENV.fetch('KEYCLOAK_SITE_URL', 'https://login-dev.cenabast.gob.cl'),
         authorize_url: '/realms/cenabast/protocol/openid-connect/auth',
         token_url: '/realms/cenabast/protocol/openid-connect/token'
       }
