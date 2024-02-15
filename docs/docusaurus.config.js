@@ -45,7 +45,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/Departamento-TI/cenabast-tienda/edit/master/docs/',
+            'https://github.com/Departamento-TI/cenabast-tienda/edit/main/docs/',
         },
         blog: false,
         theme: {
