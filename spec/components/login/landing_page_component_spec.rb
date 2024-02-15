@@ -3,13 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe Login::LandingPageComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'renders component' do
+    render_preview(:standard)
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+    expect(page).to have_selector('[role="login-landing-page"]')
+    expect(page).to have_selector('[role="login-logo"]')
+    expect(page).to have_selector('[role="login-landing-background"]')
+
+    expect(page).to have_link(href: spree.spree_user_clave_unica_omniauth_authorize_path)
+
+    expect(page).to have_link(href: 'https://claveunica.gob.cl/recuperar')
+    expect(page).to have_link(href: 'https://claveunica.gob.cl/sucursales')
+  end
 end
