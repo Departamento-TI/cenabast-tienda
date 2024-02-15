@@ -18,12 +18,13 @@ RSpec.describe Common::Layout::Header::ProfileComponent, type: :component do
   it 'renders component as guest' do
     render_preview(:standard, params: { is_logged_in: false })
 
-    expect(page).to have_link(Spree.t(:login).upcase, href: spree.login_path)
+    expect(page).to have_link(Spree.t(:login), href: spree.login_path)
   end
 
   it 'renders component as logged user' do
     render_preview(:standard, params: { is_logged_in: true })
 
-    expect(page).not_to have_link(Spree.t(:login).upcase, href: spree.login_path)
+    expect(page).not_to have_link(Spree.t(:login), href: spree.login_path)
+    expect(page).to have_link(Spree.t(:logout), href: spree.logout_path)
   end
 end
