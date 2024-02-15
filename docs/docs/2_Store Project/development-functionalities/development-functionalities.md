@@ -13,3 +13,4 @@ Here we will place documents related to detailing implementation of functionalit
 # Index
 
 - [Sale Channels](sale-channels.md)
+- [Clave unica](clave-unica.md)
