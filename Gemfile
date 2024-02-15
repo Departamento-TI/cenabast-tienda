@@ -134,9 +134,6 @@ gem 'spree_multi_vendor'
 # Flexible authentication system utilizing Rack middleware.
 gem 'omniauth'
 
-# Keycloak Strategy for OmniAuth
-gem 'omniauth-keycloak'
-
 # An abstract OAuth2 strategy for OmniAuth.
 gem 'omniauth-oauth2'
 
