@@ -177,6 +177,14 @@ SMTP_AUTH
 SMTP_ENABLE_STARTTLS_AUTO
 ```
 
+** Clave Unica configuration (Login with clave unica/keycloak)
+```
+KEYCLOAK_CLIENT_ID
+KEYCLOAK_CLIENT_SECRET
+KEYCLOAK_SITE_URL
+KEYCLOAK_REALM
+```
+
 Important: Spree::Store `mail_from_address` must be set to a corresponding value (email address of sender, that matches domain of the STMP configuration).
 
 ## Useful links

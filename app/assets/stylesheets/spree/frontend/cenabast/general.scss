@@ -7,3 +7,17 @@
 .dropdown-toggle::after {
   display: none;
 }
+
+@font-face {
+  font-family: "Inter var";
+  src: font-url("Inter-VariableFont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto var";
+  src: font-url("RobotoFlex-VariableFont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

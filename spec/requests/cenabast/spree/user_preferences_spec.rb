@@ -6,8 +6,7 @@ RSpec.describe Cenabast::Spree::UserPreferencesController, type: :request do
     let(:stores) { create_list(:store, 3) }
 
     before do
-      allow_any_instance_of(Spree::StoreController).to receive(:try_spree_current_user).and_return(user)
-      allow_any_instance_of(Spree::StoreController).to receive_messages spree_current_user: user
+      act_as_logged_in(user)
     end
 
     it 'can toggle the store to an allowed one' do

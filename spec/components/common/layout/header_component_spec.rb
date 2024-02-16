@@ -6,7 +6,7 @@ RSpec.describe Common::Layout::HeaderComponent, type: :component do
   it 'renders component' do
     render_preview(:standard)
 
-    expect(page).to have_selector('[role="gray-picker-component"]', count: 4)
+    expect(page).to have_selector('[role="gray-picker-component"]', count: 3)
 
     expect(page).to have_selector '[role="header-logo"]'
     expect(page).to have_selector '[role="profile-component"]'

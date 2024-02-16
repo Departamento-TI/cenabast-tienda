@@ -1,0 +1,58 @@
+<div class="bg-gray-100 h-dvh">
+  <div class="flex" role='login-landing-page'>
+    <!-- Left side -->
+    <div class="flex-1 h-dvh flex items-center justify-center p-16">
+      <!-- White form -->
+      <div class="mx-auto p-8 maw-w-full max-h-full w-[500px] h-[630px] xl:w-[596px] xl:h-[630px] bg-white rounded-lg border border-gray-300">
+        <div class="flex flex-col items-center justify-center">
+          <!-- Logo -->
+          <%= image_tag "cenabast-logo.png", class: 'h-auto w-[227px] py-3', role: 'login-logo' %>
+
+          <!-- Form header text -->
+          <p class="text-center text-gray-900 text-3xl leading-10 py-3 font-medium">Inicio de sesión</p>
+          <div class="text-center text-gray-500 py-2">
+            <p class="py-2">Este es un sitio privado exclusivo para los organismos e instituciones de Servicios Públicos de Salud.<p>
+            <p class="py-2">Si usted ya está registrado, debe ingresar con su Clave Unica.</p>
+          </div>
+
+          <!-- Buttons -->
+          <div class="py-6">
+            <%= link_to @login_url, method: :post, data: { turbo: false } do %>
+              <button class="block maw-w-full max-h-full w-full xl:w-[532px] h-[58px] py-2.5 px-4 text-base underline bg-[#0062CC] text-white focus:shadow-focus my-2 flex items-center justify-center font-roboto">
+                <div class=" w-[20px] h-[20px] mr-2">
+                  <%= image_tag "icons/clave-unica", class: 'h-full' %>
+                </div>
+                Iniciar sesión como usuario
+              </button>
+            <% end %>
+
+            <%= link_to @login_url, method: :post, data: { turbo: false } do %>
+              <button class="block max-h-full max-h-full w-full xl:w-[532px] h-[58px] py-2.5 px-4 text-base underline bg-white border border-gray-300 text-gray-700 shadow-sm focus:shadow-focus my-2 flex items-center justify-center font-roboto">
+                <div class=" w-[20px] h-[20px] mr-2">
+                  <%= image_tag "icons/clave-unica-black", class: 'h-full' %>
+                </div>
+                Iniciar sesión como proveedor
+              </button>
+            <% end %>
+          </div>
+
+          <!-- Helper links -->
+          <div class="py-[16px] w-full flex flex-col items-left justify-center text-left">
+            <%= link_to 'Recupera tu ClaveÚnica', 'https://claveunica.gob.cl/recuperar', class: 'w-fit leading-10 underline text-[#0062CC]' %>
+            <%= link_to 'Solicita tu ClaveÚnica', 'https://claveunica.gob.cl/sucursales', class: 'w-fit leading-10 underline text-[#0062CC]' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side with image -->
+    <div class="hidden xl:block flex-1 max-w-[700px]">
+      <div
+        style="background-image: url(<%= asset_path 'login/background.jpg' %>);"
+        class="h-full w-full bg-cover bg-center"
+        role="login-landing-background" />
+    </div>
+  </div>
+</div>
+
+

@@ -1,4 +1,3 @@
-<!-- Layout based on spree_application, that avoids calling Spree/Business specific logic. -->
 <!doctype html>
 <!--[if lt IE 7 ]> <html class="ie ie6" lang="<%= I18n.locale %>"> <![endif]-->
 <!--[if IE 7 ]>    <html class="ie ie7" lang="<%= I18n.locale %>"> <![endif]-->
@@ -6,11 +5,7 @@
 <!--[if IE 9 ]>    <html class="ie ie9" lang="<%= I18n.locale %>"> <![endif]-->
 <!--[if gt IE 9]><!--><html lang="<%= I18n.locale %>"><!--<![endif]-->
   <head data-hook="inside_head">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= stylesheet_link_tag 'spree/frontend/all', media: 'screen', data: { turbo_track: 'reload' } %>
-    <%= javascript_include_tag "application", defer: true, data: { turbo_track: 'reload' } %>
-    <%= javascript_include_tag 'spree/frontend/all', defer: true, data: { turbo_track: 'reload' } %>
-    <%= csrf_meta_tags %>
+    <%= render partial: 'spree/shared/head' %>
   </head>
   <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
     <div id="overlay" class="overlay hide-on-esc"></div>
@@ -23,5 +18,7 @@
 
       <%= yield :templates %>
     </div>
+
+    <%= render 'spree/shared/translations' %>
   </body>
 </html>
