@@ -39,7 +39,28 @@ Container path is at `/root/containers/cenabast.gob.cl`
 
 ### Useful commands
 
-:::tip
+:::info[Video intro]
+Quick video intro => https://youtu.be/lJkh3XUYrRE
+:::
+
+:::tip[Login to Dev Server]
+Login: `ssh username@10.8.0.44`
+Change to root user: `sudo su`
+:::
+
+:::tip[Update code]
+Go to working directory: `cd /root/containers/cenabast.gob.cl`\
+Pull main branch: `git pull origin main`
+:::
+
+:::info[Rebuild]
+Rebuild container: `docker-compose build --no-cache`\
+Store Bunlde install: `docker compose run web bundle install`\
+Store DB migrations: `docker compose run web rake db:migrate`\
+Relauch new containers: `docker compose up -d --build --force-recreate --no-deps`
+:::
+
+:::tip[Other]
 Stop containers: `docker compose down`\
 Start containers: `docker compose up -d`\
 Check Logs containers: `docker compose logs -f`\
