@@ -14,3 +14,4 @@ Here we will place documents related to detailing implementation of functionalit
 
 - [Sale Channels](sale-channels.md)
 - [Clave unica](clave-unica.md)
+- [MageAI](mage-ai.md)

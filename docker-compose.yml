@@ -89,6 +89,20 @@ services:
     depends_on:
       - opensearch
 
+  magic:
+    image: mageai/mageai:latest
+    command: mage start cenabast
+    build:
+      context: ./mage_ai
+      dockerfile: Dockerfile.mageai
+    ports:
+      - 6789:6789
+    env_file:
+      - .env
+    volumes:
+      - ./mage_ai:/home/src/
+    restart: on-failure:5
+
   keycloak:
     build:
       context: .

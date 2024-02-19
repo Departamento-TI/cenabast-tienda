@@ -179,6 +179,10 @@ gem 'oj'
 # Fix SCSS errors with Ruby 3 on MacOS
 gem 'sassc', github: 'sass/sassc-ruby', group: :development
 
+# Simple HTTP and REST client for Ruby,
+# inspired by microframework syntax for specifying actions.
+gem 'rest-client'
+
 # Use Redis for Action Cable
 gem 'redis', '~> 4.0'
 
