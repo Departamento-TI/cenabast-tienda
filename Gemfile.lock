@@ -223,6 +223,7 @@ GEM
       devise (>= 2.1.0)
     diff-lcs (1.5.0)
     docile (1.4.0)
+    domain_name (0.6.20240107)
     doorkeeper (5.6.8)
       railties (>= 5)
     dotenv (2.8.1)
@@ -279,6 +280,9 @@ GEM
       turbo-rails
     htmlbeautifier (1.4.2)
     htmlentities (4.3.4)
+    http-accept (1.7.0)
+    http-cookie (1.0.5)
+      domain_name (~> 0.5)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     i18n_data (0.17.1)
@@ -362,6 +366,9 @@ GEM
     matrix (0.4.2)
     memory_profiler (1.0.1)
     method_source (1.0.0)
+    mime-types (3.5.2)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2024.0206)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     minitest (5.21.2)
@@ -388,6 +395,7 @@ GEM
       timeout
     net-smtp (0.4.0)
       net-protocol
+    netrc (0.11.0)
     nio4r (2.5.9)
     nokogiri (1.16.2-x86_64-darwin)
       racc (~> 1.4)
@@ -522,6 +530,11 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rexml (3.2.6)
     rouge (4.2.0)
     rspec-activemodel-mocks (1.1.0)
@@ -869,6 +882,7 @@ DEPENDENCIES
   rails (~> 7.1)
   redis (~> 4.0)
   remote_syslog_logger
+  rest-client
   rspec_junit_formatter
   rubocop-performance
   rubocop-rails
