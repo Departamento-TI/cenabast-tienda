@@ -18,6 +18,7 @@ Cenabast B2B project:
 * [Tailwind](https://github.com/rails/tailwindcss-rails) CSS Framework
 * [ViewComponent](https://github.com/viewcomponent/view_component) for building reusable and encapsulated view components on RoR
 * [LookBook](https://github.com/ViewComponent/lookbook) as a component browser for the developers
+* [MageAI](mage.ai) for creation of data pipelines to ingress information for the application.
 
 ## Local Instalation
 
@@ -55,7 +56,7 @@ bin/start-docker
 
 By default, webserver will be exposed on port 4000.
 Opensearch dashboard will be exposed on port 5601.
-
+MageAI dashboard will be exposed on port 6789.
 
 In developer environment, Lookbook UI is accesible via `/lookbook` path.
 Mails are sent using `letter_oppener`, Web UI is accesible via `/letter_opener` path.
@@ -177,12 +178,20 @@ SMTP_AUTH
 SMTP_ENABLE_STARTTLS_AUTO
 ```
 
-** Clave Unica configuration (Login with clave unica/keycloak)
+**Clave Unica configuration (Login with clave unica/keycloak)**
 ```
 KEYCLOAK_CLIENT_ID
 KEYCLOAK_CLIENT_SECRET
 KEYCLOAK_SITE_URL
 KEYCLOAK_REALM
+```
+
+**Cenabast API configuration**
+```
+CENABAST_API_BASE_URL
+CENABAST_API_USER
+CENABAST_API_PASSWORD
+CENABAST_API_TOKEN_EXPIRE_TIME
 ```
 
 Important: Spree::Store `mail_from_address` must be set to a corresponding value (email address of sender, that matches domain of the STMP configuration).
