@@ -1,0 +1,28 @@
+# frozen_string_literal: true
+
+# Fetches all the related companies for a particular
+# seller user from Cenabast Api
+# Bases common behaviour taken from Cenabast::Api::Base
+# https://departamento-ti.github.io/cenabast-tienda/docs/api-rest-services/Cenabast/tienda/seller-relations
+module Cenabast
+  module Api
+    class CompaniesInformationFetcher < Cenabast::Api::Base
+      attr_accessor :run
+
+      def initialize(run)
+        super()
+        @run = run
+      end
+
+      private
+
+      def url
+        base_url + user_path
+      end
+
+      def user_path
+        "/interoperabilidad/servicios/v1/tienda/usuario/#{run}/proveedor"
+      end
+    end
+  end
+end
