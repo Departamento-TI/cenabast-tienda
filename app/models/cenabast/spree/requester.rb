@@ -1,3 +1,7 @@
 class Cenabast::Spree::Requester < ApplicationRecord
-  has_many :recievers, class_name: 'Cenabast::Spree::Reciever', dependent: :destroy
+  include Cenabast::Spree::HasRun
+
+  has_many :receivers, class_name: 'Cenabast::Spree::Receiver', dependent: :destroy
+
+  validates :name, presence: true
 end

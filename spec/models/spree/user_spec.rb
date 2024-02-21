@@ -1,17 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe Spree::User, type: :model, search: true do
-  describe '#full_name' do
-    it 'returns the concatened result' do
-      user = create(:user, first_name: 'Jorge', last_name: 'Perez')
+  describe 'Enums' do
+    it { is_expected.to define_enum_for(:user_type).with_values(buyer: 0, provider: 1) }
+  end
 
-      assert_equal user.full_name, 'Jorge Perez'
+  describe 'Canceled validations' do
+    it 'cancels validation for :password' do
+      expect(described_class._validators[:password]).to be_empty
     end
 
-    it 'both fields are null returns empty string' do
-      user = create(:user, first_name: nil, last_name: nil)
+    it 'cancels validation for :password_confirmation' do
+      expect(described_class._validators[:password_confirmation]).to be_empty
+    end
+  end
 
-      assert_equal user.full_name, ''
+  describe 'Has Run concern' do
+    describe 'Validations' do
+      it { should validate_presence_of :run }
+      it { should validate_with RutValidator }
     end
   end
 
@@ -20,6 +27,11 @@ RSpec.describe Spree::User, type: :model, search: true do
       it { should belong_to(:current_store).optional }
       it { should have_many(:stores).through(:store_users) }
       it { should have_many(:store_users) }
+      it { should have_many(:receiver_users) }
+      it { should have_many(:receivers).through(:receiver_users) }
+      it { should have_many(:requesters).through(:receivers) }
+      it { should have_many(:company_users) }
+      it { should have_many(:companies).through(:company_users) }
     end
 
     describe 'Callbacks' do
@@ -80,6 +92,20 @@ RSpec.describe Spree::User, type: :model, search: true do
 
         expect(user.current_store).to eq store
       end
+    end
+  end
+
+  describe '#full_name' do
+    it 'returns the concatened result' do
+      user = create(:user, first_name: 'Jorge', last_name: 'Perez')
+
+      assert_equal user.full_name, 'Jorge Perez'
+    end
+
+    it 'both fields are null returns empty string' do
+      user = create(:user, first_name: nil, last_name: nil)
+
+      assert_equal user.full_name, ''
     end
   end
 end
