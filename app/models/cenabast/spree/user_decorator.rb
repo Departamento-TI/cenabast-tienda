@@ -2,6 +2,7 @@ module Cenabast
   module Spree
     module UserDecorator
       def self.prepended(base)
+        base.include Cenabast::Spree::HasRun
         base.include Cenabast::Spree::User::StorePreference
         base.include Cenabast::Spree::CancelValidation
 

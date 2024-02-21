@@ -14,6 +14,12 @@ module Cenabast
           has_many :store_users, class_name: 'Cenabast::Spree::StoreUser', foreign_key: :user_id, dependent: :destroy, inverse_of: :user
           has_many :stores, class_name: 'Spree::Store', through: :store_users
 
+          has_many :receiver_users, class_name: 'Cenabast::Spree::ReceiverUser', dependent: :destroy
+          has_many :receivers, through: :receiver_users, class_name: 'Cenabast::Spree::Receiver'
+          has_many :requesters, through: :receivers, class_name: 'Cenabast::Spree::Requester'
+          has_many :company_users, class_name: 'Cenabast::Spree::CompanyUser', dependent: :destroy
+          has_many :companies, through: :company_users, class_name: 'Cenabast::Spree::Company'
+
           before_create :set_current_store
         end
 

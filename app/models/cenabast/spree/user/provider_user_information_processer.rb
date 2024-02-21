@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-# Processes buyer user information from the api
-# Creates, and updates Spree::User models if necesary
+# Processes provider user information from the api
+# Creates, and updates Spree::User models if necessary
 module Cenabast
   module Spree
     module User
-      class BuyerUserInformationProcesser
+      class ProviderUserInformationProcesser
         attr_accessor :run
 
         # @param run [String] run to query, without DV and dots
@@ -21,7 +21,7 @@ module Cenabast
 
         # Services to fetch information from
         def service
-          Cenabast::Api::BuyerInformationFetcher
+          Cenabast::Api::ProviderInformationFetcher
         end
 
         # Information from API
@@ -50,7 +50,7 @@ module Cenabast
 
           # Update register
           user.update!(
-            user_type: :buyer,
+            user_type: :provider,
             first_name:,
             last_name:,
             email:,

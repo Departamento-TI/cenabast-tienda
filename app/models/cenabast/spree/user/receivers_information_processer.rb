@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
-# Processes reciever information from the api
-# Creates, and updates Cenabast::Spree::Requester, Cenabast::Spree::Reciever
+# Processes receiver information from the api
+# Creates, and updates Cenabast::Spree::Requester, Cenabast::Spree::Receiver
 # and Spree::User models if necesary
 module Cenabast
   module Spree
     module User
-      class RecieversInformationProcesser
+      class ReceiversInformationProcesser
         attr_accessor :run
 
+        # @param run [String] run to query, without DV and dots
         def initialize(run)
           @run = run
         end
@@ -45,26 +46,33 @@ module Cenabast
           channel = provider[:nombreCanal]
           return unless allowed_channels.include? channel
 
-          user_run = info[:rut_usuario]
-          cenabast_id_relationship = info[:idRelacion]
-          requester_run = info[:rutSolicitante]
-          requester_name = info[:solicitante]
-          reciever_run = info[:rutDestinatario]
-          reciever_name = info[:destinatario]
-          delivery_address = info[:direccionDespacho]
+          user_run = ::Spree::User.raw_run_to_formatted(provider[:rut_usuario])
+          requester_run = Cenabast::Spree::Requester.raw_run_to_formatted(provider[:rutSolicitante])
+          receiver_run = Cenabast::Spree::Receiver.raw_run_to_formatted(provider[:rutDestinatario])
 
-          requester = Cenabast::Spree::Requester.find_or_create_by!(run: requester_run)
+          cenabast_id_relationship = provider[:idRelacion]
+          receiver_name = provider[:destinatario]
+          requester_name = provider[:solicitante]
+          delivery_address = provider[:direccionDespacho]
+
+          requester = Cenabast::Spree::Requester.find_or_create_by!(run: requester_run) do |new_requester|
+            new_requester.name = requester_name
+          end
+
           requester.update!(name: requester_name)
 
-          reciever = Cenabast::Spree::Reciever.find_or_create_by!(run: reciever_run, requester:)
-          reciever.update!(
-            name: reciever_name,
+          receiver = Cenabast::Spree::Receiver.find_or_create_by!(run: receiver_run, requester:) do |new_receiver|
+            new_receiver.name = receiver_name
+          end
+
+          receiver.update!(
+            name: receiver_name,
             address: delivery_address
           )
 
-          user = ::Spree::User.find_by!(run: user_run.to_s)
-          Cenabast::Spree::RecieverUser.find_or_create_by(
-            reciever:,
+          user = ::Spree::User.find_by!(run: user_run)
+          Cenabast::Spree::ReceiverUser.find_or_create_by(
+            receiver:,
             user:,
             cenabast_id_relationship:
           )
