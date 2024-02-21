@@ -34,8 +34,12 @@ module Cenabast
         def process_information
           return unless info&.dig(:success)
 
-          providers = info[:response_body]&.map(&:deep_symbolize_keys)
-          providers.each do |provider|
+          if info[:response_body].instance_of? Array
+            info[:response_body].map(&:deep_symbolize_keys).each do |provider|
+              process_provider(provider)
+            end
+          else
+            provider = info[:response_body]&.deep_symbolize_keys
             process_provider(provider)
           end
         end

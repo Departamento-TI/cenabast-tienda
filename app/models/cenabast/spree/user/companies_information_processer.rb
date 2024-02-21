@@ -33,8 +33,14 @@ module Cenabast
         def process_information
           return unless info&.dig(:success)
 
-          company = info[:response_body]&.deep_symbolize_keys
-          process_company(company)
+          if info[:response_body].instance_of? Array
+            info[:response_body].map(&:deep_symbolize_keys).each do |company|
+              process_company(company)
+            end
+          else
+            company = info[:response_body]&.deep_symbolize_keys
+            process_company(company)
+          end
         end
 
         def process_company(company)
