@@ -1,6 +1,6 @@
-class CreateCenabastSpreeRecievers < ActiveRecord::Migration[7.1]
+class CreateCenabastSpreeReceivers < ActiveRecord::Migration[7.1]
   def change
-    create_table :cenabast_spree_recievers do |t|
+    create_table :cenabast_spree_receivers do |t|
       t.string :run
       t.string :name
       t.string :address
