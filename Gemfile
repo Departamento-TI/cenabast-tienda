@@ -191,3 +191,6 @@ gem 'tailwindcss-rails', '~> 2.3'
 
 # A framework for building reusable, testable & encapsulated view components in Ruby on Rails.
 gem 'view_component'
+
+# Chilean rut Ruby on Rails gem - Chilean Rut/Run validator and formatter
+gem 'chilean-rutify'

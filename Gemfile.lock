@@ -185,6 +185,7 @@ GEM
     capybara-select-2 (0.5.1)
     carmen (1.1.3)
       activesupport (>= 3.0.0)
+    chilean-rutify (1.0.0)
     coderay (1.1.3)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
@@ -857,6 +858,7 @@ DEPENDENCIES
   brakeman
   bundle-audit
   capybara
+  chilean-rutify
   dalli
   debug (>= 1.0.0)
   dotenv-rails (~> 2.1, >= 2.1.1)
