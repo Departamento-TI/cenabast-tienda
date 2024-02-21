@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Cenabast::Api::BuyerInformationFetcher do
   describe '#call - valid run' do
     before(:each) do
-      VCR.insert_cassette 'cenabast_api_buyer_information_valid'
+      VCR.insert_cassette 'cenabast/api/buyer_information_valid'
     end
 
     after(:each) do
@@ -28,7 +28,7 @@ RSpec.describe Cenabast::Api::BuyerInformationFetcher do
 
   describe '#call - invalid run' do
     before(:each) do
-      VCR.insert_cassette 'cenabast_api_buyer_information_invalid'
+      VCR.insert_cassette 'cenabast/api/buyer_information_invalid'
     end
 
     after(:each) do

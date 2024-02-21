@@ -35,8 +35,8 @@ module Cenabast
           Cenabast::Spree::User::ReceiversInformationProcesser.new(run).call
         end
 
-        def process_company_information
-          Cenabast::Spree::User::CompanyInformationProcesser.new(run).call
+        def process_companies_information
+          Cenabast::Spree::User::CompaniesInformationProcesser.new(run).call
         end
 
         # Process information
@@ -46,7 +46,7 @@ module Cenabast
             process_buyer_information
             process_provider_information
             process_receivers_information
-            process_company_information
+            process_companies_information
           end
           # If the transaction is successful,
           # ActiveRecord::Base.transaction doesn't raise an exception.

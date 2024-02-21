@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-# Processes company user information from the api
+# Processes companies user information from the api
 # Creates, and updates Cenabast::Spree::Company model(s) if necessary
 module Cenabast
   module Spree
     module User
-      class CompanyInformationProcesser
+      class CompaniesInformationProcesser
         attr_accessor :run
 
         # @param run [String] run to query, without DV and dots
@@ -21,7 +21,7 @@ module Cenabast
 
         # Services to fetch information from
         def service
-          Cenabast::Api::CompanyInformationFetcher
+          Cenabast::Api::CompaniesInformationFetcher
         end
 
         # Information from API

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Cenabast::Api::ReceiversInformationFetcher do
   describe '#call - valid run' do
     before(:each) do
-      VCR.insert_cassette 'cenabast_api_receivers_information_valid'
+      VCR.insert_cassette 'cenabast/api/receivers_information_valid'
     end
 
     after(:each) do
@@ -32,7 +32,7 @@ RSpec.describe Cenabast::Api::ReceiversInformationFetcher do
 
   describe '#call - run with no receivers' do
     before(:each) do
-      VCR.insert_cassette 'cenabast_api_receivers_information_no_receivers'
+      VCR.insert_cassette 'cenabast/api/receivers_information_no_receivers'
     end
 
     after(:each) do

@@ -37,14 +37,14 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Wed, 21 Feb 2024 20:15:44 GMT
+      - Wed, 21 Feb 2024 21:11:46 GMT
     body:
       encoding: UTF-8
-      string: '{"token":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODU1MDE0NCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.uWPFIPf8_bG-4G4Z0mrDm4_K0qT2lDrJ2VB1Dn31IaM"}'
-  recorded_at: Wed, 21 Feb 2024 20:15:44 GMT
+      string: '{"token":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODU1MzUwNiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.AzI7-j7GWn6fRoFZN_-ZTnx5C9Ui2TbwvbVu47pyudA"}'
+  recorded_at: Wed, 21 Feb 2024 21:11:45 GMT
 - request:
     method: get
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/v1/tienda/establecimiento/usuario/12338526
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/v1/tienda/usuario/8962580/proveedor
     body:
       encoding: US-ASCII
       string: ''
@@ -54,7 +54,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
       Authorization:
-      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODU1MDE0NCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.uWPFIPf8_bG-4G4Z0mrDm4_K0qT2lDrJ2VB1Dn31IaM
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODU1MzUwNiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.AzI7-j7GWn6fRoFZN_-ZTnx5C9Ui2TbwvbVu47pyudA
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -63,8 +63,8 @@ http_interactions:
       - testaplicacionesweb.cenabast.cl:7001
   response:
     status:
-      code: 404
-      message: Not Found
+      code: 200
+      message: OK
     headers:
       Transfer-Encoding:
       - chunked
@@ -79,9 +79,10 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Wed, 21 Feb 2024 20:15:49 GMT
+      - Wed, 21 Feb 2024 21:11:51 GMT
     body:
       encoding: UTF-8
-      string: '{"message":"Usuario no encontrado."}'
-  recorded_at: Wed, 21 Feb 2024 20:15:49 GMT
+      string: '{"rut_usuario":"8962580","rut_proveedor":"76191389","nombre_proveedor":"SERVICIOS
+        Y MAQUILA SERVICE LTDA.  ","activo":true}'
+  recorded_at: Wed, 21 Feb 2024 21:11:50 GMT
 recorded_with: VCR 6.2.0
