@@ -51,6 +51,8 @@ module Cenabast
 
       # Method in charge of actually doing the API call
       def do_request(headers: nil)
+        Rails.logger.debug { "[#{self.class.name}] Doing request: #{url}##{http_method}" }
+
         if [:get, :delete].include? http_method
           RestClient.send(http_method, url, headers || default_headers)
         else

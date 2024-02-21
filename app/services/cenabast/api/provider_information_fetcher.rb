@@ -9,6 +9,7 @@ module Cenabast
     class ProviderInformationFetcher < Cenabast::Api::Base
       attr_accessor :run
 
+      # @param run [String] run to query, without DV and dots
       def initialize(run)
         super()
         @run = run
