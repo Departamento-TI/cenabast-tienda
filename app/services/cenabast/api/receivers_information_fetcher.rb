@@ -22,7 +22,7 @@ module Cenabast
       end
 
       def user_path
-        "/interoperabilidad/servicios/v1/tienda/destinatarios/#{run}"
+        "/interoperabilidad/servicios/destinatarios/#{run}"
       end
     end
   end

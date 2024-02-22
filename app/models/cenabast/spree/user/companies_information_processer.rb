@@ -6,11 +6,12 @@ module Cenabast
   module Spree
     module User
       class CompaniesInformationProcesser
-        attr_accessor :run
+        attr_accessor :run, :added_companies
 
         # @param run [String] run to query, without DV and dots
         def initialize(run)
           @run = run
+          @added_companies = []
         end
 
         def call
@@ -33,20 +34,21 @@ module Cenabast
         def process_information
           return unless info&.dig(:success)
 
-          if info[:response_body].instance_of? Array
-            info[:response_body].map(&:deep_symbolize_keys).each do |company|
+          if info[:response_content].instance_of? Array
+            info[:response_content].map(&:deep_symbolize_keys).each do |company|
               process_company(company)
             end
           else
-            company = info[:response_body]&.deep_symbolize_keys
+            company = info[:response_content]&.deep_symbolize_keys
             process_company(company)
           end
+
+          process_unused_companies
         end
 
         def process_company(company)
           Rails.logger.debug { "Processing company info #{company}" }
 
-          user_run = ::Spree::User.raw_run_to_formatted(company[:rut_usuario])
           company_run = Cenabast::Spree::Company.raw_run_to_formatted(company[:rut_proveedor])
 
           company_name = company[:nombre_proveedor]
@@ -58,11 +60,29 @@ module Cenabast
             active:
           )
 
-          user = ::Spree::User.find_by!(run: user_run)
-          Cenabast::Spree::CompanyUser.find_or_create_by(
-            company:,
+          added_companies << receiver
+
+          if user
+            Cenabast::Spree::CompanyUser.find_or_create_by(
+              company:,
+              user:
+            )
+          end
+        end
+
+        def process_unused_companies
+          return unless user
+
+          # Unlink relationships that werent found
+          Cenabast::Spree::CompanyUser.where(
             user:
-          )
+          ).where.not(
+            company_id: added_companies.map(&:id)
+          ).destroy_all
+        end
+
+        def user
+          @user ||= ::Spree::User.find_by(run: ::Spree::User.raw_run_to_formatted(run))
         end
       end
     end

@@ -76,6 +76,12 @@ module Cenabast
         nil
       end
 
+      def response_content
+        response_body&.dig('content')
+      rescue StandardError
+        nil
+      end
+
       # Which HTTP codes are actually valid
       def response_accepted_http_statuses
         [200]
@@ -93,6 +99,7 @@ module Cenabast
       def processed_response
         {
           response_body:,
+          response_content:,
           http_code: response&.code,
           success: response_successful?
         }

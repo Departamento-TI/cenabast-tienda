@@ -29,7 +29,7 @@ def login_url():
     return f"{base_url()}/interoperabilidad/servicios/v1/usuario/login"
 
 def user_url(run):
-    return f"{base_url()}/interoperabilidad/servicios/v1/tienda/establecimiento/usuario/{run}"
+    return f"{base_url()}/interoperabilidadservicios/servicios/establecimiento/usuario/{run}"
 
 def login_params():
     # Get login params from env

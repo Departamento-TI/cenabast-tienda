@@ -33,7 +33,7 @@ module Cenabast
         def process_information
           return unless info&.dig(:success)
 
-          user_info = info[:response_body].deep_symbolize_keys
+          user_info = info[:response_content].deep_symbolize_keys
           Rails.logger.debug { "[#{self.class.name}] Processing user_info #{user_info}" }
 
           run = ::Spree::User.raw_run_to_formatted(user_info[:rut_usuario])

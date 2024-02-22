@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/v1/usuario/login
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/auth
     body:
       encoding: UTF-8
       string: '{"user":"tienda","password":"tienda#2024"}'
@@ -27,7 +27,7 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Content-Type:
-      - application/json; charset=utf-8; version=1
+      - application/json; charset=utf-8; version=1.0
       Server:
       - Microsoft-IIS/10.0
       Api-Supported-Versions:
@@ -37,14 +37,14 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Wed, 21 Feb 2024 21:12:01 GMT
+      - Thu, 22 Feb 2024 19:00:41 GMT
     body:
       encoding: UTF-8
-      string: '{"token":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODU1MzUyMSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.gNBgL0DRtaZQaPU-aRRISkYqLONqGaEOIPJRFp-e42o"}'
-  recorded_at: Wed, 21 Feb 2024 21:12:01 GMT
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODYzMjA0MSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.-zWZSslVvzN5F_L1pPn30LP71OuL7R1jLUCx7IZJhaA"}'
+  recorded_at: Thu, 22 Feb 2024 19:00:40 GMT
 - request:
     method: get
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/v1/tienda/proveedor/usuario/8962580
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/proveedor/usuario/8962580
     body:
       encoding: US-ASCII
       string: ''
@@ -54,7 +54,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
       Authorization:
-      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODU1MzUyMSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.gNBgL0DRtaZQaPU-aRRISkYqLONqGaEOIPJRFp-e42o
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODYzMjA0MSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.-zWZSslVvzN5F_L1pPn30LP71OuL7R1jLUCx7IZJhaA
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -63,13 +63,13 @@ http_interactions:
       - testaplicacionesweb.cenabast.cl:7001
   response:
     status:
-      code: 200
-      message: OK
+      code: 500
+      message: Internal Server Error
     headers:
       Transfer-Encoding:
       - chunked
       Content-Type:
-      - application/json; charset=utf-8; version=1
+      - application/json; charset=utf-8; version=1.0
       Server:
       - Microsoft-IIS/10.0
       Api-Supported-Versions:
@@ -79,10 +79,10 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Wed, 21 Feb 2024 21:12:06 GMT
+      - Thu, 22 Feb 2024 19:00:46 GMT
     body:
       encoding: UTF-8
-      string: '{"rut_usuario":8962580,"nombres":"Eduardo Felipe","apellido_paterno":"Moreno","apellido_materno":"Deformes","nombre_completo":"Eduardo
-        Felipe Moreno Deformes","email":"cegamed@cegamed.cl","telefono":"6211273","movil":"92384212","activo":true}'
-  recorded_at: Wed, 21 Feb 2024 21:12:06 GMT
+      string: '{"code":500,"isSuccessStatusCode":false,"content":"Se ha producido
+        un error en el servidor. Vuelva a intentarlo."}'
+  recorded_at: Thu, 22 Feb 2024 19:00:45 GMT
 recorded_with: VCR 6.2.0

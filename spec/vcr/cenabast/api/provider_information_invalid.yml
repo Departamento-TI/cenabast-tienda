@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/v1/usuario/login
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/auth
     body:
       encoding: UTF-8
       string: '{"user":"tienda","password":"tienda#2024"}'
@@ -27,7 +27,7 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Content-Type:
-      - application/json; charset=utf-8; version=1
+      - application/json; charset=utf-8; version=1.0
       Server:
       - Microsoft-IIS/10.0
       Api-Supported-Versions:
@@ -37,14 +37,14 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Wed, 21 Feb 2024 21:12:12 GMT
+      - Thu, 22 Feb 2024 19:00:31 GMT
     body:
       encoding: UTF-8
-      string: '{"token":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODU1MzUzMiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9._i7gq4hesuZJnRq5E_wI_H0PPk9RIzsOdCA2rbUsINI"}'
-  recorded_at: Wed, 21 Feb 2024 21:12:11 GMT
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODYzMjAzMSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.EIhsdkCOJv_t8LzsldODszwL30y2V0ll4b8basU5rX4"}'
+  recorded_at: Thu, 22 Feb 2024 19:00:30 GMT
 - request:
     method: get
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/v1/tienda/proveedor/usuario/12338526
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/proveedor/usuario/12338526
     body:
       encoding: US-ASCII
       string: ''
@@ -54,7 +54,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
       Authorization:
-      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODU1MzUzMiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9._i7gq4hesuZJnRq5E_wI_H0PPk9RIzsOdCA2rbUsINI
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODYzMjAzMSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.EIhsdkCOJv_t8LzsldODszwL30y2V0ll4b8basU5rX4
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -69,7 +69,7 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Content-Type:
-      - application/json; charset=utf-8; version=1
+      - application/json; charset=utf-8; version=1.0
       Server:
       - Microsoft-IIS/10.0
       Api-Supported-Versions:
@@ -79,9 +79,9 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Wed, 21 Feb 2024 21:12:17 GMT
+      - Thu, 22 Feb 2024 19:00:36 GMT
     body:
       encoding: UTF-8
-      string: '{"message":"Usuario no encontrado."}'
-  recorded_at: Wed, 21 Feb 2024 21:12:16 GMT
+      string: '{"code":404,"isSuccessStatusCode":false,"content":"Usuario no encontrado."}'
+  recorded_at: Thu, 22 Feb 2024 19:00:35 GMT
 recorded_with: VCR 6.2.0

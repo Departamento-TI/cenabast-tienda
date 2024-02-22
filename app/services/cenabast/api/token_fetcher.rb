@@ -16,7 +16,7 @@ module Cenabast
       end
 
       def login_path
-        '/interoperabilidad/servicios/v1/usuario/login'
+        '/interoperabilidad/servicios/auth'
       end
 
       def user
@@ -39,12 +39,13 @@ module Cenabast
       end
 
       def token_value
-        response_body&.dig('token')
+        response_body&.dig('content')
       end
 
       def processed_response
         {
           response_body:,
+          response_content:,
           token: token_value,
           http_code: response.code,
           success: response_successful?

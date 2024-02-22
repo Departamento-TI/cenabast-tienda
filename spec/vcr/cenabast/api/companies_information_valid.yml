@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/v1/usuario/login
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/auth
     body:
       encoding: UTF-8
       string: '{"user":"tienda","password":"tienda#2024"}'
@@ -27,7 +27,7 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Content-Type:
-      - application/json; charset=utf-8; version=1
+      - application/json; charset=utf-8; version=1.0
       Server:
       - Microsoft-IIS/10.0
       Api-Supported-Versions:
@@ -37,14 +37,14 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Wed, 21 Feb 2024 21:11:46 GMT
+      - Thu, 22 Feb 2024 19:00:10 GMT
     body:
       encoding: UTF-8
-      string: '{"token":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODU1MzUwNiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.AzI7-j7GWn6fRoFZN_-ZTnx5C9Ui2TbwvbVu47pyudA"}'
-  recorded_at: Wed, 21 Feb 2024 21:11:45 GMT
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODYzMjAxMCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.r4QpvMUa5wJZg3VOXClByOO0J_vVa6SpbQqxV0kMaXY"}'
+  recorded_at: Thu, 22 Feb 2024 19:00:09 GMT
 - request:
     method: get
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/v1/tienda/usuario/8962580/proveedor
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/usuario/8962580/proveedor
     body:
       encoding: US-ASCII
       string: ''
@@ -54,7 +54,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
       Authorization:
-      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODU1MzUwNiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.AzI7-j7GWn6fRoFZN_-ZTnx5C9Ui2TbwvbVu47pyudA
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODYzMjAxMCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.r4QpvMUa5wJZg3VOXClByOO0J_vVa6SpbQqxV0kMaXY
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -63,26 +63,21 @@ http_interactions:
       - testaplicacionesweb.cenabast.cl:7001
   response:
     status:
-      code: 200
-      message: OK
+      code: 500
+      message: Internal Server Error
     headers:
       Transfer-Encoding:
       - chunked
-      Content-Type:
-      - application/json; charset=utf-8; version=1
       Server:
       - Microsoft-IIS/10.0
-      Api-Supported-Versions:
-      - '1.0'
       X-Content-Type-Options:
       - nosniff
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Wed, 21 Feb 2024 21:11:51 GMT
+      - Thu, 22 Feb 2024 19:00:16 GMT
     body:
       encoding: UTF-8
-      string: '{"rut_usuario":"8962580","rut_proveedor":"76191389","nombre_proveedor":"SERVICIOS
-        Y MAQUILA SERVICE LTDA.  ","activo":true}'
-  recorded_at: Wed, 21 Feb 2024 21:11:50 GMT
+      string: ''
+  recorded_at: Thu, 22 Feb 2024 19:00:14 GMT
 recorded_with: VCR 6.2.0
