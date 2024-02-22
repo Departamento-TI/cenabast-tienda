@@ -7,7 +7,7 @@ module Cenabast
       extend ActiveSupport::Concern
 
       included do
-        validates :run, uniqueness: { case_sensitive: false }, presence: true, rut: true
+        validates :run, presence: true, rut: true
 
         def self.raw_run_to_formatted(value)
           Chilean::Rutify.normalize_rut(value.to_s + Chilean::Rutify.get_verifier(value))
