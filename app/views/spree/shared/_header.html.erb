@@ -2,6 +2,12 @@
 <% cache spree_menu_cache_key('header') do %>
   <%= render Common::Layout::HeaderComponent.new(
     header_data: {
+      current_requester_name: spree_current_user&.current_requester&.name,
+      current_requester_id: spree_current_user&.current_requester&.id,
+      available_requesters: available_requesters_to_options,
+      current_receiver_name: spree_current_user&.current_receiver&.name,
+      current_receiver_id: spree_current_user&.current_receiver&.id,
+      available_receivers: available_receivers_to_options,
       current_store_name: current_store&.name,
       current_store_id: current_store&.id,
       available_stores: available_stores_to_options

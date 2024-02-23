@@ -47,7 +47,6 @@ module Cenabast
           email = user_info[:email]
           land_phone = user_info[:telefono]
           mobile_phone = user_info[:movil]
-          active = user_info[:activo]
 
           # Update register
           user.update!(
@@ -56,9 +55,21 @@ module Cenabast
             last_name:,
             email:,
             land_phone:,
-            mobile_phone:,
-            active:
+            mobile_phone:
           )
+
+          update_buyer_user_role!(user, user_info[:activo])
+        end
+
+        def update_buyer_user_role!(user, active)
+          # Give Buyer role
+          # or remove Buyer role
+          role = ::Spree::Role.find_or_create_by!(name: 'buyer')
+          if active
+            ::Spree::RoleUser.find_or_create_by!(role:, user:)
+          else
+            ::Spree::RoleUser.where(role:, user:).destroy_all
+          end
         end
       end
     end

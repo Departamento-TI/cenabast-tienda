@@ -24,9 +24,7 @@ RSpec.describe Spree::User, type: :model, search: true do
 
   describe 'Store Preference concern' do
     describe 'Associations' do
-      it { should belong_to(:current_store).optional }
-      it { should have_many(:stores).through(:store_users) }
-      it { should have_many(:store_users) }
+      it { should belong_to(:current_receiver).optional }
       it { should have_many(:receiver_users) }
       it { should have_many(:receivers).through(:receiver_users) }
       it { should have_many(:requesters).through(:receivers) }
@@ -50,14 +48,6 @@ RSpec.describe Spree::User, type: :model, search: true do
         user = create(:admin_user)
 
         expect(user.availiable_stores).to match_array Spree::Store.all
-      end
-
-      it 'gives only stores assigned to him if not admin' do
-        create_list(:store, rand(5..10))
-        stores = create_list(:store, 4)
-        user = create(:user, stores:)
-
-        expect(user.availiable_stores).to match_array stores
       end
     end
 

@@ -1,15 +1,33 @@
 class Cenabast::Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def clave_unica
-    flash[:notice] = Spree.t(:success)
-    Rails.logger.debug(request.env['omniauth.auth'])
-    # @user = User.from_omniauth(request.env['omniauth.auth'])
-    # return unless @user.persisted?
-    # sign_in_and_redirect @user, event: :authentication
+  before_action :set_run, only: :clave_unica
 
-    redirect_to spree.root_path
+  def clave_unica
+    if @run && Cenabast::Spree::User::InformationUpdater.new(@run).call
+      validator = Cenabast::Spree::User::LoginValidator.new(@run)
+      user = validator.call
+      if user
+        sign_in_and_redirect user, event: :authentication
+      else
+        flash[:error] = validator.error_messages.first
+        redirect_to spree.root_path
+      end
+    else
+      flash[:error] = Spree.t(:error_contacting_cenabast_services)
+      redirect_to spree.root_path
+    end
   end
 
   def failure
+    flash[:error] = Spree.t(:error_contacting_clave_unica_services)
     redirect_to spree.root_path
+  end
+
+  private
+
+  def set_run
+    raw_run = request&.env&.dig('omniauth.auth', 'extra', 'raw_info', 'preferred_username')
+    @run = Chilean::Rutify.normalize_rut(raw_run)
+  rescue StandardError => e
+    Rails.logger.error "Exception raised obtaining user run: #{e.message}"
   end
 end

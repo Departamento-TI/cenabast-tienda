@@ -6,19 +6,19 @@
       <!-- Applicant picker -->
       <%= render Common::Layout::Header::GrayPickerComponent.new(
         title: 'Solicitante',
-        value: 'SS Met Sur Oriente - 76.817.123-3',
-        selected: @current_store_id,
-        options: [],
-        form_path_method: '#'
+        value: @current_requester_name,
+        selected: @current_requester_id,
+        options: @available_requesters,
+        form_path_method: :toggle_requester_path
       ) %>
 
       <!-- Recipient picker -->
       <%= render Common::Layout::Header::GrayPickerComponent.new(
         title: 'Destinatario',
-        value: 'Selecciona destinatario',
-        selected: @current_store_id,
-        options: [],
-        form_path_method: '#'
+        value: @current_receiver_name,
+        selected: @current_receiver_id,
+        options: @available_receivers,
+        form_path_method: :toggle_receiver_path
       ) %>
 
       <!-- Store picker -->

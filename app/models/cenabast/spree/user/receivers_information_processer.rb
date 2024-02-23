@@ -64,7 +64,8 @@ module Cenabast
           requester = Cenabast::Spree::Requester.find_or_initialize_by(run: requester_run)
           requester.update!(name: requester_name)
 
-          receiver = Cenabast::Spree::Receiver.find_or_initialize_by(run: receiver_run, requester:)
+          store = store_for_channel(channel)
+          receiver = Cenabast::Spree::Receiver.find_or_initialize_by(run: receiver_run, requester:, store:)
           receiver.update!(
             name: receiver_name,
             address: delivery_address
@@ -94,6 +95,15 @@ module Cenabast
 
         def user
           @user ||= ::Spree::User.find_by(run: ::Spree::User.raw_run_to_formatted(run))
+        end
+
+        def store_for_channel(channel)
+          case channel
+          when 'INTERMEDIACION'
+            ::Spree::Store.find_by(code: 'spree-intermediation')
+          when 'ECOMMERCE'
+            ::Spree::Store.find_by(code: 'spree-ecommerce')
+          end
         end
 
         # Only process receivers that match allowed channels

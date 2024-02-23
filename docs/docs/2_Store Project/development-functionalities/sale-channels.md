@@ -23,7 +23,7 @@ In that way, it's well suited to represent the differences between each Sale Cha
 
 The `current_store_finder` dependancy was modified to use a custom finder class. The original finder detects the Store based on the URL. Our Store Finder will work based on the current user preferences.
 
-Each user now has a `current_store` and a set of `availiable_stores`. The user is able to switch between stores amongst its enabled ones (only the `availiable_stores`). The behaviour of toggling, setting and reading the current store was defined using a concern (`Cenabast::Spree::User::StorePreference`).
+Each user now has a `current_store` and a set of `available_stores`. The user is able to switch between stores amongst its enabled ones (only the `available_stores`). The behaviour of toggling, setting and reading the current store was defined using a concern (`Cenabast::Spree::User::StorePreference`).
 
 Admin users by default have all the stores enabled.
 
@@ -36,6 +36,6 @@ The store toggle logic can be interated from the frontend via a dropdown menu pr
 ```mermaid
 flowchart TD
     A[Spree::Core::ControllerHelpers::Store#current_store] -->|Use current_store_finder| B[Cenabast::Spree::Stores::FindCurrent]
-    B --> |Consider user allowed stores| C[current_user.availiable_stores]
+    B --> |Consider user allowed stores| C[current_user.available_stores]
     B --> |Consider current stores for user| D["Spree::Store.where(id: current_user.current_store_id)"]
 ```

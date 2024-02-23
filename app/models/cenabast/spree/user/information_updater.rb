@@ -16,6 +16,7 @@ module Cenabast
 
         # Calls the API to grab information, filters and inserts them into models
         # If the transaction was successful, it will return a true value.
+        # @return [Boolean] Returns if the process was successful, false otherwise
         def call
           process_information
         end
