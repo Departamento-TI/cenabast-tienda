@@ -37,14 +37,14 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Fri, 23 Feb 2024 12:59:26 GMT
+      - Fri, 23 Feb 2024 13:25:20 GMT
     body:
       encoding: UTF-8
-      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODY5Njc2NiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.JF99z7efdp0gEAGkOvtvCsSxL8DGv2jzm7jv8xv3aMU"}'
-  recorded_at: Fri, 23 Feb 2024 12:59:26 GMT
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODY5ODMyMSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.oZoSCGhRqlffo38VXteNYhAGEvH9W5bmbhwvwI-2o_I"}'
+  recorded_at: Fri, 23 Feb 2024 13:25:20 GMT
 - request:
     method: get
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/proveedor/usuario/8962580
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/usuario/18605956/proveedor
     body:
       encoding: US-ASCII
       string: ''
@@ -54,7 +54,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
       Authorization:
-      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODY5Njc2NiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.JF99z7efdp0gEAGkOvtvCsSxL8DGv2jzm7jv8xv3aMU
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODY5ODMyMSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.oZoSCGhRqlffo38VXteNYhAGEvH9W5bmbhwvwI-2o_I
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -63,8 +63,8 @@ http_interactions:
       - testaplicacionesweb.cenabast.cl:7001
   response:
     status:
-      code: 200
-      message: OK
+      code: 404
+      message: Not Found
     headers:
       Transfer-Encoding:
       - chunked
@@ -79,10 +79,9 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Fri, 23 Feb 2024 12:59:31 GMT
+      - Fri, 23 Feb 2024 13:25:26 GMT
     body:
       encoding: UTF-8
-      string: '{"code":200,"isSuccessStatusCode":true,"content":{"rutUsuario":8962580,"dv":"7","nombres":"Eduardo","apellidoPaterno":"Moreno","apellidoMaterno":"Deformes","nombreCompleto":"Eduardo
-        Moreno Deformes","email":"cegamed@cegamed.cl","telefono":"26211273","movil":"","activo":true}}'
-  recorded_at: Fri, 23 Feb 2024 12:59:31 GMT
+      string: '{"code":500,"isSuccessStatusCode":false,"content":"Usuario no encontrado."}'
+  recorded_at: Fri, 23 Feb 2024 13:25:25 GMT
 recorded_with: VCR 6.2.0

@@ -36,13 +36,13 @@ module Cenabast
           user_info = info[:response_content].deep_symbolize_keys
           Rails.logger.debug { "[#{self.class.name}] Processing user_info #{user_info}" }
 
-          run = ::Spree::User.raw_run_to_formatted(user_info[:rut_usuario])
+          run = ::Spree::User.raw_run_to_formatted(user_info[:rutUsuario])
 
           user = ::Spree::User.find_or_initialize_by(run:)
 
           # Get information
           first_name = user_info[:nombres]&.strip&.capitalize
-          last_name = [user_info[:apellido_paterno], user_info[:apellido_materno]]&.compact&.join(' ')&.strip&.capitalize
+          last_name = [user_info[:apellidoPaterno], user_info[:apellidoMaterno]]&.compact&.join(' ')&.strip&.capitalize
           email = user_info[:email]
           land_phone = user_info[:telefono]
           mobile_phone = user_info[:movil]

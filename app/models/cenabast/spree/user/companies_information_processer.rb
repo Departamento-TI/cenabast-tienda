@@ -49,9 +49,9 @@ module Cenabast
         def process_company(company)
           Rails.logger.debug { "Processing company info #{company}" }
 
-          company_run = Cenabast::Spree::Company.raw_run_to_formatted(company[:rut_proveedor])
+          company_run = Cenabast::Spree::Company.raw_run_to_formatted(company[:rutProveedor])
 
-          company_name = company[:nombre_proveedor]
+          company_name = company[:nombreProveedor]
           active = company[:activo]
 
           company = Cenabast::Spree::Company.find_or_initialize_by(run: company_run)
@@ -60,7 +60,7 @@ module Cenabast
             active:
           )
 
-          added_companies << receiver
+          added_companies << company
 
           if user
             Cenabast::Spree::CompanyUser.find_or_create_by(

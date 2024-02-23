@@ -46,8 +46,8 @@ RSpec.describe Cenabast::Api::CompaniesInformationFetcher do
       expect(response&.dig(:success)).to eq false
     end
 
-    it 'returns a response with an error response_body' do
-      expect(response&.dig(:response_body)).to eq({ 'message' => 'Usuario no encontrado.' })
+    it 'returns a response_content with an error message' do
+      expect(response&.dig(:response_content)).to eq('Usuario no encontrado.')
     end
   end
 end

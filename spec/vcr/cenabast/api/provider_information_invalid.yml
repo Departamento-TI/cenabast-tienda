@@ -37,11 +37,11 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Thu, 22 Feb 2024 19:00:31 GMT
+      - Fri, 23 Feb 2024 12:59:16 GMT
     body:
       encoding: UTF-8
-      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODYzMjAzMSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.EIhsdkCOJv_t8LzsldODszwL30y2V0ll4b8basU5rX4"}'
-  recorded_at: Thu, 22 Feb 2024 19:00:30 GMT
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODY5Njc1NiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.VzbDT7fNEM7p4TPMGc5HaPRryB3WXWBDtUfqdt7pMBI"}'
+  recorded_at: Fri, 23 Feb 2024 12:59:16 GMT
 - request:
     method: get
     uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/proveedor/usuario/12338526
@@ -54,7 +54,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
       Authorization:
-      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODYzMjAzMSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.EIhsdkCOJv_t8LzsldODszwL30y2V0ll4b8basU5rX4
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODY5Njc1NiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.VzbDT7fNEM7p4TPMGc5HaPRryB3WXWBDtUfqdt7pMBI
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -79,9 +79,9 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Thu, 22 Feb 2024 19:00:36 GMT
+      - Fri, 23 Feb 2024 12:59:21 GMT
     body:
       encoding: UTF-8
       string: '{"code":404,"isSuccessStatusCode":false,"content":"Usuario no encontrado."}'
-  recorded_at: Thu, 22 Feb 2024 19:00:35 GMT
+  recorded_at: Fri, 23 Feb 2024 12:59:21 GMT
 recorded_with: VCR 6.2.0

@@ -40,7 +40,7 @@ RSpec.describe Cenabast::Spree::User::ReceiversInformationProcesser, type: :mode
         end.to change(Cenabast::Spree::Receiver, :count).by(0)
       end
 
-      it 'stills increases the count Cenabast::Spree::ReceiverUser as it wasnt unlinked' do
+      it 'stills increases the count Cenabast::Spree::ReceiverUser as it wasnt linked' do
         expect do
           described_class.new(run).call
         end.to change(Cenabast::Spree::ReceiverUser, :count).by(2)

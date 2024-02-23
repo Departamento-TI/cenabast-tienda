@@ -37,11 +37,11 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Thu, 22 Feb 2024 19:00:52 GMT
+      - Fri, 23 Feb 2024 12:59:37 GMT
     body:
       encoding: UTF-8
-      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODYzMjA1MiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.3zoP385Lw3HDgHbjXXkbrLWHXuxnqam7bfrQY_Yvcks"}'
-  recorded_at: Thu, 22 Feb 2024 19:00:51 GMT
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODY5Njc3NywiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.8zIXUkg6PwsRDhPW1MwbYvPRP53m3F33H79xgINjJUs"}'
+  recorded_at: Fri, 23 Feb 2024 12:59:36 GMT
 - request:
     method: get
     uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/destinatarios/12338526
@@ -54,7 +54,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
       Authorization:
-      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODYzMjA1MiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.3zoP385Lw3HDgHbjXXkbrLWHXuxnqam7bfrQY_Yvcks
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODY5Njc3NywiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.8zIXUkg6PwsRDhPW1MwbYvPRP53m3F33H79xgINjJUs
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -79,9 +79,9 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Thu, 22 Feb 2024 19:00:57 GMT
+      - Fri, 23 Feb 2024 12:59:42 GMT
     body:
       encoding: UTF-8
       string: '{"code":200,"isSuccessStatusCode":true,"content":[]}'
-  recorded_at: Thu, 22 Feb 2024 19:00:56 GMT
+  recorded_at: Fri, 23 Feb 2024 12:59:41 GMT
 recorded_with: VCR 6.2.0

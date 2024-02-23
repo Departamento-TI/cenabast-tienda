@@ -25,8 +25,12 @@ RSpec.describe Cenabast::Api::ReceiversInformationFetcher do
       expect(response&.dig(:response_body)).not_to be_nil
     end
 
-    it 'returns a response_body with an array of receivers' do
-      expect(response&.dig(:response_body)&.class).to eq Array
+    it 'returns a response_body with an hash of values' do
+      expect(response&.dig(:response_body)&.class).to eq Hash
+    end
+
+    it 'returns a response_content with an array of values' do
+      expect(response&.dig(:response_content)&.class).to eq Array
     end
   end
 
@@ -50,8 +54,8 @@ RSpec.describe Cenabast::Api::ReceiversInformationFetcher do
       expect(response&.dig(:success)).to eq true
     end
 
-    it 'returns a response with an empty array response_body' do
-      expect(response&.dig(:response_body)).to eq([])
+    it 'returns a response_content with an empty array' do
+      expect(response&.dig(:response_content)).to eq([])
     end
   end
 end
