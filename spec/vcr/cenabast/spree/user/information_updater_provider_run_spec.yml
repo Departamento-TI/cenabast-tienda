@@ -1,0 +1,345 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/auth
+    body:
+      encoding: UTF-8
+      string: '{"user":"tienda","password":"tienda#2024"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '42'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - testaplicacionesweb.cenabast.cl:7001
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8; version=1.0
+      Server:
+      - Microsoft-IIS/10.0
+      Api-Supported-Versions:
+      - '1.0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Fri, 23 Feb 2024 16:38:09 GMT
+    body:
+      encoding: UTF-8
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODcwOTg4OSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.a9JMWf9Jx01xnh6FlxqFCYTJ4U1qX9iQUlysODXiZPw"}'
+  recorded_at: Fri, 23 Feb 2024 16:38:08 GMT
+- request:
+    method: get
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/establecimiento/usuario/55555555
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Authorization:
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODcwOTg4OSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.a9JMWf9Jx01xnh6FlxqFCYTJ4U1qX9iQUlysODXiZPw
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - testaplicacionesweb.cenabast.cl:7001
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8; version=1.0
+      Server:
+      - Microsoft-IIS/10.0
+      Api-Supported-Versions:
+      - '1.0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Fri, 23 Feb 2024 16:38:14 GMT
+    body:
+      encoding: UTF-8
+      string: '{"code":200,"isSuccessStatusCode":true,"content":{"rutUsuario":55555555,"dv":"5","nombres":"PRUEBA
+        5","apellidoPaterno":"PRUEBA","apellidoMaterno":"PRUEBA","nombreCompleto":"PRUEBA
+        5 PRUEBA PRUEBA","email":"pzuniga@cenabast.cl","telefono":"956393313","movil":"956393313","activo":true}}'
+  recorded_at: Fri, 23 Feb 2024 16:38:14 GMT
+- request:
+    method: post
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/auth
+    body:
+      encoding: UTF-8
+      string: '{"user":"tienda","password":"tienda#2024"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '42'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - testaplicacionesweb.cenabast.cl:7001
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8; version=1.0
+      Server:
+      - Microsoft-IIS/10.0
+      Api-Supported-Versions:
+      - '1.0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Fri, 23 Feb 2024 16:38:19 GMT
+    body:
+      encoding: UTF-8
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODcwOTg5OSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.bFB-uAsyrT-BlfooA1hONVgKjJhAVmqZ8_ll-1Niy10"}'
+  recorded_at: Fri, 23 Feb 2024 16:38:19 GMT
+- request:
+    method: get
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/proveedor/usuario/55555555
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Authorization:
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODcwOTg5OSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.bFB-uAsyrT-BlfooA1hONVgKjJhAVmqZ8_ll-1Niy10
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - testaplicacionesweb.cenabast.cl:7001
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8; version=1.0
+      Server:
+      - Microsoft-IIS/10.0
+      Api-Supported-Versions:
+      - '1.0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Fri, 23 Feb 2024 16:38:24 GMT
+    body:
+      encoding: UTF-8
+      string: '{"code":200,"isSuccessStatusCode":true,"content":{"rutUsuario":55555555,"dv":"5","nombres":"Prueba","apellidoPaterno":"Prueba","apellidoMaterno":"Prueba","nombreCompleto":"Prueba
+        Prueba Prueba","email":"pedroz21@gmail.com","telefono":"","movil":"","activo":true}}'
+  recorded_at: Fri, 23 Feb 2024 16:38:24 GMT
+- request:
+    method: post
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/auth
+    body:
+      encoding: UTF-8
+      string: '{"user":"tienda","password":"tienda#2024"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '42'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - testaplicacionesweb.cenabast.cl:7001
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8; version=1.0
+      Server:
+      - Microsoft-IIS/10.0
+      Api-Supported-Versions:
+      - '1.0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Fri, 23 Feb 2024 16:38:30 GMT
+    body:
+      encoding: UTF-8
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODcwOTkxMCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.tptzviHRuIfCaBuZj_UbnK-B9IZkJUYs-cQnI7Timg8"}'
+  recorded_at: Fri, 23 Feb 2024 16:38:29 GMT
+- request:
+    method: get
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/destinatarios/55555555
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Authorization:
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODcwOTkxMCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.tptzviHRuIfCaBuZj_UbnK-B9IZkJUYs-cQnI7Timg8
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - testaplicacionesweb.cenabast.cl:7001
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8; version=1.0
+      Server:
+      - Microsoft-IIS/10.0
+      Api-Supported-Versions:
+      - '1.0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Fri, 23 Feb 2024 16:38:35 GMT
+    body:
+      encoding: UTF-8
+      string: '{"code":200,"isSuccessStatusCode":true,"content":[{"rutUsuario":0,"idRelacion":27931,"rutSolicitante":61608407,"solicitante":"INST.DE
+        NEUROCIRUGIA","rutDestinatario":201892,"destinatario":"HOSPITAL SALVADOR GENERAL","canal":67,"nombreCanal":"ECOMMERCE","direccionDespacho":"AV
+        SALVADOR 364"}]}'
+  recorded_at: Fri, 23 Feb 2024 16:38:34 GMT
+- request:
+    method: post
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/auth
+    body:
+      encoding: UTF-8
+      string: '{"user":"tienda","password":"tienda#2024"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '42'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - testaplicacionesweb.cenabast.cl:7001
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8; version=1.0
+      Server:
+      - Microsoft-IIS/10.0
+      Api-Supported-Versions:
+      - '1.0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Fri, 23 Feb 2024 16:38:40 GMT
+    body:
+      encoding: UTF-8
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODcwOTkyMCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.4EvaOtir284CK-szLNgFQbvAv-La4lEC5BBTnUDad2g"}'
+  recorded_at: Fri, 23 Feb 2024 16:38:39 GMT
+- request:
+    method: get
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/usuario/55555555/proveedor
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Authorization:
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODcwOTkyMCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.4EvaOtir284CK-szLNgFQbvAv-La4lEC5BBTnUDad2g
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - testaplicacionesweb.cenabast.cl:7001
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8; version=1.0
+      Server:
+      - Microsoft-IIS/10.0
+      Api-Supported-Versions:
+      - '1.0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Fri, 23 Feb 2024 16:38:45 GMT
+    body:
+      encoding: UTF-8
+      string: '{"code":200,"isSuccessStatusCode":true,"content":{"rutUsuario":"55555555","rutProveedor":"76191389","nombreProveedor":"SERVICIOS
+        Y MAQUILA SERVICE LTDA.  ","activo":true}}'
+  recorded_at: Fri, 23 Feb 2024 16:38:44 GMT
+recorded_with: VCR 6.2.0
