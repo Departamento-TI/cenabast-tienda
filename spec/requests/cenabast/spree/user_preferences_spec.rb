@@ -4,15 +4,22 @@ RSpec.describe Cenabast::Spree::UserPreferencesController, type: :request do
   describe '#toggle_store' do
     let(:user) { create(:user) }
     let(:stores) { create_list(:store, 3) }
+    let(:run) { '111111111' }
 
     before do
       act_as_logged_in(user)
+      @receivers = stores.map do |store|
+        create(:receiver, run:, store:)
+      end
     end
 
-    it 'can toggle the store to an allowed one' do
-      user.availiable_stores << stores
+    it 'can toggle the store to an another allowed one' do
+      user.receivers << @receivers
+      user.current_receiver = user.receivers.sample
       user.save
-      store = stores.sample
+
+      other_receiver = (@receivers - [user.current_receiver]).sample
+      store = other_receiver.store
 
       post toggle_store_path(option_id: store.id)
 
@@ -21,8 +28,12 @@ RSpec.describe Cenabast::Spree::UserPreferencesController, type: :request do
     end
 
     it 'cant toggle the store to an not allowed one' do
-      user.availiable_stores << stores
-      store = create(:store)
+      user.receivers << @receivers.sample(2)
+      user.current_receiver = user.receivers.sample
+      user.save
+
+      other_receiver = (@receivers - user.receivers).sample
+      store = other_receiver.store
 
       post toggle_store_path(option_id: store.id)
 
@@ -31,7 +42,7 @@ RSpec.describe Cenabast::Spree::UserPreferencesController, type: :request do
     end
 
     it 'redirects back to the fallback location if provided' do
-      post toggle_store_path(option_id: stores.sample.id), headers: { HTTP_REFERER: '/fallback_location' }
+      post toggle_store_path(option_id: 5), headers: { HTTP_REFERER: '/fallback_location' }
 
       expect(response).to redirect_to('/fallback_location')
     end

@@ -57,7 +57,7 @@ module Cenabast
             mobile_phone:
           )
 
-          update_buyer_user_role!(user, user_info[:activo])
+          update_provider_user_role!(user, user_info[:activo])
         end
 
         def update_provider_user_role!(user, active)

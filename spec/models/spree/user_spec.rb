@@ -33,30 +33,111 @@ RSpec.describe Spree::User, type: :model, search: true do
     end
 
     describe 'Callbacks' do
-      describe '#set_current_store' do
-        it 'Sets current store after creation for user as the first allowed store (id order)' do
-          user = create(:user, stores: create_list(:store, 4), current_store: nil)
+      describe '#set_current_receiver' do
+        it 'Sets current receiver after creation for user as the first allowed store (id order)' do
+          user = create(:user, receivers: create_list(:receiver, 4), current_receiver: nil)
 
-          expect(user.current_store).to eq user.stores.order(id: :asc).first
+          expect(user.current_receiver).to eq user.receivers.order(id: :asc).first
         end
       end
     end
 
-    describe '#availiable_stores' do
-      it 'gives every store in system if user is admin' do
-        create_list(:store, 10)
-        user = create(:admin_user)
+    describe '#available_requesters' do
+      it 'returns all requesters for admin' do
+        create_list(:requester, 10)
+        admin = create(:admin_user)
+        expect(admin.available_requesters).to eq(Cenabast::Spree::Requester.all)
+      end
 
-        expect(user.availiable_stores).to match_array Spree::Store.all
+      it 'returns user requesters for non-admin' do
+        create_list(:requester, 10)
+        requesters = create_list(:requester, 10)
+        receivers = requesters.map do |requester|
+          create(:receiver, requester:)
+        end
+        user = create(:user, receivers:)
+        expect(user.available_requesters).to eq(requesters)
+      end
+    end
+
+    describe '#available_receivers' do
+      it 'returns all receivers for admin' do
+        create_list(:receiver, 10)
+        admin = create(:admin_user)
+        expect(admin.available_receivers).to eq(Cenabast::Spree::Receiver.all)
+      end
+
+      it 'returns matching receivers for non-admin' do
+        requesters = create_list(:requester, 10)
+        receivers = requesters.filter_map do |requester|
+          create_list(:receiver, 2, requester:)
+        end.flatten.compact.uniq
+        current_requester = requesters.sample
+        user = create(:user, receivers:, current_receiver: current_requester.receivers.first)
+
+        expect(user.available_receivers).to eq(current_requester.receivers)
+      end
+    end
+
+    describe '#available_stores' do
+      let!(:stores) { create_list(:store, 10) }
+      let(:run) { '111111111' }
+      let(:user) { create(:user) }
+
+      it 'gives only stores that match the current_store run' do
+        selected_stores = stores.sample(4)
+        receivers = selected_stores.map do |store|
+          create(:receiver, run:, store:)
+        end
+        extra_store = (stores - selected_stores).sample
+        extra_receiver = create(:receiver, run: '186059565', store: extra_store)
+
+        user.receivers = (receivers + [extra_receiver])
+        user.current_receiver = receivers.sample
+        user.save
+
+        expect(user.available_stores).to eq selected_stores
+        expect(user.available_stores).not_to include(extra_store)
+      end
+    end
+
+    describe '#toggle_receiver' do
+      let!(:non_available_receivers) { create_list(:receiver, 4) }
+      let!(:available_receivers) { create_list(:receiver, 4) }
+      let(:user) { create(:user, receivers: available_receivers) }
+
+      it 'does not toggle receiver if it is not included in receivers' do
+        last_current_receiver = user.current_receiver
+        user.toggle_receiver(non_available_receivers.sample)
+
+        expect(user.reload.current_receiver).to eq last_current_receiver
+      end
+
+      it 'toggles receiver and saves if included in receivers' do
+        last_current_receiver = user.current_receiver
+        receiver = (available_receivers - [last_current_receiver]).sample
+        user.toggle_receiver(receiver)
+
+        expect(user.reload.current_receiver).to eq receiver
+        expect(user.reload.current_receiver).not_to eq last_current_receiver
       end
     end
 
     describe '#toggle_store' do
-      it 'changes store only if store its under its allowed stores' do
-        create_list(:store, 4)
-        stores = create_list(:store, 4)
-        user = create(:user, stores:)
-        store = stores.sample
+      let!(:stores) { create_list(:store, 10) }
+      let(:run) { '111111111' }
+      let(:user) { create(:user) }
+
+      it 'changes store only if store its under its allowed stores for current run of receiver' do
+        receivers = stores.sample(4).map do |store|
+          create(:receiver, run:, store:)
+        end
+
+        user.receivers = receivers
+        user.current_receiver = user.receivers.sample
+        user.save
+
+        store = (user.available_stores - [user.current_store]).sample
         user.toggle_store(store)
 
         expect(user.current_store).to eq store
@@ -64,23 +145,20 @@ RSpec.describe Spree::User, type: :model, search: true do
 
       it 'doesnt changes store only if store its under its allowed stores' do
         not_allowed_stores = create_list(:store, 4)
-        stores = create_list(:store, 4)
-        user = create(:user, stores:)
+        receivers = stores.sample(4).map do |store|
+          create(:receiver, run:, store:)
+        end
+
+        user.receivers = receivers
+        user.current_receiver = user.receivers.sample
+        user.save
+
         last_current_store = user.current_store
 
         store = not_allowed_stores.sample
         user.toggle_store(store)
 
         expect(user.current_store).to eq last_current_store
-      end
-
-      it 'allows admins to pick every store, even if not assigned directly' do
-        stores = create_list(:store, 4)
-        user = create(:admin_user)
-        store = stores.sample
-        user.toggle_store(store)
-
-        expect(user.current_store).to eq store
       end
     end
   end

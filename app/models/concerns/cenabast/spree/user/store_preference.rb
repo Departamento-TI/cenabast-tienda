@@ -27,20 +27,22 @@ module Cenabast
 
         # For every requester linked should be pickable
         def available_requesters
-          return ::Spree::Requester.all if admin?
+          return Cenabast::Spree::Requester.all if admin?
 
           requesters
         end
 
         # Only the receivers enabled for that requester should be pickable
         def available_receivers
-          return ::Spree::Receiver.all if admin?
+          return Cenabast::Spree::Receiver.all if admin?
 
           matching_receivers_for_requester(current_requester)
         end
 
         # For the same receiver run, see what stores has available
         def available_stores
+          return [] unless current_receiver
+
           receivers.where(run: current_receiver.run).map(&:store).uniq
         end
 
@@ -90,7 +92,9 @@ module Cenabast
 
         # Match receivers that belong to user but also belong to requester
         def matching_receivers_for_requester(requester)
-          requester.receivers.where(id: receivers.pluck(:id))
+          return [] unless requester
+
+          requester.receivers.where(id: receivers&.pluck(:id))
         end
 
         def set_current_receiver

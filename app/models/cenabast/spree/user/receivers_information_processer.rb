@@ -68,7 +68,8 @@ module Cenabast
           receiver = Cenabast::Spree::Receiver.find_or_initialize_by(run: receiver_run, requester:, store:)
           receiver.update!(
             name: receiver_name,
-            address: delivery_address
+            address: delivery_address,
+            store:
           )
 
           added_receivers << receiver
@@ -100,9 +101,9 @@ module Cenabast
         def store_for_channel(channel)
           case channel
           when 'INTERMEDIACION'
-            ::Spree::Store.find_by(code: 'spree-intermediation')
+            ::Spree::Store.intermediacion
           when 'ECOMMERCE'
-            ::Spree::Store.find_by(code: 'spree-ecommerce')
+            ::Spree::Store.ecommerce
           end
         end
 

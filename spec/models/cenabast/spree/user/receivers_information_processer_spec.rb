@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Cenabast::Spree::User::ReceiversInformationProcesser, type: :model do
+  before(:each) do
+    create_cenabast_stores
+  end
+
   describe '#call - valid run, existing user' do
     before(:each) do
       VCR.insert_cassette 'cenabast/spree/user/receivers_information_processer_valid'
@@ -30,8 +34,8 @@ RSpec.describe Cenabast::Spree::User::ReceiversInformationProcesser, type: :mode
     describe 'receivers already exists' do
       before(:each) do
         requester = create(:requester, run: '616076000')
-        create(:receiver, run: '2017075', requester:)
-        create(:receiver, run: '2019922', requester:)
+        create(:receiver, run: '2017075', requester:, store: Spree::Store.intermediacion)
+        create(:receiver, run: '2019922', requester:, store: Spree::Store.intermediacion)
       end
 
       it 'mantains the count Spree::Receiver as the same' do

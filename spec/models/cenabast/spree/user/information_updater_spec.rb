@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Cenabast::Spree::User::InformationUpdater, type: :model do
+  before(:each) do
+    create_cenabast_stores
+  end
+
   describe '#call - valid buyer run' do
     before(:each) do
       VCR.insert_cassette 'cenabast/spree/user/information_updater_buyer_run_spec'

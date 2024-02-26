@@ -67,6 +67,9 @@ group :test do
 
   # Simple one-liner tests for common Rails functionality
   gem 'shoulda-matchers', '~> 6.0'
+
+  # Strategies for cleaning databases in Ruby. Can be used to ensure a clean state for testing.
+  gem 'database_cleaner-active_record'
 end
 
 # Heroku fix

@@ -3,23 +3,25 @@ class Cenabast::Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksCo
 
   def clave_unica
     if @run && Cenabast::Spree::User::InformationUpdater.new(@run).call
+
       validator = Cenabast::Spree::User::LoginValidator.new(@run)
       user = validator.call
       if user
+        flash[:notice] = Spree.t(:success)
         sign_in_and_redirect user, event: :authentication
       else
         flash[:error] = validator.error_messages.first
-        redirect_to spree.root_path
+        redirect_to spree.new_spree_user_session_path
       end
     else
       flash[:error] = Spree.t(:error_contacting_cenabast_services)
-      redirect_to spree.root_path
+      redirect_to spree.new_spree_user_session_path
     end
   end
 
   def failure
     flash[:error] = Spree.t(:error_contacting_clave_unica_services)
-    redirect_to spree.root_path
+    redirect_to spree.new_spree_user_session_path
   end
 
   private
