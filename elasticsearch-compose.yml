@@ -1,0 +1,58 @@
+version: "2.2"
+
+services:
+  elasticsearch-oss:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+    container_name: elasticsearch-oss
+    restart: unless-stopped
+    hostname: elasticsearch
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - ${ES_PORT}:9200
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    environment:
+      ES_JAVA_OPTS: '-Xms4g -Xmx4g'
+      cluster.name: ${CLUSTER_NAME}
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
+      discovery.type: 'single-node'
+      node.master: 'true'
+      node.data: 'true'
+      node.ingest: 'true'
+      bootstrap.memory_lock: 'true'
+      network.host: 0.0.0.0
+
+  kibana-oss:
+    depends_on:
+      - 'elasticsearch-oss'
+    image: docker.elastic.co/kibana/kibana-oss:7.10.2
+    volumes:
+      - kibana-data:/usr/share/kibana/data
+    ports:
+      - ${KIBANA_PORT}:5601
+    environment:
+      DISABLE_SECURITY_PLUGIN: true
+      SERVERNAME: kibana
+      ELASTICSEARCH_HOSTS: http://elasticsearch-oss:9200
+      ELASTICSEARCH_USERNAME: kibana_system
+      ELASTICSEARCH_PASSWORD: ${KIBANA_PASSWORD}
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -I http://localhost:5601 | grep -q 'HTTP/1.1 302 Found'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+
+volumes:
+  certs:
+    driver: local
+  elasticsearch-data:
+    driver: local
+  kibana-data:
+    driver: local
