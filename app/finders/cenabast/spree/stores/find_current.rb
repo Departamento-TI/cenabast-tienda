@@ -10,7 +10,6 @@ module Cenabast
         def initialize(scope: nil, current_user: nil)
           @scope = scope || ::Spree::Store
           @current_user = current_user
-          # test
         end
 
         def execute
