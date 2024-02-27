@@ -58,3 +58,17 @@ The flow works as following (2024/02/27):
 :white_check_mark: If the validations are met, the LoginValidator will return a success state, and the user will be logged onto the site.
 
 :x: If the validations are not met, the LoginValidator returns a false value, an error notification message is set and the user is redirected back to the login page.
+
+### Important environment variables
+
+* CENABAST_API_BASE_URL
+    * Root URL to use
+
+* CENABAST_API_USER
+    * API User to obtain a token from
+
+* CENABAST_API_PASSWORD
+    * Password of the API user
+
+* CENABAST_API_TOKEN_EXPIRE_TIME
+    * How long the token will be cached onto cache store. Value in minutes, defaults to 30.
