@@ -34,8 +34,6 @@ module Cenabast
 
         # Only the receivers enabled for that requester should be pickable
         def available_receivers
-          return Cenabast::Spree::Receiver.all if admin?
-
           matching_receivers_for_requester(current_requester)
         end
 
@@ -74,10 +72,16 @@ module Cenabast
           save
         end
 
-        def current_receiver
-          set_current_receiver && save unless receivers.find_by(id: self[:current_receiver_id])
+        def find_current_receiver
+          return Cenabast::Spree::Receiver.find_by(id: self[:current_receiver_id]) if admin?
 
           receivers.find_by(id: self[:current_receiver_id])
+        end
+
+        def current_receiver
+          set_current_receiver && save unless find_current_receiver
+
+          find_current_receiver
         end
 
         def current_requester
@@ -93,12 +97,21 @@ module Cenabast
         # Match receivers that belong to user but also belong to requester
         def matching_receivers_for_requester(requester)
           return [] unless requester
+          # Admin has all receivers
+          return requester.receivers if admin?
 
           requester.receivers.where(id: receivers&.pluck(:id))
         end
 
+        def candidate_current_receiver
+          return Cenabast::Spree::Receiver.first if admin?
+
+          receivers&.first
+        end
+
         def set_current_receiver
-          receiver = receivers&.first
+          receiver = candidate_current_receiver
+
           self[:current_receiver_id] ||= receiver&.id
         end
       end

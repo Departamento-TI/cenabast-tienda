@@ -61,10 +61,12 @@ RSpec.describe Spree::User, type: :model, search: true do
     end
 
     describe '#available_receivers' do
-      it 'returns all receivers for admin' do
-        create_list(:receiver, 10)
-        admin = create(:admin_user)
-        expect(admin.available_receivers).to eq(Cenabast::Spree::Receiver.all)
+      it 'returns all receivers for current requester for admin' do
+        requester = create(:requester)
+        receivers = create_list(:receiver, 10, requester:)
+        admin = create(:admin_user, current_receiver: receivers.first)
+
+        expect(admin.available_receivers).to eq(receivers)
       end
 
       it 'returns matching receivers for non-admin' do
