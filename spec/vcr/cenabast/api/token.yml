@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/v1/usuario/login
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/auth
     body:
       encoding: UTF-8
       string: '{"user":"tienda","password":"tienda#2024"}'
@@ -27,7 +27,7 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Content-Type:
-      - application/json; charset=utf-8; version=1
+      - application/json; charset=utf-8; version=1.0
       Server:
       - Microsoft-IIS/10.0
       Api-Supported-Versions:
@@ -37,9 +37,9 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Mon, 19 Feb 2024 17:45:15 GMT
+      - Fri, 23 Feb 2024 12:59:10 GMT
     body:
       encoding: UTF-8
-      string: '{"token":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODM2ODMxNSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.5DG7OnA3a1OPeqzHRqtqtSmBeb0zKe-ewjykKuqHhHA"}'
-  recorded_at: Mon, 19 Feb 2024 17:45:13 GMT
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODY5Njc1MCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.prT0mmZj1Z4nFv5OBFU_6Qya-ceiV6izhRb4B1-4xmo"}'
+  recorded_at: Fri, 23 Feb 2024 12:59:10 GMT
 recorded_with: VCR 6.2.0

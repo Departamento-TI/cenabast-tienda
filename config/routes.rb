@@ -14,6 +14,14 @@ Rails.application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
 
   # User preferences
+  post 'user_preferences/toggle_requester/:option_id',
+    to: 'cenabast/spree/user_preferences#toggle_requester',
+    as: :toggle_requester
+
+  post 'user_preferences/toggle_receiver/:option_id',
+    to: 'cenabast/spree/user_preferences#toggle_receiver',
+    as: :toggle_receiver
+
   post 'user_preferences/toggle_store/:option_id',
     to: 'cenabast/spree/user_preferences#toggle_store',
     as: :toggle_store

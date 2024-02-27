@@ -33,3 +33,9 @@ en:
   hello: "Hello world"
   spree:
     name_unknwown: 'Name Unknown'
+    login_success: 'Successful site access'
+    error_contacting_cenabast_services: 'Error contacting Cenabast services. Please try again later.'
+    error_contacting_clave_unica_services: 'Error contacting ClaveUnica services. Please try again later.'
+    user_does_not_exist_on_system: 'User does not exist in the system'
+    user_does_not_has_valid_roles: 'User does not have valid roles'
+    buyer_user_not_valid: 'Buyer user not valid'

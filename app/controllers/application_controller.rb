@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
 
   def autorize_cenabast_user!
-    return if spree_user_signed_in?
+    return true if spree_user_signed_in?
 
     redirect_to new_spree_user_session_path
   end

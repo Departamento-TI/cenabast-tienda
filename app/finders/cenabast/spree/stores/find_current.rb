@@ -22,9 +22,9 @@ module Cenabast
 
         def by_current_user(scope)
           return nil unless current_user
-          return nil unless current_user&.availiable_stores&.any?
+          return nil unless current_user&.available_stores&.any?
 
-          scope.where(id: current_user.current_store_id).first
+          scope.where(id: current_user.current_store&.id).first
         end
       end
     end

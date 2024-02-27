@@ -13,5 +13,6 @@ Here we will place documents related to detailing implementation of functionalit
 # Index
 
 - [Sale Channels](sale-channels.md)
-- [Clave unica](clave-unica.md)
+- [Clave Unica](clave-unica.md)
+- [Login Process](login-process.md)
 - [MageAI](mage-ai.md)

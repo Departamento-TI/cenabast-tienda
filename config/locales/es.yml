@@ -1,3 +1,9 @@
 es:
   spree:
     login: 'Inicio de sesión'
+    login_success: 'Acceso al sitio exitoso'
+    error_contacting_cenabast_services: 'Error contactando servicios de cenabast. Por favor intente mas tarde.'
+    error_contacting_clave_unica_services: 'Error contactando servicios de ClaveUnica. Por favor intente mas tarde.'
+    user_does_not_exist_on_system: 'Usuario no existe en sistema'
+    user_does_not_has_valid_roles: 'Usuario no tiene roles validos'
+    buyer_user_not_valid: 'Usuario comprador no valido'

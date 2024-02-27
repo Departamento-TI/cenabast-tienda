@@ -67,6 +67,9 @@ group :test do
 
   # Simple one-liner tests for common Rails functionality
   gem 'shoulda-matchers', '~> 6.0'
+
+  # Strategies for cleaning databases in Ruby. Can be used to ensure a clean state for testing.
+  gem 'database_cleaner-active_record'
 end
 
 # Heroku fix
@@ -191,3 +194,6 @@ gem 'tailwindcss-rails', '~> 2.3'
 
 # A framework for building reusable, testable & encapsulated view components in Ruby on Rails.
 gem 'view_component'
+
+# Chilean rut Ruby on Rails gem - Chilean Rut/Run validator and formatter
+gem 'chilean-rutify'

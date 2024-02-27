@@ -1,6 +1,7 @@
-# Module that exposes the methods for handling the current_store Spree:Store, which
-# stores are allowed for the user,
-# sets the default store when the record is created, and allows to toggle the store
+# Module that exposes the methods for handling the current_receiver Cenabast::Spree::Receiver, which
+# receivers/stores/requesters are allowed for the user,
+# This also defines relations with receivers, requesters, companies for the user.
+# sets the default receiver when the record is created, and allows to toggle the store
 module Cenabast
   module Spree
     module User
@@ -10,37 +11,108 @@ module Cenabast
         included do
           # Relations are not polymorphic, this might need to get adjusted if we
           # want this to work for other models too
-          belongs_to :current_store, class_name: 'Spree::Store', optional: true
+          belongs_to :current_receiver, class_name: 'Cenabast::Spree::Receiver', optional: true
+
           has_many :store_users, class_name: 'Cenabast::Spree::StoreUser', foreign_key: :user_id, dependent: :destroy, inverse_of: :user
           has_many :stores, class_name: 'Spree::Store', through: :store_users
 
-          before_create :set_current_store
+          has_many :receiver_users, class_name: 'Cenabast::Spree::ReceiverUser', dependent: :destroy
+          has_many :receivers, through: :receiver_users, class_name: 'Cenabast::Spree::Receiver'
+          has_many :requesters, through: :receivers, class_name: 'Cenabast::Spree::Requester'
+          has_many :company_users, class_name: 'Cenabast::Spree::CompanyUser', dependent: :destroy
+          has_many :companies, through: :company_users, class_name: 'Cenabast::Spree::Company'
+
+          before_create :set_current_receiver
         end
 
-        def availiable_stores
-          return ::Spree::Store.all if admin?
+        # For every requester linked should be pickable
+        def available_requesters
+          return Cenabast::Spree::Requester.all if admin?
 
-          stores
+          requesters
         end
 
-        def toggle_store(store)
-          return unless availiable_stores.include? store
+        # Only the receivers enabled for that requester should be pickable
+        def available_receivers
+          matching_receivers_for_requester(current_requester)
+        end
 
-          self.current_store = store
+        # For the same receiver run, see what stores has available
+        def available_stores
+          return [] unless current_receiver
+
+          receivers.where(run: current_receiver.run).map(&:store).uniq
+        end
+
+        # Toggles the receiver, the requester and store are based upon this entity
+        def toggle_receiver(receiver)
+          return unless receivers.include? receiver
+
+          self.current_receiver = receiver
           save
         end
 
-        def current_store
-          set_current_store && save unless super
+        # Toggling this will change the receiver for the first available receiver of that requester
+        def toggle_requester(requester)
+          return unless requesters.include? requester
+          return unless matching_receivers_for_requester(requester).any?
 
-          super
+          self.current_receiver = matching_receivers_for_requester(requester).first
+          save
+        end
+
+        # This will try to change to another receiver that matches the same
+        # run but has a different spree store assigned
+        def toggle_store(store)
+          return unless available_stores.include? store
+
+          receiver = receivers.find_by(run: current_receiver.run, store:)
+
+          self.current_receiver = receiver
+          save
+        end
+
+        def find_current_receiver
+          return Cenabast::Spree::Receiver.find_by(id: self[:current_receiver_id]) if admin?
+
+          receivers.find_by(id: self[:current_receiver_id])
+        end
+
+        def current_receiver
+          set_current_receiver && save unless find_current_receiver
+
+          find_current_receiver
+        end
+
+        def current_requester
+          current_receiver&.requester
+        end
+
+        def current_store
+          current_receiver&.store
         end
 
         private
 
-        def set_current_store
-          store = availiable_stores&.first
-          self[:current_store_id] ||= store&.id
+        # Match receivers that belong to user but also belong to requester
+        def matching_receivers_for_requester(requester)
+          return [] unless requester
+          # Admin has all receivers
+          return requester.receivers if admin?
+
+          requester.receivers.where(id: receivers&.pluck(:id))
+        end
+
+        def candidate_current_receiver
+          return Cenabast::Spree::Receiver.first if admin?
+
+          receivers&.first
+        end
+
+        def set_current_receiver
+          receiver = candidate_current_receiver
+
+          self[:current_receiver_id] ||= receiver&.id
         end
       end
     end
