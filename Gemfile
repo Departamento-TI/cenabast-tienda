@@ -166,6 +166,9 @@ gem 'searchkick'
 # https://github.com/ankane/searchkick/issues/1550
 gem 'elasticsearch', '< 7.14'
 
+# Rack CORS Middleware
+gem 'rack-cors'
+
 # SendGrid
 gem 'sendgrid-actionmailer'
 
