@@ -33,7 +33,7 @@ RSpec.describe Cenabast::Spree::OmniauthCallbacksController, type: :request do
 
       expect(response).to redirect_to spree.root_path
       expect(response).to have_http_status(:redirect)
-      expect(flash[:notice]).to eq(Spree.t(:success))
+      expect(flash[:notice]).to eq(Spree.t(:login_success))
       expect(flash[:error]).to be_nil
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe Cenabast::Spree::OmniauthCallbacksController, type: :request do
 
       expect(response).to redirect_to spree.new_spree_user_session_path
       expect(response).to have_http_status(:redirect)
-      expect(flash[:success]).to be_nil
+      expect(flash[:notice]).to be_nil
       expect(flash[:error]).not_to be_nil
     end
   end

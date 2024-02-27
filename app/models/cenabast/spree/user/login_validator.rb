@@ -40,14 +40,14 @@ module Cenabast
         def user_exists?
           return true if user
 
-          error_messages << 'Usuario no existe en sistema'
+          error_messages << ::Spree.t(:user_does_not_exist_on_system)
         end
 
         def user_has_valid_roles?
           if user&.has_spree_role?('buyer')
             true
           else
-            error_messages << 'Usuario no tiene roles validos'
+            error_messages << ::Spree.t(:user_does_not_has_valid_roles)
           end
         end
 
@@ -55,7 +55,7 @@ module Cenabast
           if user&.has_spree_role?('buyer') && user&.receivers&.any? && user&.requesters&.any?
             true
           else
-            error_messages << 'Usuario comprador no valido'
+            error_messages << ::Spree.t(:buyer_user_not_valid)
           end
         end
       end

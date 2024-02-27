@@ -37,7 +37,7 @@ module Cenabast
             end
 
             it 'has an error message' do
-              expect(subject.error_messages).to include('Usuario no existe en sistema')
+              expect(subject.error_messages).to include(::Spree.t(:user_does_not_exist_on_system))
             end
           end
 
@@ -56,7 +56,7 @@ module Cenabast
             end
 
             it 'has an error message' do
-              expect(subject.error_messages).to include('Usuario no tiene roles validos')
+              expect(subject.error_messages).to include(::Spree.t(:user_does_not_has_valid_roles))
             end
           end
 
@@ -74,7 +74,7 @@ module Cenabast
             end
 
             it 'has an error message' do
-              expect(subject.error_messages).to include('Usuario comprador no valido')
+              expect(subject.error_messages).to include(::Spree.t(:buyer_user_not_valid))
             end
           end
         end

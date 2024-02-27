@@ -7,7 +7,7 @@ class Cenabast::Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksCo
       validator = Cenabast::Spree::User::LoginValidator.new(@run)
       user = validator.call
       if user
-        flash[:notice] = Spree.t(:success)
+        flash[:notice] = Spree.t(:login_success)
         sign_in_and_redirect user, event: :authentication
       else
         flash[:error] = validator.error_messages.first
