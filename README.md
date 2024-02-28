@@ -55,7 +55,7 @@ bin/start-docker
 ```
 
 By default, webserver will be exposed on port 4000.
-Opensearch dashboard will be exposed on port 5601.
+Kibana dashboard will be exposed on port 5601.
 MageAI dashboard will be exposed on port 6789.
 
 In developer environment, Lookbook UI is accesible via `/lookbook` path.
@@ -76,7 +76,7 @@ gem install slim_lint -v 0.26.0
 overcommit --install
 ```
 
-## Opensearch Dashboard simple usage
+## Kibana Dashboard simple usage
 
 The default URL should be
 http://localhost:5601/
@@ -84,17 +84,17 @@ http://localhost:5601/
 Default credentials are
 
 ```
-username: admin
-password: admin
+username: elastic
+password: elastic_password
 ```
 
 In order to be able to browse data, create an index pattern for `spree_variants_development` on:
 
-http://localhost:5601/app/management/opensearch-dashboards/indexPatterns
+http://localhost:5601/app/management/kibana/indexPatterns/create
 
 Then you can use Data Explorer > Discover to view existing records:
 
-http://localhost:5601/app/data-explorer/discover
+http://localhost:5601/app/discover
 
 ## Run tests
 
@@ -159,6 +159,15 @@ And a corresponding test coverage must be added into the branch.
 For local environments, env variables are copied automatically upon setup. Using .env.sample as the base.
 
 Some additional environment variables might be needed to be set for pre-productive/productive environments:
+
+**Elasticsearch configuration**
+```
+ELASTIC_PASSWORD
+KIBANA_PASSWORD
+CLUSTER_NAME
+ES_PORT
+KIBANA_PORT
+```
 
 **Storage Bucket configuration (Store attachments in S3)**
 ```

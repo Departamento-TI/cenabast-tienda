@@ -162,8 +162,9 @@ gem 'slim_lint', require: false, group: %w[test development]
 # Intelligent search made easy
 gem 'searchkick'
 
-# Ruby Client for OpenSearch
-gem 'opensearch-ruby'
+# Ruby Client for ElasticSearch
+# https://github.com/ankane/searchkick/issues/1550
+gem 'elasticsearch', '< 7.14'
 
 # Rack CORS Middleware
 gem 'rack-cors'

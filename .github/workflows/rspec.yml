@@ -7,17 +7,17 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      opensearch:
-        image: opensearchproject/opensearch:2
-        env:
-          discovery.type: single-node
-          node.name: opensearch
-          # Disables Security plugin
-          DISABLE_SECURITY_PLUGIN: 'true'
-          OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m"
+      elasticsearch-oss:
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
         ports:
           - 9200:9200
-          - 9600:9600
+        env:
+          DISABLE_SECURITY_PLUGIN: 'true'
+          ES_JAVA_OPTS: '-Xms512m -Xmx512m'
+          cluster.name: cenabast
+          ELASTIC_PASSWORD: elastic_password
+          discovery.type: 'single-node'
+          network.host: 0.0.0.0
       postgres:
         image: postgres:13-alpine
         env:
@@ -49,4 +49,4 @@ jobs:
         RAILS_ENV: test
         DB_HOST: localhost
         DB_PORT: ${{ job.services.postgres.ports[5432] }}
-        OPENSEARCH_URL: http://localhost:${{ job.services.opensearch.ports[9200] }}
+        ELASTICSEARCH_URL: http://localhost:${{ job.services.elasticsearch-oss.ports[9200] }}
