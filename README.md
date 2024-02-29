@@ -154,6 +154,18 @@ Developers conduct code reviews before merging into the main branch.
 Branch must pass the pipeline validations.
 And a corresponding test coverage must be added into the branch.
 
+## Development strategy
+
+As a developer, the following workflow is recommended:
+
+* Read about the current [Development Guidelines](https://departamento-ti.github.io/cenabast-tienda/docs/Store%20Project/development-guidelines)
+* Use JIRA and Github Project board to manage status of issues that are currently being worked on
+* When starting the development of an issue, follow the branching strategy steps
+* Development documentation is being generated under `Development Functionalities` folder under docs. Make sure to update/create docs as you implement functionalities.
+* Write text updates for the issues being worked on each day, detailing the progress in that task. Post them under the relevant JIRA issue and also on the Github Project.
+* Before submiting a PR, make sure the pipeline checks pass correctly, and that the checklist is completed for the task (the checklist defined under the PR template comment)
+* Use Overcommit and Rubocop to detect earlier style offenses. A real-time linter tool in your IDE is also recommended.
+
 ## Env variables
 
 For local environments, env variables are copied automatically upon setup. Using .env.sample as the base.
