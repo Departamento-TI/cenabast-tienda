@@ -68,8 +68,13 @@ group :test do
   # Simple one-liner tests for common Rails functionality
   gem 'shoulda-matchers', '~> 6.0'
 
-  # Strategies for cleaning databases in Ruby. Can be used to ensure a clean state for testing.
+  # Strategies for cleaning databases in Ruby. Can be used to ensure a
+  # clean state for testing.
   gem 'database_cleaner-active_record'
+
+  # A library for generating fake data such as names,
+  # addresses, and phone numbers.
+  gem 'faker'
 end
 
 # Heroku fix
