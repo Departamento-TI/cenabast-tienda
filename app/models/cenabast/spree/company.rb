@@ -1,4 +1,4 @@
-class Cenabast::Spree::Company < ApplicationRecord
+class Cenabast::Spree::Company < Spree::Base
   include Cenabast::Spree::HasRun
 
   has_many :company_users, class_name: 'Cenabast::Spree::CompanyUser', dependent: :destroy
