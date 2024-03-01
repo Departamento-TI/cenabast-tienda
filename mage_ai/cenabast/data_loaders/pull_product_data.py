@@ -47,14 +47,17 @@ def load_data_from_api(*args, **kwargs):
 def base_url():
     return "https://testaplicacionesweb.cenabast.cl:7001"
 
+def parent_path_url():
+    return "/interoperabilidad/servicios/api/v1/"
+
 def login_url():
-    return f"{base_url()}/interoperabilidad/servicios/auth"
+    return f"{base_url(){parent_path_url()}auth"
 
 def products_url():
-    return f"{base_url()}/interoperabilidad/servicios/materiales/listacatalogo"
+    return f"{base_url(){parent_path_url()}materiales/listacatalogo"
 
 def contracts_url(codigo_producto):
-    return f"{base_url()}/interoperabilidad/servicios/materiales/contratos/{codigo_producto}"
+    return f"{base_url(){parent_path_url()}materiales/contratos/{codigo_producto}"
 
 def products_payload(product_sku):
     if product_sku is not None:
