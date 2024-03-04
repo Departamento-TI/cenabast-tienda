@@ -192,7 +192,7 @@ http_interactions:
   recorded_at: Mon, 26 Feb 2024 20:55:17 GMT
 - request:
     method: get
-    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>//proveedor/usuario/88888888"
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/proveedor/usuario/88888888"
     body:
       encoding: US-ASCII
       string: ''

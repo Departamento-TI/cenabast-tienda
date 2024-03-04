@@ -7,7 +7,7 @@ RSpec.describe Cenabast::Spree::User::ReceiversInformationProcesser, type: :mode
 
   describe '#call - valid run, existing user' do
     before(:each) do
-      VCR.insert_cassette 'cenabast/spree/user/receivers_information_processer_valid'
+      VCR.insert_cassette 'cenabast/spree/user/receivers_information_processer_valid', erb: true
     end
 
     after(:each) do
@@ -71,7 +71,7 @@ RSpec.describe Cenabast::Spree::User::ReceiversInformationProcesser, type: :mode
 
   describe '#call - invalid run, existing user' do
     before(:each) do
-      VCR.insert_cassette 'cenabast/spree/user/receivers_information_processer_invalid'
+      VCR.insert_cassette 'cenabast/spree/user/receivers_information_processer_invalid', erb: true
     end
 
     after(:each) do

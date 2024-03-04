@@ -7,7 +7,7 @@ RSpec.describe Cenabast::Spree::User::InformationUpdater, type: :model do
 
   describe '#call - valid buyer run' do
     before(:each) do
-      VCR.insert_cassette 'cenabast/spree/user/information_updater_buyer_run_spec'
+      VCR.insert_cassette 'cenabast/spree/user/information_updater_buyer_run_spec', erb: true
     end
 
     after(:each) do
@@ -70,7 +70,7 @@ RSpec.describe Cenabast::Spree::User::InformationUpdater, type: :model do
 
   describe '#call - valid provider run' do
     before(:each) do
-      VCR.insert_cassette 'cenabast/spree/user/information_updater_provider_run_spec'
+      VCR.insert_cassette 'cenabast/spree/user/information_updater_provider_run_spec', erb: true
     end
 
     after(:each) do

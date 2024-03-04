@@ -16,7 +16,7 @@ RSpec.describe Cenabast::Spree::OmniauthCallbacksController, type: :request do
 
   describe '#clave_unica - buyer access' do
     before(:each) do
-      VCR.insert_cassette 'cenabast/clave_unica/buyer_data'
+      VCR.insert_cassette 'cenabast/clave_unica/buyer_data', erb: true
     end
 
     after(:each) do
@@ -40,7 +40,7 @@ RSpec.describe Cenabast::Spree::OmniauthCallbacksController, type: :request do
 
   describe '#clave_unica - provider access' do
     before(:each) do
-      VCR.insert_cassette 'cenabast/clave_unica/provider_data'
+      VCR.insert_cassette 'cenabast/clave_unica/provider_data', erb: true
     end
 
     after(:each) do

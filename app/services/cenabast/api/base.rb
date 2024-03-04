@@ -64,7 +64,9 @@ module Cenabast
         end
       rescue RestClient::ExceptionWithResponse => e
         e.response
-      rescue StandardError
+      rescue StandardError => e
+        Rails.logger.error("[#{self.class.name}] Api request: #{e.message}")
+        Rails.logger.debug { "[#{self.class.name}] #{e.backtrace.join("\n")}" }
         nil
       end
 
