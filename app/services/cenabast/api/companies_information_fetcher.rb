@@ -18,11 +18,11 @@ module Cenabast
       private
 
       def url
-        base_url + user_path
+        base_url + base_path + user_path
       end
 
       def user_path
-        "/interoperabilidad/servicios/usuario/#{run}/proveedor"
+        "/usuario/#{run}/proveedor"
       end
     end
   end

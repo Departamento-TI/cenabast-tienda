@@ -64,6 +64,9 @@ The flow works as following (2024/02/27):
 * CENABAST_API_BASE_URL
     * Root URL to use
 
+* CENABAST_API_BASE_PATH
+    * Base path that points to the root of the API to use
+
 * CENABAST_API_USER
     * API User to obtain a token from
 

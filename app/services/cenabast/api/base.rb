@@ -16,6 +16,10 @@ module Cenabast
         ENV.fetch('CENABAST_API_BASE_URL', 'https://testaplicacionesweb.cenabast.cl:7001')
       end
 
+      def base_path
+        ENV.fetch('CENABAST_API_BASE_PATH', '/interoperabilidad/servicios/api/v1')
+      end
+
       def cache_expire_time
         ENV.fetch('CENABAST_API_TOKEN_EXPIRE_TIME', 30).to_i.minutes
       end
