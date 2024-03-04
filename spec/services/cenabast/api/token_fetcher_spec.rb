@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Cenabast::Api::TokenFetcher do
   describe '#call' do
     before(:each) do
-      VCR.insert_cassette 'cenabast/api/token'
+      VCR.insert_cassette 'cenabast/api/token', erb: true
     end
 
     after(:each) do

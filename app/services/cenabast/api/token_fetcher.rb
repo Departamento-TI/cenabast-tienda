@@ -12,11 +12,11 @@ module Cenabast
       end
 
       def url
-        base_url + login_path
+        base_url + base_path + login_path
       end
 
       def login_path
-        '/interoperabilidad/servicios/auth'
+        '/auth'
       end
 
       def user

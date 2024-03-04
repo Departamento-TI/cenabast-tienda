@@ -49,7 +49,6 @@ module Cenabast
 
           # Update register
           user.update!(
-            user_type: :provider,
             first_name:,
             last_name:,
             email:,

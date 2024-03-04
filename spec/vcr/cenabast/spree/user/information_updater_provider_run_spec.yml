@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/auth
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/auth"
     body:
       encoding: UTF-8
       string: '{"user":"tienda","password":"tienda#2024"}'
@@ -18,7 +18,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
-      - testaplicacionesweb.cenabast.cl:7001
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
       code: 200
@@ -44,7 +44,7 @@ http_interactions:
   recorded_at: Fri, 23 Feb 2024 16:38:08 GMT
 - request:
     method: get
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/establecimiento/usuario/55555555
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/establecimiento/usuario/55555555"
     body:
       encoding: US-ASCII
       string: ''
@@ -60,7 +60,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
-      - testaplicacionesweb.cenabast.cl:7001
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
       code: 200
@@ -88,7 +88,7 @@ http_interactions:
   recorded_at: Fri, 23 Feb 2024 16:38:14 GMT
 - request:
     method: post
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/auth
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/auth"
     body:
       encoding: UTF-8
       string: '{"user":"tienda","password":"tienda#2024"}'
@@ -104,7 +104,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
-      - testaplicacionesweb.cenabast.cl:7001
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
       code: 200
@@ -130,7 +130,7 @@ http_interactions:
   recorded_at: Fri, 23 Feb 2024 16:38:19 GMT
 - request:
     method: get
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/proveedor/usuario/55555555
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/proveedor/usuario/55555555"
     body:
       encoding: US-ASCII
       string: ''
@@ -146,7 +146,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
-      - testaplicacionesweb.cenabast.cl:7001
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
       code: 200
@@ -173,7 +173,7 @@ http_interactions:
   recorded_at: Fri, 23 Feb 2024 16:38:24 GMT
 - request:
     method: post
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/auth
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/auth"
     body:
       encoding: UTF-8
       string: '{"user":"tienda","password":"tienda#2024"}'
@@ -189,7 +189,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
-      - testaplicacionesweb.cenabast.cl:7001
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
       code: 200
@@ -215,7 +215,7 @@ http_interactions:
   recorded_at: Fri, 23 Feb 2024 16:38:29 GMT
 - request:
     method: get
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/destinatarios/55555555
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/destinatarios/55555555"
     body:
       encoding: US-ASCII
       string: ''
@@ -231,7 +231,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
-      - testaplicacionesweb.cenabast.cl:7001
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
       code: 200
@@ -259,7 +259,7 @@ http_interactions:
   recorded_at: Fri, 23 Feb 2024 16:38:34 GMT
 - request:
     method: post
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/auth
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/auth"
     body:
       encoding: UTF-8
       string: '{"user":"tienda","password":"tienda#2024"}'
@@ -275,7 +275,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
-      - testaplicacionesweb.cenabast.cl:7001
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
       code: 200
@@ -301,7 +301,7 @@ http_interactions:
   recorded_at: Fri, 23 Feb 2024 16:38:39 GMT
 - request:
     method: get
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/usuario/55555555/proveedor
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/usuario/55555555/proveedor"
     body:
       encoding: US-ASCII
       string: ''
@@ -317,7 +317,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
-      - testaplicacionesweb.cenabast.cl:7001
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
       code: 200

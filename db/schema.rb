@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_23_204655) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_04_160429) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,6 +77,57 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_204655) do
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_cenabast_spree_company_users_on_company_id"
     t.index ["user_id"], name: "index_cenabast_spree_company_users_on_user_id"
+  end
+
+  create_table "cenabast_spree_contracts", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "provider_id", null: false
+    t.string "sale_order"
+    t.string "code"
+    t.string "name"
+    t.string "mercado_publico_id"
+    t.string "mercado_publico_oc"
+    t.integer "center"
+    t.decimal "price_before_iva"
+    t.decimal "price_iva"
+    t.decimal "price"
+    t.decimal "comission"
+    t.datetime "available_on"
+    t.datetime "discontinue_on"
+    t.string "unit_sale"
+    t.string "unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_cenabast_spree_contracts_on_product_id"
+    t.index ["provider_id"], name: "index_cenabast_spree_contracts_on_provider_id"
+  end
+
+  create_table "cenabast_spree_generic_products", force: :cascade do |t|
+    t.string "code"
+    t.string "code_atc"
+    t.string "code_onu"
+    t.string "code_ean"
+    t.string "denomination"
+    t.string "standard_denomination"
+    t.integer "product_type"
+    t.string "hierarchy"
+    t.string "ump"
+    t.string "manufacturer"
+    t.string "base_table"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cenabast_spree_providers", force: :cascade do |t|
+    t.string "name"
+    t.string "run"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "land_phone"
+    t.string "mobile_phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cenabast_spree_receiver_users", force: :cascade do |t|
@@ -823,9 +874,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_204655) do
     t.string "status", default: "draft", null: false
     t.datetime "make_active_at", precision: nil
     t.bigint "vendor_id"
+    t.bigint "generic_product_id"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
+    t.index ["generic_product_id"], name: "index_spree_products_on_generic_product_id"
     t.index ["make_active_at"], name: "index_spree_products_on_make_active_at"
     t.index ["name"], name: "index_spree_products_on_name"
     t.index ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
@@ -1567,7 +1620,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_204655) do
     t.string "run"
     t.string "land_phone"
     t.string "mobile_phone"
-    t.integer "user_type", default: 0
     t.bigint "current_receiver_id"
     t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
     t.index ["current_receiver_id"], name: "index_spree_users_on_current_receiver_id"
@@ -1726,6 +1778,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_204655) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cenabast_spree_company_users", "cenabast_spree_companies", column: "company_id"
   add_foreign_key "cenabast_spree_company_users", "spree_users", column: "user_id"
+  add_foreign_key "cenabast_spree_contracts", "cenabast_spree_providers", column: "provider_id"
+  add_foreign_key "cenabast_spree_contracts", "spree_products", column: "product_id"
   add_foreign_key "cenabast_spree_receiver_users", "cenabast_spree_receivers", column: "receiver_id"
   add_foreign_key "cenabast_spree_receiver_users", "spree_users", column: "user_id"
   add_foreign_key "cenabast_spree_receivers", "cenabast_spree_requesters", column: "requester_id"
@@ -1738,6 +1792,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_204655) do
   add_foreign_key "spree_payment_sources", "spree_users", column: "user_id"
   add_foreign_key "spree_product_property_translations", "spree_product_properties"
   add_foreign_key "spree_product_translations", "spree_products"
+  add_foreign_key "spree_products", "cenabast_spree_generic_products", column: "generic_product_id"
   add_foreign_key "spree_property_translations", "spree_properties"
   add_foreign_key "spree_store_translations", "spree_stores"
   add_foreign_key "spree_taxon_translations", "spree_taxons"

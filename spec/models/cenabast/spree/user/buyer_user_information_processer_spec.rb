@@ -7,7 +7,7 @@ RSpec.describe Cenabast::Spree::User::BuyerUserInformationProcesser, type: :mode
 
   describe '#call - valid run' do
     before(:each) do
-      VCR.insert_cassette 'cenabast/spree/user/buyer_information_processer_valid'
+      VCR.insert_cassette 'cenabast/spree/user/buyer_information_processer_valid', erb: true
     end
 
     after(:each) do
@@ -23,11 +23,12 @@ RSpec.describe Cenabast::Spree::User::BuyerUserInformationProcesser, type: :mode
       expect(user.run).to eq '163385562'
     end
 
-    it 'the created Spree::User is of type buyer' do
+    it 'the created Spree::User is of role buyer' do
       described_class.new(run).call
 
       user = Spree::User.last
-      expect(user.user_type).to eq 'buyer'
+      buyer_role = Spree::Role.find_by!(name: 'buyer')
+      expect(user.spree_roles).to include(buyer_role)
     end
 
     it 'increases the count Spree::User by 1' do
@@ -51,7 +52,7 @@ RSpec.describe Cenabast::Spree::User::BuyerUserInformationProcesser, type: :mode
 
   describe '#call - invalid run' do
     before(:each) do
-      VCR.insert_cassette 'cenabast/spree/user/buyer_information_processer_invalid'
+      VCR.insert_cassette 'cenabast/spree/user/buyer_information_processer_invalid', erb: true
     end
 
     after(:each) do
