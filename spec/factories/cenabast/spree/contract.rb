@@ -16,6 +16,5 @@ FactoryBot.define do
     unit { Faker::Lorem.word }
 
     product { Spree::Product.first || create(:product) }
-    provider { Cenabast::Spree::Provider.first || create(:provider) }
   end
 end
