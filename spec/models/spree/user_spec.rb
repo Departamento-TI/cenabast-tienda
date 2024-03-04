@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Spree::User, type: :model, search: true do
-  describe 'Enums' do
-    it { is_expected.to define_enum_for(:user_type).with_values(buyer: 0, provider: 1) }
-  end
-
   describe 'Canceled validations' do
     it 'cancels validation for :password' do
       expect(described_class._validators[:password]).to be_empty

@@ -46,6 +46,8 @@ jobs:
         bundle exec rake assets:precompile
         bundle exec rspec
       env:
+        CENABAST_API_BASE_URL: https://testaplicacionesweb.cenabast.cl:7001
+        CENABAST_API_BASE_PATH: /interoperabilidad/servicios/api/v1
         RAILS_ENV: test
         DB_HOST: localhost
         DB_PORT: ${{ job.services.postgres.ports[5432] }}

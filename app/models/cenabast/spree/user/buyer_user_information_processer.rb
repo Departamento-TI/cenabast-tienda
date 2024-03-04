@@ -50,7 +50,6 @@ module Cenabast
 
           # Update register
           user.update!(
-            user_type: :buyer,
             first_name:,
             last_name:,
             email:,

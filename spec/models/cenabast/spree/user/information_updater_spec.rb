@@ -29,11 +29,12 @@ RSpec.describe Cenabast::Spree::User::InformationUpdater, type: :model do
       expect(response).to eq true
     end
 
-    it 'the created Spree::User is of type buyer' do
+    it 'the created Spree::User is of role buyer' do
       described_class.new(run).call
 
       user = Spree::User.last
-      expect(user.user_type).to eq 'buyer'
+      buyer_role = Spree::Role.find_by!(name: 'buyer')
+      expect(user.spree_roles).to include(buyer_role)
     end
 
     it 'increases the count Spree::User by 1' do
@@ -92,11 +93,12 @@ RSpec.describe Cenabast::Spree::User::InformationUpdater, type: :model do
       expect(response).to eq true
     end
 
-    it 'the created Spree::User is of type buyer' do
+    it 'the created Spree::User is of role provider' do
       described_class.new(run).call
 
       user = Spree::User.last
-      expect(user.user_type).to eq 'provider'
+      provider_role = Spree::Role.find_by!(name: 'provider')
+      expect(user.spree_roles).to include(provider_role)
     end
 
     it 'increases the count Spree::User by 1' do
