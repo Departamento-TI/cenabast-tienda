@@ -7,14 +7,16 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      elasticsearch-oss:
-        image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+      elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
         ports:
           - 9200:9200
         env:
           DISABLE_SECURITY_PLUGIN: 'true'
+          xpack.security.enabled: false
           ES_JAVA_OPTS: '-Xms512m -Xmx512m'
           cluster.name: cenabast
+          node.name: elasticsearch
           ELASTIC_PASSWORD: elastic_password
           discovery.type: 'single-node'
           network.host: 0.0.0.0
@@ -51,4 +53,4 @@ jobs:
         RAILS_ENV: test
         DB_HOST: localhost
         DB_PORT: ${{ job.services.postgres.ports[5432] }}
-        ELASTICSEARCH_URL: http://localhost:${{ job.services.elasticsearch-oss.ports[9200] }}
+        ELASTICSEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
