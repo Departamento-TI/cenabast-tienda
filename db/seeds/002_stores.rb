@@ -6,7 +6,7 @@ default_store.code = 'spree-ecommerce'
 default_store.url = Rails.env.development? ? 'localhost:4000' : 'cenabast.com'
 default_store.mail_from_address = 'no-reply@example.com'
 default_store.default_country = Spree::Country.find_by(iso: 'CL')
-default_store.supported_currencies = 'CLP'
+default_store.default_currency = 'CLP'
 default_store.supported_locales = 'es'
 default_store.save!
 
@@ -18,7 +18,7 @@ intermediation_store.code = 'spree-intermediation'
 intermediation_store.url = Rails.env.development? ? 'localhost:4000' : 'cenabast.com'
 intermediation_store.mail_from_address = 'no-reply@example.com'
 intermediation_store.default_country = Spree::Country.find_by(iso: 'CL')
-intermediation_store.supported_currencies = 'CLP'
+intermediation_store.default_currency = 'CLP'
 intermediation_store.supported_locales = 'es'
 intermediation_store.save!
 
