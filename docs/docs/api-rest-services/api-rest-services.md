@@ -28,4 +28,4 @@ The Store will need to handle multiple connections or integrations with third pa
 
 - [API Cenabast Directory WebAPI2 *external link*](https://testaplicacionesweb.cenabast.cl:7001/WebApi2/documentacion/index.html#/)
 - [~~API Cenabast Sellers API por Sellers for managing orders~~](https://aplicacionesweb.cenabast.cl/webapi/swagger/ui/index#)
-- [API Tienda Cenabast 🥷](https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/docs/index.html)
+- [API Tienda Cenabast 🥷](https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/tienda/api/docs/index.html)

@@ -9,7 +9,7 @@ The following API returns all the related Companies for a particular Seller.
 ## Request
 
 ```jsx
-GET {{HOST}}/interoperabilidad/servicios/v1/tienda/usuario/8962580/proveedor' \
+GET {{HOST}}/interoperabilidad/tienda/api/v1/usuario/55555555/proveedor' \
 --header 'Authorization: Bearer {{token}}'
 
 ```
@@ -18,9 +18,13 @@ GET {{HOST}}/interoperabilidad/servicios/v1/tienda/usuario/8962580/proveedor' \
 
 ```jsx
 {
-    "rut_usuario": "8962580",
-    "rut_proveedor": "76191389",
-    "nombre_proveedor": "SERVICIOS Y MAQUILA SERVICE LTDA.  ",
-    "activo": true
+    "code": 200,
+    "isSuccessStatusCode": true,
+    "content": {
+        "rutUsuario": "55555555",
+        "rutProveedor": "76191389",
+        "nombreProveedor": "SERVICIOS Y MAQUILA SERVICE LTDA.  ",
+        "activo": true
+    }
 }
 ```

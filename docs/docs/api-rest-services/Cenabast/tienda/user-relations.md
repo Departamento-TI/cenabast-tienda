@@ -9,7 +9,7 @@ The following API returns all the related institutions for a particular **buyer*
 ## Request
 
 ```jsx
-GET '{{host}}/interoperabilidad/servicios/v1/tienda/destinatarios/16338556' \
+GET '{{host}}/interoperabilidad/tienda/api/v1/destinatarios/16338556' \
 --header 'Authorization: Bearer {{token}}'
 
 ```
