@@ -49,6 +49,24 @@ group :development, :test do
 
   # Debugging functionality for Ruby
   gem 'debug', '>= 1.0.0'
+
+  # A RuboCop extension focused on enforcing Rails best practices and coding conventions.
+  gem 'rubocop-rails', require: false
+
+  # An extension of RuboCop focused on code performance checks.
+  gem 'rubocop-performance', require: false
+
+  # A static analysis security vulnerability scanner for Ruby on Rails applications
+  gem 'brakeman', require: false
+
+  # Patch-level verification for Bundler
+  gem 'bundle-audit', require: false
+
+  # Configurable tool for analyzing Slim templates
+  gem 'slim_lint', require: false
+
+  # Spree Developer Tools
+  gem 'spree_dev_tools', require: false
 end
 
 group :development do
@@ -128,9 +146,6 @@ gem 'spree_auth_devise', '~> 4.6.0'
 # I18n translation files for Spree Commerce.
 gem 'spree_i18n', '~> 5.3.0'
 
-# Spree Developer Tools
-gem 'spree_dev_tools', require: false, group: %w[test development]
-
 # Spree marketplace extension. Create your own marketplace on top of Spree Commerce
 gem 'spree_multi_vendor'
 
@@ -143,21 +158,6 @@ gem 'omniauth-oauth2'
 # Provides CSRF protection on OmniAuth request
 # endpoint on Rails application.
 gem 'omniauth-rails_csrf_protection'
-
-# A RuboCop extension focused on enforcing Rails best practices and coding conventions.
-gem 'rubocop-rails', require: false, group: %w[test development]
-
-# An extension of RuboCop focused on code performance checks.
-gem 'rubocop-performance', require: false, group: %w[test development]
-
-# A static analysis security vulnerability scanner for Ruby on Rails applications
-gem 'brakeman', require: false, group: %w[test development]
-
-# Patch-level verification for Bundler
-gem 'bundle-audit', require: false, group: %w[test development]
-
-# Configurable tool for analyzing Slim templates
-gem 'slim_lint', require: false, group: %w[test development]
 
 # Intelligent search made easy
 gem 'searchkick'
