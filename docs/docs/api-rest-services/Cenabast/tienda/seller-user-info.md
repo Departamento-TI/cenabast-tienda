@@ -9,7 +9,7 @@ The following API returns the Seller User information.
 ## Request
 
 ```jsx
-GET {{HOST}}/interoperabilidad/servicios/v1/tienda/proveedor/usuario/8895313' \
+GET {{HOST}}/interoperabilidad/tienda/api/v1/proveedor/usuario/55555555' \
 --header 'Authorization: Bearer {{token}}'
 
 ```
@@ -18,14 +18,19 @@ GET {{HOST}}/interoperabilidad/servicios/v1/tienda/proveedor/usuario/8895313' \
 
 ```jsx
 {
-    "rut_usuario": 8895313,
-    "nombres": "MICHEL",
-    "apellido_paterno": "BENOIS ",
-    "apellido_materno": "JIMENEZ",
-    "nombre_completo": "MICHEL BENOIS  JIMENEZ",
-    "email": "michel.benois@cl.nestle.com",
-    "telefono": "223375275",
-    "movil": "",
-    "activo": true
+    "code": 200,
+    "isSuccessStatusCode": true,
+    "content": {
+        "rutUsuario": 55555555,
+        "dv": "5",
+        "nombres": "Prueba",
+        "apellidoPaterno": "Prueba",
+        "apellidoMaterno": "Prueba",
+        "nombreCompleto": "Prueba Prueba Prueba",
+        "email": "pedroz21@gmail.com",
+        "telefono": "",
+        "movil": "",
+        "activo": true
+    }
 }
 ```

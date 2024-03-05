@@ -9,7 +9,7 @@ The following API returns the buyer user information.
 ## Request
 
 ```jsx
-GET {{HOST}}/interoperabilidad/servicios/v1/tienda/establecimiento/usuario/16338556' \
+GET {{HOST}}/interoperabilidad/tienda/api/v1/establecimiento/usuario/88888888' \
 --header 'Authorization: Bearer {{token}}'
 ```
 
@@ -17,15 +17,19 @@ GET {{HOST}}/interoperabilidad/servicios/v1/tienda/establecimiento/usuario/16338
 
 ```jsx
 {
-    "rut_usuario": 16338556,
-    "nombres": "PATRICIA",
-    "apellido_paterno": "GUTIÉRREZ",
-    "apellido_materno": "AGÜERO",
-    "nombre_completo": "PATRICIA GUTIÉRREZ AGÜERO",
-    "email": "patricia.gutierreza@redsalud.gob.cl",
-    "telefono": "642335845",
-    "movil": "972994022",
-    "activo": true
+    "code": 200,
+    "isSuccessStatusCode": true,
+    "content": {
+        "rutUsuario": 88888888,
+        "dv": "8",
+        "nombres": "PRUEBA 8",
+        "apellidoPaterno": "PRUEBA",
+        "apellidoMaterno": "PRUEBA",
+        "nombreCompleto": "PRUEBA 8 PRUEBA PRUEBA",
+        "email": "pzuniga@cenabast.cl",
+        "telefono": "956393313",
+        "movil": "956393313",
+        "activo": true
+    }
 }
-
 ```
