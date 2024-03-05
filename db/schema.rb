@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_04_160429) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_05_200003) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,7 +81,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_160429) do
 
   create_table "cenabast_spree_contracts", force: :cascade do |t|
     t.bigint "product_id", null: false
-    t.bigint "provider_id", null: false
     t.string "sale_order"
     t.string "code"
     t.string "name"
@@ -98,8 +97,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_160429) do
     t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_cenabast_spree_contracts_on_code", unique: true
     t.index ["product_id"], name: "index_cenabast_spree_contracts_on_product_id"
-    t.index ["provider_id"], name: "index_cenabast_spree_contracts_on_provider_id"
   end
 
   create_table "cenabast_spree_generic_products", force: :cascade do |t|
@@ -116,18 +115,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_160429) do
     t.string "base_table"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "cenabast_spree_providers", force: :cascade do |t|
-    t.string "name"
-    t.string "run"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "land_phone"
-    t.string "mobile_phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_cenabast_spree_generic_products_on_code", unique: true
   end
 
   create_table "cenabast_spree_receiver_users", force: :cascade do |t|
@@ -1621,8 +1609,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_160429) do
     t.string "land_phone"
     t.string "mobile_phone"
     t.bigint "current_receiver_id"
+    t.bigint "current_store_id"
     t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
     t.index ["current_receiver_id"], name: "index_spree_users_on_current_receiver_id"
+    t.index ["current_store_id"], name: "index_spree_users_on_current_store_id"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
     t.index ["email"], name: "email_idx_unique", unique: true
     t.index ["ship_address_id"], name: "index_spree_users_on_ship_address_id"
@@ -1695,6 +1685,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_160429) do
     t.float "commission_rate", default: 5.0
     t.integer "priority"
     t.string "notification_email"
+    t.string "run"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "land_phone"
+    t.string "mobile_phone"
     t.index ["deleted_at"], name: "index_spree_vendors_on_deleted_at"
     t.index ["name"], name: "index_spree_vendors_on_name", unique: true
     t.index ["slug"], name: "index_spree_vendors_on_slug", unique: true
@@ -1778,7 +1774,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_160429) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cenabast_spree_company_users", "cenabast_spree_companies", column: "company_id"
   add_foreign_key "cenabast_spree_company_users", "spree_users", column: "user_id"
-  add_foreign_key "cenabast_spree_contracts", "cenabast_spree_providers", column: "provider_id"
   add_foreign_key "cenabast_spree_contracts", "spree_products", column: "product_id"
   add_foreign_key "cenabast_spree_receiver_users", "cenabast_spree_receivers", column: "receiver_id"
   add_foreign_key "cenabast_spree_receiver_users", "spree_users", column: "user_id"
@@ -1798,5 +1793,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_160429) do
   add_foreign_key "spree_taxon_translations", "spree_taxons"
   add_foreign_key "spree_taxonomy_translations", "spree_taxonomies"
   add_foreign_key "spree_users", "cenabast_spree_receivers", column: "current_receiver_id"
+  add_foreign_key "spree_users", "spree_stores", column: "current_store_id"
   add_foreign_key "spree_vendor_translations", "spree_vendors"
 end
