@@ -3,7 +3,7 @@ module Cenabast
     module Api
       module V2
         module Platform
-          class GenericProductSerializer < ::Spree::Api::V2::Platform::BaseSerializer
+          class VendorSerializer < ::Spree::Api::V2::Platform::BaseSerializer
             include Cenabast::Spree::Api::V2::ResourceSerializerConcern
           end
         end

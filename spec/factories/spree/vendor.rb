@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :vendor, class: Spree::Vendor do
-    name { FFaker::Company.name }
+    name { Faker::Name.first_name }
     about_us { 'About us...' }
     contact_us { 'Contact us...' }
 
-    run { Faker::ChileRut.rut }
+    run { Spree::Vendor.raw_run_to_formatted(Faker::ChileRut.rut.to_s) }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
@@ -17,7 +17,7 @@ FactoryBot.define do
     end
 
     factory :active_vendor_list do
-      name { "#{FFaker::Company.name} #{FFaker::Company.suffix}" }
+      name { "#{Faker::Company.name} #{Faker::Company.suffix}" }
       state { :active }
     end
 

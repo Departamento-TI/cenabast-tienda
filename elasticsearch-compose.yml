@@ -11,7 +11,7 @@ services:
       - network.host=0.0.0.0
       - xpack.security.enabled=false
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
       - ELASTIC_PASSWORD=$ELASTIC_PASSWORD
     volumes:
       - 'elasticsearch-data:/usr/share/elasticsearch/data'

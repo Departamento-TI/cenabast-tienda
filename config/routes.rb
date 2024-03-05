@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       namespace :platform do
         resources :generic_products, controller: '/cenabast/spree/api/v2/platform/generic_products'
         resources :contracts, controller: '/cenabast/spree/api/v2/platform/contracts'
+        resources :vendors, controller: '/cenabast/spree/api/v2/platform/vendors'
       end
     end
   end

@@ -8,7 +8,7 @@ module Cenabast
 
           def self.included(base)
             serializer_base_name = base.to_s.sub(/^Cenabast::Spree::Api::V2::Platform::/, '').sub(/Serializer$/, '')
-            model_klazz = "Cenabast::Spree::#{serializer_base_name}".constantize
+            model_klazz = get_klazz_instance(serializer_base_name)
 
             base.set_type model_klazz.json_api_type
             # include standard attributes
@@ -18,6 +18,15 @@ module Cenabast
               base.attribute(method_name) do |object|
                 object.public_send(method_name).to_s
               end
+            end
+          end
+
+          def self.get_klazz_instance(base_name)
+            if const_defined?("Cenabast::Spree::#{base_name}")
+              "Cenabast::Spree::#{base_name}".constantize
+            else
+              # Fallback to search in spree module.
+              "::Spree::#{base_name}".constantize
             end
           end
 
