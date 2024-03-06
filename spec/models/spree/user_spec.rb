@@ -125,6 +125,14 @@ RSpec.describe Spree::User, type: :model, search: true do
         expect(user.reload.current_receiver).to eq receiver
         expect(user.reload.current_receiver).not_to eq last_current_receiver
       end
+
+      it 'can toggle to any receiver if the user is admin' do
+        admin = create(:admin_user, run: '444444444', receivers: available_receivers)
+
+        new_receiver = non_available_receivers.sample
+        admin.toggle_receiver(new_receiver)
+        expect(admin.reload.current_receiver).to eq new_receiver
+      end
     end
 
     describe '#toggle_store' do
@@ -163,6 +171,19 @@ RSpec.describe Spree::User, type: :model, search: true do
         user.toggle_store(store)
 
         expect(user.current_store).to eq last_current_store
+      end
+
+      it 'can toggle to any receiver if the user is admin' do
+        not_allowed_stores = create_list(:store, 4)
+        receivers = stores.sample(4).map do |store|
+          create(:receiver, run:, store:)
+        end
+
+        admin = create(:admin_user, run: '444444444', receivers:)
+        store = not_allowed_stores.sample
+        admin.toggle_store(store)
+
+        expect(admin.reload.current_store).to eq store
       end
     end
   end
