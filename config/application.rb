@@ -81,5 +81,9 @@ module SpreeStarter
     initializer(:remove_activestorage_routes, after: :add_routing_paths) do |app|
       app.routes_reloader.paths.delete_if {|path| path[/spree_auth_devise/] }
     end
+
+    # Set default host to be used in url generation
+    Rails.application.routes.default_url_options = { host: ENV['APP_HOST'] }
+    Spree::Core::Engine.routes.default_url_options = { host: ENV['APP_HOST'] }
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_05_200003) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_05_203613) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -1614,7 +1614,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_200003) do
     t.index ["current_receiver_id"], name: "index_spree_users_on_current_receiver_id"
     t.index ["current_store_id"], name: "index_spree_users_on_current_store_id"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
-    t.index ["email"], name: "email_idx_unique", unique: true
+    t.index ["run"], name: "index_spree_users_on_run", unique: true
     t.index ["ship_address_id"], name: "index_spree_users_on_ship_address_id"
     t.index ["spree_api_key"], name: "index_spree_users_on_spree_api_key"
   end

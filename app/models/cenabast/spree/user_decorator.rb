@@ -7,6 +7,7 @@ module Cenabast
         base.include Cenabast::Spree::CancelValidation
 
         base.cancel_validates :password, :password_confirmation
+        base.cancel_validates :email
 
         base.devise :omniauthable, omniauth_providers: %i[clave_unica]
       end
