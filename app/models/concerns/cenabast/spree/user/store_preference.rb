@@ -49,18 +49,34 @@ module Cenabast
 
         # Toggles the receiver, the requester and store are based upon this entity
         def toggle_receiver(receiver)
+          return toggle_receiver_admin(receiver) if admin?
           return unless receivers.include? receiver
 
           self.current_receiver = receiver
           save
         end
 
+        # Toggle receiver without restrictions
+        # Use only for admin users
+        def toggle_receiver_admin(receiver)
+          self.current_receiver = receiver
+          save
+        end
+
         # Toggling this will change the receiver for the first available receiver of that requester
         def toggle_requester(requester)
+          return toggle_requester_admin(requester) if admin?
           return unless requesters.include? requester
           return unless matching_receivers_for_requester(requester).any?
 
           self.current_receiver = matching_receivers_for_requester(requester).first
+          save
+        end
+
+        # Toggle requester without restrictions
+        # Use only for admin users
+        def toggle_requester_admin(requester)
+          self.current_receiver = requester.receivers.first
           save
         end
 
