@@ -5,7 +5,7 @@ require 'webdrivers'
 
 driver_hosts = Webdrivers::Common.subclasses.map { |driver| URI(driver.base_url).host }
 driver_hosts << 'codeclimate.com'
-driver_hosts << 'elasticsearch-oss'
+driver_hosts << 'elasticsearch'
 driver_hosts << 'postgres'
 driver_urls = Webdrivers::Common.subclasses.map(&:base_url)
 

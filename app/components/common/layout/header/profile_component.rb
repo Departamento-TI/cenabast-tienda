@@ -19,5 +19,7 @@ class Common::Layout::Header::ProfileComponent < ApplicationComponent
   def before_render
     @login_path = helpers.spree.login_path
     @logout_path = helpers.spree.logout_path
+    @account_path = helpers.spree.account_path
+    @cart_path = helpers.spree.cart_path
   end
 end

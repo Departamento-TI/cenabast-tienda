@@ -13,8 +13,10 @@ module Cenabast
           # want this to work for other models too
           belongs_to :current_receiver, class_name: 'Cenabast::Spree::Receiver', optional: true
 
-          has_many :store_users, class_name: 'Cenabast::Spree::StoreUser', foreign_key: :user_id, dependent: :destroy, inverse_of: :user
-          has_many :stores, class_name: 'Spree::Store', through: :store_users
+          # the Store is linked to the reciever, however, they might be cases
+          # when we want to control
+          # a different store (ie, admin users) rather than the receiver's store
+          belongs_to :current_store, class_name: '::Spree::Store', optional: true
 
           has_many :receiver_users, class_name: 'Cenabast::Spree::ReceiverUser', dependent: :destroy
           has_many :receivers, through: :receiver_users, class_name: 'Cenabast::Spree::Receiver'
@@ -39,6 +41,7 @@ module Cenabast
 
         # For the same receiver run, see what stores has available
         def available_stores
+          return ::Spree::Store.all if admin?
           return [] unless current_receiver
 
           receivers.where(run: current_receiver.run).map(&:store).uniq
@@ -64,11 +67,18 @@ module Cenabast
         # This will try to change to another receiver that matches the same
         # run but has a different spree store assigned
         def toggle_store(store)
+          return toggle_store_admin(store) if admin?
           return unless available_stores.include? store
 
           receiver = receivers.find_by(run: current_receiver.run, store:)
 
           self.current_receiver = receiver
+          save
+        end
+
+        # Toggles the current_store preference, which is used for admin users mainly
+        def toggle_store_admin(store)
+          self.current_store = store
           save
         end
 
@@ -89,7 +99,13 @@ module Cenabast
         end
 
         def current_store
+          return current_store_admin if admin?
+
           current_receiver&.store
+        end
+
+        def current_store_admin
+          ::Spree::Store.find_by(id: self[:current_store_id])
         end
 
         private

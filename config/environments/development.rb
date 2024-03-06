@@ -86,10 +86,6 @@ Rails.application.configure do
     # Enable env var if you want less noise into your dev environment
 
     # Silence some logs
-    config.assets.debug = false
-    config.assets.raise_runtime_errors = false
-    config.assets.digest = false
-
     config.after_initialize do
       # Silence query logs
       ActiveRecord::Base.logger = Rails.logger.clone

@@ -25,7 +25,7 @@ services:
     depends_on:
       - 'postgres'
       - 'redis'
-      - 'elasticsearch-oss'
+      - 'elasticsearch'
     build:
       context: .
       dockerfile: Dockerfile.development
@@ -48,7 +48,7 @@ services:
     depends_on:
       - 'postgres'
       - 'redis'
-      - 'elasticsearch-oss'
+      - 'elasticsearch'
     build:
       context: .
       dockerfile: Dockerfile.development

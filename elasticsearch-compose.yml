@@ -1,34 +1,24 @@
 version: "2.2"
 
 services:
-  elasticsearch-oss:
-    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
-    container_name: elasticsearch-oss
-    restart: unless-stopped
-    hostname: elasticsearch
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
+  elasticsearch:
+    image: elasticsearch:8.12.2
     ports:
       - ${ES_PORT}:9200
-    volumes:
-      - elasticsearch-data:/usr/share/elasticsearch/data
     environment:
-      ES_JAVA_OPTS: '-Xms4g -Xmx4g'
-      cluster.name: ${CLUSTER_NAME}
-      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
-      discovery.type: 'single-node'
-      node.master: 'true'
-      node.data: 'true'
-      node.ingest: 'true'
-      bootstrap.memory_lock: 'true'
-      network.host: 0.0.0.0
-
-  kibana-oss:
+      - node.name=elasticsearch
+      - discovery.type=single-node
+      - network.host=0.0.0.0
+      - xpack.security.enabled=false
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - ELASTIC_PASSWORD=$ELASTIC_PASSWORD
+    volumes:
+      - 'elasticsearch-data:/usr/share/elasticsearch/data'
+  kibana:
     depends_on:
-      - 'elasticsearch-oss'
-    image: docker.elastic.co/kibana/kibana-oss:7.10.2
+      - 'elasticsearch'
+    image: docker.elastic.co/kibana/kibana:8.12.2
     volumes:
       - kibana-data:/usr/share/kibana/data
     ports:
@@ -36,7 +26,7 @@ services:
     environment:
       DISABLE_SECURITY_PLUGIN: true
       SERVERNAME: kibana
-      ELASTICSEARCH_HOSTS: http://elasticsearch-oss:9200
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
       ELASTICSEARCH_USERNAME: kibana_system
       ELASTICSEARCH_PASSWORD: ${KIBANA_PASSWORD}
     healthcheck:

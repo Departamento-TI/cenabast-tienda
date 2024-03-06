@@ -163,8 +163,7 @@ gem 'slim_lint', require: false, group: %w[test development]
 gem 'searchkick'
 
 # Ruby Client for ElasticSearch
-# https://github.com/ankane/searchkick/issues/1550
-gem 'elasticsearch', '< 7.14'
+gem 'elasticsearch'
 
 # Rack CORS Middleware
 gem 'rack-cors'
