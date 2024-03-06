@@ -172,6 +172,11 @@ For local environments, env variables are copied automatically upon setup. Using
 
 Some additional environment variables might be needed to be set for pre-productive/productive environments:
 
+**General Site configuration**
+```
+APP_HOST
+```
+
 **Elasticsearch configuration**
 ```
 ELASTIC_PASSWORD

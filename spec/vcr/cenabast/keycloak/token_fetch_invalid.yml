@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://login-dev.cenabast.gob.cl/realms/cenabast/protocol/openid-connect/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials&client_id=cenabast-ecommerce&client_secret=FK7svKzGxkVkiJLROwaDExFGjOHGTMKu&scope=openid
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Content-Length:
+      - '136'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - login-dev.cenabast.gob.cl
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Server:
+      - nginx/1.24.0 (Ubuntu)
+      Date:
+      - Wed, 06 Mar 2024 14:10:47 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '93'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - no-referrer
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_client","error_description":"Invalid client or Invalid
+        client credentials"}'
+  recorded_at: Wed, 06 Mar 2024 14:10:46 GMT
+recorded_with: VCR 6.2.0

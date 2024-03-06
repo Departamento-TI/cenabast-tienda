@@ -9,11 +9,16 @@ RSpec.describe Spree::User, type: :model, search: true do
     it 'cancels validation for :password_confirmation' do
       expect(described_class._validators[:password_confirmation]).to be_empty
     end
+
+    it 'cancels validation for :email' do
+      expect(described_class._validators[:email]).to be_empty
+    end
   end
 
   describe 'Has Run concern' do
     describe 'Validations' do
       it { should validate_presence_of :run }
+      it { should validate_uniqueness_of :run }
       it { should validate_with RutValidator }
     end
   end
@@ -21,6 +26,7 @@ RSpec.describe Spree::User, type: :model, search: true do
   describe 'Store Preference concern' do
     describe 'Associations' do
       it { should belong_to(:current_receiver).optional }
+      it { should belong_to(:current_store).optional }
       it { should have_many(:receiver_users) }
       it { should have_many(:receivers).through(:receiver_users) }
       it { should have_many(:requesters).through(:receivers) }

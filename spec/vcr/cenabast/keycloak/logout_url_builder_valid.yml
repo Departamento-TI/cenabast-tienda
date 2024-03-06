@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://login-dev.cenabast.gob.cl/realms/cenabast/protocol/openid-connect/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials&client_id=cenabast-ecommerce&client_secret=FK7svKzGxkVkiJLROwaDExFGjOHGTMKu&scope=openid
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Content-Length:
+      - '118'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - login-dev.cenabast.gob.cl
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.24.0 (Ubuntu)
+      Date:
+      - Wed, 06 Mar 2024 14:21:54 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2669'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=10800
+      - public
+      Pragma:
+      - no-cache
+      - public
+      Referrer-Policy:
+      - no-referrer
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Expires:
+      - Wed, 06 Mar 2024 17:21:54 GMT
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ4anQ5Q3VhX0sxQnZuSWVaRzI1YjBuLU9tWldsWk5XVkNnZHlqQXM3cTFVIn0.eyJleHAiOjE3MDk3MzUyMTQsImlhdCI6MTcwOTczNDkxNCwianRpIjoiNDlkOTY2YzUtNzFmZi00ZGRkLTk3YjgtNzM1MWYwNDgzZjJkIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi1kZXYuY2VuYWJhc3QuZ29iLmNsL3JlYWxtcy9jZW5hYmFzdCIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJmYjg5Y2VhMS05ZWY3LTQ5YzAtOGNjOC05ZGI0N2RiYzM0ZDkiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjZW5hYmFzdC1lY29tbWVyY2UiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtY2VuYWJhc3QiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImNlbmFiYXN0LWVjb21tZXJjZSI6eyJyb2xlcyI6WyJ1bWFfcHJvdGVjdGlvbiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiY2xpZW50SG9zdCI6IjE4Ni4xNTYuMjM3LjE3NCIsInByZWZlcnJlZF91c2VybmFtZSI6InNlcnZpY2UtYWNjb3VudC1jZW5hYmFzdC1lY29tbWVyY2UiLCJjbGllbnRBZGRyZXNzIjoiMTg2LjE1Ni4yMzcuMTc0IiwiY2xpZW50X2lkIjoiY2VuYWJhc3QtZWNvbW1lcmNlIn0.NPM6mCjQrdeoxgZa5T6gHosIsOl1yY2i0AeIaZNoUxVFyS8UM81AqlC8DltRji7qMN94Ee3aO1xNiavtl7FgDX2ZX3sfy_4Eta2Q63EjlAFmMme0KrM7ARJlkFvvjdcntM0LZuqHYAzR4UAxTLn1ZIlMp9EhyJbnLNSv6GAFAaA8rBiguOlgBPqljOIzQSupSlygNp4kpZU4fLydtESwDNmPwcsrHlLZ4Jp_kh5kZrNwMiroPt_FV9jPgsUpZRSwy1-7dVlaLumjTS9DRQF8yIsdUuthCuRRXt2i0TccFvnkPdGt9LvrTAcH4GuHyxEJd1k9YaEWohKIakBx0MjZmA","expires_in":300,"refresh_expires_in":0,"token_type":"Bearer","id_token":"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ4anQ5Q3VhX0sxQnZuSWVaRzI1YjBuLU9tWldsWk5XVkNnZHlqQXM3cTFVIn0.eyJleHAiOjE3MDk3MzUyMTQsImlhdCI6MTcwOTczNDkxNCwiYXV0aF90aW1lIjowLCJqdGkiOiIxMTlhOWRkNy1jMzMwLTQ2ZTEtYThmNS03MDZlMzQ4MGIyMTciLCJpc3MiOiJodHRwczovL2xvZ2luLWRldi5jZW5hYmFzdC5nb2IuY2wvcmVhbG1zL2NlbmFiYXN0IiwiYXVkIjoiY2VuYWJhc3QtZWNvbW1lcmNlIiwic3ViIjoiZmI4OWNlYTEtOWVmNy00OWMwLThjYzgtOWRiNDdkYmMzNGQ5IiwidHlwIjoiSUQiLCJhenAiOiJjZW5hYmFzdC1lY29tbWVyY2UiLCJhdF9oYXNoIjoicmR5MUxweHVPbGRwWEZsemFweG80USIsImFjciI6IjEiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImNsaWVudEhvc3QiOiIxODYuMTU2LjIzNy4xNzQiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtY2VuYWJhc3QtZWNvbW1lcmNlIiwiY2xpZW50QWRkcmVzcyI6IjE4Ni4xNTYuMjM3LjE3NCIsImNsaWVudF9pZCI6ImNlbmFiYXN0LWVjb21tZXJjZSJ9.aJ4ZXuE1gXj60SLgpykUnoebhcoQnSwsYHas0UVVWg1PK4PxBJjlQSZQ-fixH5-0xt-0wthWJN4OsioHHGits08t0L8VvEpV-aBIDZ3mnxYjJ6sDacCuOVB4sNJ1dbY_V_jOi7GikSU66r2XbrYyxxZdVsSf5nNku1RdOBpBMSxAgUiansLzFZ7hLRapxkYNOC2KkNdOAAzl7a-THDVocYcMVQJFSxMHXRiYNkkQFMWSiXDnLy04ecnnWl3BsTE1aIVFRoulU2czHzXd4-wNh2EzL4f1buyw8u5gYMyW23GmC6Np5SUEosEYFelQvRanOTbjr0OX5SjvvEVciazm0g","not-before-policy":0,"scope":"openid
+        email profile"}'
+  recorded_at: Wed, 06 Mar 2024 14:21:53 GMT
+recorded_with: VCR 6.2.0

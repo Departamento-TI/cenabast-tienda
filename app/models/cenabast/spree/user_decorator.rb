@@ -9,6 +9,8 @@ module Cenabast
         base.cancel_validates :password, :password_confirmation
         base.cancel_validates :email
 
+        base.validates_uniqueness_of :run
+
         base.devise :omniauthable, omniauth_providers: %i[clave_unica]
       end
 

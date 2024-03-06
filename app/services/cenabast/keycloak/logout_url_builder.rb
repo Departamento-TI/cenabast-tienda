@@ -38,7 +38,7 @@ module Cenabast
         {
           post_logout_redirect_uri: new_spree_user_session_url,
           id_token_hint: id_token
-        }.to_query
+        }.compact.to_query
       end
 
       def build_url

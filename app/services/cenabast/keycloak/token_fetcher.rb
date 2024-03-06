@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Fetches token from Keycloak API
+# Fetches token from Keycloak OpenID API
 # Bases common behaviour taken from Cenabast::Api::Base
 module Cenabast
   module Keycloak

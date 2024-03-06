@@ -67,6 +67,7 @@ module Cenabast
         # This will try to change to another receiver that matches the same
         # run but has a different spree store assigned
         def toggle_store(store)
+          return toggle_store_admin(store) if admin?
           return unless available_stores.include? store
 
           receiver = receivers.find_by(run: current_receiver.run, store:)

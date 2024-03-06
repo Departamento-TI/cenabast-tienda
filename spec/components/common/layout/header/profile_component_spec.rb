@@ -25,6 +25,8 @@ RSpec.describe Common::Layout::Header::ProfileComponent, type: :component do
     render_preview(:standard, params: { is_logged_in: true })
 
     expect(page).not_to have_link(Spree.t(:login), href: spree.login_path)
+    expect(page).to have_link(Spree.t(:my_account), href: spree.account_path)
+    expect(page).to have_link(Spree.t(:cart), href: spree.cart_path)
     expect(page).to have_link(Spree.t(:logout), href: spree.logout_path)
   end
 end
