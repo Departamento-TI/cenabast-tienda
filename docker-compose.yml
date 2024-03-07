@@ -65,6 +65,10 @@ services:
       DISABLE_SPRING: 1
 
   magic:
+    deploy:
+      resources:
+        limits:
+          memory: 950M
     image: mageai/mageai:latest
     command: mage start cenabast
     build:
