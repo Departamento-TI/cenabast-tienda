@@ -4,6 +4,9 @@ module Cenabast
       def self.prepended(base)
         base.has_one :contract, class_name: 'Cenabast::Spree::Contract', dependent: :destroy
         base.belongs_to :generic_product, class_name: 'Cenabast::Spree::GenericProduct'
+
+        base.accepts_nested_attributes_for :store_products, allow_destroy: true
+        base.accepts_nested_attributes_for :classifications, allow_destroy: true
       end
     end
   end

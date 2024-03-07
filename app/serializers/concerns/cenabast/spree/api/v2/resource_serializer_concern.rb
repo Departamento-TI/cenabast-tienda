@@ -34,7 +34,7 @@ module Cenabast
             model_klazz.new.methods.find_all do |method_name|
               next unless method_name.to_s.start_with?('display_')
               next if method_name.to_s.end_with?('=')
-              next if [Spree::Product, Spree::Variant].include?(model_klazz) && method_name == :display_amount
+              next if [::Spree::Product, ::Spree::Variant].include?(model_klazz) && method_name == :display_amount
 
               method_name
             end
