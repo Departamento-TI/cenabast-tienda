@@ -48,7 +48,7 @@ def base_url():
     return "https://testaplicacionesweb.cenabast.cl:7001"
 
 def parent_path_url():
-    return "/interoperabilidad/servicios/api/v1/"
+    return "/interoperabilidad/tienda/api/v1/"
 
 def login_url():
     return f"{base_url(){parent_path_url()}auth"

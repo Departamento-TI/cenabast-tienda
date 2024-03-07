@@ -18,7 +18,8 @@ blocks:
 - all_upstream_blocks_executed: false
   color: null
   configuration: {}
-  downstream_blocks: []
+  downstream_blocks:
+  - export_product_data
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -31,6 +32,22 @@ blocks:
   upstream_blocks:
   - pull_product_data
   uuid: filter_product_data
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: export_product_data
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - filter_product_data
+  uuid: export_product_data
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
