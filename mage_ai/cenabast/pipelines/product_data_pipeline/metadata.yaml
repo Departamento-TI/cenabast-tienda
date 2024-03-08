@@ -10,7 +10,7 @@ blocks:
   language: python
   name: pull_product_data
   retry_config: null
-  status: updated
+  status: failed
   timeout: null
   type: data_loader
   upstream_blocks: []
@@ -42,7 +42,7 @@ blocks:
   language: python
   name: export_product_data
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: data_exporter
   upstream_blocks:

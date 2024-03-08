@@ -32,6 +32,7 @@ class BaseClient:
 
     return response
 
+  # Parsing methods
   def parse_response(self, response, parse_func):
     if response.status_code not in {200, 201, 301}:
       return self.parse_error(response)
@@ -52,6 +53,18 @@ class BaseClient:
       'results': results,
     }
 
+  def parse_relationship(self, relationships, key):
+    return relationships.get(key, {}).get('data', None)
+
+  def parse_included(self, included, key, parse_func):
+    results = (item for item in included if item.get('type') == key)
+    info_list = []
+    for result in results:
+      info_list.append(parse_func(result))
+
+    return info_list
+
+  # Obtain token helper
   def get_token(self):
     # If token is already generated, return it
     if self.token:

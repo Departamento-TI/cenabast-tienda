@@ -10,14 +10,16 @@ class TaxonsClient(BaseClient):
 
     info_list = []
     for taxon in taxons:
-      attributes = taxon.get('attributes', {})
-      taxon_info = {
-        'id': taxon.get('id'),
-        'name': attributes.get('name')
-      }
-      info_list.append(taxon_info)
+      info_list.append(self.parse_taxon(taxon))
 
     return info_list
+
+  def parse_taxon(self, taxon):
+    attributes = taxon.get('attributes', {})
+    return {
+      'id': taxon.get('id'),
+      'name': attributes.get('name')
+    }
 
   # Get parent taxon information
   def get_parent_taxons_data(self):
@@ -28,4 +30,20 @@ class TaxonsClient(BaseClient):
     ]
     url_with_params = f"{self.taxons_url()}?{urlencode(params)}"
     response = self.make_authenticated_request("GET", url_with_params, self.get_token())
+    return self.parse_response(response, self.parse_taxons)
+
+  def create_taxon(self, payload):
+    url = self.taxons_url()
+    final_payload = {
+      'taxon': payload
+    }
+    response = self.make_authenticated_request("POST", url, self.get_token(), final_payload)
+    return self.parse_response(response, self.parse_taxons)
+
+  def update_taxon(self, id, payload):
+    url = f"{self.taxons_url()}/{id}"
+    final_payload = {
+      'taxon': payload
+    }
+    response = self.make_authenticated_request("PUT", url, self.get_token(), final_payload)
     return self.parse_response(response, self.parse_taxons)

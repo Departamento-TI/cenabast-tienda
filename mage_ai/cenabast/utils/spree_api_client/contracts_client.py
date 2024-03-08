@@ -1,3 +1,4 @@
+from urllib.parse import urlencode
 from .base_client import BaseClient
 
 class ContractsClient(BaseClient):
@@ -9,26 +10,30 @@ class ContractsClient(BaseClient):
 
     info_list = []
     for contract in contracts:
-      attributes = contract.get('attributes', {})
-      contract_info = {
-        'id': contract.get('id'),
-        'sale_order': attributes.get('sale_order'),
-        'code': attributes.get('code'),
-        'name': attributes.get('name'),
-        'available_on': attributes.get('available_on'),
-        'discontinue_on': attributes.get('discontinue_on'),
-        'mercado_publico_oc': attributes.get('mercado_publico_oc'),
-        'center': attributes.get('center'),
-        'price_before_iva': attributes.get('price_before_iva'),
-        'price_iva': attributes.get('price_iva'),
-        'price': attributes.get('price'),
-        'comission': attributes.get('comission'),
-        'unit_sale': attributes.get('unit_sale'),
-        'unit': attributes.get('unit')
-      }
-      info_list.append(contract_info)
+      info_list.append(self.parse_contract( contract))
 
     return info_list
+
+  def parse_contract(self, contract):
+    attributes = contract.get('attributes', {})
+    product_id = contract.get('relationships').get('product').get('data').get('id')
+    return {
+      'id': contract.get('id'),
+      'product_id': product_id,
+      'sale_order': attributes.get('sale_order'),
+      'code': attributes.get('code'),
+      'name': attributes.get('name'),
+      'available_on': attributes.get('available_on'),
+      'discontinue_on': attributes.get('discontinue_on'),
+      'mercado_publico_oc': attributes.get('mercado_publico_oc'),
+      'center': attributes.get('center'),
+      'price_before_iva': attributes.get('price_before_iva'),
+      'price_iva': attributes.get('price_iva'),
+      'price': attributes.get('price'),
+      'comission': attributes.get('comission'),
+      'unit_sale': attributes.get('unit_sale'),
+      'unit': attributes.get('unit')
+    }
 
   # Get an specific product by its code (SKU)
   def get_contract_data(self, code):
@@ -37,7 +42,7 @@ class ContractsClient(BaseClient):
     ]
     url_with_params = f"{self.contracts_url()}?{urlencode(params)}"
     response = self.make_authenticated_request("GET", url_with_params, self.get_token())
-    return self.parse_response(response, self.parse_contract)
+    return self.parse_response(response, self.parse_contracts)
 
   def create_contract(self, payload):
     url = self.contracts_url()
@@ -45,7 +50,7 @@ class ContractsClient(BaseClient):
       'contract': payload
     }
     response = self.make_authenticated_request("POST", url, self.get_token(), final_payload)
-    return self.parse_response(response, self.parse_contract)
+    return self.parse_response(response, self.parse_contracts)
 
   def update_contract(self, id, payload):
     url = f"{self.contracts_url()}/{id}"
@@ -53,4 +58,4 @@ class ContractsClient(BaseClient):
       'contract': payload
     }
     response = self.make_authenticated_request("PUT", url, self.get_token(), final_payload)
-    return self.parse_response(response, self.parse_contract)
+    return self.parse_response(response, self.parse_contracts)
