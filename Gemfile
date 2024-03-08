@@ -197,3 +197,7 @@ gem 'view_component'
 
 # Chilean rut Ruby on Rails gem - Chilean Rut/Run validator and formatter
 gem 'chilean-rutify'
+
+# this Yard version fix vulneability found by bundle audit
+# https://github.com/advisories/GHSA-8mq4-9jjh-9xrc
+gem 'yard', '>= 0.9.36'
