@@ -202,5 +202,3 @@ gem 'view_component'
 
 # Chilean rut Ruby on Rails gem - Chilean Rut/Run validator and formatter
 gem 'chilean-rutify'
-
-gem 'yard', '>= 0.9.36'
