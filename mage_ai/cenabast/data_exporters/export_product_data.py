@@ -1,4 +1,9 @@
-from cenabast.utils.spree_api_client import SpreeApiClient
+from cenabast.utils.spree_api_client.base_client import BaseClient
+from cenabast.utils.spree_api_client.stores_client import StoresClient
+from cenabast.utils.spree_api_client.taxons_client import TaxonsClient
+from cenabast.utils.spree_api_client.properties_client import PropertiesClient
+from cenabast.utils.spree_api_client.generic_products_client import GenericProductsClient
+from cenabast.utils.spree_api_client.contracts_client import ContractsClient
 
 if 'data_exporter' not in globals():
     from mage_ai.data_preparation.decorators import data_exporter
@@ -6,18 +11,25 @@ if 'data_exporter' not in globals():
 
 @data_exporter
 def export_data(data, *args, **kwargs):
-    print("Testing:")
-    client = SpreeApiClient()
-    stores = client.get_stores_data()
+    print("Testing API methods")
+    client = BaseClient()
+    token = client.get_token()
+    print("token obtained:", token)
+
+    stores_client = StoresClient(token)
+    stores = stores_client.get_stores_data()
     print("Stores:", stores)
 
-    taxons = client.get_parent_taxons_data()
+    taxons_client = TaxonsClient(token)
+    taxons = taxons_client.get_parent_taxons_data()
     print("Taxons:", taxons)
 
-    properties = client.get_properties_data()
+    properties_client = PropertiesClient(token)
+    properties = properties_client.get_properties_data()
     print("Properties:", properties)
 
-    sample_product = client.get_generic_product_data('yisgzyrgAAAA')
+    generic_products_client = GenericProductsClient(token)
+    sample_product = generic_products_client.get_generic_product_data('yisgzyrgAAAA')
     print("Product:", sample_product)
 
     generic_product_payload = {
@@ -33,7 +45,7 @@ def export_data(data, *args, **kwargs):
         "manufacturer": "dolorum",
         "base_table": "fuga"
     }
-    result = client.create_generic_product(generic_product_payload)
+    result = generic_products_client.create_generic_product(generic_product_payload)
     print("create_generic_product result:", result)
     """
     Exports data to some source.
