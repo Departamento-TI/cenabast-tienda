@@ -101,4 +101,14 @@ Rails.application.configure do
       Spree::Deprecation.behavior = :silence
     end
   end
+
+  # This will allow us to use ngrok domain to access our site
+  # via https
+  # more information on the README: "ngrok HTTPS Configuration"
+  if ENV['ENABLE_HTTPS_NGROK']
+    config.hosts << '.ngrok.io'
+    config.hosts << '.ngrok-free.app'
+    config.hosts << '.ngrok-free.dev'
+    config.force_ssl = true
+  end
 end

@@ -224,6 +224,19 @@ CENABAST_API_TOKEN_EXPIRE_TIME
 
 Important: Spree::Store `mail_from_address` must be set to a corresponding value (email address of sender, that matches domain of the STMP configuration).
 
+## ngrok HTTPS Configuration
+
+[ngrok](https://ngrok.com/) can be used in local environments to test HTTPS conectivity from the browser to the Rails web server.
+
+* First, install ngrok. Create or log into your ngrok account and obtain a ngrok token
+* Make sure you are under Rails "development" enviroment (config is tied to this environment)
+* Add the environment variable `ENABLE_HTTPS_NGROK=1` to your `.env` file
+* Create an ngrok http tunnel to your local server under port 4000: `ngrok http http://localhost:4000`
+* Take note of the given fowarding domain. Use this domain to update the APP_HOST enviroment variable. You might also need to add this value under the Keycloak client "Valid redirect URIs" and "Valid post logout redirect URIs".
+  * Spree Stores also record the app host value. But that field is rarely used.
+* Re-start the web server and other services
+* Access to the webserver using HTTPS via the given ngrok domain
+
 ## Useful links
 
 ### Documentation (Developer guidelines, Business logic definition)
