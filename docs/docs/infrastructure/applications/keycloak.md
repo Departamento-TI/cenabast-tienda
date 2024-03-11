@@ -2,7 +2,7 @@
 
 ### Resume
 
-:::tip
+:::tip[Admin Access]
 Single Sign On
 
 URL: https://login-dev.cenabast.gob.cl/admin/ \
@@ -10,19 +10,47 @@ KEYCLOAK_USER: `admin`\
 KEYCLOAK_PASSWORD: `owwIZLI#6m65`
 :::
 
-:::info
-Check Keycloak `docker-compose.yml` deployment [here](../dev-server#docker-compose).
+:::info[Docker image]
+👉 Check Keycloak [docker-compose.yml](https://github.com/Departamento-TI/cenabast-tienda/blob/main/docker-compose.yml).\
+👉 Keycloak image is build from file [Dockerfile.keycloak](https://github.com/Departamento-TI/cenabast-tienda/blob/main/Dockerfile.keycloak)    
 :::
 
-# Keycloak Setup
+### Keycloak user & database
+
+The first time Keycloak is deploy, a `keycloak` user and role must be created in the postgres database.
+The password must match the password of `KC_DB_PASSWORD` at the [Dockerfile.keycloak](https://github.com/Departamento-TI/cenabast-tienda/blob/main/Dockerfile.keycloak).
+
+```jsx
+CREATE ROLE keycloak;
+CREATE USER keycloak WITH PASSWORD 'password';
+GRANT ALL PRIVILEGES ON DATABASE keycloak to keycloak;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO keycloak;
+GRANT ALL ON SCHEMA public TO keycloak;
+```
+
+
+### Keycloak Setup
 
 :::info[Setup]
-After Keycloak docker is deployed, the following configurations needs to be done in order to integrate with [Clave Unica](../clave_unica.md).
+After Keycloak docker is deployed, the following configurations needs to be done in order to integrate with [Clave Unica](../clave_unica.md).\
 :::
+
 
 ### Create Cenabast Realm
 
+Create a new realm:
+
 ![createrealm](/img/Peek2023-12-19-17-10.gif)
+
+
+### Create "cenabast-ecommerce" client
+
+:::danger[Import Client Config]
+The initial OIDC client configuration can be imported using the following file [cenabast-ecommerce.json](/img/cenabast-ecommerce.json).\
+The client value must match the `KEYCLOAK_CLIENT_ID` in the .ENV file.
+:::
+
+![import-config](/img/2024-03-11_13-38.png)
 
 ### Create Clave Unica IdP
 
