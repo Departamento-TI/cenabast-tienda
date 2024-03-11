@@ -6,10 +6,11 @@ def transform(data, *args, **kwargs):
     # Get logger
     logger = kwargs.get('logger')
 
-    # Specify your transformation logic here
-    current_date = datetime.now()
-
     # Rewrite contracts to only have valid ones
+    # Valid ones are ones that have a vigent date
+    # Vigent, meaning the start date has already passed (contract already running), and
+    # the end date hasnt yet elapsed (contract hasnt expired)
+    current_date = datetime.now()
     for product in data:
         if 'contracts' in product:
             valid_contracts = filter_valid_contracts(product['contracts'], current_date, logger)

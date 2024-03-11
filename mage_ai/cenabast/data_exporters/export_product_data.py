@@ -13,26 +13,86 @@ if 'data_exporter' not in globals():
 
 @data_exporter
 def export_data(data, *args, **kwargs):
-    print("Testing API methods")
-    client = BaseClient()
+    # Get logger
+    logger = kwargs.get('logger')
+    logger.debug("Testing API methods")
+
+    # Get autentication token
+    client = BaseClient(None, logger)
     token = client.get_token()
-    print("token obtained:", token)
+    logger.debug("token obtained:", token)
 
-    stores_client = StoresClient(token)
+    # Get general information about stores
+    stores_client = StoresClient(token, logger)
     stores = stores_client.get_stores_data()
-    print("Stores:", stores)
+    logger.debug("Stores:", stores)
 
-    taxons_client = TaxonsClient(token)
+    # Get main taxon categories to use
+    taxons_client = TaxonsClient(token, logger)
     taxons = taxons_client.get_parent_taxons_data()
-    print("Taxons:", taxons)
+    logger.debug("Taxons:", taxons)
 
-    properties_client = PropertiesClient(token)
+    # Get information about (Product) properties to use
+    properties_client = PropertiesClient(token, logger)
     properties = properties_client.get_properties_data()
-    print("Properties:", properties)
+    logger.debug("Properties:", properties)
 
-    generic_products_client = GenericProductsClient(token)
+    # Process each product
+    generic_products_client = GenericProductsClient(token, logger)
+    for product in data:
+        process_generic_product(product, generic_products_client)
+
+
+def process_generic_product(product, generic_products_client):
+    # Get code (SKU)
+    codigoProducto = product['codigoProducto']
+
+    # Get generic product data from Spree API
+    existing_generic_product = None
+    api_response = generic_products_client.get_generic_product_data(codigoProducto)
+    api_results = api_response.get('results', [])
+    if isinstance(api_results, list) and len(api_results) > 0:
+        existing_generic_product = api_results[0]
+
+    # Prepare payload with product information
+    payload = build_generic_product_payload(product)
+
+    if existing_generic_product:
+        # Compare payload with existing data and update if necessary
+        # Only compare shared keys (dont consider id, created_at... etc)
+        filtered_attributes = {key: value for key, value in existing_generic_product.items() if key in payload.keys()}
+        if payload != filtered_attributes:
+            print(f"Generic product {codigoProducto} needs update, updating.")
+            generic_products_client.update_generic_product(existing_generic_product['id'], payload)
+        else:
+            print(f"No changes for generic product {codigoProducto}, no update needed")
+    else:
+        # Create product
+        print(f"Generic product {codigoProducto} didnt exist, creating.")
+        generic_products_client.create_generic_product(payload)
+        print(f"Created new generic product {codigoProducto}")
+        
+    
+
+def build_generic_product_payload(product):
+    return {
+        "product_type": 'generic',
+        "code": product['codigoProducto'],
+        "code_atc": product['codigoATC'],
+        "code_onu": product['codigoONU'],
+        "code_ean": product['codigoEAN'],
+        "denomination": product['denominacion'],
+        "standard_denomination": product['denominacionEstandar'],
+        "hierarchy": product['jerarquia'],
+        "ump": product['ump'],
+        "manufacturer": product['fabricante'],
+        "base_table": product['tablaBase'],
+    }
+
+def dead_code():
+    generic_products_client = GenericProductsClient(token, logger)
     generic_product = generic_products_client.get_generic_product_data('yisgzyrgAAAA')
-    print("Product (ZGEN):", generic_product)
+    logger.debug("Product (ZGEN):", generic_product)
 
     generic_product_payload = {
         "code": "NewCode12342",
@@ -48,11 +108,11 @@ def export_data(data, *args, **kwargs):
         "base_table": "fuga"
     }
     result = generic_products_client.create_generic_product(generic_product_payload)
-    print("create_generic_product result:", result)
+    logger.debug("create_generic_product result:", result)
 
-    contracts_client = ContractsClient(token)
+    contracts_client = ContractsClient(token, logger)
     contract = contracts_client.get_contract_data('new-contract-code')
-    print("Contract (ZCEN):", contract)
+    logger.debug("Contract (ZCEN):", contract)
 
     contract_payload = {
         "sale_order": "sale-order-mageai",
@@ -70,15 +130,15 @@ def export_data(data, *args, **kwargs):
         "unit": "dolore"
     }
     result = contracts_client.create_contract(contract_payload)
-    print("create_contract result:", result)
+    logger.debug("create_contract result:", result)
 
-    products_client = ProductsClient(token)
+    products_client = ProductsClient(token, logger)
     product = products_client.get_product_data('new-contract-code-2')
-    print("Product (Spree::Product):", product)
+    logger.debug("Product (Spree::Product):", product)
 
-    variants_client = VariantsClient(token)
+    variants_client = VariantsClient(token, logger)
     variant = variants_client.get_variant_data('new-contract-code-2')
-    print("Variant (Spree::Variant):", variant)
+    logger.debug("Variant (Spree::Variant):", variant)
     """
     Exports data to some source.
 

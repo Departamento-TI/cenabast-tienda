@@ -16,7 +16,7 @@ class VariantsClient(BaseClient):
 
   def parse_variant(self, variant):
     attributes = variant.get('attributes', {})
-    print(f"raw variant: {variant}")
+
     return {
       'id': variant.get('id'),
       'sku': attributes.get('sku'),

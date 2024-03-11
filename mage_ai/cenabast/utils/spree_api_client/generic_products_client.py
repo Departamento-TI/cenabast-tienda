@@ -15,6 +15,9 @@ class GenericProductsClient(BaseClient):
     return info_list
 
   def parse_generic_product(self, generic_product):
+    if isinstance(generic_product, dict) and generic_product.get('data') != None:
+      generic_product = generic_product.get('data', {})
+
     attributes = generic_product.get('attributes', {})
     return {
       'id': generic_product.get('id'),
@@ -48,7 +51,7 @@ class GenericProductsClient(BaseClient):
       'generic_product': payload
     }
     response = self.make_authenticated_request("POST", url, self.get_token(), final_payload)
-    return self.parse_response(response, self.parse_generic_products)
+    return self.parse_response(response, self.parse_generic_product)
 
   def update_generic_product(self, id, payload):
     url = f"{self.generic_products_url()}/{id}"
@@ -56,4 +59,4 @@ class GenericProductsClient(BaseClient):
       'generic_product': payload
     }
     response = self.make_authenticated_request("PUT", url, self.get_token(), final_payload)
-    return self.parse_response(response, self.parse_generic_products)
+    return self.parse_response(response, self.parse_generic_product)

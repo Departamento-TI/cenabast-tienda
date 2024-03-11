@@ -8,13 +8,13 @@ from .product_properties_client import ProductPropertiesClient
 from .classifications_client import ClassificationsClient
 
 class ProductsClient(BaseClient):
-  def __init__(self, token=None):
-    super().__init__(token)
-    self.variants_client = VariantsClient(token)
-    self.generic_products_client = GenericProductsClient(token)
-    self.contracts_client = ContractsClient(token)
-    self.product_properties_client = ProductPropertiesClient(token)
-    self.classifications_client = ClassificationsClient(token)
+  def __init__(self, token=None, logger=None):
+    super().__init__(token, logger)
+    self.variants_client = VariantsClient(token, logger)
+    self.generic_products_client = GenericProductsClient(token, logger)
+    self.contracts_client = ContractsClient(token, logger)
+    self.product_properties_client = ProductPropertiesClient(token, logger)
+    self.classifications_client = ClassificationsClient(token, logger)
 
   def products_url(self):
     return self.spree_api_base_url() + "/api/v2/platform/products"

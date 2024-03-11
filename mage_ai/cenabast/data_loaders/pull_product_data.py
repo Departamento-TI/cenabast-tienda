@@ -2,6 +2,7 @@ import os
 import io
 import pandas as pd
 import requests
+from urllib.parse import urlencode
 
 if 'data_loader' not in globals():
     from mage_ai.data_preparation.decorators import data_loader
@@ -26,7 +27,8 @@ def load_data_from_api(*args, **kwargs):
     # Get general product data
     product_data = get_product_data(token, payload, logger)
 
-    # Filter unique products by 'codigoProducto' and that codigoProducto is higher than 500016000
+    # Filter unique products by 'codigoProducto' and
+    # that codigoProducto is higher than 500016000
     already_added = set()
     filtered_products = [
         item for item in product_data['content']
@@ -34,7 +36,7 @@ def load_data_from_api(*args, **kwargs):
         and int(item['codigoProducto']) > 500016000
         and item.get('codigoProducto') not in already_added
         and not already_added.add(item.get('codigoProducto'))
-    ][:3]  # Take only the first 3 records
+    ][:20]  # Take only the first 20 records
 
     # Get contract information for each unique product
     for product_info in filtered_products:
@@ -45,34 +47,30 @@ def load_data_from_api(*args, **kwargs):
     return filtered_products
 
 def base_url():
-    return "https://testaplicacionesweb.cenabast.cl:7001"
+    return os.environ['CENABAST_API_BASE_URL']
 
 def parent_path_url():
-    return "/interoperabilidad/tienda/api/v1/"
+    return os.environ['CENABAST_API_BASE_PATH']
 
 def login_url():
-    return f"{base_url(){parent_path_url()}auth"
+    return f"{base_url()}{parent_path_url()}/auth"
 
 def products_url():
-    return f"{base_url(){parent_path_url()}materiales/listacatalogo"
+    return f"{base_url()}{parent_path_url()}/materiales/listacatalogo"
 
 def contracts_url(codigo_producto):
-    return f"{base_url(){parent_path_url()}materiales/contratos/{codigo_producto}"
+    return f"{base_url()}{parent_path_url()}/materiales/contratos/{codigo_producto}"
 
 def products_payload(product_sku):
     if product_sku is not None:
         return {
-            "codigoProducto": product_sku,
-            "tipoProducto": None,
-            "grupoArticulo": None,
-            "codigoSector": None
+            "tipoProducto": 'ZCEN',
+            "codigoProducto": product_sku
         }
     else:
         return {
-            "codigoProducto": None,
             "tipoProducto": 'ZCEN',
-            "grupoArticulo": None,
-            "codigoSector": 'S1'
+            'PageSize': 5_000_000
         }
 
 def login_params():
@@ -93,17 +91,18 @@ def get_token(logger=None):
         return response.json().get("content")
     else:
         log_error_info(logger, response)
-        raise Exception(f"Failed to obtain token. Status code: {response.status_code}, Response: {response.text}")
+        raise Exception(f"Failed to obtain Cenabast API token. Status code: {response.status_code}, Response: {response.text}")
 
 def get_product_data(token, payload, logger=None):
     url = products_url()
-    log_request_info(logger, "GET", url, payload)
+    url_with_params = f"{url}?{urlencode(payload)}"
+    log_request_info(logger, "GET", url_with_params)
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json"
     }
 
-    response = requests.get(url, headers=headers, json=payload)
+    response = requests.get(url_with_params, headers=headers, json=payload)
 
     if response.status_code == 200:
         log_response_info(logger, response)
