@@ -19,10 +19,10 @@ module Cenabast
           belongs_to :current_store, class_name: '::Spree::Store', optional: true
 
           has_many :receiver_users, class_name: 'Cenabast::Spree::ReceiverUser', dependent: :destroy
-          has_many :receivers, through: :receiver_users, class_name: 'Cenabast::Spree::Receiver'
-          has_many :requesters, through: :receivers, class_name: 'Cenabast::Spree::Requester'
+          has_many :receivers, -> { distinct }, through: :receiver_users, class_name: 'Cenabast::Spree::Receiver'
+          has_many :requesters, -> { distinct }, through: :receivers, class_name: 'Cenabast::Spree::Requester'
           has_many :company_users, class_name: 'Cenabast::Spree::CompanyUser', dependent: :destroy
-          has_many :companies, through: :company_users, class_name: 'Cenabast::Spree::Company'
+          has_many :companies, -> { distinct }, through: :company_users, class_name: 'Cenabast::Spree::Company'
 
           before_create :set_current_receiver
         end

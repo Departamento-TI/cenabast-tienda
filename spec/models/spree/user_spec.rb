@@ -32,6 +32,53 @@ RSpec.describe Spree::User, type: :model, search: true do
       it { should have_many(:requesters).through(:receivers) }
       it { should have_many(:company_users) }
       it { should have_many(:companies).through(:company_users) }
+
+      it 'has receivers association with scope distinct' do
+        association = described_class.reflect_on_association(:receivers)
+        expect(association.options[:through]).to eq(:receiver_users)
+        expect(association.options[:class_name]).to eq('Cenabast::Spree::Receiver')
+
+        # Test that relationship doesnt include repeated values
+        receivers_number = rand(4..10)
+        receivers = create_list(:receiver, receivers_number)
+        user = create(:user, current_receiver: nil)
+        receivers.each do |receiver|
+          create_list(:receiver_user, 10, receiver:, user:)
+        end
+        expect(user.receivers.count).to eq receivers_number
+      end
+
+      it 'has requesters association with scope distinct' do
+        association = described_class.reflect_on_association(:requesters)
+        expect(association.options[:through]).to eq(:receivers)
+        expect(association.options[:class_name]).to eq('Cenabast::Spree::Requester')
+
+        # Test that relationship doesnt include repeated values
+        requesters_number = rand(4..10)
+        requesters = create_list(:requester, requesters_number)
+        user = create(:user, current_receiver: nil)
+        requesters.each do |requester|
+          receivers = create_list(:receiver, 2, requester:)
+          receivers.each { |receiver| create(:receiver_user, receiver:, user:) }
+        end
+
+        expect(user.requesters.count).to eq requesters_number
+      end
+
+      it 'has companies association with scope distinct' do
+        association = described_class.reflect_on_association(:companies)
+        expect(association.options[:through]).to eq(:company_users)
+        expect(association.options[:class_name]).to eq('Cenabast::Spree::Company')
+
+        # Test that relationship doesnt include repeated values
+        companies_number = rand(4..10)
+        companies = create_list(:company, companies_number)
+        user = create(:user, current_receiver: nil)
+        companies.each do |company|
+          create_list(:company_user, 10, company:, user:)
+        end
+        expect(user.companies.count).to eq companies_number
+      end
     end
 
     describe 'Callbacks' do
