@@ -9,7 +9,7 @@
           <%= @product_name %>
         </div>
         <div class="text-base font-normal text-gray-400">
-          <%= @product_description.truncate(100, separation: ' ') %>
+          <%= @product_description&.truncate(100, separation: ' ') %>
         </div>
         <div class="text-sm font-normal text-blue-800">
           <%= @vendor_name %>
