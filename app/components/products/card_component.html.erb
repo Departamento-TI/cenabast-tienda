@@ -1,21 +1,18 @@
-<% taxon = @product.taxons.first %>
-<% url = spree.product_path(@product, taxon_id: taxon.try(:id)) %>
-
-<div id="product_<%= @product.id %>" class="bg-white border-[1px] border-[#EAECF0] rounded-xl p-3 flex flex-col justify-between <%#= index&1 == 0 ? 'pl-0 pr-2' : 'pr-0 pl-2' %>">
-  <%= link_to url, class: 'flex flex-col gap-2' do %>
-    <% cache [helpers.common_product_cache_keys, @product] do %>
-      <%= plp_and_carousel_image(@product, "product-component-plp-image") %>
+<div id="product_<%= @product_id %>" class="bg-white border-[1px] border-[#EAECF0] rounded-xl p-3 flex flex-col justify-between">
+  <%= link_to @product_url, class: 'flex flex-col gap-2' do %>
+    <% cache @cache_key do %>
+      <%= @product_image %>
       <hr>
 
       <div class="flex flex-col gap-2">
-        <div class="text-xl text-gray-950 font-semibold" title="<%= @product.name %>">
-          <%= @product.name %>
+        <div class="text-xl text-gray-950 font-semibold" title="<%= @product_name %>">
+          <%= @product_name %>
         </div>
         <div class="text-base font-normal text-gray-400">
-          <%= @product.description.truncate(50, separation: ' ') %>
+          <%= @product_description.truncate(100, separation: ' ') %>
         </div>
         <div class="text-sm font-normal text-blue-800">
-          <%= @product.vendor&.name %>
+          <%= @vendor_name %>
         </div>
       </div>
     <% end %>
@@ -23,7 +20,7 @@
 
   <div class="flex flex-col gap-2">
     <div class="text-lg font-medium text-gray-400">
-      <%= helpers.display_price(@product) %>
+      <%= @product_price %>
     </div>
 
     <div class="flex flex-row justify-between h-9">
@@ -40,7 +37,7 @@
           </svg>
         <% end %>
       </div>
-      <%= link_to url do %>
+      <%= link_to @product_url do %>
         <%= render Common::Button::BaseComponent.new(button_params: { text: "Agregar", size: "md", hierarchy: "primary" }) %>
       <% end %>
     </div>
