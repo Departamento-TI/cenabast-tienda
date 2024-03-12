@@ -26,7 +26,7 @@ Project template generated based on [Spree Starter](https://github.com/spree/spr
 
 #### Install required tools and dependencies:
 
-* [Docker](https://www.docker.com/community-edition#/download)
+* [Docker](https://www.docker.com/community-edition#/download) (Engine version >= 25.0.3) 
 
 #### Run setup script
 
@@ -59,7 +59,7 @@ Kibana dashboard will be exposed on port 5601.
 MageAI dashboard will be exposed on port 6789.
 
 In developer environment, Lookbook UI is accesible via `/lookbook` path.
-Mails are sent using `letter_oppener`, Web UI is accesible via `/letter_opener` path.
+Mails are sent using `letter_opener`, Web UI is accesible via `/letter_opener` path.
 
 ### Install tools for style/security checks locally and to run Git hooks (Overcommit)
 
