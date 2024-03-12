@@ -1,7 +1,17 @@
 module Cenabast
   module Spree
     module ProductDecorator
+      module ClassMethods
+        def json_api_permitted_attributes
+          super + ['sku']
+        end
+      end
+
       def self.prepended(base)
+        class << base
+          prepend ClassMethods
+        end
+
         base.has_one :contract, class_name: 'Cenabast::Spree::Contract', dependent: :destroy
         base.belongs_to :generic_product, class_name: 'Cenabast::Spree::GenericProduct'
 

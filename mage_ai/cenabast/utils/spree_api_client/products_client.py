@@ -25,52 +25,58 @@ class ProductsClient(BaseClient):
 
     info_list = []
     for product in products:
-      attributes = product.get('attributes', {})
-      relationships = product.get('relationships', {})
-
-      stores = self.parse_relationship(relationships, 'stores')
-      store_products = self.parse_relationship(relationships, 'store_products')
-      vendor = self.parse_relationship(relationships, 'vendor')
-
-      master_variant = self.parse_included(included, 'variant', self.variants_client.parse_variant)
-      contract = self.parse_included(included, 'contract', self.contracts_client.parse_contract)
-      generic_product = self.parse_included(included, 'generic_product', self.generic_products_client.parse_generic_product)
-      product_properties = self.parse_included(included, 'product_property', self.product_properties_client.parse_product_property)
-      classifications = self.parse_included(included, 'classification', self.classifications_client.parse_classification)
-
-      product_info = {
-        'id': product.get('id'),
-        'name': attributes.get('name'),
-        'description': attributes.get('description'),
-        'available_on': attributes.get('available_on'),
-        'slug': attributes.get('slug'),
-        'meta_description': attributes.get('meta_description'),
-        'meta_keywords': attributes.get('meta_keywords'),
-        'updated_at': attributes.get('updated_at'),
-        'sku': attributes.get('sku'),
-        'barcode': attributes.get('barcode'),
-        'public_metadata': attributes.get('public_metadata'),
-        'purchasable': attributes.get('purchasable'),
-        'in_stock': attributes.get('in_stock'),
-        'backorderable': attributes.get('backorderable'),
-        'available': attributes.get('available'),
-        'currency': attributes.get('currency'),
-        'price': attributes.get('price'),
-        'display_price': attributes.get('display_price'),
-        'compare_at_price': attributes.get('compare_at_price'),
-        'display_compare_at_price': attributes.get('display_compare_at_price'),
-        'stores': stores,
-        'store_products': store_products,
-        'vendor': vendor,
-        'master_variant': master_variant,
-        'contract': contract,
-        'generic_product': generic_product,
-        'product_properties': product_properties,
-        'classifications': classifications,
-      }
-      info_list.append(product_info)
+      info_list.append(self.parse_product(product, included))
 
     return info_list
+
+  def parse_product(self, product, included=None):
+    if isinstance(product, dict) and product.get('data') != None:
+      product = product.get('data', {})
+      included = product.get('included', {})
+
+    attributes = product.get('attributes', {})
+    relationships = product.get('relationships', {})
+
+    stores = self.parse_relationship(relationships, 'stores')
+    store_products = self.parse_relationship(relationships, 'store_products')
+    vendor = self.parse_relationship(relationships, 'vendor')
+
+    master_variant = self.parse_included(included, 'variant', self.variants_client.parse_variant)
+    contract = self.parse_included(included, 'contract', self.contracts_client.parse_contract)
+    generic_product = self.parse_included(included, 'generic_product', self.generic_products_client.parse_generic_product)
+    product_properties = self.parse_included(included, 'product_property', self.product_properties_client.parse_product_property)
+    classifications = self.parse_included(included, 'classification', self.classifications_client.parse_classification)
+
+    return {
+      'id': product.get('id'),
+      'name': attributes.get('name'),
+      'description': attributes.get('description'),
+      'available_on': attributes.get('available_on'),
+      'slug': attributes.get('slug'),
+      'meta_description': attributes.get('meta_description'),
+      'meta_keywords': attributes.get('meta_keywords'),
+      'updated_at': attributes.get('updated_at'),
+      'sku': attributes.get('sku'),
+      'barcode': attributes.get('barcode'),
+      'public_metadata': attributes.get('public_metadata'),
+      'purchasable': attributes.get('purchasable'),
+      'in_stock': attributes.get('in_stock'),
+      'backorderable': attributes.get('backorderable'),
+      'available': attributes.get('available'),
+      'currency': attributes.get('currency'),
+      'price': float(attributes.get('price')),
+      'display_price': attributes.get('display_price'),
+      'compare_at_price': attributes.get('compare_at_price'),
+      'display_compare_at_price': attributes.get('display_compare_at_price'),
+      'stores': stores,
+      'store_products': store_products,
+      'vendor': vendor,
+      'master_variant': master_variant,
+      'contract': contract,
+      'generic_product': generic_product,
+      'product_properties': product_properties,
+      'classifications': classifications,
+    }
 
   # Get an specific product by its master/primary variant SKU (SKU)
   def get_product_data(self, code):
@@ -88,7 +94,7 @@ class ProductsClient(BaseClient):
       'product': payload
     }
     response = self.make_authenticated_request("POST", url, self.get_token(), final_payload)
-    return self.parse_response(response, self.parse_products)
+    return self.parse_response(response, self.parse_product)
 
   def update_product(self, id, payload):
     url = f"{self.products_url()}/{id}"
@@ -96,4 +102,4 @@ class ProductsClient(BaseClient):
       'product': payload
     }
     response = self.make_authenticated_request("PUT", url, self.get_token(), final_payload)
-    return self.parse_response(response, self.parse_products)
+    return self.parse_response(response, self.parse_product)
