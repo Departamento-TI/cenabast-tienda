@@ -15,34 +15,33 @@
           <%= "#{@products.total_count} #{Spree.t('plp.results_for')} '#{params[:keywords].upcase}'" %>
         </div>
       </div>
-    <% elsif not @taxon %>
-      <!--<div id="no-taxon-banner">
-        <div class="container">
-          <%#= lazy_image(
-                src: asset_path('homepage/products.jpg'),
-                alt: 'products-banner',
-                width: 1110,
-                height: 300,
-                class: 'w-100 d-none d-md-block'
-              ) %>
-        </div>
-      </div>-->
     <% end %>
 
     <%= render 'spree/products/filter_and_sort_mobile_buttons' %>
     <%#= render 'spree/products/sort_desktop', permitted_params: permitted_params %>
     <div class="container flex justify-between gap-8">
       <%= render 'spree/products/filters_desktop', permitted_params: permitted_params %>
-      <%#= render 'spree/shared/products', products: @products %>
-      <%= render Products::ListComponent.new do |component| %>
-        <% @products.each_with_index do |product, index| %>
+
+      <%= render Products::ListComponent.new(cache_key: cache_key_for_products(@products)) do |component| %>
+        <% @products.each do |product| %>
           <% component.with_product do %>
-            <%= render Products::CardComponent.new(product: product) %>
+            <%= render Products::CardComponent.new(
+              product_data: {
+                id: product.id,
+                name: product.name,
+                description: product.description,
+                image: plp_and_carousel_image(product, "product-component-plp-image"),
+                price: display_price(product),
+                vendor_name: product.vendor&.name,
+                url: spree.product_path(product, taxon_id: product.taxons.first&.id),
+              },
+              cache_key: [common_product_cache_keys, product]
+              ) %>
           <% end %>
         <% end %>
+
         <% if @products.respond_to?(:total_pages) %>
           <% component.with_pagination do %>
-            <%#= render Common::PaginationComponent.new(current_page: @products.current_page, pages: @products.total_pages, gap: nil, products: @products) %>
             <div class="flex justify-center py-6">
               <div class="plp-pagination d-none d-lg-flex">
                 <%= paginate @products, window: 2, theme: 'twitter-bootstrap-4' %>

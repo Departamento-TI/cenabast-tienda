@@ -1,5 +1,5 @@
 <% cache filters_cache_key('desktop') do %>
-  <div id="plp-filters-accordion" class="plp-filters w-80" data-hook="taxon_sidebar_navigation">
+  <div id="plp-filters-accordion" class="plp-filters w-80 flex-none" data-hook="taxon_sidebar_navigation">
     <%= clear_all_filters_link(permitted_params) if product_filters_present?(permitted_params) %>
 
     <div class="flex flex-col gap-2">
