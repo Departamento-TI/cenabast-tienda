@@ -1,8 +1,8 @@
-class Cenabast::Spree::Receiver < ApplicationRecord
+class Cenabast::Spree::Receiver < Spree::Base
   include Cenabast::Spree::HasRun
 
-  belongs_to :store, class_name: '::Spree::Store'
-  belongs_to :requester, class_name: 'Cenabast::Spree::Requester'
+  belongs_to :store, class_name: '::Spree::Store', optional: false
+  belongs_to :requester, class_name: 'Cenabast::Spree::Requester', optional: false
   has_many :receiver_users, class_name: 'Cenabast::Spree::ReceiverUser', dependent: :destroy
   has_many :users, through: :receiver_users, class_name: "::#{Spree.user_class}"
 
