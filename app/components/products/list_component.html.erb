@@ -1,21 +1,10 @@
-<% content_for :head do %>
-  <% if products.respond_to?(:total_pages) %>
-    <%= rel_next_prev_link_tags products %>
-  <% end %>
-<% end %>
-
 <div class="flex-auto">
   <div class="flex-auto grid grid-cols-3 gap-9" data-hook="homepage_products">
-    <% products.each do |product| %>
-      <%= product %>
+    <% cache @cache_key do %>
+      <% products.each do |product| %>
+        <%= product %>
+      <% end %>
     <% end %>
-    <%# cache cache_key_for_products(products) do %>
-    <%# products.each_with_index do |product, index| %>
-    <!--        <div id="product_<%#= product.id %>" class="col-sm-4 col-6 mb-3 mb-md-4 pr-sm-0 pr-md-0 pl-md-4 pl-sm-4 <%#= index&1 == 0 ? 'pl-0 pr-2' : 'pr-0 pl-2' %>">-->
-    <%#= render 'spree/shared/product', product: product, image_class: 'product-component-plp-image' %>
-    <!--        </div>-->
-    <%# end %>
-    <%# end %>
   </div>
 
   <%= pagination %>
