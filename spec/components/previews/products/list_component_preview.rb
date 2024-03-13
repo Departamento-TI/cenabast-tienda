@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class Products::ListComponentPreview < ViewComponent::Preview
-  include Spree::FrontendHelper
-  include Kaminari::Helpers::HelperMethods
-
   def list_with_result_and_pagination
     products = Spree::Product.page(1).per(8)
 
@@ -15,7 +12,7 @@ class Products::ListComponentPreview < ViewComponent::Preview
               id: product.id,
               name: product.name,
               description: product.description,
-              image: plp_and_carousel_image(product, 'product-component-plp-image'),
+              image: image_tag('noimage/plp.png', class: 'product-component-plp-image', height: '371', width: '278'),
               price: '$19.990',
               vendor_name: product.vendor&.name,
               url: Spree::Core::Engine.routes.url_helpers.product_path(product, taxon_id: product.taxons.first&.id),
