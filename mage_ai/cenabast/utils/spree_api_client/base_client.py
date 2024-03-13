@@ -51,6 +51,7 @@ class BaseClient:
       'error': response.json().get('error', [])
     }
     self.logger.error(f"[SpreeApiClient][parse_error]: Error payload: {payload}")
+    raise ValueError(f"[SpreeApiClient][parse_error]: Error payload: {payload}")
     return payload
 
   def parse_success(self, response, results):

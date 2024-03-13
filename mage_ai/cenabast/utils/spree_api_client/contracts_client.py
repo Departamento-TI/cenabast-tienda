@@ -15,6 +15,9 @@ class ContractsClient(BaseClient):
     return info_list
 
   def parse_contract(self, contract):
+    if isinstance(contract, dict) and contract.get('data') != None:
+      contract = contract.get('data', {})
+
     attributes = contract.get('attributes', {})
     product_id = contract.get('relationships').get('product').get('data').get('id')
     return {
@@ -25,14 +28,16 @@ class ContractsClient(BaseClient):
       'name': attributes.get('name'),
       'available_on': attributes.get('available_on'),
       'discontinue_on': attributes.get('discontinue_on'),
+      'mercado_publico_id': attributes.get('mercado_publico_id'),
       'mercado_publico_oc': attributes.get('mercado_publico_oc'),
       'center': attributes.get('center'),
-      'price_before_iva': attributes.get('price_before_iva'),
-      'price_iva': attributes.get('price_iva'),
-      'price': attributes.get('price'),
-      'comission': attributes.get('comission'),
+      'price_before_iva': float(attributes.get('price_before_iva')),
+      'price_iva': float(attributes.get('price_iva')),
+      'price': float(attributes.get('price')),
+      'comission': float(attributes.get('comission')),
       'unit_sale': attributes.get('unit_sale'),
-      'unit': attributes.get('unit')
+      'unit': attributes.get('unit'),
+      'quantity': int(attributes.get('quantity')),
     }
 
   # Get an specific product by its code (SKU)
@@ -50,7 +55,7 @@ class ContractsClient(BaseClient):
       'contract': payload
     }
     response = self.make_authenticated_request("POST", url, self.get_token(), final_payload)
-    return self.parse_response(response, self.parse_contracts)
+    return self.parse_response(response, self.parse_contract)
 
   def update_contract(self, id, payload):
     url = f"{self.contracts_url()}/{id}"
@@ -58,4 +63,4 @@ class ContractsClient(BaseClient):
       'contract': payload
     }
     response = self.make_authenticated_request("PUT", url, self.get_token(), final_payload)
-    return self.parse_response(response, self.parse_contracts)
+    return self.parse_response(response, self.parse_contract)

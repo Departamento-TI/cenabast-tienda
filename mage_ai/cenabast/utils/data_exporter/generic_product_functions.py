@@ -1,3 +1,5 @@
+from .date_functions import convert_date
+
 def create_or_update_generic_product(product, api_clients, general_data):
   # Get code (SKU)
   codigoProducto = product['codigoProducto']
@@ -19,16 +21,18 @@ def create_or_update_generic_product(product, api_clients, general_data):
     # Only compare shared keys (dont consider id, created_at... etc)
     filtered_attributes = {key: value for key, value in existing_generic_product.items() if key in payload.keys()}
     if payload != filtered_attributes:
-      print(f"Generic product {codigoProducto} needs update, updating.")
-      generic_product = api_clients['generic_products_client'].update_generic_product(existing_generic_product['id'], payload)
+      general_data['logger'].info(f"Generic product {codigoProducto} needs update, updating.")
+      api_response = api_clients['generic_products_client'].update_generic_product(existing_generic_product['id'], payload)
+      generic_product = api_response.get('results', {})
     else:
       generic_product = existing_generic_product
-      print(f"No changes for generic product {codigoProducto}, no update needed")
+      general_data['logger'].info(f"No changes for generic product {codigoProducto}, no update needed")
   else:
     # Create product
-    print(f"Generic product {codigoProducto} didnt exist, creating.")
-    generic_product = api_clients['generic_products_client'].create_generic_product(payload)
-    print(f"Created new generic product {codigoProducto}")
+    general_data['logger'].info(f"Generic product {codigoProducto} didnt exist, creating.")
+    api_response = api_clients['generic_products_client'].create_generic_product(payload)
+    generic_product = api_response.get('results', {})
+    general_data['logger'].info(f"Created new generic product {codigoProducto}")
 
   return generic_product
 

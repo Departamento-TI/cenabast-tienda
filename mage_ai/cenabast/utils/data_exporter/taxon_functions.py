@@ -34,16 +34,18 @@ def create_or_update_taxon(product, api_clients, general_data):
     # Only compare shared keys (dont consider id, created_at... etc)
     filtered_attributes = {key: value for key, value in existing_taxon.items() if key in payload.keys()}
     if payload != filtered_attributes:
-      print(f"Taxon {taxon_name} needs update, updating.")
-      taxon = api_clients['taxons_client'].update_taxon(existing_taxon['id'], payload)
+      general_data['logger'].info(f"Taxon {taxon_name} needs update, updating.")
+      api_response = api_clients['taxons_client'].update_taxon(existing_taxon['id'], payload)
+      taxon = api_response.get('results', {})
     else:
       taxon = existing_taxon
-      print(f"No changes for taxon {taxon_name}, no update needed")
+      general_data['logger'].info(f"No changes for taxon {taxon_name}, no update needed")
   else:
     # Create taxon
-    print(f"Taxon {taxon_name} didnt exist, creating.")
-    taxon = api_clients['taxons_client'].create_taxon(payload)
-    print(f"Created new taxon {taxon_name}")
+    general_data['logger'].info(f"Taxon {taxon_name} didnt exist, creating.")
+    api_response = api_clients['taxons_client'].create_taxon(payload)
+    taxon = api_response.get('results', {})
+    general_data['logger'].info(f"Created new taxon {taxon_name}")
   
   return taxon
 

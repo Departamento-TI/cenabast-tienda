@@ -1,4 +1,4 @@
-from datetime import datetime
+from .date_functions import convert_date
 
 def create_or_update_product(contract, api_clients, general_data, product_data):
   # product_data dict: generic_product, taxon, vendor
@@ -24,35 +24,21 @@ def create_or_update_product(contract, api_clients, general_data, product_data):
     filtered_attributes = {key: value for key, value in existing_product.items() if key in update_payload.keys()}
     if update_payload != filtered_attributes:
       # Update is not very useful at the moment, as it doesnt really update much fields in the model.
-      print(f"Product {code} needs update, updating.")
-      product = api_clients['products_client'].update_product(existing_product['id'], update_payload)
+      general_data['logger'].info(f"Product {code} needs update, updating.")
+      api_response = api_clients['products_client'].update_product(existing_product['id'], update_payload)
+      product = api_response.get('results', {})
     else:
       product = existing_product
-      print(f"No changes for Product {code}, no update needed")
+      general_data['logger'].info(f"No changes for Product {code}, no update needed")
   else:
     # Create product
-    print(f"Product {code} didnt exist, creating.")
-    print(payload)
-    product = api_clients['products_client'].create_product(payload)
-    print(f"Created new Product {code}")
+    general_data['logger'].info(f"Product {code} didnt exist, creating.")
+    general_data['logger'].info(payload)
+    api_response = api_clients['products_client'].create_product(payload)
+    product = api_response.get('results', {})
+    general_data['logger'].info(f"Created new Product {code}")
 
   return product
-
-def convert_date(date_str):
-    # Assuming the input format is 'YYYYMM'
-    year = int(date_str[:4])
-    month = int(date_str[4:6])
-
-    # Create a datetime object
-    dt = datetime(year, month, 1, 0, 0, 0, 0)
-
-    # Format the datetime object as ISO 8601
-    iso_date = dt.isoformat()
-
-    # Append timezone offset
-    iso_date_with_offset = iso_date + "-03:00"
-
-    return iso_date_with_offset
 
 def build_product_payload(contract, general_data, product_data):
   stores_payload = build_stores_payload(general_data, product_data)

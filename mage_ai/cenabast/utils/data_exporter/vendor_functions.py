@@ -19,16 +19,18 @@ def create_or_update_vendor(contract, api_clients, general_data):
     # Only compare shared keys (dont consider id, created_at... etc)
     filtered_attributes = {key: value for key, value in existing_vendor.items() if key in payload.keys()}
     if payload != filtered_attributes:
-      print(f"Vendor {vendor_run} needs update, updating.")
-      vendor = api_clients['vendors_client'].update_vendor(existing_vendor['id'], payload)
+      general_data['logger'].info(f"Vendor {vendor_run} needs update, updating.")
+      api_response = api_clients['vendors_client'].update_vendor(existing_vendor['id'], payload)
+      vendor = api_response.get('results', {})
     else:
       vendor = existing_vendor
-      print(f"No changes for vendor {vendor_run}, no update needed")
+      general_data['logger'].info(f"No changes for vendor {vendor_run}, no update needed")
   else:
     # Create vendor
-    print(f"Vendor {vendor_run} didnt exist, creating.")
-    vendor = api_clients['vendors_client'].create_vendor(payload)
-    print(f"Created new vendor {vendor_run}")
+    general_data['logger'].info(f"Vendor {vendor_run} didnt exist, creating.")
+    api_response = api_clients['vendors_client'].create_vendor(payload)
+    vendor = api_response.get('results', {})
+    general_data['logger'].info(f"Created new vendor {vendor_run}")
   
   return vendor
 
