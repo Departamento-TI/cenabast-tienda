@@ -12,7 +12,7 @@ class Products::ListComponentPreview < ViewComponent::Preview
               id: product.id,
               name: product.name,
               description: product.description,
-              image: image_tag('noimage/plp.png', class: 'product-component-plp-image', height: '371', width: '278'),
+              image: image_tag('noimage/plp.png', class: 'product-component-image', height: '371', width: '278'),
               price: '$19.990',
               vendor_name: product.vendor&.name,
               url: Spree::Core::Engine.routes.url_helpers.product_path(product, taxon_id: product.taxons.first&.id),
