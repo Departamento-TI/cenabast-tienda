@@ -50,6 +50,8 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
+  # Use DEBUG_ASSETS=true if you're having problems with tailwindcss styles
+  # not updating after applying changes.
   config.assets.debug = ENV.fetch('DEBUG_ASSETS', false)
 
   # Suppress logger output for asset requests.
@@ -96,7 +98,7 @@ Rails.application.configure do
     end
 
     config.active_support.report_deprecations = false
-    
+
     initializer 'spree.environment.silence', after: 'spree.environment' do |app|
       Spree::Deprecation.behavior = :silence
     end
