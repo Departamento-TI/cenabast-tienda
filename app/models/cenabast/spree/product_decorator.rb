@@ -3,7 +3,7 @@ module Cenabast
     module ProductDecorator
       module ClassMethods
         def json_api_permitted_attributes
-          super + ['sku']
+          super + ['sku', 'status']
         end
       end
 

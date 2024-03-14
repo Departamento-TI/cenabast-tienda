@@ -2,7 +2,7 @@ module Helpers
   module StoreHelper
     def create_cenabast_stores
       default_store = create(:store, code: 'spree-ecommerce')
-      default_store.default = true
+      default_store.default = false
       default_store.name = 'E-commerce'
       default_store.checkout_zone = nil
       default_store.code = 'spree-ecommerce'

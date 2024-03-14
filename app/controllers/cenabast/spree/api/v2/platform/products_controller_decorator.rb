@@ -15,6 +15,18 @@ module Cenabast
             def resource_serializer
               Cenabast::Spree::Api::V2::Platform::ProductSerializer
             end
+
+            def ensure_current_store(object)
+              return if object.nil?
+              return unless permitted_resource_params&.dig('store_products_attributes')&.any?
+
+              object.store_products = []
+              permitted_resource_params['store_products_attributes'].each do |store_products|
+                next unless object.stores.exclude?(store = ::Spree::Store.find(store_products[:store_id]))
+
+                object.stores << store
+              end
+            end
           end
         end
       end
