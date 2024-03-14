@@ -13,7 +13,6 @@ from cenabast.utils.data_exporter.stock_item_functions import create_or_update_s
 if 'data_exporter' not in globals():
     from mage_ai.data_preparation.decorators import data_exporter
 
-
 @data_exporter
 def export_data(data, *args, **kwargs):
     # Get logger

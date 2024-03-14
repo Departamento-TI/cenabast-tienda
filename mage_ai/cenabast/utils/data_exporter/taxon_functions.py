@@ -35,6 +35,7 @@ def create_or_update_taxon(product, api_clients, general_data):
     filtered_attributes = {key: value for key, value in existing_taxon.items() if key in payload.keys()}
     if payload != filtered_attributes:
       general_data['logger'].info(f"Taxon {taxon_name} needs update, updating.")
+      general_data['logger'].debug(f"Taxon payload to use: {payload}")
       api_response = api_clients['taxons_client'].update_taxon(existing_taxon['id'], payload)
       taxon = api_response.get('results', {})
     else:
@@ -43,6 +44,7 @@ def create_or_update_taxon(product, api_clients, general_data):
   else:
     # Create taxon
     general_data['logger'].info(f"Taxon {taxon_name} didnt exist, creating.")
+    general_data['logger'].debug(f"Taxon payload to use: {payload}")
     api_response = api_clients['taxons_client'].create_taxon(payload)
     taxon = api_response.get('results', {})
     general_data['logger'].info(f"Created new taxon {taxon_name}")

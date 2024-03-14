@@ -22,6 +22,7 @@ def create_or_update_generic_product(product, api_clients, general_data):
     filtered_attributes = {key: value for key, value in existing_generic_product.items() if key in payload.keys()}
     if payload != filtered_attributes:
       general_data['logger'].info(f"Generic product {codigoProducto} needs update, updating.")
+      general_data['logger'].debug(f"Generic product payload to use: {payload}")
       api_response = api_clients['generic_products_client'].update_generic_product(existing_generic_product['id'], payload)
       generic_product = api_response.get('results', {})
     else:
@@ -30,6 +31,7 @@ def create_or_update_generic_product(product, api_clients, general_data):
   else:
     # Create product
     general_data['logger'].info(f"Generic product {codigoProducto} didnt exist, creating.")
+    general_data['logger'].debug(f"Generic product payload to use: {payload}")
     api_response = api_clients['generic_products_client'].create_generic_product(payload)
     generic_product = api_response.get('results', {})
     general_data['logger'].info(f"Created new generic product {codigoProducto}")

@@ -23,6 +23,7 @@ def update_variant(contract, api_clients, general_data, variant_data):
     filtered_attributes = {key: value for key, value in existing_variant.items() if key in payload.keys()}
     if payload != filtered_attributes:
       general_data['logger'].info(f"Variant ZCEN {code} needs update, updating.")
+      general_data['logger'].debug(f"Variant payload to use: {payload}")
       api_response = api_clients['variants_client'].update_variant(existing_variant['id'], payload)
       variant = api_response.get('results', {})
     else:

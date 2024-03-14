@@ -41,6 +41,7 @@ def create_or_update_stock_item(contract, api_clients, general_data, stock_item_
     filtered_attributes = {key: value for key, value in existing_stock_item.items() if key in filtered_payload.keys()}
     if filtered_payload != filtered_attributes:
       general_data['logger'].info(f"StockItem for variant id {variant_id} needs update, updating.")
+      general_data['logger'].debug(f"StockItem payload to use: {filtered_payload}")
       api_response = api_clients['stock_items_client'].update_stock_item(existing_stock_item['id'], filtered_payload)
       stock_item = api_response.get('results', {})
     else:
@@ -49,6 +50,7 @@ def create_or_update_stock_item(contract, api_clients, general_data, stock_item_
   else:
     # Create stock_item
     general_data['logger'].info(f"StockItem for variant id {variant_id} didnt exist, creating.")
+    general_data['logger'].debug(f"StockItem payload to use: {payload}")
     api_response = api_clients['stock_items_client'].create_stock_item(payload)
     stock_item = api_response.get('results', {})
     general_data['logger'].info(f"Created new StockItem for variant id {variant_id}")

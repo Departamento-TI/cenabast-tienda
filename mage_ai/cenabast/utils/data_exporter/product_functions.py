@@ -25,6 +25,7 @@ def create_or_update_product(contract, api_clients, general_data, product_data):
     if update_payload != filtered_attributes:
       # Update is not very useful at the moment, as it doesnt really update much fields in the model.
       general_data['logger'].info(f"Product {code} needs update, updating.")
+      general_data['logger'].debug(f"Product payload to use: {update_payload}")
       api_response = api_clients['products_client'].update_product(existing_product['id'], update_payload)
       product = api_response.get('results', {})
     else:
@@ -33,7 +34,7 @@ def create_or_update_product(contract, api_clients, general_data, product_data):
   else:
     # Create product
     general_data['logger'].info(f"Product {code} didnt exist, creating.")
-    general_data['logger'].info(payload)
+    general_data['logger'].debug(f"Product payload to use: {payload}")
     api_response = api_clients['products_client'].create_product(payload)
     product = api_response.get('results', {})
     general_data['logger'].info(f"Created new Product {code}")

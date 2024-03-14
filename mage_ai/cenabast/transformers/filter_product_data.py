@@ -1,6 +1,9 @@
 from datetime import datetime, timedelta
 import calendar
 
+if 'transformer' not in globals():
+    from mage_ai.data_preparation.decorators import transformer
+
 @transformer
 def transform(data, *args, **kwargs):
     # Get logger

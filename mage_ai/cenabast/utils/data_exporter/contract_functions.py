@@ -27,6 +27,7 @@ def create_or_update_spree_contract(contract, api_clients, general_data, spree_c
     filtered_attributes = {key: value for key, value in existing_contract.items() if key in update_payload.keys()}
     if update_payload != filtered_attributes:
       general_data['logger'].info(f"Contract ZCEN {code} needs update, updating.")
+      general_data['logger'].debug(f"Contract payload to use: {update_payload}")
       spree_contract = api_clients['contracts_client'].update_contract(existing_contract['id'], update_payload)
     else:
       spree_contract = existing_contract
@@ -34,6 +35,7 @@ def create_or_update_spree_contract(contract, api_clients, general_data, spree_c
   else:
     # Create contract
     general_data['logger'].info(f"Contract ZCEN {code} didnt exist, creating.")
+    general_data['logger'].debug(f"Contract payload to use: {payload}")
     spree_contract = api_clients['contracts_client'].create_contract(payload)
     general_data['logger'].info(f"Created new Contract for ZCEN {code}")
 
