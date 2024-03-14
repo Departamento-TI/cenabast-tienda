@@ -14,7 +14,7 @@ def get_token(logger):
   # Get autentication token
   client = BaseClient(None, logger)
   token = client.get_token()
-  logger.debug("token obtained:", token)
+  logger.debug(f"token obtained: {token}")
   return token
 
 def build_api_clients(token, logger):
@@ -35,17 +35,17 @@ def build_general_data(logger, api_clients):
   # Get general information about stores
   stores_client = api_clients['stores_client']
   stores = stores_client.get_stores_data()
-  logger.debug("Stores:", stores)
+  logger.debug(f"Stores: f{stores}")
 
   # Get main taxon categories to use
   taxons_client = api_clients['taxons_client']
   parent_taxons = taxons_client.get_parent_taxons_data()
-  logger.debug("Parent Taxons:", parent_taxons)
+  logger.debug(f"Parent Taxons: {parent_taxons}")
 
   # Get information about (Product) properties to use
   properties_client = api_clients['properties_client']
   properties = properties_client.get_properties_data()
-  logger.debug("Properties:", properties)
+  logger.debug(f"Properties: {properties}")
 
   # Build needed information dicts
   return {

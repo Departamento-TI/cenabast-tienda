@@ -26,13 +26,13 @@ blocks:
   language: python
   name: filter_product_data
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: transformer
   upstream_blocks:
   - pull_product_data
   uuid: filter_product_data
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks: []

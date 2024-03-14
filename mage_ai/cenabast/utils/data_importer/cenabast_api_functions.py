@@ -81,7 +81,7 @@ def products_payload(kwargs):
   logger = kwargs.get('logger')
 
   # Get product sku for call payload
-  product_code = kwargs.get('product_code') or 500016007
+  product_code = kwargs.get('product_code')
 
   if product_code is not None:
     # Individual product import

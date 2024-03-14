@@ -3,9 +3,15 @@ import calendar
 
 if 'transformer' not in globals():
     from mage_ai.data_preparation.decorators import transformer
+if 'test' not in globals():
+    from mage_ai.data_preparation.decorators import test
 
 @transformer
 def transform(data, *args, **kwargs):
+    # Transform into an array if needed
+    if isinstance(data, dict):
+        data = [data]
+
     # Get logger
     logger = kwargs.get('logger')
 
@@ -13,9 +19,12 @@ def transform(data, *args, **kwargs):
     # Valid ones are ones that have a vigent date
     # Vigent, meaning the start date has already passed (contract already running), and
     # the end date hasnt yet elapsed (contract hasnt expired)
+    logger.info(data)
     current_date = datetime.now()
     for product in data:
         if 'contracts' in product:
+            logger.info("ASOIDIO")
+            logger.info(product)
             valid_contracts = filter_valid_contracts(product['contracts'], current_date, logger)
             product['contracts'] = valid_contracts
 

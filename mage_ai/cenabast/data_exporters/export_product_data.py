@@ -15,6 +15,10 @@ if 'data_exporter' not in globals():
 
 @data_exporter
 def export_data(data, *args, **kwargs):
+    # Transform into an array if needed
+    if isinstance(data, dict):
+        data = [data]
+
     # Get logger
     logger = kwargs.get('logger')
 
@@ -32,11 +36,13 @@ def export_data(data, *args, **kwargs):
         process_api_product(product, api_clients, general_data)
     
     # Return stats
-    return {
+    stats = {
         'success_count': general_data['success_count'],
         'error_count': general_data['error_count'],
         'error_products': general_data['error_products'],
     }
+    logger.info(f"Results {stats}")
+    return stats
 
 
 def process_api_product(product, api_clients, general_data):
