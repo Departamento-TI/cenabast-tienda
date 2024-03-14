@@ -1,0 +1,68 @@
+<% permitted_params = permitted_products_params %>
+<% products_empty = @products.empty? %>
+
+<div data-hook="search_results" class="pt-4">
+  <% if products_empty %>
+    <% if permitted_params[:keywords].present? && permitted_params.to_h.one? %>
+      <%= render 'spree/products/no_results' %>
+    <% else %>
+      <%= render 'spree/products/no_results_with_filters', permitted_params: permitted_params %>
+    <% end %>
+  <% else %>
+    <% if params[:keywords] %>
+      <div class="container d-md-flex pt-md-5">
+        <div class="plp-results-text text-uppercase mx-md-auto py-md-5">
+          <%= "#{@products.total_count} #{Spree.t('plp.results_for')} '#{params[:keywords].upcase}'" %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= render 'spree/products/filter_and_sort_mobile_buttons' %>
+
+    <div class="container flex justify-between gap-8">
+      <%= render 'spree/products/filters_desktop', permitted_params: permitted_params %>
+
+      <%= render Products::ListComponent.new(cache_key: cache_key_for_products(@products)) do |component| %>
+        <% @products.each do |product| %>
+          <% component.with_product do %>
+            <%= render Products::CardComponent.new(
+              product_data: {
+                id: product.id,
+                name: product.name,
+                description: product.description,
+                image: plp_and_carousel_image(product, "product-component-plp-image"),
+                price: display_price(product),
+                vendor_name: product.vendor&.name,
+                url: spree.product_path(product, taxon_id: product.taxons.first&.id),
+              },
+              cache_key: [common_product_cache_keys, product]
+              ) %>
+          <% end %>
+        <% end %>
+
+        <% if @products.respond_to?(:total_pages) %>
+          <% component.with_pagination do %>
+            <div class="flex justify-center py-6">
+              <div class="plp-pagination d-none d-lg-flex">
+                <%= paginate @products, window: 2, theme: 'twitter-bootstrap-4' %>
+              </div>
+
+              <div class="plp-pagination d-lg-none">
+                <%= paginate @products, window: 1, theme: 'twitter-bootstrap-4' %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<%= render 'spree/products/filters_mobile', permitted_params: permitted_params %>
+<%= render 'spree/products/sort_mobile', permitted_params: permitted_params %>
+
+<% unless products_empty %>
+  <% cache cache_key_for_products(@products, 'json-ld') do %>
+    <%= products_structured_data(@products) %>
+  <% end %>
+<% end %>

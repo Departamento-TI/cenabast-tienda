@@ -1,0 +1,11 @@
+<div class="flex-auto">
+  <div class="flex-auto grid grid-cols-3 gap-9" data-hook="homepage_products">
+    <% cache @cache_key do %>
+      <% products.each do |product| %>
+        <%= product %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= pagination %>
+</div>

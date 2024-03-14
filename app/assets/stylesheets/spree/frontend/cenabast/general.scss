@@ -21,3 +21,10 @@
   font-weight: normal;
   font-style: normal;
 }
+
+.collapse {
+  &.show {
+    display: block;
+    visibility: visible;
+  }
+}
