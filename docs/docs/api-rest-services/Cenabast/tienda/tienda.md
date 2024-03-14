@@ -5,7 +5,7 @@
 :::tip
 View API tienda endpoints here:
 
-https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/servicios/docs/index.html
+https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/tienda/api/docs/index.html
 :::
 
 ## HOST
