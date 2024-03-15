@@ -36,7 +36,6 @@ def update_variant(contract, api_clients, general_data, variant_data):
 
 def build_variant_payload(contract, general_data, variant_data):
   return {
-    "name": contract['nombreZCEN'],
     "sku": contract['zcen'],
     "currency": "CLP",
     "cost_currency": "CLP",
