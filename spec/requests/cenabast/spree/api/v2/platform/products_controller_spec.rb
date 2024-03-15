@@ -85,7 +85,7 @@ RSpec.describe Spree::Api::V2::Platform::ProductsController, type: :request do
       {
         product: {
           name: 'Updated Product Name',
-          price: '17000.0'
+          price: 17_000.0
         }
       }
     end
@@ -100,7 +100,7 @@ RSpec.describe Spree::Api::V2::Platform::ProductsController, type: :request do
 
       expect(response).to have_http_status(:success)
       expect(product.reload.name).to eq(product_payload[:product][:name])
-      expect(product.reload.price.to_s).to eq(product_payload[:product][:price])
+      expect(product.reload.price.to_s).to eq(product_payload[:product][:price].to_s)
     end
   end
 end
