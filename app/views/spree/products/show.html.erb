@@ -11,32 +11,32 @@
       <div class="col-12 col-md-5" data-hook="product_right_part">
         <div id="product-description flex flex-row gap-2" data-hook="product_right_part_wrap">
           <div id="vendor-name" class="text-sm text-blue-600">
-            <%= @product.vendor&.name || "Synthon Chile Ltda." %>
+            <%= @product.vendor&.name %>
           </div>
           <h1 class="mt-3 mt-md-0 text-center text-md-left product-details-title">
             <%= @product.name %>
           </h1>
           <div class="text-sm text-gray-400">
-            <%= @product.generic_product&.denomination || 'Everolimus 10mg CM' %>
+            <%= @product.generic_product&.denomination %>
           </div>
           <div class="text-sm text-gray-400">
             SKU: <%= @product.sku %>
           </div>
 
           <div class="mt-7 mb-4">
-            <span>Sobre este producto</span>
+            <span><%= Spree.t('pdp.about_product') %></span>
             <div class="grid grid-cols-3 gap-2 text-sm text-gray-400 mt-2">
               <div class="flex flex-col gap-1">
-                <span class="text-gray-500 font-black">ID Mercado público</span>
-                <span><%= @product.generic_product&.code_onu || '5599-352-SE19' %></span>
+                <span class="text-gray-500 font-black"><%= Spree.t('pdp.mercado_publico_id') %></span>
+                <span><%= @product.contract&.mercado_publico_id %></span>
               </div>
               <div class="flex flex-col gap-1 pl-3 border-l border-gray-300">
-                <span class="text-gray-500 font-black">Código ATC</span>
-                <span><%= @product.generic_product&.code_atc || 'L01H9L01XE10' %></span>
+                <span class="text-gray-500 font-black"><%= Spree.t('pdp.atc_code') %></span>
+                <span><%= @product.generic_product&.code_atc %></span>
               </div>
               <div class="flex flex-col gap-1 pl-3 border-l border-gray-300">
-                <span class="text-gray-500 font-black">Denominación estándar</span>
-                <span><%= @product.generic_product&.standard_denomination || 'EVEROLIMUS' %></span>
+                <span class="text-gray-500 font-black"><%= Spree.t('pdp.standard_denomination') %></span>
+                <span><%= @product.generic_product&.standard_denomination %></span>
               </div>
             </div>
           </div>
