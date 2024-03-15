@@ -1,0 +1,22 @@
+module Cenabast
+  module Spree
+    module Api
+      module V2
+        module Platform
+          module ResourceControllerDecorator
+            # Decorated scope to dont use
+            # for_store for our default scope
+            def scope(skip_cancancan: false)
+              base_scope = model_class.accessible_by(current_ability, :show) unless skip_cancancan
+              base_scope = base_scope.includes(scope_includes) if scope_includes.any? && action_name == 'index'
+              model_class.include?(::Spree::TranslatableResource) ? base_scope.i18n : base_scope
+            end
+          end
+        end
+      end
+    end
+  end
+end
+
+not_included = Spree::Api::V2::Platform::ResourceController.included_modules.exclude?(Cenabast::Spree::Api::V2::Platform::ResourceControllerDecorator)
+Spree::Api::V2::Platform::ResourceController.prepend Cenabast::Spree::Api::V2::Platform::ResourceControllerDecorator if not_included
