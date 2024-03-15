@@ -144,7 +144,7 @@ module Cenabast
         def set_current_receiver
           receiver = candidate_current_receiver
 
-          self[:current_receiver_id] ||= receiver&.id
+          self[:current_receiver_id] = receiver&.id
         end
       end
     end
