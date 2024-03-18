@@ -16,21 +16,19 @@ See also:
 * [MageAI Documentation](mage.ai)
 * [API tienda V2](/cenabast-tienda/docs/api-rest-services/Cenabast/tienda)
 
-MageAI will be used as a Middleman in charge of recolecting information from Cenabast APIs and ingesting them into the Spree aplication via its Rest API.
+MageAI is be used as a Middleman in charge of recolecting information from Cenabast APIs and ingesting them into the Spree aplication via its Rest API.
 
-:::warning
-This doc explains how future functionality will be implemented, it's prone to change
-:::
+## Implementation
 
-## Future Implementation
+MageAI is currently used for the product sincronization service
 
-MageAI will be used for the periodic mass load of products and other entities.
+A data pipeline can be created for each pipeline we want to create.
 
-A datapipeline will be created for each service:
+Data pipeline creattion Guidelines:
 
-* The pipeline will be scheduled to run every X hours
-* The pipeline will request a token, request information from 1-N APIs, and merge that information
-* The pipeline will inject the information to the Spree Aplication via an API request
+* The pipeline is be scheduled to run every X hours
+* The pipeline is request a token, request information from 1-N APIs, and merge that information
+* The pipeline is inject the information to the Spree Aplication via an API request
   * Spree native API must be used. Prefering to decorate the less amount possible.
 
 ### Deployment

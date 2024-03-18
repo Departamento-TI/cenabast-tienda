@@ -59,6 +59,12 @@ In broader terms, the loading strategy used was to create entities, and update t
 
 Information about the general (non decorated, non customized) Spree Api V2 endpoint collections can be found on the [Spree API Documentation](https://api.spreecommerce.org/docs/api-v2/0e192836641aa-platform-api).
 
+:::info
+**Postman collection with actual endpoints used:**
+
+[Postman collection](./product-sync/spree-api-v2-plaftorm-examples.postman_collection.json)
+:::
+
 To autenticate and use the endpoints of the API, it is necesary to create an oAuth Application inside the Spree Admin backoffice:
 https://dev-docs.spreecommerce.org/api/platform-api/authenticating-requests
 
