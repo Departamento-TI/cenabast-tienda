@@ -6,8 +6,9 @@ module Cenabast
           module ResourceControllerDecorator
             # Decorated scope to dont use
             # for_store for our default scope
-            def scope(skip_cancancan: false)
-              base_scope = model_class.accessible_by(current_ability, :show) unless skip_cancancan
+            # dont use cancancan ability
+            def scope(_skip_cancancan: false)
+              base_scope = model_class
               base_scope = base_scope.includes(scope_includes) if scope_includes.any? && action_name == 'index'
               model_class.include?(::Spree::TranslatableResource) ? base_scope.i18n : base_scope
             end
