@@ -14,7 +14,7 @@ This doc explains how the MageAI is used in the Cenabast proyect
 
 See also:
 * [MageAI Documentation](mage.ai)
-* [API tienda V2](cenabast-tienda/docs/api-rest-services/Cenabast/tienda)
+* [API tienda V2](/cenabast-tienda/docs/api-rest-services/Cenabast/tienda)
 
 MageAI will be used as a Middleman in charge of recolecting information from Cenabast APIs and ingesting them into the Spree aplication via its Rest API.
 

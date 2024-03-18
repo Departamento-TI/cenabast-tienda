@@ -57,7 +57,9 @@ def process_api_product(product, api_clients, general_data):
         variants = []
 
         # Sync Taxon data
-        taxon = None # create_or_update_taxon(product, api_clients, general_data)
+        # 2024-03-18: Taxon data will not be currently syncronized
+        # Taxons will be administrated manually by admin users in the backoffice.
+        taxon = None
         for contract in product['contracts']:
             # Sync Vendor data
             vendor = create_or_update_vendor(contract, api_clients, general_data)
