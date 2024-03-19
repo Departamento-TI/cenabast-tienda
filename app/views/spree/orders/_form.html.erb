@@ -1,0 +1,30 @@
+<div id="no-product-available" class="no-product-available-dropdown hide-on-esc">
+  <%= render partial: 'spree/shared/no_product_available' %>
+</div>
+
+<%= render Order::Cart::ListComponent.new(
+  # test: order_form.object.line_items,
+  line_items: Spree::LineItem.all.each.map do |line_item|
+
+    {
+      id: line_item.id,
+      price: line_item.display_price,
+      quantity: line_item.quantity,
+      total: line_item.display_total,
+      name: line_item.name,
+      vendor_name: line_item&.vendor&.name || 'Laboratorio Saval',
+      product_url: spree.product_path(line_item.variant.product),
+      product_image_url: default_image_for_product_or_variant(line_item.variant) || image_url('noimage/backend-missing-image.svg')
+    }
+  end
+) %>
+
+<% if @order&.errors&.any? %>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('overlay').classList.add('shown');
+      document.getElementById('no-product-available').classList.add('shown');
+      window.scrollTo(0, 0);
+    })
+  </script>
+<% end %>

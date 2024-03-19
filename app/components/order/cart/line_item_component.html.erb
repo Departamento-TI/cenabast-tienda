@@ -1,0 +1,24 @@
+<%= fields_for "order[line_items_attributes][#{@id}]", @line_item do |item_form| %>
+  <tr class="border-b border-gray-200 dark:border-white/10">
+    <td class="whitespace-nowrap px-6 py-4 font-medium flex flex-row gap-4 text-gray-700 font-semibold">
+      <div>
+        <%= image_tag @product_image_url, class: 'h-[64px] w-[64px] float-left', role: 'header-logo' %>
+      </div>
+      <div class="max-w-[400px]">
+        <p class="text-sm text-gray-500 mb-2"><%= @name %></p>
+        <p class="text-sm text-primary-700"><%= @vendor_name %></p>
+      </div>
+    </td>
+    <td class="whitespace-nowrap px-6 py-4 font-semibold"><%= @price %></td>
+    <td class="whitespace-nowrap px-6 py-4 font-semibold">
+      <div class="shopping-cart-item-quantity" data-hook="cart_item_quantity">
+        <div class="d-flex align-items-center">
+          <%= button_tag '-', type: 'button', class: "border-right-0 shopping-cart-item-quantity-decrease-btn", data: { id: @id } %>
+          <%= item_form.number_field :quantity, value: @quantity, min: 0, class: "form-control text-center border-left-0 border-right-0 shopping-cart-item-quantity-input", size: 5, data: { id: @id }, aria: { label: Spree.t('cart_page.change_quantity') } %>
+          <%= button_tag '+', type: 'button', class: "border-left-0 shopping-cart-item-quantity-increase-btn", data: { id: @id } %>
+        </div>
+      </div>
+    </td>
+    <td class="whitespace-nowrap px-6 py-4 font-semibold"><%= @total %></td>
+  </tr>
+<% end %>
