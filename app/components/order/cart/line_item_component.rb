@@ -3,6 +3,8 @@
 class Order::Cart::LineItemComponent < ApplicationComponent
   # @param line_item hash
   # => @param id number
+  # => @param dom_id number
+  # => @param index number
   # => @param price text
   # => @param quantity number
   # => @param total number
@@ -15,6 +17,8 @@ class Order::Cart::LineItemComponent < ApplicationComponent
     super
     @line_item = line_item
     @id = line_item[:id]
+    @dom_id = line_item[:dom_id]
+    @index = line_item[:index]
     @price = line_item[:price]
     @quantity = line_item[:quantity]
     @total = line_item[:total]

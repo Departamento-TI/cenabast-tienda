@@ -11,6 +11,8 @@ class Order::Cart::ListComponentPreview < ViewComponent::Preview
     [
       {
         id: 1,
+        index: 1,
+        dom_id: 'test1',
         price: Spree::Money.new(1200, currency: 'CLP'),
         quantity: 2,
         total: Spree::Money.new(2400, currency: 'CLP'),
@@ -21,6 +23,8 @@ class Order::Cart::ListComponentPreview < ViewComponent::Preview
       },
       {
         id: 2,
+        index: 2,
+        dom_id: 'test2',
         price: Spree::Money.new(2400, currency: 'CLP'),
         quantity: 3, total: Spree::Money.new(7200, currency: 'CLP'),
         name: 'AGUJA P/EXTRACCION SANGR 21 G CAJ 100 UN',
@@ -30,6 +34,8 @@ class Order::Cart::ListComponentPreview < ViewComponent::Preview
       },
       {
         id: 3,
+        index: 3,
+        dom_id: 'test3',
         price: Spree::Money.new(3600, currency: 'CLP'),
         quantity: 4,
         total: Spree::Money.new(14_400, currency: 'CLP'),
@@ -40,6 +46,8 @@ class Order::Cart::ListComponentPreview < ViewComponent::Preview
       },
       {
         id: 4,
+        index: 4,
+        dom_id: 'test4',
         price: Spree::Money.new(2000, currency: 'CLP'),
         quantity: 4,
         total: Spree::Money.new(8000, currency: 'CLP'),
@@ -50,6 +58,8 @@ class Order::Cart::ListComponentPreview < ViewComponent::Preview
       },
       {
         id: 5,
+        index: 5,
+        dom_id: 'test5',
         price: Spree::Money.new(21_000, currency: 'CLP'),
         quantity: 10,
         total: Spree::Money.new(210_000, currency: 'CLP'),

@@ -3,6 +3,8 @@
 class Order::Cart::ListComponent < ApplicationComponent
   # @param line_items array of hashes
   # => @param id number
+  # => @param dom_id number
+  # => @param index number
   # => @param price text
   # => @param quantity number
   # => @param total number

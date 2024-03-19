@@ -10,13 +10,15 @@ class Order::Cart::LineItemComponentPreview < ViewComponent::Preview
   def line_item
     {
       id: 1,
+      index: 1,
+      dom_id: 'test',
       price: Spree::Money.new(1200, currency: 'CLP'),
       quantity: 2,
       total: Spree::Money.new(2400, currency: 'CLP'),
       name: 'BACTEROL FORTE 160/800 CAJ 1000 CM',
       vendor_name: 'LABORATORIOS LAFI LTDA',
       product_url: '/products/test-url',
-      product_image_url: image_url('noimage/backend-missing-image.svg')
+      product_image_url: 'noimage/backend-missing-image.svg'
     }
   end
 end

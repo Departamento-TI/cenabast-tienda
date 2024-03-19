@@ -3,16 +3,17 @@
 </div>
 
 <%= render Order::Cart::ListComponent.new(
-  # test: order_form.object.line_items,
-  line_items: Spree::LineItem.all.each.map do |line_item|
+  line_items: order_form.object.line_items.map.with_index do |line_item, index|
 
     {
       id: line_item.id,
+      dom_id: dom_id(line_item),
+      index:,
       price: line_item.display_price,
       quantity: line_item.quantity,
       total: line_item.display_total,
       name: line_item.name,
-      vendor_name: line_item&.vendor&.name || 'Laboratorio Saval',
+      vendor_name: line_item&.vendor&.name || Spree.t(:no_laboratory),
       product_url: spree.product_path(line_item.variant.product),
       product_image_url: default_image_for_product_or_variant(line_item.variant) || image_url('noimage/backend-missing-image.svg')
     }

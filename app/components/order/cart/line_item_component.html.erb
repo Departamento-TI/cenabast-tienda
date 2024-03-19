@@ -1,24 +1,45 @@
-<%= fields_for "order[line_items_attributes][#{@id}]", @line_item do |item_form| %>
-  <tr class="border-b border-gray-200 dark:border-white/10">
+<%= fields_for "order[line_items_attributes][#{@index}]", @line_item do |item_form| %>
+  <tr class="shopping-cart-item border-b border-gray-200 dark:border-white/10">
+    <!-- Line item data -->
     <td class="whitespace-nowrap px-6 py-4 font-medium flex flex-row gap-4 text-gray-700 font-semibold">
       <div>
-        <%= image_tag @product_image_url, class: 'h-[64px] w-[64px] float-left', role: 'header-logo' %>
+        <%= link_to @product_url do %>
+          <%= image_tag @product_image_url, class: 'h-[64px] w-[64px] float-left', role: 'header-logo' %>
+        <% end %>
       </div>
       <div class="max-w-[400px]">
-        <p class="text-sm text-gray-500 mb-2"><%= @name %></p>
+        <p class="text-sm text-gray-500 mb-2"><%= link_to @name, @product_url %></p>
         <p class="text-sm text-primary-700"><%= @vendor_name %></p>
       </div>
     </td>
+
+    <!-- Line item price -->
     <td class="whitespace-nowrap px-6 py-4 font-semibold"><%= @price %></td>
+
+    <!-- Line item quantity picker -->
     <td class="whitespace-nowrap px-6 py-4 font-semibold">
       <div class="shopping-cart-item-quantity" data-hook="cart_item_quantity">
         <div class="d-flex align-items-center">
-          <%= button_tag '-', type: 'button', class: "border-right-0 shopping-cart-item-quantity-decrease-btn", data: { id: @id } %>
-          <%= item_form.number_field :quantity, value: @quantity, min: 0, class: "form-control text-center border-left-0 border-right-0 shopping-cart-item-quantity-input", size: 5, data: { id: @id }, aria: { label: Spree.t('cart_page.change_quantity') } %>
-          <%= button_tag '+', type: 'button', class: "border-left-0 shopping-cart-item-quantity-increase-btn", data: { id: @id } %>
+          <%= item_form.hidden_field :id, value: @id %>
+          <%= button_tag '-', type: 'button', class: "border-right-0 shopping-cart-item-quantity-decrease-btn", data: { id: @dom_id } %>
+          <%= item_form.number_field :quantity, value: @quantity, min: 0, class: "form-control text-center border-left-0 border-right-0 shopping-cart-item-quantity-input", size: 5, data: { id: @dom_id }, aria: { label: Spree.t('cart_page.change_quantity') } %>
+          <%= button_tag '+', type: 'button', class: "border-left-0 shopping-cart-item-quantity-increase-btn", data: { id: @dom_id } %>
         </div>
       </div>
     </td>
+
+    <!-- Line item total -->
     <td class="whitespace-nowrap px-6 py-4 font-semibold"><%= @total %></td>
+
+    <!-- Line item delete option -->
+    <td class="whitespace-nowrap px-6 py-4 font-semibold">
+      <div class="shopping-cart-item-delete" data-hook="cart_item_delete">
+        <%= link_to '#', class: 'delete', id: "delete_#{@dom_id}", data: { turbo: false, id: @dom_id }, aria: { label: Spree.t('cart_page.remove_from_cart') } do %>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.3333 4.99984V4.33317C13.3333 3.39975 13.3333 2.93304 13.1517 2.57652C12.9919 2.26292 12.7369 2.00795 12.4233 1.84816C12.0668 1.6665 11.6001 1.6665 10.6667 1.6665H9.33333C8.39991 1.6665 7.9332 1.6665 7.57668 1.84816C7.26308 2.00795 7.00811 2.26292 6.84832 2.57652C6.66667 2.93304 6.66667 3.39975 6.66667 4.33317V4.99984M8.33333 9.58317V13.7498M11.6667 9.58317V13.7498M2.5 4.99984H17.5M15.8333 4.99984V14.3332C15.8333 15.7333 15.8333 16.4334 15.5608 16.9681C15.3212 17.4386 14.9387 17.821 14.4683 18.0607C13.9335 18.3332 13.2335 18.3332 11.8333 18.3332H8.16667C6.76654 18.3332 6.06647 18.3332 5.53169 18.0607C5.06129 17.821 4.67883 17.4386 4.43915 16.9681C4.16667 16.4334 4.16667 15.7333 4.16667 14.3332V4.99984" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        <% end %>
+      </div>
+    </td>
   </tr>
 <% end %>
