@@ -13,6 +13,8 @@ es:
       atc_code: 'Código ATC'
       standard_denomination: 'Denominación estándar'
     no_laboratory: 'Sin Laboratorio'
+    send_order: 'Enviar orden'
+    order_total: 'Total de la orden'
     articles_selected:
       one: "%{count} artículo en total"
       other: "%{count} artículos en total"

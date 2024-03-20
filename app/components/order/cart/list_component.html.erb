@@ -1,43 +1,55 @@
-<% @line_items.group_by { |l| l[:vendor_name] }.each do |vendor_name, grouped_line_items| %>
-  <div class="item-cart-parent mx-auto p-0 maw-w-full max-h-full bg-white rounded-lg border border-gray-300 mb-[24px] shadow-sm">
-    <!-- Section header -->
-    <div class="border-b-2 border-gray-200 px-6 py-3 bg-primary-50 text-primary-700 toggle-cart">
-      <span class="font-semibold"><%= vendor_name %></span>
+<div class="bg-white rounded-lg border border-gray-300 flex flex-col">
 
-      <svg class="mx-2 w-[22px] h-[16px] item-cart-icon float-right transition-all" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
-        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-      </svg>
-      <span class="px-2 float-right rounded-lg border border-primary-200 text-xs">
-        <%= Spree.t(:articles_selected, count: grouped_line_items.count) %>
-      </span>
-    </div>
-
-    <!-- Table of line items -->
-    <div class="item-cart grid grid-rows-[1fr] transition-all">
-      <div class="overflow-hidden">
-        <table class="min-w-full text-left text-sm font-light">
-          <thead class="border-b border-gray-200 text-gray-700 text-xs">
-            <tr>
-              <th scope="col" class="w-3/5 px-6 py-3"><%= Spree.t(:product) %></th>
-              <th scope="col" class="px-6 py-3"><%= Spree.t(:price) %></th>
-              <th scope="col" class="px-6 py-3"><%= Spree.t(:quantity) %></th>
-              <th scope="col" class="px-6 py-3"><%= Spree.t(:total) %></th>
-              <th scope="col" class="px-6 py-3 w-[40px]"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% grouped_line_items.each do |line_item| %>
-              <%= render Order::Cart::LineItemComponent.new(
-                line_item: line_item
-              )
-              %>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
+  <div class="p-[24px] pb-[16px]">
+    <span class="leading-6 text-gray-700 text-lg font-medium" role="list-title"><%= Spree.t(:cart) %></span>
   </div>
-<% end %>
+
+  <!-- Divider -->
+  <div class="border-b border-gray-200 my-2 h-[1px] w-auto"></div>
+
+  <div class="p-[24px] pb-[16px]">
+    <% @line_items.group_by { |l| l[:vendor_name] }.each do |vendor_name, grouped_line_items| %>
+      <div class="item-cart-parent mx-auto p-0 maw-w-full max-h-full bg-white rounded-lg border border-gray-300 mb-[24px] shadow-sm" role="list-vendor-line-items-container">
+        <!-- Section header -->
+        <div class="border-b-2 border-gray-200 px-6 py-3 bg-primary-50 text-primary-700 toggle-cart">
+          <span class="font-semibold"><%= vendor_name %></span>
+
+          <svg class="mx-2 w-[22px] h-[16px] item-cart-icon float-right transition-all" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+          <span class="px-2 float-right rounded-lg border border-primary-200 text-xs">
+            <%= Spree.t(:articles_selected, count: grouped_line_items.count) %>
+          </span>
+        </div>
+
+        <!-- Table of line items -->
+        <div class="item-cart grid grid-rows-[1fr] transition-all">
+          <div class="overflow-hidden">
+            <table class="min-w-full text-left text-sm font-light">
+              <thead class="border-b border-gray-200 text-gray-700 text-xs" role="list-vendor-line-items-table-header">
+                <tr>
+                  <th scope="col" class="w-3/5 px-6 py-3"><%= Spree.t(:product) %></th>
+                  <th scope="col" class="px-6 py-3"><%= Spree.t(:price) %></th>
+                  <th scope="col" class="px-6 py-3"><%= Spree.t(:quantity) %></th>
+                  <th scope="col" class="px-6 py-3"><%= Spree.t(:total) %></th>
+                  <th scope="col" class="px-6 py-3 w-[40px]"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% grouped_line_items.each do |line_item| %>
+                  <%= render Order::Cart::LineItemComponent.new(
+                    line_item: line_item
+                  )
+                  %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <script>
   window.addEventListener('DOMContentLoaded', function() {
