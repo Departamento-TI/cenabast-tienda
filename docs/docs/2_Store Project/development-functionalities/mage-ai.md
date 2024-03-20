@@ -24,7 +24,7 @@ MageAI is currently used for the product sincronization service
 
 A data pipeline can be created for each pipeline we want to create.
 
-Data pipeline creattion Guidelines:
+Data pipeline creation Guidelines:
 
 * The pipeline is scheduled to run every X hours
 * The pipeline requests a token, request information from 1-N APIs, and merge that information
