@@ -19,7 +19,7 @@ module Cenabast
   end
 end
 
-def not_included? 
+def not_included?
   Spree::Api::V2::Platform::ResourceController.included_modules.exclude?(Cenabast::Spree::Api::V2::Platform::ResourceControllerDecorator)
 end
 Spree::Api::V2::Platform::ResourceController.prepend Cenabast::Spree::Api::V2::Platform::ResourceControllerDecorator if not_included?
