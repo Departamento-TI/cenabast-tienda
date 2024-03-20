@@ -23,10 +23,12 @@ module Cenabast
         private
 
         def query
+          subquery = "(#{query_inner.to_sql}) AS vendor_stats"
+
           ::Spree::Vendor.
             unscoped.
             reorder('').
-            from("(#{query_inner}) AS vendor_stats").
+            from(subquery).
             select('vendor_stats.subtotal, vendor_stats.name, vendor_stats.id')
         end
 
@@ -36,8 +38,7 @@ module Cenabast
             left_joins(variant: :vendor).
             reorder('').
             group('spree_variants.vendor_id, spree_vendors.name').
-            select('SUM(spree_line_items.price * spree_line_items.quantity) as subtotal, spree_vendors.name as name, spree_variants.vendor_id as id').
-            to_sql
+            select('SUM(spree_line_items.price * spree_line_items.quantity) as subtotal, spree_vendors.name as name, spree_variants.vendor_id as id')
         end
       end
     end
