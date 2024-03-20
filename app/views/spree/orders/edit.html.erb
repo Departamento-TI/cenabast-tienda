@@ -3,7 +3,7 @@
 <div data-hook="cart_container" class="container shopping-cart">
   <%= render 'spree/shared/breadcrumbs', sections: [Spree.t(:account), Spree.t('cart_page.title')] %>
 
-  <h1 class="shopping-cart-header"><%= Spree.t('cart_page.header') %></h1>
+  <h1 class="shopping-cart-header mb-[-20px]"><%= Spree.t(:cart_summary) %></h1>
 
   <% if @order.line_items.empty? %>
     <div data-hook="empty_cart" class="shopping-cart-empty">
