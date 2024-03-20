@@ -1,0 +1,1329 @@
+{
+	"info": {
+		"_postman_id": "8e09c469-86dd-439c-96d1-bfd8de0caadc",
+		"name": "Cenabast Spree API v2 Plaftorm examples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29033324"
+	},
+	"item": [
+		{
+			"name": "Get Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the JSON response\r",
+							"const jsonResponse = pm.response.json();\r",
+							"\r",
+							"// Save the access_token field into a collection variable named 'token'\r",
+							"pm.collectionVariables.set('token', jsonResponse.access_token);\r",
+							"\r",
+							"// Log the saved token for verification\r",
+							"console.log('Access Token:', pm.collectionVariables.get('token'));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"grant_type\": \"client_credentials\",\r\n  \"client_id\": \"3uBakxFWVwU_yXFvAERx4v7p8rYmmHC2-kjweAzyVEY\",\r\n  \"client_secret\": \"$2a$12$7IYxkNTIOrchyQ9GuiDYouN6c.th5kBJAe2SjpRQ0ZZaI04iNb0Q6\",\r\n  \"scope\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/spree_oauth/token",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"spree_oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "3uBakxFWVwU_yXFvAERx4v7p8rYmmHC2-kjweAzyVEY",
+							"disabled": true
+						},
+						{
+							"key": "redirect_uri",
+							"value": "YOUR_REDIRECT_URI",
+							"disabled": true
+						},
+						{
+							"key": "response_type",
+							"value": "code",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stores GET",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/stores",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"stores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "taxons GET",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/taxons",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"taxons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "taxons GET (Find particular taxon matching name)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/taxons?filter[name_in][]=Medicamentos&filter[name_in][]=Farmacos&filter[name_in][]=Insumos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"taxons"
+					],
+					"query": [
+						{
+							"key": "filter[name_in][]",
+							"value": "Medicamentos"
+						},
+						{
+							"key": "filter[name_in][]",
+							"value": "Farmacos"
+						},
+						{
+							"key": "filter[name_in][]",
+							"value": "Insumos"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "taxons POST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taxon\": {\r\n        \"name\": \"Medicamentos 2\",\r\n        \"parent_id\": 27\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/taxons",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"taxons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "taxons PUT",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taxon\": {\r\n        \"name\": \"Medicamentos 2\",\r\n        \"parent_id\": 27\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/taxons/31",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"taxons",
+						"31"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "property GET",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/properties",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"properties"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "property GET (Find particular property by name)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/properties?filter[name_eq]=unit-venta",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"properties"
+					],
+					"query": [
+						{
+							"key": "filter[name_eq]",
+							"value": "unit-venta"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "property POST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"property\": {\r\n        \"name\": \"unit-venta\",\r\n        \"presentation\": \"Unidad de venta\",\r\n        \"filterable\": true,\r\n        \"filter_param\": \"unit-venta\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/properties",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"properties"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "property PUT",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"property\": {\r\n        \"name\": \"unit-venta\",\r\n        \"presentation\": \"Unidad de venta editado\",\r\n        \"filterable\": true,\r\n        \"filter_param\": \"unit-venta\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/properties/17",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"properties",
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products GET",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products GET (Find particular product matching SKU)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/products?filter[master_sku_eq]=500016005&include=primary_variant,taxons,store_products,contract,generic_product,classifications,product_properties",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"products"
+					],
+					"query": [
+						{
+							"key": "filter[master_sku_eq]",
+							"value": "500016005"
+						},
+						{
+							"key": "include",
+							"value": "primary_variant,taxons,store_products,contract,generic_product,classifications,product_properties"
+						},
+						{
+							"key": "include",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products GET (Find particular product matching ID)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/products?filter[id_eq]=117&include=primary_variant,taxons,store_products,classifications",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"products"
+					],
+					"query": [
+						{
+							"key": "filter[id_eq]",
+							"value": "117"
+						},
+						{
+							"key": "include",
+							"value": "primary_variant,taxons,store_products,classifications"
+						},
+						{
+							"key": "include",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products POST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product\": {\r\n        \"name\": \"Producto de pruebadd\",\r\n        \"sku\": \"qdqdwiqjowdijqow222d\",\r\n        \"available_on\": \"2024-02-02T11:35:27.308-03:00\",\r\n        \"discontinue_on\": null,\r\n        \"price\": \"14000\",\r\n        \"cost_price\": \"14000\",\r\n        \"shipping_category_id\": 1,\r\n        \"purchasable\": true,\r\n        \"available\": true,\r\n        \"status\": \"active\",\r\n        \"store_products_attributes\": [\r\n            {\r\n                \"store_id\": 1\r\n            },\r\n            {\r\n                \"store_id\": 2\r\n            }\r\n        ]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products PUT",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Producto de prueba 2\",\r\n    \"available_on\": \"2024-02-02T11:35:27.308-03:00\",\r\n    \"discontinue_on\": null,\r\n    \"price\": \"14000\",\r\n    \"cost_price\": \"14000\",\r\n    \"shipping_category_id\": 1,\r\n    \"purchasable\": true,\r\n    \"available\": true,\r\n    \"status\": \"active\",\r\n    \"store_products_attributes\": [\r\n        {\r\n            \"id\": 352,\r\n            \"_destroy\": 1\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/products/117",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"products",
+						"117"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "variants GET",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/variants",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"variants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "variants GET (Find particular variant matching SKU)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/variants?filter[sku_cont]=Shirts_regularshirtwithrolledupsleeves_98.99",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"variants"
+					],
+					"query": [
+						{
+							"key": "filter[sku_cont]",
+							"value": "Shirts_regularshirtwithrolledupsleeves_98.99"
+						},
+						{
+							"key": "filter[is_master_eq]",
+							"value": "true",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "variants GET (Find particular variant matching product id)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/variants?filter[product_id_eq]=117&filter[is_master_eq]=true",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"variants"
+					],
+					"query": [
+						{
+							"key": "filter[product_id_eq]",
+							"value": "117"
+						},
+						{
+							"key": "filter[is_master_eq]",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "variants PUT",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"variant\": {\r\n        \"name\": \"nombreZCEN\",\r\n        \"sku\": \"zcen-sku-1234\",\r\n        \"in_stock\": true,\r\n        \"total_on_hand\": 15,\r\n\r\n        \"purchasable\": true,\r\n        \"backorderable\": false,\r\n        \"available\": true,\r\n        \"currency\": \"CLP\",\r\n        \"cost_currency\": \"CLP\",\r\n        \"cost_price\": 14000.0,\r\n        \"price\": \"14000.0\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/variants/233",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"variants",
+						"233"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stock_items GET (Find stock_item corresponding to variant)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/stock_items?filter[variant_id_eq]=301",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"stock_items"
+					],
+					"query": [
+						{
+							"key": "filter[variant_id_eq]",
+							"value": "301"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stock_items PUT",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stock_item\": {\r\n        \"backorderable\": true\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/stock_items/66",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"stock_items",
+						"66"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stock_locations GET (Filter by name)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/stock_locations?filter[name_eq]=ITF LABOMED FARMACEUTICA LTDA.",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"stock_locations"
+					],
+					"query": [
+						{
+							"key": "filter[name_eq]",
+							"value": "ITF LABOMED FARMACEUTICA LTDA."
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generic_products GET (ZGEN)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/generic_products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"generic_products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generic_products GET (ZGEN) (Find particular product matching SKU)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/generic_products?filter[code_eq]=yisgzyrgAAAA",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"generic_products"
+					],
+					"query": [
+						{
+							"key": "filter[code_eq]",
+							"value": "yisgzyrgAAAA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generic_products POST (ZGEN)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"generic_product\": {\r\n        \"code\": \"NewCode1asdasd2342\",\r\n        \"code_atc\": \"ewcwiy\",\r\n        \"code_onu\": \"jxabos\",\r\n        \"code_ean\": \"29551453\",\r\n        \"denomination\": \"ut\",\r\n        \"standard_denomination\": \"voluptatem\",\r\n        \"product_type\": \"generic\",\r\n        \"hierarchy\": \"qui\",\r\n        \"ump\": \"dolor\",\r\n        \"manufacturer\": \"dolorum\",\r\n        \"base_table\": \"fuga\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/generic_products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"generic_products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generic_products PUT (ZGEN)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"generic_product\": {\r\n        \"code\": \"yisgzyrgAAAA\",\r\n        \"code_atc\": \"edited attribute\",\r\n        \"code_onu\": \"editedjxabos\",\r\n        \"code_ean\": \"29551453\",\r\n        \"denomination\": \"ut\",\r\n        \"standard_denomination\": \"voluptatem\",\r\n        \"product_type\": \"generic\",\r\n        \"hierarchy\": \"qui\",\r\n        \"ump\": \"dolor\",\r\n        \"manufacturer\": \"dolorum\",\r\n        \"base_table\": \"fuga\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/generic_products/6",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"generic_products",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contracts GET (ZGEN)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/contracts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"contracts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contracts GET (ZGEN) (Find particular vendor matching Code)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/contracts?filter[code_eq]=new-contract-code",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"contracts"
+					],
+					"query": [
+						{
+							"key": "filter[code_eq]",
+							"value": "new-contract-code"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contracts POST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contract\": {\r\n        \"sale_order\": \"mkyrknwqkg\",\r\n        \"code\": \"new-contract-code-2\",\r\n        \"name\": \"qui\",\r\n        \"mercado_publico_oc\": \"yhdqxnwd\",\r\n        \"center\": 2,\r\n        \"price_before_iva\": \"21.0\",\r\n        \"price_iva\": \"10.0\",\r\n        \"price\": \"139.0\",\r\n        \"comission\": \"5.0\",\r\n        \"unit_sale\": \"dolore\",\r\n        \"unit\": \"dolore\",\r\n        \"product_id\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/contracts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"contracts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contracts PUT",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contract\": {\r\n        \"sale_order\": \"edited-sale-order\",\r\n        \"code\": \"new-contract-code\",\r\n        \"product_id\": 2\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/contracts/11",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"contracts",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vendors GET",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/vendors",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"vendors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vendors GET (Find particular vendor matching RUN)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/vendors?filter[run_eq]=186059565",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"vendors"
+					],
+					"query": [
+						{
+							"key": "filter[run_eq]",
+							"value": "186059565"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vendors POST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"vendor\": {\r\n        \"name\": \"Schneider-Ruecker 2\",\r\n        \"state\": \"active\",\r\n        \"deleted_at\": null,\r\n        \"notification_email\": null,\r\n        \"run\": \"36547308\",\r\n        \"first_name\": \"Leonardo\",\r\n        \"last_name\": \"Test\",\r\n        \"email\": \"leo.test@lehner.example\",\r\n        \"land_phone\": \"(823) 909-8064\",\r\n        \"mobile_phone\": \"179-657-2761\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/vendors",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"vendors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vendors PUT",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"vendor\": {\r\n        \"name\": \"Edited name Schneider-Ruecker\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v2/platform/vendors/43",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"platform",
+						"vendors",
+						"43"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
