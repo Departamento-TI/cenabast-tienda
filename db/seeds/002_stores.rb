@@ -8,6 +8,7 @@ default_store.mail_from_address = 'no-reply@example.com'
 default_store.default_country = Spree::Country.find_by(iso: 'CL')
 default_store.default_currency = 'CLP'
 default_store.supported_locales = 'es'
+default_store.default_locale = 'es'
 default_store.save!
 
 intermediation_store = Spree::Store.find_or_initialize_by(code: 'spree-intermediation')
@@ -20,6 +21,7 @@ intermediation_store.mail_from_address = 'no-reply@example.com'
 intermediation_store.default_country = Spree::Country.find_by(iso: 'CL')
 intermediation_store.default_currency = 'CLP'
 intermediation_store.supported_locales = 'es'
+intermediation_store.default_locale = 'es'
 intermediation_store.save!
 
 # Destroy other stores that might exists
