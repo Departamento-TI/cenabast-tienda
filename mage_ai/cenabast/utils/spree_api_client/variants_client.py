@@ -15,6 +15,9 @@ class VariantsClient(BaseClient):
     return info_list
 
   def parse_variant(self, variant):
+    if isinstance(variant, dict) and variant.get('data') != None:
+      variant = variant.get('data', {})
+
     attributes = variant.get('attributes', {})
 
     return {
@@ -45,14 +48,14 @@ class VariantsClient(BaseClient):
       'backorderable': attributes.get('backorderable'),
       'available': attributes.get('available'),
       'currency': attributes.get('currency'),
-      'price': attributes.get('price'),
+      'price': float(attributes.get('price')),
       'compare_at_price': attributes.get('compare_at_price'),
     }
 
   # Get an specific product by its sku
   def get_variant_data(self, code):
     params = [
-      ('filter[sku_cont]', code)
+      ('filter[sku_eq]', code)
     ]
     url_with_params = f"{self.variants_url()}?{urlencode(params)}"
     response = self.make_authenticated_request("GET", url_with_params, self.get_token())
@@ -64,7 +67,7 @@ class VariantsClient(BaseClient):
       'variant': payload
     }
     response = self.make_authenticated_request("POST", url, self.get_token(), final_payload)
-    return self.parse_response(response, self.parse_variants)
+    return self.parse_response(response, self.parse_variant)
 
   def update_variant(self, id, payload):
     url = f"{self.variants_url()}/{id}"
@@ -72,4 +75,4 @@ class VariantsClient(BaseClient):
       'variant': payload
     }
     response = self.make_authenticated_request("PUT", url, self.get_token(), final_payload)
-    return self.parse_response(response, self.parse_variants)
+    return self.parse_response(response, self.parse_variant)

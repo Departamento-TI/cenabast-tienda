@@ -15,7 +15,7 @@ class BaseClient:
 
   # Function to make authenticated requests
   def make_authenticated_request(self, method, url, token=None, data=None):
-    self.logger.info(f"[SpreeApiClient] Making authenticated request to {url}, http_method: {method}")
+    self.logger.debug(f"[SpreeApiClient] Making authenticated request to {url}, http_method: {method}")
 
     headers = {
       "Authorization": f"Bearer {token}",
@@ -32,7 +32,7 @@ class BaseClient:
       self.logger.error(f"[SpreeApiClient] Unsupported HTTP method: {method}")
       raise ValueError(f"[SpreeApiClient] Unsupported HTTP method: {method}")
 
-    self.logger.info(f"URL: {url} Status Code: {response.status_code}")
+    self.logger.debug(f"URL: {url} Status Code: {response.status_code}")
     return response
 
   # Parsing methods
@@ -51,6 +51,7 @@ class BaseClient:
       'error': response.json().get('error', [])
     }
     self.logger.error(f"[SpreeApiClient][parse_error]: Error payload: {payload}")
+    raise ValueError(f"[SpreeApiClient][parse_error]: Error payload: {payload}")
     return payload
 
   def parse_success(self, response, results):
@@ -59,7 +60,7 @@ class BaseClient:
       'raw_data': response,
       'results': results,
     }
-    self.logger.info(f"[SpreeApiClient][parse_success]: Payload to return: {payload}")
+    self.logger.debug(f"[SpreeApiClient][parse_success]: Payload to return: {payload}")
     return payload
 
   # Helper to handle parsing of the "relationships"
@@ -89,8 +90,8 @@ class BaseClient:
       "client_secret": os.environ['SPREE_CLIENT_SECRET'],
       "scope": "admin"
     }
-    self.logger.info(f"[SpreeApiClient][get_token] self.auth_url(): {self.auth_url()}")
-    self.logger.info(f"[SpreeApiClient][get_token] Token payload: {payload}")
+    self.logger.debug(f"[SpreeApiClient][get_token] self.auth_url(): {self.auth_url()}")
+    self.logger.debug(f"[SpreeApiClient][get_token] Token payload: {payload}")
     response = requests.post(self.auth_url(), data=payload)
     json_response = response.json()
     self.token = json_response.get('access_token')

@@ -4,6 +4,9 @@ module Cenabast
       module V2
         module Platform
           class ProductSerializer < ::Spree::V2::Storefront::ProductSerializer
+            attribute :status
+            attribute :discontinue_on
+
             belongs_to :generic_product, serializer: Cenabast::Spree::Api::V2::Platform::GenericProductSerializer
             has_one :contract, serializer: Cenabast::Spree::Api::V2::Platform::ContractSerializer
             has_many :classifications, serializer: ::Spree::Api::V2::Platform::ClassificationSerializer

@@ -124,7 +124,8 @@ RSpec.describe Spree::User, type: :model, search: true do
           create_list(:receiver, 2, requester:)
         end.flatten.compact.uniq
         current_requester = requesters.sample
-        user = create(:user, receivers:, current_receiver: current_requester.receivers.first)
+        user = create(:user, receivers:)
+        user.toggle_receiver(current_requester.receivers.first)
 
         expect(user.available_receivers).to eq(current_requester.receivers)
       end

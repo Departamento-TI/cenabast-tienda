@@ -16,3 +16,4 @@ Here we will place documents related to detailing implementation of functionalit
 - [Clave Unica](clave-unica.md)
 - [Login Process](login-process.md)
 - [MageAI](mage-ai.md)
+- [Product Sync](./product-sync.md)

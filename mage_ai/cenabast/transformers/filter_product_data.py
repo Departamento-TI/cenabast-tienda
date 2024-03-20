@@ -1,15 +1,25 @@
 from datetime import datetime, timedelta
 import calendar
 
+if 'transformer' not in globals():
+    from mage_ai.data_preparation.decorators import transformer
+if 'test' not in globals():
+    from mage_ai.data_preparation.decorators import test
+
 @transformer
 def transform(data, *args, **kwargs):
+    # Transform into an array if needed
+    if isinstance(data, dict):
+        data = [data]
+
     # Get logger
     logger = kwargs.get('logger')
 
     # Rewrite contracts to only have valid ones
-    # Valid ones are ones that have a vigent date
-    # Vigent, meaning the start date has already passed (contract already running), and
+    # Valid ones are ones that have a current date
+    # Current, meaning the start date has already passed (contract already running), and
     # the end date hasnt yet elapsed (contract hasnt expired)
+    logger.info(data)
     current_date = datetime.now()
     for product in data:
         if 'contracts' in product:
