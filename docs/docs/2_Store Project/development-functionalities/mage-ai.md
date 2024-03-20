@@ -26,7 +26,7 @@ A data pipeline can be created for each pipeline we want to create.
 
 Data pipeline creattion Guidelines:
 
-* The pipeline is be scheduled to run every X hours
+* The pipeline is scheduled to run every X hours
 * The pipeline requests a token, request information from 1-N APIs, and merge that information
 * The pipeline is inject the information to the Spree Aplication via an API request
   * Spree native API must be used. Prefering to decorate the less amount possible.
