@@ -7,11 +7,15 @@ es:
     user_does_not_exist_on_system: 'Usuario no existe en sistema'
     user_does_not_has_valid_roles: 'Usuario no tiene roles validos'
     buyer_user_not_valid: 'Usuario comprador no valido'
-
     pdp:
       about_product: 'Sobre este producto'
       mercado_publico_id: 'ID Mercado público'
       atc_code: 'Código ATC'
       standard_denomination: 'Denominación estándar'
-
-
+    no_laboratory: 'Sin Laboratorio'
+    send_order: 'Enviar orden'
+    order_total: 'Total de la orden'
+    cart_summary: 'Resumen de tu carrito'
+    articles_selected:
+      one: "%{count} artículo en total"
+      other: "%{count} artículos en total"

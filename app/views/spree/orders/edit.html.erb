@@ -1,0 +1,44 @@
+<% @body_id = 'cart' %>
+
+<div data-hook="cart_container" class="container shopping-cart">
+  <%= render 'spree/shared/breadcrumbs', sections: [Spree.t(:account), Spree.t('cart_page.title')] %>
+
+  <h1 class="shopping-cart-header mb-[-20px]"><%= Spree.t(:cart_summary) %></h1>
+
+  <% if @order.line_items.empty? %>
+    <div data-hook="empty_cart" class="shopping-cart-empty">
+      <div class="d-flex flex-column justify-content-between h-100">
+        <div class="d-flex flex-column align-items-center">
+          <%= icon(name: 'empty-cart',
+                   classes: 'shopping-cart-empty-image',
+                   width: 83,
+                   height: 83) %>
+
+          <p class="text-center shopping-cart-empty-info"><%= Spree.t('cart_page.empty_info').html_safe %></p>
+        </div>
+        <%= link_to Spree.t(:continue_shopping), spree.products_path, class: 'btn btn-primary text-uppercase font-weight-bold shopping-cart-empty-continue-link' %>
+      </div>
+    </div>
+  <% else %>
+    <div data-hook="outside_cart_form">
+      <%= form_for @order, url: spree.update_cart_path, html: { id: 'update-cart' } do |order_form| %>
+        <div data-hook="inside_cart_form">
+          <div data-hook="cart_items" class="shopping-cart-table">
+            <%= render partial: 'form', locals: { order_form: order_form } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    Spree.current_order_token = "<%= @order.token %>"
+    <% if flash.any? %>
+      document.getElementById('overlay').classList.add('shown');
+      document.getElementById('no-product-available').classList.add('shown');
+      window.scrollTo(0, 0);
+    <% end %>
+  })
+</script>
