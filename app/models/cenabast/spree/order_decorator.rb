@@ -2,13 +2,7 @@ module Cenabast
   module Spree
     module OrderDecorator
       def self.prepended(base)
-        base.belongs_to :receiver, class_name: 'Cenabast::Spree::Receiver'
-      end
-
-      # Associates the specified receiver with the order.
-      def associate_receiver!(receiver)
-        self.receiver = receiver
-        save
+        base.belongs_to :receiver, class_name: 'Cenabast::Spree::Receiver', optional: false
       end
     end
   end

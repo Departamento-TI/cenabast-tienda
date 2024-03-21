@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_13_180411) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_15_205152) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -670,6 +670,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_180411) do
     t.jsonb "public_metadata"
     t.jsonb "private_metadata"
     t.text "internal_note"
+    t.bigint "receiver_id"
     t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
     t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
     t.index ["canceler_id"], name: "index_spree_orders_on_canceler_id"
@@ -678,6 +679,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_180411) do
     t.index ["considered_risky"], name: "index_spree_orders_on_considered_risky"
     t.index ["created_by_id"], name: "index_spree_orders_on_created_by_id"
     t.index ["number"], name: "index_spree_orders_on_number", unique: true
+    t.index ["receiver_id"], name: "index_spree_orders_on_receiver_id"
     t.index ["ship_address_id"], name: "index_spree_orders_on_ship_address_id"
     t.index ["store_id"], name: "index_spree_orders_on_store_id"
     t.index ["token"], name: "index_spree_orders_on_token"
@@ -1784,6 +1786,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_180411) do
   add_foreign_key "spree_oauth_access_tokens", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_option_type_translations", "spree_option_types"
   add_foreign_key "spree_option_value_translations", "spree_option_values"
+  add_foreign_key "spree_orders", "cenabast_spree_receivers", column: "receiver_id"
   add_foreign_key "spree_payment_sources", "spree_payment_methods", column: "payment_method_id"
   add_foreign_key "spree_payment_sources", "spree_users", column: "user_id"
   add_foreign_key "spree_product_property_translations", "spree_product_properties"
