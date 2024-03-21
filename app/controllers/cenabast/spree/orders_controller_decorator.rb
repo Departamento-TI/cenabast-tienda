@@ -7,12 +7,9 @@ module Cenabast
       end
 
       # Shows the current incomplete order from the session
+      # it will be created if isn't exists
       def edit
-        @order = current_order || current_store.orders.incomplete.
-          includes(line_items: [variant: [:images, :product, { option_values: :option_type }]]).
-          find_or_initialize_by(token: cookies.signed[:token])
-        associate_user
-        associate_receiver
+        @order = current_order(create_order_if_necessary: true)
       end
 
       private
