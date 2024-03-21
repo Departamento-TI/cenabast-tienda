@@ -346,3 +346,11 @@ es:
       payment_methods:
         edit:
           payment_method_configuration: "Payment Method Configuration"
+      store_settings:
+        general_settings: Configuraciones generales
+        limit_cart_amount_utm:
+          label: Mínimo valor de carro de compra (UTM)
+          info: Valor mínimo de compra por proveedor para el carro de compra
+        current_utm_value:
+          label: Valor de la UTM
+          info: Valor de la Unidad Tributaria Mensual, este valor se debe actualizar el día 1 de cada mes

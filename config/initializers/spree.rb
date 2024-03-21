@@ -14,7 +14,9 @@ Rails.application.config.after_initialize do
     # Example:
     # Uncomment to stop tracking inventory levels in the application
     # config.track_inventory_levels = false
+    #
   end
 end
 
 Spree.user_class = 'Spree::User'
+Spree::PermittedAttributes.store_attributes << [:limit_cart_amount_utm, :current_utm_value]
