@@ -3,39 +3,30 @@ module Cenabast
     module Core
       module ControllerHelpers
         module OrderDecorator
-          # comment this code
-          # rubocop:disable Rails/HelperInstanceVariable
-          def current_order(options = {})
-            options[:create_order_if_necessary] ||= false
-            options[:includes] ||= true
+          def set_current_order
+            return unless try_spree_current_user && current_order
 
-            if @current_order
-              @current_order.last_ip_address = ip_address
-              return @current_order
+            orders_scope = try_spree_current_user.current_receiver.orders.
+                           incomplete.
+                           where.not(id: current_order.id).
+                           where(store_id: current_store.id)
+
+            orders_scope.each do |order|
+              current_order.merge!(order, try_spree_current_user)
             end
-
-            @current_order = find_order_by_token_or_user(options, true)
-
-            if options[:create_order_if_necessary] && (@current_order.nil? || @current_order.completed?)
-              @current_order = current_store.orders.create!(current_order_params)
-              @current_order.associate_user! try_spree_current_user if try_spree_current_user
-              @current_order.associate_receiver! try_spree_current_user.current_receiver if try_spree_current_user
-              @current_order.last_ip_address = ip_address
-            end
-
-            @current_order
           end
-
-          def associate_receiver
-            @order ||= current_order
-            @order.associate_receiver!(try_spree_current_user.current_receiver) if try_spree_current_user && @order && @order.receiver.blank?
-          end
-          # rubocop:enable Rails/HelperInstanceVariable
 
           private
 
           def last_incomplete_order(includes = {})
             @last_incomplete_order ||= try_spree_current_user.current_receiver.last_incomplete_spree_order(current_store, includes:)
+          end
+
+          def current_order_params
+            { currency: current_currency,
+              token: cookies.signed[:token],
+              user_id: try_spree_current_user.try(:id),
+              receiver_id: try_spree_current_user&.current_receiver&.id }
           end
         end
       end
