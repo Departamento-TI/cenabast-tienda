@@ -18,6 +18,7 @@ module Cenabast
         cookies.signed[:token] = nil
         current_order(create_order_if_necessary: true)
 
+        cookies[:toggle_receiver] = true
         redirect_back_or_to spree.root_path
       end
 
