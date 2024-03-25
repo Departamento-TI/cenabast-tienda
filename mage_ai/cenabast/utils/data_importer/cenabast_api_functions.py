@@ -1,3 +1,5 @@
+import traceback
+
 import os
 import io
 import pandas as pd
@@ -7,6 +9,9 @@ from urllib.parse import urlencode
 def get_products(*args, **kwargs):
   # Get logger
   logger = kwargs.get('logger')
+
+  # Build general data wrapper
+  general_data = build_general_data(logger)
 
   # Get token from API
   token = get_token(logger)
@@ -48,17 +53,46 @@ def get_products(*args, **kwargs):
   logger.info("Fetching contract information")
   # Get contract information for each unique product
   for index, product_info in enumerate(filtered_products, start=1):
-    codigo_producto = product_info['codigoProducto']
-    logger.info(f"Processing product {index}/{len(filtered_products)} with codigoProducto {codigo_producto}")
-    try:
-      contracts = get_contracts_data(token, codigo_producto, logger)
-      product_info['contracts'] = contracts
-    except Exception as e:
-      # Log the exception
-      logger.error(f"Error processing product contract {codigo_producto}: {str(e)}")
-      logger.error(traceback.format_exc())
+    fetch_particular_contract_information(index, product_info, filtered_products, token, general_data)
+
+  # Return stats
+  stats = {
+      'success_count': general_data['success_count'],
+      'error_count': general_data['error_count'],
+      'error_products': general_data['error_products'],
+  }
+  logger.info(f"Results {stats}")
 
   return filtered_products
+
+def fetch_particular_contract_information(index, product_info, filtered_products, token, general_data):
+  codigo_producto = product_info['codigoProducto']
+  general_data['logger'].info(f"Processing product {index}/{len(filtered_products)} with codigoProducto {codigo_producto}")
+  try:
+    contracts = get_contracts_data(token, codigo_producto, general_data['logger'])
+    product_info['contracts'] = contracts
+
+    # Increment success count
+    general_data['success_count'] += 1
+  except Exception as e:
+    # Log the exception
+    general_data['logger'].error(f"Error processing product contract {codigo_producto}: {str(e)}")
+    general_data['logger'].error(traceback.format_exc())
+
+    # Increment error count
+    general_data['error_count'] += 1
+
+    # Add product to error list
+    general_data['error_products'].append(code_product)
+
+# Build general purpose information dict
+def build_general_data(logger):
+  return {
+    'logger': logger,
+    'success_count': 0,
+    'error_count': 0,
+    'error_products': []
+  }
 
 # Url functions
 def base_url():
