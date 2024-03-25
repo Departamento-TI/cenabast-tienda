@@ -1,0 +1,77 @@
+// stylelint-disable property-disallowed-list, declaration-no-important
+
+//
+// Border
+//
+
+// Redefined file to remove !important declaration on classes
+
+.border         { border: $border-width solid $border-color; }
+.border-top     { border-top: $border-width solid $border-color; }
+.border-right   { border-right: $border-width solid $border-color; }
+.border-bottom  { border-bottom: $border-width solid $border-color; }
+.border-left    { border-left: $border-width solid $border-color; }
+
+.border-0        { border: 0; }
+.border-top-0    { border-top: 0; }
+.border-right-0  { border-right: 0; }
+.border-bottom-0 { border-bottom: 0; }
+.border-left-0   { border-left: 0; }
+
+@each $color, $value in $theme-colors {
+  .border-#{$color} {
+    border-color: $value;
+  }
+}
+
+.border-white {
+  border-color: $white;
+}
+
+//
+// Border-radius
+//
+
+.rounded-sm {
+  border-radius: $border-radius-sm;
+}
+
+.rounded {
+  border-radius: $border-radius;
+}
+
+.rounded-top {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+
+.rounded-right {
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+}
+
+.rounded-bottom {
+  border-bottom-right-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+}
+
+.rounded-left {
+  border-top-left-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+}
+
+.rounded-lg {
+  border-radius: $border-radius-lg;
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
+.rounded-pill {
+  border-radius: $rounded-pill;
+}
+
+.rounded-0 {
+  border-radius: 0;
+}
