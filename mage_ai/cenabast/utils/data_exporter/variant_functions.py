@@ -15,16 +15,17 @@ def update_variant(contract, api_clients, general_data, variant_data):
 
   # Prepare payload with Variant information
   payload = build_variant_payload(contract, general_data, variant_data)
+  update_payload = build_filter_payload_update(payload)
 
   # Variant will store the created or updated record
   variant = None
   if existing_variant:
     # Compare payload with existing data and update if necessary
-    filtered_attributes = {key: value for key, value in existing_variant.items() if key in payload.keys()}
-    if payload != filtered_attributes:
+    filtered_attributes = {key: value for key, value in existing_variant.items() if key in update_payload.keys()}
+    if update_payload != filtered_attributes:
       general_data['logger'].info(f"Variant ZCEN {code} needs update, updating.")
-      general_data['logger'].debug(f"Variant payload to use: {payload}")
-      api_response = api_clients['variants_client'].update_variant(existing_variant['id'], payload)
+      general_data['logger'].debug(f"Variant payload to use: {update_payload}")
+      api_response = api_clients['variants_client'].update_variant(existing_variant['id'], update_payload)
       variant = api_response.get('results', {})
     else:
       variant = existing_variant
@@ -41,3 +42,13 @@ def build_variant_payload(contract, general_data, variant_data):
     "cost_currency": "CLP",
     "price": float(contract['valorTotal'])
   }
+
+# Filter available_on/discontinue_on attributes on update
+# This payload is also used for comparing the existing record vs the candidate one
+def build_filter_payload_update(payload):
+  allowed_keys = [
+    'sku',
+    'currency',
+    'price'
+  ]
+  return {key: value for key, value in payload.items() if key not in allowed_keys }

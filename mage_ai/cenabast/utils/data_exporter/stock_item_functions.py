@@ -46,7 +46,7 @@ def create_or_update_stock_item(contract, api_clients, general_data, stock_item_
       stock_item = api_response.get('results', {})
     else:
       stock_item = existing_stock_item
-      general_data['logger'].info(f"No changes for variant id {variant_id}, no update needed")
+      general_data['logger'].info(f"No changes for StockItem for variant id {variant_id}, no update needed")
   else:
     # Create stock_item
     general_data['logger'].info(f"StockItem for variant id {variant_id} didnt exist, creating.")
@@ -58,11 +58,20 @@ def create_or_update_stock_item(contract, api_clients, general_data, stock_item_
   return stock_item
 
 def build_stock_item_payload(contract, general_data, stock_item_data, stock_location_id):
-  return {
-    "backorderable": True,
-    'variant_id': stock_item_data['variant']['id'],
-    'stock_location_id': stock_location_id
-  }
+  if(contract['estaDisponible'] != None):
+    return {
+      'backorderable': False,
+      'count_on_hand': contract['cantidadDisponible'],
+      'variant_id': stock_item_data['variant']['id'],
+      'stock_location_id': stock_location_id
+    }
+  else:
+    return {
+      'backorderable': False,
+      'count_on_hand': 0,
+      'variant_id': stock_item_data['variant']['id'],
+      'stock_location_id': stock_location_id
+    }
 
 # Filter available_on/discontinue_on attributes on update
 # This payload is also used for comparing the existing record vs the candidate one
