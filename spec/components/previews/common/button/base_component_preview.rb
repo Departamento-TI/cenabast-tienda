@@ -4,7 +4,11 @@ class Common::Button::BaseComponentPreview < ViewComponent::Preview
   # @param hierarchy select { choices: [primary, secondary_color, secondary_gray, tertiary_color, tertiary_gray, link_color, link_gray] }
   # @param destructive toggle
   # @param additional_styles text
-  def standard(text: 'Click me', size: 'md', hierarchy: 'primary', destructive: false, additional_styles: '')
+  # @param disabled toggle
+
+  # rubocop:disable Metrics/ParameterLists
+  def standard(text: 'Click me', size: 'md', hierarchy: 'primary',
+               destructive: false, additional_styles: '', disabled: false)
     button_params = {
       text:,
       size:,
@@ -13,6 +17,7 @@ class Common::Button::BaseComponentPreview < ViewComponent::Preview
       additional_styles:
     }
 
-    render Common::Button::BaseComponent.new(button_params:)
+    render Common::Button::BaseComponent.new(button_params:, disabled:)
   end
+  # rubocop:enable Metrics/ParameterLists
 end

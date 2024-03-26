@@ -12,7 +12,7 @@ class Order::Cart::SummaryComponentPreview < ViewComponent::Preview
       {
         vendor_id: 1,
         vendor_name: 'BPH S.A.',
-        subtotal: 23_000
+        subtotal: 280_000
       },
       {
         vendor_id: 2,
