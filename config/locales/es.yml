@@ -21,3 +21,6 @@ es:
     articles_selected:
       one: "%{count} artículo en total"
       other: "%{count} artículos en total"
+    stock_validator:
+      not_enough_stock: 'No hay suficiente stock para el producto "%{sku}".'
+      information_retrieve_error: 'Error al validar stock del producto "%{sku}".'
