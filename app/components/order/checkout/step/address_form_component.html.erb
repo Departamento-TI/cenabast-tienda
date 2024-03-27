@@ -1,0 +1,206 @@
+<%= hidden_field_tag 'save_user_address', true, data: { hook: "save_user_address" } %>
+
+
+<div id="requester_address_form" class="item-cart-parent mx-auto p-3 maw-w-full max-h-full bg-white rounded-lg border border-gray-200 mb-[24px] shadow-sm font-medium text-left flex flex-col">
+  <fieldset disabled>
+    <%= fields_for "order[bill_address_attributes]" do |address_form| %>
+      <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+        <div class="flex flex-1 flex-col gap-1.5">
+          <span>Nombre Solicitante</span>
+          <%= address_form.text_field :firstname, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+        </div>
+
+        <div class="flex flex-1 flex-col gap-1.5">
+          <span>Rut</span>
+          <%= address_form.text_field :run, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+        </div>
+      </div>
+
+      <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+        <div class="flex flex-1 flex-col gap-1.5">
+          <span>Teléfono</span>
+          <div class="flex flex-row">
+            <span class="rounded-l-lg py-3 px-4 min-h-[48px] bg-gray-50 border border-r-0 border-gray-300">+569</span>
+            <%= address_form.text_field :phone, class: 'flex-1 text-base bg-gray-50 border border-gray-300 rounded-r-lg py-3 px-4 min-h-[48px]', required: true %>
+          </div>
+        </div>
+
+        <div class="flex flex-1 flex-col gap-1.5">
+          <span>Email</span>
+          <%= address_form.text_field :email, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+        </div>
+      </div>
+
+      <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+        <div class="flex flex-1 flex-col gap-1.5">
+          <span>Calle</span>
+          <%= address_form.text_field :address1, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+        </div>
+      </div>
+
+      <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+        <div class="flex flex-1 flex-col gap-1.5">
+          <span>Numero</span>
+          <%= address_form.text_field :address1_number, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+        </div>
+
+        <div class="flex flex-1 flex-col gap-1.5">
+          <span>Oficina</span>
+          <%= address_form.text_field :address_number, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+        </div>
+      </div>
+
+      <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+        <div class="flex flex-1 flex-col gap-1.5">
+          <span>Región</span>
+          <%= address_form.collection_select :state_id, [], :id, :name, {}, { class: 'text-base bg-white border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true } %>
+        </div>
+
+        <div class="flex flex-1 flex-col gap-1.5">
+          <span>Comuna</span>
+          <%= address_form.collection_select :commune_id, [], :id, :name, {}, { class: 'text-base bg-white border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true } %>
+        </div>
+      </div>
+
+      <% unless @order.confirm? %>
+        <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
+          <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
+          <div id="address-next" class="w-full">
+            <%= render Common::Button::BaseComponent.new(
+              button_params: {
+                text: Spree.t(submit_label_key),
+                size: 'lg',
+                hierarchy: 'primary',
+                additional_styles: 'w-full'
+              })
+            %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </fieldset>
+</div>
+
+<div id="receiver_address_form" class="hidden item-cart-parent mx-auto p-3 maw-w-full max-h-full bg-white rounded-lg border border-gray-200 mb-[24px] shadow-sm font-medium text-left flex flex-col">
+  <fieldset disabled>
+    <%= fields_for "order[shipping_address_attributes]" do |address_form| %>
+    <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+      <div class="flex flex-1 flex-col gap-1.5">
+        <span>Test</span>
+        <%= address_form.text_field :firstname, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+      </div>
+
+      <div class="flex flex-1 flex-col gap-1.5">
+        <span>Rut</span>
+        <%= address_form.text_field :run, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+      </div>
+    </div>
+
+    <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+      <div class="flex flex-1 flex-col gap-1.5">
+        <span>Teléfono</span>
+        <div class="flex flex-row">
+          <span class="rounded-l-lg py-3 px-4 min-h-[48px] bg-gray-50 border border-r-0 border-gray-300">+569</span>
+          <%= address_form.text_field :phone, class: 'flex-1 text-base bg-gray-50 border border-gray-300 rounded-r-lg py-3 px-4 min-h-[48px]', required: true %>
+        </div>
+      </div>
+
+      <div class="flex flex-1 flex-col gap-1.5">
+        <span>Email</span>
+        <%= address_form.text_field :email, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+      </div>
+    </div>
+
+    <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+      <div class="flex flex-1 flex-col gap-1.5">
+        <span>Calle</span>
+        <%= address_form.text_field :address1, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+      </div>
+    </div>
+
+    <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+      <div class="flex flex-1 flex-col gap-1.5">
+        <span>Numero</span>
+        <%= address_form.text_field :address1_number, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+      </div>
+
+      <div class="flex flex-1 flex-col gap-1.5">
+        <span>Oficina</span>
+        <%= address_form.text_field :address_number, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+      </div>
+    </div>
+
+    <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+      <div class="flex flex-1 flex-col gap-1.5">
+        <span>Región</span>
+        <%= address_form.collection_select :state_id, [], :id, :name, {}, { class: 'text-base bg-white border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true } %>
+      </div>
+
+      <div class="flex flex-1 flex-col gap-1.5">
+        <span>Comuna</span>
+        <%= address_form.collection_select :commune_id, [], :id, :name, {}, { class: 'text-base bg-white border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true } %>
+      </div>
+    </div>
+
+    <% unless @order.confirm? %>
+      <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
+        <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
+        <div id="address-next" class="w-full">
+          <%= render Common::Button::BaseComponent.new(
+            button_params: {
+              text: Spree.t(submit_label_key),
+              size: 'lg',
+              hierarchy: 'primary',
+              additional_styles: 'w-full'
+            })
+          %>
+        </div>
+      </div>
+    <% end %>
+    <% end %>
+  </fieldset>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    toggleAddressStep('requester')
+
+    let button = document.querySelector('#address-next')
+    button.addEventListener("click", function(event) {
+      var form = document.getElementById("checkout_form_address");
+      if (form.checkValidity()) {
+        toggleAddressStep('receiver')
+        event.preventDefault()
+      }
+    });
+
+    function toggleAddressStep(step) {
+      var fieldset = document.querySelector("#requester_address_form fieldset");
+        fieldset.removeAttribute("disabled");
+
+      let requester_address_form_container = document.querySelector('#requester_address_form')
+      
+      let receiver_address_form_container = document.querySelector('#receiver_address_form')
+
+      // Hide all steps, disable fieldsets
+      requester_address_form_container.classList.add('hidden')
+      requester_address_form_container.querySelector('fieldset').disabled = true
+      receiver_address_form_container.classList.add('hidden')
+      receiver_address_form_container.querySelector('fieldset').disabled = true
+
+      // Show particular step
+      switch (step) {
+        case "requester":
+          requester_address_form_container.classList.toggle('hidden')
+          requester_address_form_container.querySelector('fieldset').disabled = false
+          break;
+        case "receiver":
+          receiver_address_form_container.classList.toggle('hidden')
+          receiver_address_form_container.querySelector('fieldset').disabled = false
+          break;
+        default:
+          break;
+      }
+    }
+  });
+</script>
