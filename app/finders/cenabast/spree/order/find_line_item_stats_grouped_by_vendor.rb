@@ -11,6 +11,8 @@ module Cenabast
         end
 
         def call
+          return unless order
+
           query.map do |record|
             {
               vendor_id: record.id,
