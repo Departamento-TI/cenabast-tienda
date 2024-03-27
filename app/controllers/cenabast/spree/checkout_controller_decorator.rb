@@ -13,8 +13,7 @@ module Cenabast
         invalid_order = stats_per_vendor.any? { |vendor| vendor[:valid_minimum_amount] == false }
 
         if invalid_order
-          @order.update(:state, :cart)
-          # flash.keep
+          @order.update(state: :cart)
           redirect_to spree.cart_path, alert: ::Spree.t(:invalid_amount_per_vendor)
         end
       end
