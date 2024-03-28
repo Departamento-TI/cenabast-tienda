@@ -83,7 +83,7 @@ def fetch_particular_contract_information(index, product_info, filtered_products
     general_data['error_count'] += 1
 
     # Add product to error list
-    general_data['error_products'].append(code_product)
+    general_data['error_products'].append(codigo_producto)
 
 # Build general purpose information dict
 def build_general_data(logger):
