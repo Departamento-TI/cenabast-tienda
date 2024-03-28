@@ -39,8 +39,11 @@ end
       </div>
 
       <div class="w-full flex flex-row gap-4">
-        <div class="w-[300px]">
-          <%= render Order::Checkout::StepsComponent.new %>
+        <div id="steps-component-container" class="w-[300px]">
+          <%= render Order::Checkout::StepsComponent.new(
+            state: @order.state,
+            address_substep: @order.address_substep
+          ) %>
         </div>
 
         <div class="flex-1">

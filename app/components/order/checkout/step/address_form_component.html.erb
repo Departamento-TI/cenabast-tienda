@@ -66,6 +66,7 @@
         <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
           <div id="address-next" class="w-full">
+            <%= link_to '', checkout_address_move_step_path(format: :js, address_substep: 1), remote: true, class: 'hidden' %>
             <%= render Common::Button::BaseComponent.new(
               button_params: {
                 text: Spree.t(submit_label_key),
@@ -162,45 +163,45 @@
 </div>
 
 <script>
+  function toggleAddressStep(step) {
+    var fieldset = document.querySelector("#requester_address_form fieldset");
+      fieldset.removeAttribute("disabled");
+
+    let requester_address_form_container = document.querySelector('#requester_address_form')
+    
+    let receiver_address_form_container = document.querySelector('#receiver_address_form')
+
+    // Hide all steps, disable fieldsets
+    requester_address_form_container.classList.add('hidden')
+    requester_address_form_container.querySelector('fieldset').disabled = true
+    receiver_address_form_container.classList.add('hidden')
+    receiver_address_form_container.querySelector('fieldset').disabled = true
+
+    // Show particular step
+    switch (step) {
+      case "requester":
+        requester_address_form_container.classList.toggle('hidden')
+        requester_address_form_container.querySelector('fieldset').disabled = false
+        break;
+      case "receiver":
+        receiver_address_form_container.classList.toggle('hidden')
+        receiver_address_form_container.querySelector('fieldset').disabled = false
+        break;
+      default:
+        break;
+    }
+  }
+
   window.addEventListener('DOMContentLoaded', function() {
-    toggleAddressStep('requester')
+    toggleAddressStep("<%= @order.address_substep == 0 ? 'requester' : 'receiver' %>")
 
     let button = document.querySelector('#address-next')
     button.addEventListener("click", function(event) {
       var form = document.getElementById("checkout_form_address");
       if (form.checkValidity()) {
-        toggleAddressStep('receiver')
+        button.querySelector('a').click()
         event.preventDefault()
       }
     });
-
-    function toggleAddressStep(step) {
-      var fieldset = document.querySelector("#requester_address_form fieldset");
-        fieldset.removeAttribute("disabled");
-
-      let requester_address_form_container = document.querySelector('#requester_address_form')
-      
-      let receiver_address_form_container = document.querySelector('#receiver_address_form')
-
-      // Hide all steps, disable fieldsets
-      requester_address_form_container.classList.add('hidden')
-      requester_address_form_container.querySelector('fieldset').disabled = true
-      receiver_address_form_container.classList.add('hidden')
-      receiver_address_form_container.querySelector('fieldset').disabled = true
-
-      // Show particular step
-      switch (step) {
-        case "requester":
-          requester_address_form_container.classList.toggle('hidden')
-          requester_address_form_container.querySelector('fieldset').disabled = false
-          break;
-        case "receiver":
-          receiver_address_form_container.classList.toggle('hidden')
-          receiver_address_form_container.querySelector('fieldset').disabled = false
-          break;
-        default:
-          break;
-      }
-    }
   });
 </script>

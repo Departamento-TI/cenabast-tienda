@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   end
   mount Sidekiq::Web, at: '/sidekiq'
 
+  get '/checkout/address/move_step', to: 'spree/checkout#address_move_step', as: :checkout_address_move_step
+
   # User preferences
   post 'user_preferences/toggle_requester/:option_id',
     to: 'cenabast/spree/user_preferences#toggle_requester',
