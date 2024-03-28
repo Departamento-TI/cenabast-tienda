@@ -22,6 +22,8 @@ def transform(data, *args, **kwargs):
     logger.info(data)
     current_date = datetime.now()
     for product in data:
+        if product.get('contracts', None) == None:
+            product['contracts'] = []
         if 'contracts' in product:
             valid_contracts = filter_valid_contracts(product['contracts'], current_date, logger)
             product['contracts'] = valid_contracts
