@@ -47,4 +47,28 @@ RSpec.describe Cenabast::Spree::UserPreferencesController, type: :request do
       expect(response).to redirect_to('/fallback_location')
     end
   end
+
+  describe 'POST #toggle_receiver' do
+    let(:user) { create(:user) }
+    let(:receivers) { create_list(:receiver, 3) }
+
+    before do
+      act_as_logged_in(user)
+      allow(controller).to receive(:spree_current_user).and_return(user)
+      allow(controller).to receive(:current_order).with(create_order_if_necessary: true).
+        and_return(double('Order'))
+    end
+
+    it 'toggles the receiver for the current user' do
+      user.receivers << receivers
+      user.current_receiver = user.receivers.sample
+      user.save
+      other_receiver = (receivers - [user.current_receiver]).sample
+
+      post toggle_receiver_path(option_id: other_receiver.id)
+
+      expect(user.reload.current_receiver).to eq(other_receiver)
+      expect(response).to redirect_to(spree.root_path)
+    end
+  end
 end

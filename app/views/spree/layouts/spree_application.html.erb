@@ -22,5 +22,13 @@
 
     <%= render partial: 'spree/shared/footer' %>
     <%= render 'spree/shared/translations' %>
+
+    <!-- Check if toogle_receiver is active to permit re.execute token fetching -->
+    <% if cookies[:toggle_receiver] %>
+      <script>
+        Spree.apiTokensFetched = <%= !cookies[:toggle_receiver] %>
+      </script>
+      <% cookies.delete :toggle_receiver %>
+    <% end %>
   </body>
 </html>

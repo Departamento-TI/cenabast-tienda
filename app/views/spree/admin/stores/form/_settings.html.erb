@@ -1,0 +1,32 @@
+<div class="card mb-4">
+  <div class="card-header">
+    <h5 class="card-title mb-0 h6">
+      <%= Spree.t('admin.store_settings.general_settings') %>
+    </h5>
+  </div>
+  <div class="card-body">
+    <div class="row pb-0">
+      <div class="col-12 col-md-4">
+        <%= f.field_container :limit_cart_amount_utm do %>
+          <%= f.label :limit_cart_amount_utm, (raw Spree.t('admin.store_settings.limit_cart_amount_utm.label') + required_span_tag) %>
+          <%= f.text_field :limit_cart_amount_utm, class: 'form-control', required: true %>
+          <%= f.error_message_on :limit_cart_amount_utm %>
+        <% end %>
+        <small class="form-text text-muted">
+          <%= Spree.t('admin.store_settings.limit_cart_amount_utm.info') %>
+        </small>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <%= f.field_container :current_utm_value do %>
+          <%= f.label :current_utm_value, (raw Spree.t('admin.store_settings.current_utm_value.label') + required_span_tag) %>
+          <%= f.text_field :current_utm_value, class: 'form-control', required: true %>
+          <%= f.error_message_on :current_utm_value %>
+        <% end %>
+        <small class="form-text text-muted">
+          <%= Spree.t('admin.store_settings.current_utm_value.info') %>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>

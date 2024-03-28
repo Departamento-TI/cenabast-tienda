@@ -9,6 +9,13 @@ class Order::Cart::SummaryComponent < ApplicationComponent
     super
     @total = total
     @stats_per_vendor = stats_per_vendor || []
+
+    # allow to enable/disable form button
+    @valid_order_amounts = true
+  end
+
+  def disabled_button?
+    !@valid_order_amounts
   end
 
   private

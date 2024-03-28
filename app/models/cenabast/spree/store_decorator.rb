@@ -15,6 +15,12 @@ module Cenabast
         class << base
           prepend ClassMethods
         end
+
+        base.typed_store :settings, coder: ActiveRecord::TypedStore::IdentityCoder do |s|
+          # Cenabast per vendor cart amount limitation
+          s.integer :limit_cart_amount_utm, default: 4, null: false
+          s.float   :current_utm_value, default: 64_793, null: false
+        end
       end
     end
   end

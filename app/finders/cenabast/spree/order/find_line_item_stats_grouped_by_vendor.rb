@@ -15,7 +15,8 @@ module Cenabast
             {
               vendor_id: record.id,
               vendor_name: record.name,
-              subtotal: record.subtotal
+              subtotal: record.subtotal,
+              valid_minimum_amount: validate_minimum(record.subtotal)
             }
           end
         end
@@ -39,6 +40,11 @@ module Cenabast
             reorder('').
             group('spree_variants.vendor_id, spree_vendors.name').
             select('SUM(spree_line_items.price * spree_line_items.quantity) as subtotal, spree_vendors.name as name, spree_variants.vendor_id as id')
+        end
+
+        def validate_minimum(subtotal)
+          store = order.store
+          subtotal >= store.limit_cart_amount_utm * store.current_utm_value
         end
       end
     end

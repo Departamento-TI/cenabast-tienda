@@ -7,13 +7,14 @@ class Common::Button::BaseComponent < ApplicationComponent
   # =>  @param hierarchy select { choices: [primary, secondary_color, secondary_gray, tertiary_color, tertiary_gray, link_color, link_gray] }
   # =>  @param destructive toggle
   # =>  @param additional_styles text
-  def initialize(button_params:)
+  def initialize(button_params:, disabled: false)
     super
     @text = button_params[:text]
     @hierarchy = button_params[:hierarchy]
     @size = button_params[:size] || 'md'
     @destructive = button_params[:destructive]
     @additional_styles = button_params[:additional_styles]
+    @disabled = disabled
   end
 
   private

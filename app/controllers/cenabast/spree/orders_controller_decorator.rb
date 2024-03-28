@@ -6,6 +6,12 @@ module Cenabast
         base.before_action :set_stats_per_vendor, only: [:edit, :update]
       end
 
+      # Shows the current incomplete order from the session
+      # it will be created if isn't exists
+      def edit
+        @order = current_order(create_order_if_necessary: true)
+      end
+
       private
 
       def set_stats_per_vendor
@@ -15,8 +21,8 @@ module Cenabast
   end
 end
 
-def not_included
+def decorator_excluded?
   Spree::OrdersController.included_modules.exclude?(Cenabast::Spree::OrdersControllerDecorator)
 end
 
-Spree::OrdersController.prepend Cenabast::Spree::OrdersControllerDecorator if not_included
+Spree::OrdersController.prepend(Cenabast::Spree::OrdersControllerDecorator) if decorator_excluded?

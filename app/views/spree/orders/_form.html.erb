@@ -23,7 +23,7 @@
     ) %>
   </div>
 
-  <div class="w-[300px]">
+  <div class="w-[300px] p-2">
     <%= render Order::Cart::SummaryComponent.new(
       total: order_form.object.total,
       stats_per_vendor: @stats_per_vendor

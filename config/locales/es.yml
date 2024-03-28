@@ -15,6 +15,8 @@ es:
     no_laboratory: 'Sin Laboratorio'
     send_order: 'Enviar orden'
     order_total: 'Total de la orden'
+    minimum_amount_required: "Para procesar esta orden, el monto mínimo total por proveedor debe ser igual o superior a %{minimum_value} UTM. Asegúrate de cumplir con este requisito antes de finalizar la compra."
+    invalid_amount_per_vendor: 'La orden no cumple con el monto mínimo requerido por proveedor.'
     cart_summary: 'Resumen de tu carrito'
     articles_selected:
       one: "%{count} artículo en total"
