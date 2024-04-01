@@ -30,8 +30,20 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    attributes:
+      spree/county:
+        name: Name
+    models:
+      spree/county:
+        one: County
+        other: Counties
   hello: "Hello world"
   spree:
+    counties: "Counties"
+    county: "County"
+    new_county: "New county"
+    county_based: "County based"
     name_unknwown: 'Name Unknown'
     login_success: 'Successful site access'
     error_contacting_cenabast_services: 'Error contacting Cenabast services. Please try again later.'

@@ -1,0 +1,24 @@
+<div id="new_county" data-hook></div>
+
+<table class="table" id='listing_counties' data-hook>
+  <thead>
+    <tr data-hook="counties_header">
+      <th><%= Spree.t(:name) %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @counties.each do |county| %>
+      <tr id="<%= spree_dom_id county %>" data-hook="counties_row">
+        <td><%= county.name %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit(county, :no_text => true) if can? :edit, county %>
+          <%= link_to_delete(county, :no_text => true) if can? :delete, county %>
+        </td>
+      </tr>
+    <% end %>
+    <% if @counties.empty? %>
+      <tr><td colspan="3"><%= Spree.t(:none) %></td></tr>
+    <% end %>
+  </tbody>
+</table>

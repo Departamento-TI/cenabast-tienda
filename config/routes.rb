@@ -33,8 +33,16 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: '/letter_opener'
   end
 
+  namespace :admin do
+    resources :counties
+  end
+
   namespace :api, defaults: { format: 'json' } do
     namespace :v2 do
+      namespace :storefront do
+        resources :counties, only: [:index, :show], controller: '/cenabast/spree/api/v2/storefront/counties'
+      end
+
       namespace :platform do
         resources :generic_products, controller: '/cenabast/spree/api/v2/platform/generic_products'
         resources :contracts, controller: '/cenabast/spree/api/v2/platform/contracts'

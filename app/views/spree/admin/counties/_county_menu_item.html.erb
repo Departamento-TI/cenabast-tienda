@@ -1,0 +1,5 @@
+<% country = Spree::Country.find_by_id(Spree::Config[:default_country_id]) || Spree::Country.first %>
+
+<% if state = country.states.first || Spree::State.first %>
+  <%= configurations_sidebar_menu_item(Spree.t(:counties), spree.admin_state_counties_path(state)) if can? :manage, Spree::State %>
+<% end %>

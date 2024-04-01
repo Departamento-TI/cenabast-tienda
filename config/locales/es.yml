@@ -1,5 +1,17 @@
 es:
+  activerecord:
+    attributes:
+      spree/county:
+        name: Nombre
+    models:
+      spree/county:
+        one: Comuna.
+        other: Comunas
   spree:
+    counties: "Comunas"
+    county: "Comuna"
+    new_county: "Nueva comuna"
+    county_based: "Basado en Comuna"
     login: 'Inicio de sesión'
     login_success: 'Acceso al sitio exitoso'
     error_contacting_cenabast_services: 'Error contactando servicios de cenabast. Por favor intente mas tarde.'
