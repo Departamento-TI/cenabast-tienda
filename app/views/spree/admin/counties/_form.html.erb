@@ -1,0 +1,15 @@
+<div data-hook="admin_county_form_fields" class="row">
+  <div class="col-md-6">
+    <%= f.field_container :name, class: ['form-group'] do %>
+      <%= f.label :name, Spree.t(:name) %>
+      <%= f.text_field :name, :class => 'form-control' %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= f.field_container :state, class: ['form-group'] do %>
+      <%= f.label :state_id, Spree.t(:state) %>
+      <%= f.collection_select(:state_id, @states, :id, :name, { include_blank: Spree.t('match_choices.none') }, { class: 'select2', disabled: (cannot? :edit, Spree::State) }) %>
+      <%= f.error_message_on :state %>
+    <% end %>
+  </div>
+</div>

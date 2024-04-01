@@ -7,7 +7,7 @@ module Cenabast
           extend ActiveSupport::Concern
 
           def self.included(base)
-            serializer_base_name = base.to_s.sub(/^Cenabast::Spree::Api::V2::Platform::/, '').sub(/Serializer$/, '')
+            serializer_base_name = base.to_s.sub(/^Cenabast::Spree::Api::V2::\w*::/, '').sub(/Serializer$/, '')
             model_klazz = get_klazz_instance(serializer_base_name)
 
             base.set_type model_klazz.json_api_type
