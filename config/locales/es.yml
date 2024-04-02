@@ -22,6 +22,7 @@ es:
     name_requester: 'Nombre Solicitante'
     street: 'Calle'
     rut: "Rut"
+    invalid_rut: "Rut Invalido"
     office: 'Oficina'
     region: 'Región'
     counties: "Comunas"

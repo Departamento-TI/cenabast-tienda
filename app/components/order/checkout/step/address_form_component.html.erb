@@ -11,9 +11,14 @@
             <%= address_form.text_field :firstname, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
 
-          <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:rut) %></span>
-            <%= address_form.text_field :run, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+          <div class="run-input-container flex flex-1 flex-col gap-1.5">
+            <div class="flex flex-row gap-1.5">
+              <div><%= Spree.t(:rut) %></div>
+              <div class="run-label-error text-red-400 font-semibold hidden">
+                <%= Spree.t(:invalid_rut) %>
+              </div>
+            </div>
+            <%= address_form.text_field :run, class: 'run-field text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
@@ -105,9 +110,14 @@
             <%= address_form.text_field :firstname, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
 
-          <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:rut) %></span>
-            <%= address_form.text_field :run, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+          <div class="run-input-container flex flex-1 flex-col gap-1.5">
+            <div class="flex flex-row gap-1.5">
+              <div><%= Spree.t(:rut) %></div>
+              <div class="run-label-error text-red-400 font-semibold hidden">
+                <%= Spree.t(:invalid_rut) %>
+              </div>
+            </div>
+            <%= address_form.text_field :run, class: 'run-field text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
@@ -230,7 +240,6 @@
 
         // Add listener
         stateSelect.addEventListener('change', function() {
-          console.log('AA')
           let countySelect = this.parentNode.parentNode.querySelector('.county-select')
           countySelect.disabled = true
           countySelect.innerHTML = '<option value="">Cargando...</option>';
@@ -262,22 +271,79 @@
     });
   }
 
+  function validateForm(form) {
+    let runInputContainer = document.querySelector('fieldset:not([disabled]) .run-input-container')
+    return form.checkValidity() && validateRunInput(runInputContainer)
+  }
+
   function initializeAddressFormComponent() {
     toggleAddressStep("<%= @order.address_substep == 0 ? 'requester' : 'receiver' %>")
 
-    let buttons = document.querySelectorAll('.address-next')
+    let buttons = document.querySelectorAll('.address-next button')
 
     buttons.forEach((button) => {
       button.addEventListener("click", function(event) {
+        event.preventDefault()
         var form = document.getElementById("checkout_form_address");
-        if (form.checkValidity()) {
+        if (validateForm(form)) {
           // Enable all fieldsets, to send all info
           document.querySelectorAll('fieldset').forEach((fieldset) => { fieldset.disabled = false; })
-          button.querySelector('a').click()
-          event.preventDefault()
+          let link = button.parentNode.querySelector('a')
+          if (link) {
+            link.click()
+          }
+          else {
+            form.submit()
+          }
+          // Disable button to prevent reclicking, add feedback
+          button.disabled = true
+          button.querySelector('[data-role="button-spinner"]').classList.remove('hidden')
         }
       });
     });
+  }
+
+  function validateRunInput(runInputContainer) {
+    let runField = runInputContainer.querySelector('.run-field')
+    let runLabelError = runInputContainer.querySelector('.run-label-error')
+
+    let run = runField.value
+
+    if(validateRun(run)) {
+      runLabelError.classList.add('hidden')
+      return true
+    }
+    else {
+      runLabelError.classList.remove('hidden')
+      return false
+    }
+  }
+
+  function validateRun(run) {
+    const rawRun = run.replace(/[^0-9kK]/g, '');
+
+    // Length should be at least 3
+    if (rawRun.length < 2) return false;
+
+    const body = rawRun.slice(0, -1);
+    const dv = rawRun.slice(-1).toUpperCase();
+
+    // Body must be numerical
+    if (!body.replace(/[^0-9]/g, '')) return false;
+
+    const calculatedDv = calcularDV(body);
+
+    return calculatedDv == dv;
+  }
+
+  function calcularDV(bodyRUT) {
+    let sum = 1;
+    let multiple = 0;
+
+    for (; bodyRUT; bodyRUT = Math.floor(bodyRUT / 10))
+      sum = (sum + (bodyRUT % 10) * (9 - (multiple++ % 6))) % 11;
+
+    return sum ? sum - 1 : 'K';
   }
 
   document.addEventListener("turbo:load", function() {
