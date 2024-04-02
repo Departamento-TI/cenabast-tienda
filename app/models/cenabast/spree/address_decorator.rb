@@ -3,6 +3,17 @@ module Cenabast
     module AddressDecorator
       def self.prepended(base)
         base.include Cenabast::Spree::HasCounty
+        base.include Cenabast::Spree::HasRun
+        base.before_validation :adjust_missing_fields
+      end
+
+      private
+
+      def adjust_missing_fields
+        # Spree has validators for those two fields
+        # Place some filler values if needed
+        self.lastname ||= '--'
+        self.city ||= county&.name
       end
     end
   end

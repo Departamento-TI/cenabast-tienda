@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_01_181602) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_02_184628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -186,6 +186,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_01_181602) do
     t.jsonb "public_metadata"
     t.jsonb "private_metadata"
     t.bigint "county_id"
+    t.string "office"
+    t.string "address1_number"
+    t.string "run"
+    t.string "email"
     t.index ["country_id"], name: "index_spree_addresses_on_country_id"
     t.index ["county_id"], name: "index_spree_addresses_on_county_id"
     t.index ["deleted_at"], name: "index_spree_addresses_on_deleted_at"
