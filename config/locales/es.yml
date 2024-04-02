@@ -1,13 +1,29 @@
 es:
+  errors:
+    attributes:
+      run:
+        invalid: "no es un RUT válido"
   activerecord:
     attributes:
+      spree/address:
+        run: RUT
       spree/county:
         name: Nombre
     models:
       spree/county:
         one: Comuna.
         other: Comunas
+      spree/address:
+        one: Direccion.
+        other: Direcciones
+      
   spree:
+    name_receiver: 'Nombre Destinatario'
+    name_requester: 'Nombre Solicitante'
+    street: 'Calle'
+    rut: "Rut"
+    office: 'Oficina'
+    region: 'Región'
     counties: "Comunas"
     county: "Comuna"
     new_county: "Nueva comuna"

@@ -4,21 +4,22 @@
   <div id="requester_address_form" class="absolute left-0 right-0 transition-opacity item-cart-parent mx-auto p-3 maw-w-full max-h-full bg-white rounded-lg border border-gray-200 mb-[24px] shadow-sm font-medium text-left flex flex-col">
     <fieldset disabled>
       <%= fields_for "order[bill_address_attributes]" do |address_form| %>
+        <%= hidden_field_tag 'order[bill_address_attributes][country_id]', default_country.id  %>
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span>Nombre Solicitante</span>
+            <span><%= Spree.t(:name_requester) %></span>
             <%= address_form.text_field :firstname, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span>Rut</span>
+            <span><%= Spree.t(:rut) %></span>
             <%= address_form.text_field :run, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span>Teléfono</span>
+            <span><%= Spree.t(:phone) %></span>
             <div class="flex flex-row">
               <span class="rounded-l-lg py-3 px-4 min-h-[48px] bg-gray-50 border border-r-0 border-gray-300">+569</span>
               <%= address_form.text_field :phone, class: 'flex-1 text-base bg-gray-50 border border-gray-300 rounded-r-lg py-3 px-4 min-h-[48px]', required: true %>
@@ -26,58 +27,58 @@
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span>Email</span>
+            <span><%= Spree.t(:email) %></span>
             <%= address_form.text_field :email, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span>Calle</span>
+            <span><%= Spree.t(:street) %></span>
             <%= address_form.text_field :address1, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span>Numero</span>
+            <span><%= Spree.t(:number) %></span>
             <%= address_form.text_field :address1_number, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span>Oficina</span>
-            <%= address_form.text_field :address_number, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+            <span><%= Spree.t(:office) %></span>
+            <%= address_form.text_field :office, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span>Región</span>
+            <span><%= Spree.t(:region) %></span>
 
             <%== address_form.collection_select(:state_id, states,
                                   :id, :name,
                                   { include_blank: true },
-                                  { class: 'state-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]',
+                                  { class: 'state-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 min-h-[48px]',
                                   required: true,
                                   disabled: false}) %>
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span>Comuna</span>
+            <span><%= Spree.t(:county) %></span>
 
             <%== address_form.collection_select(:county_id, [],
                                   :id, :name,
                                   { include_blank: true },
-                                  { class: 'county-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]',
+                                  { class: 'county-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 min-h-[48px]',
                                   required: true,
-                                  disabled: false}) %>
+                                  disabled: true }) %>
           </div>
         </div>
 
         <% unless @order.confirm? %>
           <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
             <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
-            <div id="address-next" class="w-full">
+            <div class="address-next w-full">
               <%= link_to '', checkout_address_move_step_path(format: :js, address_substep: 1), remote: true, class: 'hidden' %>
               <%= render Common::Button::BaseComponent.new(
                 button_params: {
@@ -96,80 +97,93 @@
 
   <div id="receiver_address_form" class="absolute left-0 right-0 transition-opacity opacity-0 item-cart-parent mx-auto p-3 maw-w-full max-h-full bg-white rounded-lg border border-gray-200 mb-[24px] shadow-sm font-medium text-left flex flex-col">
     <fieldset disabled>
-      <%= fields_for "order[shipping_address_attributes]" do |address_form| %>
-      <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
-        <div class="flex flex-1 flex-col gap-1.5">
-          <span>Test</span>
-          <%= address_form.text_field :firstname, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
-        </div>
+      <%= fields_for "order[ship_address_attributes]" do |address_form| %>
+        <%= hidden_field_tag 'order[ship_address_attributes][country_id]', default_country.id  %>
+        <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+          <div class="flex flex-1 flex-col gap-1.5">
+            <span><%= Spree.t(:name_receiver) %></span>
+            <%= address_form.text_field :firstname, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+          </div>
 
-        <div class="flex flex-1 flex-col gap-1.5">
-          <span>Rut</span>
-          <%= address_form.text_field :run, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
-        </div>
-      </div>
-
-      <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
-        <div class="flex flex-1 flex-col gap-1.5">
-          <span>Teléfono</span>
-          <div class="flex flex-row">
-            <span class="rounded-l-lg py-3 px-4 min-h-[48px] bg-gray-50 border border-r-0 border-gray-300">+569</span>
-            <%= address_form.text_field :phone, class: 'flex-1 text-base bg-gray-50 border border-gray-300 rounded-r-lg py-3 px-4 min-h-[48px]', required: true %>
+          <div class="flex flex-1 flex-col gap-1.5">
+            <span><%= Spree.t(:rut) %></span>
+            <%= address_form.text_field :run, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
-        <div class="flex flex-1 flex-col gap-1.5">
-          <span>Email</span>
-          <%= address_form.text_field :email, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
-        </div>
-      </div>
+        <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+          <div class="flex flex-1 flex-col gap-1.5">
+            <span><%= Spree.t(:phone) %></span>
+            <div class="flex flex-row">
+              <span class="rounded-l-lg py-3 px-4 min-h-[48px] bg-gray-50 border border-r-0 border-gray-300">+569</span>
+              <%= address_form.text_field :phone, class: 'flex-1 text-base bg-gray-50 border border-gray-300 rounded-r-lg py-3 px-4 min-h-[48px]', required: true %>
+            </div>
+          </div>
 
-      <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
-        <div class="flex flex-1 flex-col gap-1.5">
-          <span>Calle</span>
-          <%= address_form.text_field :address1, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
-        </div>
-      </div>
-
-      <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
-        <div class="flex flex-1 flex-col gap-1.5">
-          <span>Numero</span>
-          <%= address_form.text_field :address1_number, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
-        </div>
-
-        <div class="flex flex-1 flex-col gap-1.5">
-          <span>Oficina</span>
-          <%= address_form.text_field :address_number, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
-        </div>
-      </div>
-
-      <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
-        <div class="flex flex-1 flex-col gap-1.5">
-          <span>Región</span>
-          <%= address_form.collection_select :state_id, [], :id, :name, {}, { class: 'text-base bg-white border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true } %>
-        </div>
-
-        <div class="flex flex-1 flex-col gap-1.5">
-          <span>Comuna</span>
-          <%= address_form.collection_select :commune_id, [], :id, :name, {}, { class: 'text-base bg-white border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true } %>
-        </div>
-      </div>
-
-      <% unless @order.confirm? %>
-        <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
-          <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
-          <div id="address-next" class="w-full">
-            <%= render Common::Button::BaseComponent.new(
-              button_params: {
-                text: Spree.t(submit_label_key),
-                size: 'lg',
-                hierarchy: 'primary',
-                additional_styles: 'w-full'
-              })
-            %>
+          <div class="flex flex-1 flex-col gap-1.5">
+            <span><%= Spree.t(:email) %></span>
+            <%= address_form.text_field :email, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
-      <% end %>
+
+        <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+          <div class="flex flex-1 flex-col gap-1.5">
+            <span><%= Spree.t(:street) %></span>
+            <%= address_form.text_field :address1, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+          </div>
+        </div>
+
+        <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+          <div class="flex flex-1 flex-col gap-1.5">
+            <span><%= Spree.t(:number) %></span>
+            <%= address_form.text_field :address1_number, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+          </div>
+
+          <div class="flex flex-1 flex-col gap-1.5">
+            <span><%= Spree.t(:office) %></span>
+            <%= address_form.text_field :office, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+          </div>
+        </div>
+
+        <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
+          <div class="flex flex-1 flex-col gap-1.5">
+            <span><%= Spree.t(:region) %></span>
+
+            <%== address_form.collection_select(:state_id, states,
+                                  :id, :name,
+                                  { include_blank: true },
+                                  { class: 'state-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 min-h-[48px]',
+                                  required: true,
+                                  disabled: false}) %>
+          </div>
+
+          <div class="flex flex-1 flex-col gap-1.5">
+            <span><%= Spree.t(:county) %></span>
+
+            <%== address_form.collection_select(:county_id, [],
+                                  :id, :name,
+                                  { include_blank: true },
+                                  { class: 'county-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 min-h-[48px]',
+                                  required: true,
+                                  disabled: true }) %>
+          </div>
+        </div>
+
+        <% unless @order.confirm? %>
+          <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
+            <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
+            <div class="address-next w-full">
+              <%= render Common::Button::BaseComponent.new(
+                button_params: {
+                  text: Spree.t(submit_label_key),
+                  size: 'lg',
+                  hierarchy: 'primary',
+                  additional_styles: 'w-full'
+                })
+              %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </fieldset>
   </div>
@@ -177,9 +191,6 @@
 
 <script>
   function toggleAddressStep(step) {
-    var fieldset = document.querySelector("#requester_address_form fieldset");
-      fieldset.removeAttribute("disabled");
-
     let requester_address_form_container = document.querySelector('#requester_address_form')
     
     let receiver_address_form_container = document.querySelector('#receiver_address_form')
@@ -210,33 +221,43 @@
   }
 
   function bindStateSelectCallbacks() {
-    let stateSelect = document.querySelector('.state-select')
+    let stateSelects = document.querySelectorAll('.state-select')
 
-    stateSelect.addEventListener('change', function() {
-      debugger
-      let countySelect = this.parentNode.parentNode.querySelector('.county-select')
-      let stateId = stateSelect.value;
-      if (stateId) {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', '/api/v2/storefront/counties?filter[state_id_eq]=' + stateId, true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            let response = JSON.parse(xhr.responseText);
-            debugger;
-            let counties = response.data
+    stateSelects.forEach((stateSelect) => {
+      if (!stateSelect.hasAttribute('data-event-listener')) {
+        // Add a custom attribute to mark that the event listener has been added
+        stateSelect.setAttribute('data-event-listener', 'added')
+
+        // Add listener
+        stateSelect.addEventListener('change', function() {
+          console.log('AA')
+          let countySelect = this.parentNode.parentNode.querySelector('.county-select')
+          countySelect.disabled = true
+          countySelect.innerHTML = '<option value="">Cargando...</option>';
+          let stateId = stateSelect.value;
+          if (stateId) {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', '/api/v2/storefront/counties?filter[state_id_eq]=' + stateId, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+              if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                let response = JSON.parse(xhr.responseText);
+                let counties = response.data
+                countySelect.disabled = false
+                countySelect.innerHTML = '<option value="">Selecciona una comuna</option>';
+                counties.forEach(function(county) {
+                  let option = document.createElement('option');
+                  option.text = county.attributes.name;
+                  option.value = county.id;
+                  countySelect.add(option);
+                });
+              }
+            };
+            xhr.send();
+          } else {
             countySelect.innerHTML = '<option value="">Select a county</option>';
-            counties.forEach(function(county) {
-              let option = document.createElement('option');
-              option.text = county.attributes.name;
-              option.value = county.id;
-              countySelect.add(option);
-            });
           }
-        };
-        xhr.send();
-      } else {
-        countySelect.innerHTML = '<option value="">Select a county</option>';
+        });
       }
     });
   }
@@ -244,13 +265,18 @@
   function initializeAddressFormComponent() {
     toggleAddressStep("<%= @order.address_substep == 0 ? 'requester' : 'receiver' %>")
 
-    let button = document.querySelector('#address-next')
-    button.addEventListener("click", function(event) {
-      var form = document.getElementById("checkout_form_address");
-      if (form.checkValidity()) {
-        button.querySelector('a').click()
-        event.preventDefault()
-      }
+    let buttons = document.querySelectorAll('.address-next')
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", function(event) {
+        var form = document.getElementById("checkout_form_address");
+        if (form.checkValidity()) {
+          // Enable all fieldsets, to send all info
+          document.querySelectorAll('fieldset').forEach((fieldset) => { fieldset.disabled = false; })
+          button.querySelector('a').click()
+          event.preventDefault()
+        }
+      });
     });
   }
 

@@ -16,6 +16,10 @@ class Order::Checkout::Step::AddressFormComponent < ApplicationComponent
     @address ||= Spree::Address.new(country: helpers.current_store.default_country)
   end
 
+  def default_country
+    helpers.current_store.default_country
+  end
+
   def states
     @states ||= address.country.states
   end
