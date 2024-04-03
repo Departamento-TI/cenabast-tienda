@@ -23,4 +23,10 @@ class Order::Checkout::Step::AddressFormComponent < ApplicationComponent
   def states
     @states ||= address.country.states
   end
+
+  def counties_for_address(address)
+    return [] unless (state = address&.state)
+
+    state&.counties
+  end
 end

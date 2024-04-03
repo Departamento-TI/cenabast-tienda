@@ -2,11 +2,11 @@
 
 class Order::Checkout::StepsComponent < ApplicationComponent
   # @param state text
-  # @param address_substep select { choices: [0, 1] }
-  def initialize(state:, address_substep:)
+  # @param order_substep select { choices: [0, 1] }
+  def initialize(state:, order_substep:)
     super
     @state = state
-    @address_substep = address_substep.to_i
+    @order_substep = order_substep.to_i
   end
 
   private
@@ -22,12 +22,12 @@ class Order::Checkout::StepsComponent < ApplicationComponent
   def current_segment
     case @state
     when 'address'
-      return 1 if @address_substep.zero?
+      return 1 if @order_substep.zero?
 
       2
     when 'delivery'
-      3
-    when 'payment'
+      return 3 if @order_substep.zero?
+
       4
     else
       # Something went wrong??
