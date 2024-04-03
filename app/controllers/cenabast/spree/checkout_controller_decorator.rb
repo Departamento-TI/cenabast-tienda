@@ -10,7 +10,14 @@ module Cenabast
         check_minimum_purchase_per_vendor
 
         # rubocop:disable Rails/SkipsModelValidations
-        @order.update_column(:address_substep, 0)
+        @order.update_column(:order_substep, 0)
+        # rubocop:enable Rails/SkipsModelValidations
+        super
+      end
+
+      def before_delivery
+        # rubocop:disable Rails/SkipsModelValidations
+        @order.update_column(:order_substep, 0)
         # rubocop:enable Rails/SkipsModelValidations
         super
       end
@@ -40,12 +47,12 @@ module Cenabast
       end
 
       # Allows us the "substeps" of the address step
-      def address_move_step
-        return unless @order && @order.state == 'address'
-        return unless [0, 1].include? params[:address_substep].to_i
+      def move_substep
+        return unless @order
+        return unless [0, 1].include? params[:order_substep].to_i
 
         # rubocop:disable Rails/SkipsModelValidations
-        @order.update_column(:address_substep, params[:address_substep].to_i)
+        @order.update_column(:order_substep, params[:order_substep].to_i)
         # rubocop:enable Rails/SkipsModelValidations
 
         respond_to do |format|

@@ -11,6 +11,11 @@ module Cenabast
         injector = Cenabast::Spree::Erp::InjectorFactory.create_injector
         injector.send_order self
       end
+
+      # There's currently not payment step in Cenabast checkout, skip it.
+      def payment_required?
+        false
+      end
     end
   end
 end

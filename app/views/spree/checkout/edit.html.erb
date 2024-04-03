@@ -37,7 +37,7 @@ end
         <div id="steps-component-container" class="w-[300px]">
           <%= render Order::Checkout::StepsComponent.new(
             state: @order.state,
-            address_substep: @order.address_substep
+            order_substep: @order.order_substep
           ) %>
         </div>
 

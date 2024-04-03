@@ -1,9 +1,9 @@
 <%= hidden_field_tag 'save_user_address', true, data: { hook: "save_user_address" } %>
 
 <div class="w-full h-[800px] relative">
-  <div id="requester_address_form" class="absolute left-0 right-0 transition-opacity item-cart-parent mx-auto p-3 maw-w-full max-h-full bg-white rounded-lg border border-gray-200 mb-[24px] shadow-sm font-medium text-left flex flex-col">
+  <div id="requester_address_form" class="absolute left-0 right-0 transition-opacity mx-auto p-3 max-w-full max-h-full bg-white rounded-lg border border-gray-200 mb-[24px] shadow-sm font-medium text-left flex flex-col">
     <fieldset disabled>
-      <%= fields_for "order[bill_address_attributes]" do |address_form| %>
+      <%= fields_for "order[bill_address_attributes]", @order.bill_address do |address_form| %>
         <%= hidden_field_tag 'order[bill_address_attributes][country_id]', default_country.id  %>
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
@@ -62,7 +62,7 @@
 
             <%== address_form.collection_select(:state_id, states,
                                   :id, :name,
-                                  { include_blank: true },
+                                  { include_blank: Spree.t(:select_a_state) },
                                   { class: 'state-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 min-h-[48px]',
                                   required: true,
                                   disabled: false}) %>
@@ -71,12 +71,12 @@
           <div class="flex flex-1 flex-col gap-1.5">
             <span><%= Spree.t(:county) %></span>
 
-            <%== address_form.collection_select(:county_id, [],
+            <%== address_form.collection_select(:county_id, counties_for_address(@order&.bill_address),
                                   :id, :name,
-                                  { include_blank: true },
+                                  { include_blank: Spree.t(:select_a_county) },
                                   { class: 'county-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 min-h-[48px]',
                                   required: true,
-                                  disabled: true }) %>
+                                  disabled: (!@order&.bill_address&.county) }) %>
           </div>
         </div>
 
@@ -84,7 +84,7 @@
           <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
             <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
             <div class="address-next w-full">
-              <%= link_to '', checkout_address_move_step_path(format: :js, address_substep: 1), remote: true, class: 'hidden' %>
+              <%= link_to '', checkout_move_substep_path(format: :js, order_substep: 1), remote: true, class: 'hidden' %>
               <%= render Common::Button::BaseComponent.new(
                 button_params: {
                   text: Spree.t(submit_label_key),
@@ -100,9 +100,9 @@
     </fieldset>
   </div>
 
-  <div id="receiver_address_form" class="absolute left-0 right-0 transition-opacity opacity-0 item-cart-parent mx-auto p-3 maw-w-full max-h-full bg-white rounded-lg border border-gray-200 mb-[24px] shadow-sm font-medium text-left flex flex-col">
+  <div id="receiver_address_form" class="absolute left-0 right-0 transition-opacity opacity-0 mx-auto p-3 max-w-full max-h-full bg-white rounded-lg border border-gray-200 mb-[24px] shadow-sm font-medium text-left flex flex-col">
     <fieldset disabled>
-      <%= fields_for "order[ship_address_attributes]" do |address_form| %>
+      <%= fields_for "order[ship_address_attributes]", @order.ship_address do |address_form| %>
         <%= hidden_field_tag 'order[ship_address_attributes][country_id]', default_country.id  %>
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
@@ -161,7 +161,7 @@
 
             <%== address_form.collection_select(:state_id, states,
                                   :id, :name,
-                                  { include_blank: true },
+                                  { include_blank: Spree.t(:select_a_state) },
                                   { class: 'state-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 min-h-[48px]',
                                   required: true,
                                   disabled: false}) %>
@@ -170,12 +170,12 @@
           <div class="flex flex-1 flex-col gap-1.5">
             <span><%= Spree.t(:county) %></span>
 
-            <%== address_form.collection_select(:county_id, [],
+            <%== address_form.collection_select(:county_id, counties_for_address(@order&.ship_address),
                                   :id, :name,
-                                  { include_blank: true },
+                                  { include_blank: Spree.t(:select_a_county) },
                                   { class: 'county-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 min-h-[48px]',
                                   required: true,
-                                  disabled: true }) %>
+                                  disabled: (!@order&.ship_address&.county) }) %>
           </div>
         </div>
 
@@ -200,7 +200,7 @@
 </div>
 
 <script>
-  function toggleAddressStep(step) {
+  function toggleSubstep(step) {
     let requester_address_form_container = document.querySelector('#requester_address_form')
     
     let receiver_address_form_container = document.querySelector('#receiver_address_form')
@@ -215,12 +215,12 @@
 
     // Show particular step
     switch (step) {
-      case "requester":
+      case "0":
         requester_address_form_container.classList.toggle('opacity-0')
         requester_address_form_container.classList.toggle('pointer-events-none')
         requester_address_form_container.querySelector('fieldset').disabled = false
         break;
-      case "receiver":
+      case "1":
         receiver_address_form_container.classList.toggle('opacity-0')
         receiver_address_form_container.classList.toggle('pointer-events-none')
         receiver_address_form_container.querySelector('fieldset').disabled = false
@@ -264,7 +264,7 @@
             };
             xhr.send();
           } else {
-            countySelect.innerHTML = '<option value="">Select a county</option>';
+            countySelect.innerHTML = '<option value="">Selecciona una comuna</option>';
           }
         });
       }
@@ -277,7 +277,7 @@
   }
 
   function initializeAddressFormComponent() {
-    toggleAddressStep("<%= @order.address_substep == 0 ? 'requester' : 'receiver' %>")
+    toggleSubstep("<%= @order.order_substep %>")
 
     let buttons = document.querySelectorAll('.address-next button')
 

@@ -18,6 +18,9 @@ es:
         other: Direcciones
       
   spree:
+    select_delivery_port: 'Selecciona Puesto de Descarga'
+    select_a_state: 'Selecciona una región'
+    select_a_county: 'Selecciona una comuna'
     name_receiver: 'Nombre Destinatario'
     name_requester: 'Nombre Solicitante'
     street: 'Calle'
@@ -41,6 +44,7 @@ es:
       mercado_publico_id: 'ID Mercado público'
       atc_code: 'Código ATC'
       standard_denomination: 'Denominación estándar'
+    delivery_method_for_products_of_vendor: 'Método de entrega %{name}'
     no_laboratory: 'Sin Laboratorio'
     send_order: 'Enviar orden'
     order_total: 'Total de la orden'
