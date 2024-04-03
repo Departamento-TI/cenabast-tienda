@@ -1,0 +1,88 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/tienda/api/v1/auth
+    body:
+      encoding: UTF-8
+      string: '{"user":"tienda","password":"tienda#2024"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '42'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - testaplicacionesweb.cenabast.cl:7001
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Server:
+      - Microsoft-IIS/10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Wed, 03 Apr 2024 13:59:56 GMT
+    body:
+      encoding: UTF-8
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcxMjE1NjM5NiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.m8SFoTA4GfnNrt6ogy6DcLyBUyq0ZqWgvA--PIgfBrU"}'
+  recorded_at: Wed, 03 Apr 2024 13:59:56 GMT
+- request:
+    method: post
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/tienda/api/v1/pedido
+    body:
+      encoding: UTF-8
+      string: '{"RutSolicitante":null,"DetalleProductos":null}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Authorization:
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcxMjE1NjM5NiwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.m8SFoTA4GfnNrt6ogy6DcLyBUyq0ZqWgvA--PIgfBrU
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '47'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - testaplicacionesweb.cenabast.cl:7001
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/problem+json; charset=utf-8
+      Server:
+      - Microsoft-IIS/10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Wed, 03 Apr 2024 13:59:56 GMT
+    body:
+      encoding: UTF-8
+      string: '{"type":"https://tools.ietf.org/html/rfc7231#section-6.5.1","title":"One
+        or more validation errors occurred.","status":400,"traceId":"00-d40d3244e0a322be502be8f9599fc434-6ab371ed58817156-00","errors":{"RutSolicitante":["The
+        RutSolicitante field is required."],"DetalleProductos":["The DetalleProductos
+        field is required."]}}'
+  recorded_at: Wed, 03 Apr 2024 13:59:56 GMT
+recorded_with: VCR 6.2.0
