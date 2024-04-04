@@ -18,6 +18,12 @@ es:
         other: Direcciones
       
   spree:
+    checkout_page:
+      header: Checkout
+      go_back_to_store: Volver a la tienda
+      description: ''
+      subtotal: Subtotal
+      order_total: Total de la Orden
     select_delivery_port: 'Selecciona Puesto de Descarga'
     select_a_state: 'Selecciona una región'
     select_a_county: 'Selecciona una comuna'
