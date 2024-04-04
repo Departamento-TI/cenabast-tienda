@@ -21,11 +21,10 @@ end
 %>
 
 <div id="checkout" class="container checkout" data-hook>
-  <div class="row align-items-center flex-column checkout-header" data-hook="checkout_header">
-    <div class="text-uppercase checkout-header-title">
-      <h1 data-hook="checkout_title"><%= Spree.t('checkout_page.header') %></h1>
-    </div>
-  </div>
+  <%= render Order::Checkout::HeaderComponent.new(
+    subtotal: @order.display_total.to_s,
+    total: @order.display_total.to_s
+  ) %>
 
   <div class="row checkout-content" data-hook="checkout_content">
     <%= form_for @order, url: spree.update_checkout_path(@order.state), html: { id: "checkout_form_#{@order.state}", class: "w-100 d-lg-flex align-items-lg-baseline  flex-wrap position-relative", data: { turbo: false } } do |form| %>
