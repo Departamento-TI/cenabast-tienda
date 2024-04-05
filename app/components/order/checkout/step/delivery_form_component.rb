@@ -3,11 +3,10 @@
 class Order::Checkout::Step::DeliveryFormComponent < ApplicationComponent
   include Spree::AddressesHelper
 
-  # @param form FormObject
-  def initialize(form:)
+  # @param order Spree::Order
+  def initialize(order:)
     super
-    @form = form
-    @order = form.object
+    @order = order
   end
 
   private

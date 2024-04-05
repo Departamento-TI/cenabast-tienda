@@ -6,9 +6,9 @@
       action_url: '#',
       format: 'big',
       details: [
-        'SS Met Sur Oriente',
-        'RUT 61.608.500 - K'
-      ]
+        @bill_address_data&.dig(:address),
+        @bill_address_data&.dig(:run)
+      ].compact
     }
   )
 %>
@@ -21,9 +21,9 @@
       action_url: '#',
       format: 'big',
       details: [
-        'Posta La Puntilla',
-        'RUT 61.608.500 - K'
-      ]
+        @ship_address_data&.dig(:address),
+        @ship_address_data&.dig(:run)
+      ].compact
     }
   )
 %>

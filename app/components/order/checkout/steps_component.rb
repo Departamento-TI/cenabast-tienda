@@ -3,10 +3,18 @@
 class Order::Checkout::StepsComponent < ApplicationComponent
   # @param state text
   # @param order_substep select { choices: [0, 1] }
-  def initialize(state:, order_substep:)
+  # @param bill_address_data hash
+  # => @param address text
+  # => @param run text
+  # @param ship_address_data hash
+  # => @param address text
+  # => @param run text
+  def initialize(state:, order_substep:, bill_address_data:, ship_address_data:)
     super
     @state = state
     @order_substep = order_substep.to_i
+    @bill_address_data = bill_address_data
+    @ship_address_data = ship_address_data
   end
 
   private
