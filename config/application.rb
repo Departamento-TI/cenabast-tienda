@@ -46,6 +46,7 @@ module SpreeStarter
     # Add viewcomponent preview paths to be used for testing
     # purposes
     config.view_component.preview_paths << "#{Rails.root}/spec/components/previews"
+    config.view_component.preview_controller = "Cenabast::Spree::PreviewComponentsController"
 
     if Rails.env.production?
       # CloudFlare middleware for proper visitors IP addresses
