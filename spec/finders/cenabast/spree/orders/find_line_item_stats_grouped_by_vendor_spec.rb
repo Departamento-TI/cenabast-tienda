@@ -29,5 +29,13 @@ RSpec.describe Cenabast::Spree::Order::FindLineItemStatsGroupedByVendor do
       expect(result[1][:vendor_name]).to eq(vendor2.name)
       expect(result[1][:subtotal]).to eq(55)
     end
+
+    describe 'order is nil' do
+      let(:order) { nil }
+
+      it 'returns a nil value' do
+        expect(result).to be_nil
+      end
+    end
   end
 end
