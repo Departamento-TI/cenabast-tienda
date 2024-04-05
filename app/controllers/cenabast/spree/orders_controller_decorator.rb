@@ -15,7 +15,8 @@ module Cenabast
       private
 
       def set_stats_per_vendor
-        @stats_per_vendor = Cenabast::Spree::Order::FindLineItemStatsGroupedByVendor.new(@order || current_order).call
+        order = @order || current_order(create_order_if_necessary: true)
+        @stats_per_vendor = Cenabast::Spree::Order::FindLineItemStatsGroupedByVendor.new(order).call
       end
     end
   end
