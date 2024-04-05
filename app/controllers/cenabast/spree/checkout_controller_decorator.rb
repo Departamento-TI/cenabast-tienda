@@ -46,13 +46,14 @@ module Cenabast
         end
       end
 
-      # Allows us the "substeps" of the address step
+      # Allows us the "substeps" of the address/delivery step
       def move_substep
         return unless @order
         return unless [0, 1].include? params[:order_substep].to_i
 
         # rubocop:disable Rails/SkipsModelValidations
         @order.update_column(:order_substep, params[:order_substep].to_i)
+        @order.update_column(:state, params[:state]) if ['address', 'delivery'].include? params[:state]
         # rubocop:enable Rails/SkipsModelValidations
 
         respond_to do |format|

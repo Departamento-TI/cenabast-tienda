@@ -84,7 +84,7 @@
           <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
             <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
             <div class="address-next w-full">
-              <%= link_to '', checkout_move_substep_path(format: :js, order_substep: 1), remote: true, class: 'hidden' %>
+              <%= link_to '', checkout_move_substep_path(format: :js, order_substep: 1, state: 'address'), remote: true, class: 'hidden' %>
               <%= render Common::Button::BaseComponent.new(
                 button_params: {
                   text: Spree.t(submit_label_key),
@@ -246,7 +246,7 @@
           let stateId = stateSelect.value;
           if (stateId) {
             let xhr = new XMLHttpRequest();
-            xhr.open('GET', '/api/v2/storefront/counties?filter[state_id_eq]=' + stateId, true);
+            xhr.open('GET', '/api/v2/storefront/counties?per_page=100&filter[state_id_eq]=' + stateId, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onreadystatechange = function() {
               if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {

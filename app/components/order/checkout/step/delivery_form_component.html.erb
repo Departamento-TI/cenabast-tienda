@@ -36,7 +36,7 @@
           <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
             <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
             <div class="delivery-next w-full">
-              <%= link_to '', checkout_move_substep_path(format: :js, order_substep: 1), remote: true, class: 'hidden' %>
+              <%= link_to '', checkout_move_substep_path(format: :js, order_substep: 1, state: 'delivery'), remote: true, class: 'hidden' %>
               <%= render Common::Button::BaseComponent.new(
                 button_params: {
                   text: Spree.t(submit_label_key),
