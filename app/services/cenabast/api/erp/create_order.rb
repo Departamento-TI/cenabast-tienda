@@ -7,7 +7,7 @@ module Cenabast
         attr_reader :order
 
         def initialize(order:, line_items:)
-          super
+          super()
           @order = order
           @line_items = line_items
         end
@@ -31,7 +31,7 @@ module Cenabast
                   CodigoMaterial: line_item.sku.to_i,
                   CantidadSolicitada: line_item.quantity,
                   CodigoDestinatario: order.receiver.run.to_i,
-                  PuertoDescarga: @order.receiver&.address,
+                  PuertoDescarga: @order.selected_delivery_port,
                   FechaEntrega: 7.business_days.from_now
                 }
               end
