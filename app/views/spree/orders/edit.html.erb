@@ -33,7 +33,7 @@
 </div>
 
 <script>
-  window.addEventListener('DOMContentLoaded', function() {
+  window.addEventListener('turbo:load', function() {
     Spree.current_order_token = "<%= @order.token %>"
     <% if flash.any? %>
       document.getElementById('overlay').classList.add('shown');
