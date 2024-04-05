@@ -1,6 +1,8 @@
 module Cenabast
   module Spree
     module Erp
+      # Class responsible for sending orders to the ERP.
+      # Group products by vendor and create an ERP order each one.
       class ByVendorInjector < Injector
         def send_order(order)
           Rails.logger.debug { "[#{self.class.name}] Order ERP injection started." }
