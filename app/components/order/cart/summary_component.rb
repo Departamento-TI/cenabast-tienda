@@ -25,6 +25,6 @@ class Order::Cart::SummaryComponent < ApplicationComponent
   end
 
   def limit_cart_amount_utm
-    helpers.current_store&.limit_cart_amount_utm
+    helpers&.current_store&.limit_cart_amount_utm
   end
 end

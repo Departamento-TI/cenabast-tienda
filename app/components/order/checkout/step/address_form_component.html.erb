@@ -3,7 +3,7 @@
 <div class="w-full h-[800px] relative">
   <div id="requester_address_form" class="absolute left-0 right-0 transition-opacity mx-auto p-3 max-w-full max-h-full bg-white rounded-lg border border-gray-200 mb-[24px] shadow-sm font-medium text-left flex flex-col">
     <fieldset disabled>
-      <%= fields_for "order[bill_address_attributes]", @order.bill_address do |address_form| %>
+      <%= fields_for "order[bill_address_attributes]", @order&.bill_address do |address_form| %>
         <%= hidden_field_tag 'order[bill_address_attributes][country_id]', default_country.id  %>
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
@@ -80,9 +80,9 @@
           </div>
         </div>
 
-        <% unless @order.confirm? %>
+        <% unless @order&.confirm? %>
           <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
-            <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
+            <% submit_label_key = @order&.confirm? ? :place_order : :save_and_continue %>
             <div class="address-next w-full">
               <%= link_to '', checkout_move_substep_path(format: :js, order_substep: 1, state: 'address'), remote: true, class: 'hidden' %>
               <%= render Common::Button::BaseComponent.new(
@@ -102,7 +102,7 @@
 
   <div id="receiver_address_form" class="absolute left-0 right-0 transition-opacity opacity-0 mx-auto p-3 max-w-full max-h-full bg-white rounded-lg border border-gray-200 mb-[24px] shadow-sm font-medium text-left flex flex-col">
     <fieldset disabled>
-      <%= fields_for "order[ship_address_attributes]", @order.ship_address do |address_form| %>
+      <%= fields_for "order[ship_address_attributes]", @order&.ship_address do |address_form| %>
         <%= hidden_field_tag 'order[ship_address_attributes][country_id]', default_country.id  %>
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
@@ -179,9 +179,9 @@
           </div>
         </div>
 
-        <% unless @order.confirm? %>
+        <% unless @order&.confirm? %>
           <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
-            <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
+            <% submit_label_key = @order&.confirm? ? :place_order : :save_and_continue %>
             <div class="address-next w-full">
               <%= render Common::Button::BaseComponent.new(
                 button_params: {
@@ -277,7 +277,7 @@
   }
 
   function initializeAddressFormComponent() {
-    toggleSubstep("<%= @order.order_substep %>")
+    toggleSubstep("<%= @order&.order_substep || '0' %>")
 
     let buttons = document.querySelectorAll('.address-next button')
 
