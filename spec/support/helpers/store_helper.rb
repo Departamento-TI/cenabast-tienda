@@ -25,5 +25,9 @@ module Helpers
 
       [ecommerce_store, intermediation_store]
     end
+
+    def act_with_current_store(store)
+      allow_any_instance_of(Spree::StoreController).to receive_messages current_store: store
+    end
   end
 end

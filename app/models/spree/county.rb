@@ -1,5 +1,5 @@
 class Spree::County < Spree::Base
-  belongs_to :state, class_name: 'Spree::State'
+  belongs_to :state, class_name: 'Spree::State', optional: false
   has_many :addresses, dependent: :nullify
   validates :name, presence: true
 

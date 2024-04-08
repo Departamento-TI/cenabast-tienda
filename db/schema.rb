@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_15_205152) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_03_185427) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -185,7 +185,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_205152) do
     t.string "label"
     t.jsonb "public_metadata"
     t.jsonb "private_metadata"
+    t.bigint "county_id"
+    t.string "office"
+    t.string "address1_number"
+    t.string "run"
+    t.string "email"
     t.index ["country_id"], name: "index_spree_addresses_on_country_id"
+    t.index ["county_id"], name: "index_spree_addresses_on_county_id"
     t.index ["deleted_at"], name: "index_spree_addresses_on_deleted_at"
     t.index ["firstname"], name: "index_addresses_on_firstname"
     t.index ["lastname"], name: "index_addresses_on_lastname"
@@ -304,6 +310,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_205152) do
     t.index ["linked_resource_type", "linked_resource_id"], name: "index_spree_cms_sections_on_linked_resource"
     t.index ["position"], name: "index_spree_cms_sections_on_position"
     t.index ["type"], name: "index_spree_cms_sections_on_type"
+  end
+
+  create_table "spree_counties", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.bigint "state_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["state_id"], name: "index_spree_counties_on_state_id"
   end
 
   create_table "spree_countries", force: :cascade do |t|
@@ -671,6 +686,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_205152) do
     t.jsonb "private_metadata"
     t.text "internal_note"
     t.bigint "receiver_id"
+    t.integer "order_substep", default: 0, null: false
+    t.string "selected_delivery_port"
     t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
     t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
     t.index ["canceler_id"], name: "index_spree_orders_on_canceler_id"
@@ -1782,6 +1799,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_205152) do
   add_foreign_key "cenabast_spree_receiver_users", "spree_users", column: "user_id"
   add_foreign_key "cenabast_spree_receivers", "cenabast_spree_requesters", column: "requester_id"
   add_foreign_key "cenabast_spree_receivers", "spree_stores", column: "store_id"
+  add_foreign_key "spree_counties", "spree_states", column: "state_id"
   add_foreign_key "spree_oauth_access_grants", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_oauth_access_tokens", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_option_type_translations", "spree_option_types"

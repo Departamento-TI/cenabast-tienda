@@ -1,8 +1,8 @@
 <div class="<%= container_styles %>">
   <% if @format == 'big' %>
     <!-- Section header -->
-    <div class="<%= section_header_styles %>">
-      <h1 class="font-semibold text-lg"><%= @title %></h1>
+    <div role="step-component-header" class="<%= section_header_styles %>">
+      <h1 role="step-component-title" class="font-semibold text-lg"><%= @title %></h1>
 
       <!-- Edit icon -->
       <!-- Currently hidden -->
@@ -18,16 +18,16 @@
       <div class="border-b border-gray-200 my-1 mx-4 h-[1px] w-auto"></div>
 
       <!-- Information -->
-      <div class="<%= information_section_styles %>">
+      <div role="step-component-details" class="<%= information_section_styles %>">
         <% @details.each do |detail| %>
-          <span><%= detail %></span>
+          <span role="step-component-detail"><%= detail %></span>
         <% end %>
       </div>
     <% end %>
   <% else %>
     <!-- Section header -->
-    <div class="<%= section_header_styles %>">
-      <h1 class="font-semibold text-lg"><%= @title %></h1>
+    <div role="step-component-header" class="<%= section_header_styles %>">
+      <h1 role="step-component-title" class="font-semibold text-lg"><%= @title %></h1>
 
       <!-- Arrow icon -->
       <!-- Currently hidden -->

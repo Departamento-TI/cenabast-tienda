@@ -6,7 +6,9 @@ class Order::Checkout::StepComponentPreview < ViewComponent::Preview
   # @param enabled_link toggle
   # @param action_url text
   # @param format select { choices: [small, big] }
-  def default(title: '1. Solicitante', active: true, enabled_link: true, action_url: '#', format: 'big')
+
+  # rubocop:disable Metrics/ParameterLists
+  def default(title: '1. Solicitante', active: true, enabled_link: true, action_url: '#', format: 'big', details: nil)
     render Order::Checkout::StepComponent.new(
       step_params: {
         title:,
@@ -14,7 +16,7 @@ class Order::Checkout::StepComponentPreview < ViewComponent::Preview
         enabled_link:,
         action_url:,
         format:,
-        details: [
+        details: details || [
           'SS Met Sur Oriente',
           'RUT 61.608.500 - K',
           'Centro de Costo : Depto. Finanzas.'
@@ -22,4 +24,5 @@ class Order::Checkout::StepComponentPreview < ViewComponent::Preview
       }
     )
   end
+  # rubocop:enable Metrics/ParameterLists
 end

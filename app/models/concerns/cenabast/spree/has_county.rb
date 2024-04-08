@@ -5,7 +5,7 @@ module Cenabast
       extend ActiveSupport::Concern
 
       included do
-        belongs_to :county, class_name: 'Spree::County'
+        belongs_to :county, class_name: 'Spree::County', optional: false
         validate :county_validate
 
         private

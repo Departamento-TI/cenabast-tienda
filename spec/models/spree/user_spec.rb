@@ -19,7 +19,7 @@ RSpec.describe Spree::User, type: :model, search: true do
     describe 'Validations' do
       it { should validate_presence_of :run }
       it { should validate_uniqueness_of :run }
-      it { should validate_with RutValidator }
+      it { should validate_with Cenabast::Spree::HasRun::CenabastRunValidator }
     end
   end
 
