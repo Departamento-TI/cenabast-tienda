@@ -6,7 +6,7 @@ RSpec.describe Cenabast::Api::Erp::CreateOrder do
 
   describe '#call' do
     context 'when the API call is successful' do
-      it 'creates the order successfully', vcr: { cassette_name: 'cenabast/api/erp/create_order_success' } do
+      it 'creates the order successfully', vcr: { cassette_name: 'cenabast/api/erp/create_order_success', erb: true } do
         service = described_class.new(order:, line_items:)
 
         expect(service.call[:success]).to be true
@@ -14,7 +14,7 @@ RSpec.describe Cenabast::Api::Erp::CreateOrder do
     end
 
     context 'when the API call fails' do
-      it 'returns a failed response', vcr: { cassette_name: 'cenabast/api/erp/create_order_failure' } do
+      it 'returns a failed response', vcr: { cassette_name: 'cenabast/api/erp/create_order_failure', erb: true } do
         order.receiver.requester.run = nil
         service = described_class.new(order:, line_items: nil)
 
