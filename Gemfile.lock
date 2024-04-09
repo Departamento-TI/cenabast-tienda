@@ -168,6 +168,9 @@ GEM
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
+    business_time (0.13.0)
+      activesupport (>= 3.2.0)
+      tzinfo
     cancancan (3.5.0)
     canonical-rails (0.2.15)
       actionview (>= 4.1, <= 7.2)
@@ -865,6 +868,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   bundle-audit
+  business_time
   capybara
   chilean-rutify
   dalli

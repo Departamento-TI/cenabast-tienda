@@ -3,6 +3,13 @@ module Cenabast
     module OrderDecorator
       def self.prepended(base)
         base.belongs_to :receiver, class_name: 'Cenabast::Spree::Receiver', optional: false
+
+        base.state_machine.after_transition to: :complete, do: :inject_to_erp!
+      end
+
+      def inject_to_erp!
+        injector = Cenabast::Spree::Erp::InjectorFactory.create_injector
+        injector.send_order self
       end
     end
   end

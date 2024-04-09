@@ -1,9 +1,8 @@
 module Cenabast
   module Spree
     module CheckoutControllerDecorator
-      def before_address
-        check_minimum_purchase_per_vendor
-        super
+      def self.prepended(base)
+        base.before_action :check_minimum_purchase_per_vendor
       end
 
       private
@@ -14,7 +13,8 @@ module Cenabast
 
         if invalid_order
           @order.update(state: :cart)
-          redirect_to spree.cart_path, alert: ::Spree.t(:invalid_amount_per_vendor)
+          flash[:error] = ::Spree.t(:invalid_amount_per_vendor)
+          redirect_to spree.cart_path
         end
       end
     end
