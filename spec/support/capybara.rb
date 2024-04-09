@@ -4,9 +4,11 @@ require 'capybara/rspec'
 Capybara.register_driver :remote_selenium do |app|
   options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument('--no-sandbox')
+  options.add_argument('--disable-gpu')
   options.add_argument('--disable-dev-shm-usage')
   options.add_argument('--remote-debugging-pipe')
-  options.add_argument('--window-size=1400,1400')
+  options.add_argument('--window-size=1920,1080')
+  options.add_argument('--force-device-scale-factor=0.95')
 
   Capybara::Selenium::Driver.new(
     app,
@@ -20,6 +22,7 @@ Capybara::Screenshot.register_driver(:remote_selenium) do |driver, path|
   driver.browser.save_screenshot(path)
 end
 
+Capybara.default_max_wait_time = 5
 Capybara.server_host = '0.0.0.0'
 Capybara.server = :puma
 Capybara.javascript_driver = :remote_selenium

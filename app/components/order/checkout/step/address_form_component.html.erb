@@ -7,13 +7,13 @@
         <%= hidden_field_tag 'order[bill_address_attributes][country_id]', default_country.id  %>
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:name_requester) %></span>
+            <span><%= Spree.t(:name_requester) %> *</span>
             <%= address_form.text_field :firstname, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
 
           <div class="run-input-container flex flex-1 flex-col gap-1.5">
             <div class="flex flex-row gap-1.5">
-              <div><%= Spree.t(:rut) %></div>
+              <div><%= Spree.t(:rut) %> *</div>
               <div class="run-label-error text-red-400 font-semibold hidden">
                 <%= Spree.t(:invalid_rut) %>
               </div>
@@ -24,7 +24,7 @@
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:phone) %></span>
+            <span><%= Spree.t(:phone) %> *</span>
             <div class="flex flex-row">
               <span class="rounded-l-lg py-3 px-4 min-h-[48px] bg-gray-50 border border-r-0 border-gray-300">+569</span>
               <%= address_form.text_field :phone, class: 'flex-1 text-base bg-gray-50 border border-gray-300 rounded-r-lg py-3 px-4 min-h-[48px]', required: true %>
@@ -32,33 +32,33 @@
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:email) %></span>
+            <span><%= Spree.t(:email) %> *</span>
             <%= address_form.text_field :email, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:street) %></span>
+            <span><%= Spree.t(:street) %> *</span>
             <%= address_form.text_field :address1, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:number) %></span>
+            <span><%= Spree.t(:number) %> *</span>
             <%= address_form.text_field :address1_number, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:office) %></span>
+            <span><%= Spree.t(:office) %> *</span>
             <%= address_form.text_field :office, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:region) %></span>
+            <span><%= Spree.t(:region) %> *</span>
 
             <%== address_form.collection_select(:state_id, states,
                                   :id, :name,
@@ -69,7 +69,7 @@
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:county) %></span>
+            <span><%= Spree.t(:county) %> *</span>
 
             <%== address_form.collection_select(:county_id, counties_for_address(@order&.bill_address),
                                   :id, :name,
@@ -106,13 +106,13 @@
         <%= hidden_field_tag 'order[ship_address_attributes][country_id]', default_country.id  %>
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:name_receiver) %></span>
+            <span><%= Spree.t(:name_receiver) %> *</span>
             <%= address_form.text_field :firstname, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
 
           <div class="run-input-container flex flex-1 flex-col gap-1.5">
             <div class="flex flex-row gap-1.5">
-              <div><%= Spree.t(:rut) %></div>
+              <div><%= Spree.t(:rut) %> *</div>
               <div class="run-label-error text-red-400 font-semibold hidden">
                 <%= Spree.t(:invalid_rut) %>
               </div>
@@ -123,7 +123,7 @@
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:phone) %></span>
+            <span><%= Spree.t(:phone) %> *</span>
             <div class="flex flex-row">
               <span class="rounded-l-lg py-3 px-4 min-h-[48px] bg-gray-50 border border-r-0 border-gray-300">+569</span>
               <%= address_form.text_field :phone, class: 'flex-1 text-base bg-gray-50 border border-gray-300 rounded-r-lg py-3 px-4 min-h-[48px]', required: true %>
@@ -131,33 +131,33 @@
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:email) %></span>
+            <span><%= Spree.t(:email) %> *</span>
             <%= address_form.text_field :email, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:street) %></span>
+            <span><%= Spree.t(:street) %> *</span>
             <%= address_form.text_field :address1, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:number) %></span>
+            <span><%= Spree.t(:number) %> *</span>
             <%= address_form.text_field :address1_number, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:office) %></span>
+            <span><%= Spree.t(:office) %> *</span>
             <%= address_form.text_field :office, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
           </div>
         </div>
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:region) %></span>
+            <span><%= Spree.t(:region) %> *</span>
 
             <%== address_form.collection_select(:state_id, states,
                                   :id, :name,
@@ -168,7 +168,7 @@
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:county) %></span>
+            <span><%= Spree.t(:county) %> *</span>
 
             <%== address_form.collection_select(:county_id, counties_for_address(@order&.ship_address),
                                   :id, :name,
