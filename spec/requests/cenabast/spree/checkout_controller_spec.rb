@@ -8,6 +8,7 @@ RSpec.describe 'Spree::CheckoutController', type: :request do
 
     before do
       allow_any_instance_of(Spree::CheckoutController).to receive(:current_order).and_return(order)
+      allow_any_instance_of(Spree::CheckoutController).to receive(:ensure_sufficient_stock_lines).and_return(nil)
       act_as_logged_in(user)
     end
 
