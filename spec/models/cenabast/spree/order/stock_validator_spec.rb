@@ -4,7 +4,7 @@ module Cenabast
   module Spree
     module Order
       RSpec.describe StockValidator do
-        describe '#call' do
+        describe '#can_supply?' do
           before(:each) do
             VCR.insert_cassette 'cenabast/api/stock_validator_valid', erb: true
           end
@@ -13,21 +13,19 @@ module Cenabast
             VCR.eject_cassette
           end
 
-          let(:order) { create(:order) }
-          subject { described_class.new(order) }
-
-          context 'when order has enough stock for each item' do
-            before do
-              create(:line_item, order:, variant: create(:variant, sku: 'At'), quantity: 4)
-              create(:line_item, order:, variant: create(:variant, sku: 'Bt'), quantity: 4)
-              create(:line_item, order:, variant: create(:variant, sku: 'Ct'), quantity: 4)
-              create(:line_item, order:, variant: create(:variant, sku: 'Dt'), quantity: 4)
+          context 'when line item has enough stock' do
+            let(:line_item) do
+              create(:line_item, quantity: 4) do |line_item|
+                line_item.variant.update(sku: 'At')
+              end
             end
 
-            let!(:result) { subject.call }
+            subject { described_class.new(line_item) }
 
-            it 'returns the order' do
-              expect(result).to be_instance_of(::Spree::Order)
+            let!(:result) { subject.can_supply? }
+
+            it 'returns true' do
+              expect(result).to be_truthy
             end
 
             it 'does not have error messages' do
@@ -35,16 +33,19 @@ module Cenabast
             end
           end
 
-          context 'when order surpass available quantity for one item' do
-            before do
-              create(:line_item, order:, variant: create(:variant, sku: 'At'), quantity: 4)
-              create(:line_item, order:, variant: create(:variant, sku: 'Bt'), quantity: 14)
+          context 'when line item surpass available quantity' do
+            let(:line_item) do
+              create(:line_item, quantity: 14) do |line_item|
+                line_item.variant.update(sku: 'At')
+              end
             end
 
-            let!(:result) { subject.call }
+            subject { described_class.new(line_item) }
 
-            it 'returns nil result' do
-              expect(result).to be_nil
+            let!(:result) { subject.can_supply? }
+
+            it 'returns false' do
+              expect(result).to be_falsey
             end
 
             it 'returns an error' do
@@ -52,18 +53,18 @@ module Cenabast
             end
           end
 
-          context 'when order contains invalid item' do
-            before do
-              create(:line_item, order:, variant: create(:variant, sku: 'At'), quantity: 4)
-              create(:line_item, order:, variant: create(:variant, sku: 'Bt'), quantity: 4)
-              create(:line_item, order:, variant: create(:variant, sku: 'Ct'), quantity: 4)
-              create(:line_item, order:, variant: create(:variant, sku: 'Invalidsku'), quantity: 4)
+          context 'when line item contains invalid sku' do
+            let(:line_item) do
+              create(:line_item, quantity: 4) do |line_item|
+                line_item.variant.update(sku: 'Invalidsku')
+              end
             end
 
-            let!(:result) { subject.call }
+            subject { described_class.new(line_item) }
+            let!(:result) { subject.can_supply? }
 
-            it 'returns nil result' do
-              expect(result).to be_nil
+            it 'returns false' do
+              expect(result).to be_falsey
             end
 
             it 'returns an error' do

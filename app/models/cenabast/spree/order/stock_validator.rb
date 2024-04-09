@@ -6,24 +6,20 @@ module Cenabast
   module Spree
     module Order
       class StockValidator
-        attr_accessor :order, :error_messages
+        attr_accessor :line_item, :error_messages
 
-        # @param order [Spree::Order] order to validate
-        def initialize(order)
-          @order = order
+        # @param line_item [Spree::LineItem] to validate
+        def initialize(line_item)
+          @line_item = line_item
           @error_messages = []
         end
 
-        # Checks for each line item, if the stock conditions are met
+        # Checks the line item, if the stock conditions are met
         # returns true if conditions met, false if any error exists
         # @return [User] Returns order if the order meets the conditions, nil otherwise
-        def call
-          order.reload.line_items.each do |line_item|
-            validate_line_item(line_item)
-          end
-
-          # return order (valid) if error messages are none
-          order unless error_messages.any?
+        def can_supply?
+          validate_line_item
+          error_messages.empty?
         end
 
         private
@@ -32,7 +28,7 @@ module Cenabast
           Cenabast::Api::ValidateStockInformationFetcher.new(sku).call
         end
 
-        def validate_line_item(line_item)
+        def validate_line_item
           sku = line_item.sku
           info = fetch_information_for_sku(sku)
 
