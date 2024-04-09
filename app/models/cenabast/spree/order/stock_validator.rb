@@ -16,7 +16,7 @@ module Cenabast
 
         # Checks the line item, if the stock conditions are met
         # returns true if conditions met, false if any error exists
-        # @return [User] Returns order if the order meets the conditions, nil otherwise
+        # @return [Boolean]
         def can_supply?
           validate_line_item
           error_messages.empty?
