@@ -7,6 +7,11 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
+      selenium:
+        image: selenium/standalone-chrome:4.19
+        ports:
+          - 4444:4444
+          - 7900:7900
       elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
         ports:
@@ -55,3 +60,6 @@ jobs:
         DB_HOST: localhost
         DB_PORT: ${{ job.services.postgres.ports[5432] }}
         ELASTICSEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
+        SELENIUM_HOST: localhost
+        SELENIUM_PORT: ${{ job.services.selenium.ports[4444] }}
+        SERVER_PORT: 9000
