@@ -929,6 +929,7 @@ DEPENDENCIES
   vcr
   view_component
   web-console (~> 4.0)
+  webdrivers
   webmock
 
 RUBY VERSION
