@@ -16,6 +16,6 @@ class Order::Checkout::Step::DeliveryFormComponent < ApplicationComponent
   end
 
   def delivery_port_address
-    current_receiver&.address || @order&.bill_address&.address1
+    @order&.receiver&.address || @order&.bill_address&.address1
   end
 end
