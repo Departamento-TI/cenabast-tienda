@@ -3,11 +3,11 @@ container.innerHTML = '<%= j render Order::Checkout::StepsComponent.new(
     state: @order.state,
     order_substep: @order.order_substep,
     bill_address_data: {
-      address: @order&.bill_address&.address1,
+      firstname: @order&.bill_address&.firstname,
       run: (Chilean::Rutify.format_rut(@order&.bill_address&.run) if @order&.bill_address&.run)
     },
     ship_address_data: {
-      address: @order&.ship_address&.address1,
+      firstname: @order&.ship_address&.firstname,
       run: (Chilean::Rutify.format_rut(@order&.ship_address&.run) if @order&.ship_address&.run)
     }
   )

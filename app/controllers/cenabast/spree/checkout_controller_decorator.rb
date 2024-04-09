@@ -8,6 +8,7 @@ module Cenabast
 
       def before_address
         check_minimum_purchase_per_vendor
+        @order.fill_default_address_information!
 
         # rubocop:disable Rails/SkipsModelValidations
         @order.update_column(:order_substep, 0)

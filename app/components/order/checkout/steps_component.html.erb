@@ -6,7 +6,7 @@
       action_url: '#',
       format: 'big',
       details: [
-        @bill_address_data&.dig(:address),
+        @bill_address_data&.dig(:firstname),
         @bill_address_data&.dig(:run)
       ].compact
     }
@@ -21,7 +21,7 @@
       action_url: '#',
       format: 'big',
       details: [
-        @ship_address_data&.dig(:address),
+        @ship_address_data&.dig(:firstname),
         @ship_address_data&.dig(:run)
       ].compact
     }

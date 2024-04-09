@@ -16,6 +16,48 @@ module Cenabast
       def payment_required?
         false
       end
+
+      def fill_default_address_information!
+        return unless receiver
+        return unless (requester = receiver.requester)
+
+        receiver_address_parts = split_address(receiver.address)
+
+        self.bill_address ||= ::Spree::Address.new(
+          firstname: requester.name,
+          run: Chilean::Rutify.format_rut(requester.run),
+          phone: user.mobile_phone,
+          email: user.email,
+          address1: receiver_address_parts[:text],
+          address1_number: receiver_address_parts[:number]
+        )
+
+        self.ship_address ||= ::Spree::Address.new(
+          firstname: receiver.name,
+          run: Chilean::Rutify.format_rut(receiver.run),
+          phone: user.mobile_phone,
+          email: user.email,
+          address1: receiver_address_parts[:text],
+          address1_number: receiver_address_parts[:number]
+        )
+      end
+
+      private
+
+      def split_address(address)
+        match = address&.match(/^(.*?)(\d+)$/)
+        if match && match[1] && match[2]
+          {
+            text: match[1].strip,
+            number: match[2].strip
+          }
+        else
+          {
+            text: address,
+            number: nil
+          }
+        end
+      end
     end
   end
 end
