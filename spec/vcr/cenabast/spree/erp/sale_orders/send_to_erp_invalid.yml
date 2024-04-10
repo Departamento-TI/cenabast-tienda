@@ -1,0 +1,85 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/tienda/api/v1/auth
+    body:
+      encoding: UTF-8
+      string: '{"user":"tienda","password":"tienda#2024"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '42'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - testaplicacionesweb.cenabast.cl:7001
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Server:
+      - Microsoft-IIS/10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Wed, 10 Apr 2024 20:26:50 GMT
+    body:
+      encoding: UTF-8
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcxMjc4NDQxMSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.OTCsCNKMT-lmVhF1x91U-Llro9XyepqksbRJDfDxMis"}'
+  recorded_at: Wed, 10 Apr 2024 20:26:50 GMT
+- request:
+    method: post
+    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/tienda/api/v1/pedido
+    body:
+      encoding: UTF-8
+      string: '{"RutSolicitante":"26.896.041-4","DetalleProductos":[{"DocumentoCompra":1110,"CodigoOcChilecompra":"123","CodigoMaterial":44220,"CantidadSolicitada":2,"CodigoDestinatario":23,"PuertoDescarga":"ABC","FechaEntrega":"2024-04-19T16:26:50.456-04:00"},{"DocumentoCompra":1111,"CodigoOcChilecompra":"123","CodigoMaterial":44221,"CantidadSolicitada":2,"CodigoDestinatario":23,"PuertoDescarga":"ABC","FechaEntrega":"2024-04-19T16:26:50.459-04:00"},{"DocumentoCompra":1112,"CodigoOcChilecompra":"123","CodigoMaterial":44222,"CantidadSolicitada":2,"CodigoDestinatario":23,"PuertoDescarga":"ABC","FechaEntrega":"2024-04-19T16:26:50.462-04:00"}]}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Authorization:
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcxMjc4NDQxMSwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.OTCsCNKMT-lmVhF1x91U-Llro9XyepqksbRJDfDxMis
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '633'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - testaplicacionesweb.cenabast.cl:7001
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Server:
+      - Microsoft-IIS/10.0
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Wed, 10 Apr 2024 20:26:50 GMT
+    body:
+      encoding: UTF-8
+      string: '{"code":404,"isSuccessStatusCode":false,"content":""}'
+  recorded_at: Wed, 10 Apr 2024 20:26:50 GMT
+recorded_with: VCR 6.2.0

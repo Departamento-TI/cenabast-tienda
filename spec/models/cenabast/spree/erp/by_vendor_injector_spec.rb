@@ -6,39 +6,25 @@ RSpec.describe Cenabast::Spree::Erp::ByVendorInjector do
     let(:vendor1) { create(:vendor) }
     let(:vendor2) { create(:vendor) }
 
-    before do
-      order.line_items.first.variant.vendor = vendor1
-      order.line_items.second.variant.vendor = vendor2
+    context 'when sending the order to ERP via send_to_erp! method' do
+      before do
+        order.line_items.first.variant.vendor = vendor1
+        order.line_items.second.variant.vendor = vendor2
+        @receive_count = 0
 
-      allow(Cenabast::Api::Erp::CreateOrder).to receive(:new).and_return(
-        double(call: { success: true })
-      )
-    end
+        allow_any_instance_of(Cenabast::Spree::Erp::SaleOrder).to receive(:send_to_erp!) do
+          @receive_count += 1
+        end
+      end
 
-    context 'when sending the order to ERP' do
       it 'sends the order to ERP for each vendor' do
         injector = described_class.new
 
-        expect(Cenabast::Api::Erp::CreateOrder).to receive(:new).with(order:, line_items: [order.line_items.first]).and_call_original
-        expect(Cenabast::Api::Erp::CreateOrder).to receive(:new).with(order:, line_items: [order.line_items.second]).and_call_original
+        expect do
+          injector.send_order(order)
+        end.to change(Cenabast::Spree::Erp::SaleOrder, :count).by(2)
 
-        injector.send_order(order)
-      end
-    end
-
-    context 'when processing the response' do
-      it 'logs the processing of ERP order creation response' do
-        expect(Rails.logger).to receive(:info).with(/Processing ERP order creation response/).twice
-
-        injector = described_class.new
-        injector.send_order(order)
-      end
-
-      it 'calls process_response method for each response' do
-        expect_any_instance_of(described_class).to receive(:process_response).twice
-
-        injector = described_class.new
-        injector.send_order(order)
+        expect(@receive_count).to eq(2)
       end
     end
   end
