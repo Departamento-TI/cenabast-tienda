@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/tienda/api/v1/auth
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/auth"
     body:
       encoding: UTF-8
       string: '{"user":"tienda","password":"tienda#2024"}'
@@ -18,7 +18,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
-      - testaplicacionesweb.cenabast.cl:7001
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
       code: 200
@@ -42,7 +42,7 @@ http_interactions:
   recorded_at: Wed, 10 Apr 2024 20:26:50 GMT
 - request:
     method: post
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/tienda/api/v1/pedido
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/pedido"
     body:
       encoding: UTF-8
       string: '{"RutSolicitante":"26.896.041-4","DetalleProductos":[{"DocumentoCompra":1110,"CodigoOcChilecompra":"123","CodigoMaterial":44220,"CantidadSolicitada":2,"CodigoDestinatario":23,"PuertoDescarga":"ABC","FechaEntrega":"2024-04-19T16:26:50.456-04:00"},{"DocumentoCompra":1111,"CodigoOcChilecompra":"123","CodigoMaterial":44221,"CantidadSolicitada":2,"CodigoDestinatario":23,"PuertoDescarga":"ABC","FechaEntrega":"2024-04-19T16:26:50.459-04:00"},{"DocumentoCompra":1112,"CodigoOcChilecompra":"123","CodigoMaterial":44222,"CantidadSolicitada":2,"CodigoDestinatario":23,"PuertoDescarga":"ABC","FechaEntrega":"2024-04-19T16:26:50.462-04:00"}]}'
@@ -60,7 +60,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
-      - testaplicacionesweb.cenabast.cl:7001
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
       code: 404
