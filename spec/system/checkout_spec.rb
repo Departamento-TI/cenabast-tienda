@@ -18,6 +18,10 @@ RSpec.describe 'Checkout process', type: :system do
 
     act_with_current_store(store)
     act_as_logged_in(user)
+
+    # Dont do stock validation using API
+    # Mock this, and return true always
+    allow_any_instance_of(Cenabast::Spree::LineItemDecorator).to receive(:sufficient_stock?) { true }
   end
 
   it 'can go through checkout process', js: true do
@@ -31,7 +35,6 @@ RSpec.describe 'Checkout process', type: :system do
     click_link Spree.t('pdp.view_cart')
 
     # Cart view
-
     find_button(Spree.t(:send_order), disabled: false)
     click_button Spree.t(:send_order)
 
