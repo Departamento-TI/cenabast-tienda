@@ -5,12 +5,21 @@
   @include badge-variant(theme-color('success'));
 }
 
+// Red
+.badge-with_errors {
+  @include badge-variant(theme-color('danger'));
+}
+
 // Orange
+.badge-partially_nullified,
 .badge-nullified {
   @include badge-variant(theme-color('warning'));
 }
 
 // light
+.badge-unknown,
+.badge-not_prepared,
+.badge-pending,
 .badge-initial {
   @include badge-variant(theme-color('light'));
 }

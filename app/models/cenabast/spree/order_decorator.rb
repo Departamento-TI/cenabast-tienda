@@ -2,8 +2,9 @@ module Cenabast
   module Spree
     module OrderDecorator
       def self.prepended(base)
+        base.include Cenabast::Spree::HasSaleOrders
+
         base.belongs_to :receiver, class_name: 'Cenabast::Spree::Receiver', optional: false
-        base.has_many :sale_orders, class_name: 'Cenabast::Spree::Erp::SaleOrder', dependent: :destroy
 
         base.state_machine.after_transition to: :complete, do: :inject_to_erp!
       end

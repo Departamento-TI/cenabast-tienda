@@ -5,6 +5,56 @@ RSpec.describe Spree::Order, type: :model do
     it { should belong_to(:receiver).class_name('Cenabast::Spree::Receiver') }
   end
 
+  describe 'Has Sale Orders concern' do
+    describe 'Associations' do
+      it { should have_many(:sale_orders).class_name('Cenabast::Spree::Erp::SaleOrder') }
+    end
+
+    context '#erp_send_status' do
+      let!(:order) { create(:order) }
+      let!(:erp_sale_orders) { create_list(:erp_sale_order, 3, order:) }
+
+      it 'returns not_prepared if doesnt has any sale order' do
+        order.sale_orders.destroy_all
+
+        expect(order.erp_send_status).to eq(:not_prepared)
+      end
+
+      it 'returns pending if some are initial and not failed/nullified' do
+        # Only first one is set as sent, others are still initial
+        order.sale_orders.first.sent!
+
+        expect(order.erp_send_status).to eq(:pending)
+      end
+
+      it 'returns with_errors if some are failed' do
+        order.sale_orders.first.failed!
+
+        expect(order.erp_send_status).to eq(:with_errors)
+      end
+
+      it 'returns partially_nullified if some are nullified but not all' do
+        # Only first one is set as nullified, others are still initial
+        order.sale_orders.first.nullified!
+
+        expect(order.erp_send_status).to eq(:partially_nullified)
+      end
+
+      it 'returns sent if some are all are sent' do
+        order.sale_orders.each(&:sent!)
+
+        expect(order.erp_send_status).to eq(:sent)
+      end
+
+      it 'does not return sent if any of those is not marked as sent' do
+        order.sale_orders.each(&:sent!)
+        order.sale_orders.first.nullified!
+
+        expect(order.erp_send_status).not_to eq(:sent)
+      end
+    end
+  end
+
   describe '#payment_required?' do
     it 'does not require payment' do
       expect(subject.payment_required?).to eq(false)

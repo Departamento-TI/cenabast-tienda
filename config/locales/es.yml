@@ -71,7 +71,22 @@ es:
     erp_pedido_id: 'ERP Id de Pedido'
     erp_pv_id: 'ERP ID de PV'
     erp_fecha_creacion: 'ERP Fecha de creación'
+    erp_send_status: 'Estado de envio a ERP'
     state_changes: 'Cambios de estado'
     sale_orders: 'ERP Pedidos de Venta'
     sent_at: 'Fecha Envío'
     nullified_at: 'Fecha Anulación'
+    search_by: 'Buscar por'
+    search_order_number: 'Numero de Orden'
+    admin:
+      orders:
+        all: 'Todas las ordenes'
+    order:
+      erp_send_statuses:
+        unknown: 'Desconocido'
+        not_prepared: 'No preparado'
+        pending: 'Pendiente de envio'
+        with_errors: 'Con errores'
+        partially_nullified: 'Parcialmente nulo'
+        nullified: 'Anulado'
+        sent: 'Enviado'
