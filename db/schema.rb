@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_03_185427) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_10_153239) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -100,6 +100,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_03_185427) do
     t.integer "quantity", default: 0, null: false
     t.index ["code"], name: "index_cenabast_spree_contracts_on_code", unique: true
     t.index ["product_id"], name: "index_cenabast_spree_contracts_on_product_id"
+  end
+
+  create_table "cenabast_spree_erp_detail_lines", force: :cascade do |t|
+    t.bigint "sale_order_id", null: false
+    t.bigint "line_item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["line_item_id"], name: "index_cenabast_spree_erp_detail_lines_on_line_item_id"
+    t.index ["sale_order_id"], name: "index_cenabast_spree_erp_detail_lines_on_sale_order_id"
+  end
+
+  create_table "cenabast_spree_erp_sale_orders", force: :cascade do |t|
+    t.string "number"
+    t.integer "status", default: 0, null: false
+    t.string "erp_pedido_id"
+    t.string "erp_pv_id"
+    t.string "erp_fecha_creacion"
+    t.datetime "sent_at"
+    t.datetime "nullified_at"
+    t.bigint "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_cenabast_spree_erp_sale_orders_on_order_id"
   end
 
   create_table "cenabast_spree_generic_products", force: :cascade do |t|
@@ -1795,6 +1818,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_03_185427) do
   add_foreign_key "cenabast_spree_company_users", "cenabast_spree_companies", column: "company_id"
   add_foreign_key "cenabast_spree_company_users", "spree_users", column: "user_id"
   add_foreign_key "cenabast_spree_contracts", "spree_products", column: "product_id"
+  add_foreign_key "cenabast_spree_erp_detail_lines", "cenabast_spree_erp_sale_orders", column: "sale_order_id"
+  add_foreign_key "cenabast_spree_erp_detail_lines", "spree_line_items", column: "line_item_id"
+  add_foreign_key "cenabast_spree_erp_sale_orders", "spree_orders", column: "order_id"
   add_foreign_key "cenabast_spree_receiver_users", "cenabast_spree_receivers", column: "receiver_id"
   add_foreign_key "cenabast_spree_receiver_users", "spree_users", column: "user_id"
   add_foreign_key "cenabast_spree_receivers", "cenabast_spree_requesters", column: "requester_id"
