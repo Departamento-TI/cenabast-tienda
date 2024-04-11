@@ -1,15 +1,16 @@
 require 'vcr'
 require 'webmock/rspec'
 require 'uri'
-require 'webdrivers'
 
-driver_hosts = Webdrivers::Common.subclasses.map { |driver| URI(driver.base_url).host }
+driver_hosts = []
+
 driver_hosts << 'codeclimate.com'
 driver_hosts << 'elasticsearch'
 driver_hosts << 'postgres'
-driver_urls = Webdrivers::Common.subclasses.map(&:base_url)
+driver_hosts << 'web'
+driver_hosts << 'selenium'
 
-WebMock.disable_net_connect!(allow_localhost: true, allow: driver_urls)
+WebMock.disable_net_connect!(allow_localhost: true, allow: [])
 
 VCR.configure do |c|
   c.allow_http_connections_when_no_cassette = false

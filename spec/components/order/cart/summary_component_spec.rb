@@ -14,4 +14,12 @@ RSpec.describe Order::Cart::SummaryComponent, type: :component do
 
     expect(page).to have_link(text: Spree.t(:send_order), href: spree.checkout_path)
   end
+
+  it 'shows min UTM message' do
+    limit = rand(3..5)
+    @store.limit_cart_amount_utm = limit
+
+    render_preview(:default)
+    expect(page).to have_content Spree.t(:minimum_amount_required, minimum_value: limit)
+  end
 end

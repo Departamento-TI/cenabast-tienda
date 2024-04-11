@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :receiver, class: 'Cenabast::Spree::Receiver' do
-    run { '11.111.111-1' }
+    run { Cenabast::Spree::Receiver.raw_run_to_formatted(Faker::ChileRut.rut.to_s) }
     name { 'Receiver Name' }
     address { 'Test Address #123' }
     channel_type { :intermediacion }

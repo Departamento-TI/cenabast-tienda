@@ -13,7 +13,7 @@ RSpec.describe Cenabast::Spree::Company, type: :model do
   describe 'Has Run concern' do
     describe 'Validations' do
       it { should validate_presence_of :run }
-      it { should validate_with RutValidator }
+      it { should validate_with Cenabast::Spree::HasRun::CenabastRunValidator }
     end
   end
 end

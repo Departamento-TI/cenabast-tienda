@@ -1,0 +1,16 @@
+let container = document.getElementById('steps-component-container')
+container.innerHTML = '<%= j render Order::Checkout::StepsComponent.new(
+    state: @order.state,
+    order_substep: @order.order_substep,
+    bill_address_data: {
+      firstname: @order&.bill_address&.firstname,
+      run: (Chilean::Rutify.format_rut(@order&.bill_address&.run) if @order&.bill_address&.run)
+    },
+    ship_address_data: {
+      firstname: @order&.ship_address&.firstname,
+      run: (Chilean::Rutify.format_rut(@order&.ship_address&.run) if @order&.ship_address&.run)
+    }
+  )
+%>'
+
+toggleSubstep("<%= @order.order_substep %>")

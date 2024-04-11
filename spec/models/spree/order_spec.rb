@@ -5,6 +5,12 @@ RSpec.describe Spree::Order, type: :model do
     it { should belong_to(:receiver).class_name('Cenabast::Spree::Receiver') }
   end
 
+  describe '#payment_required?' do
+    it 'does not require payment' do
+      expect(subject.payment_required?).to eq(false)
+    end
+  end
+
   describe '#inject_to_erp!' do
     let(:order) { create(:order) }
 

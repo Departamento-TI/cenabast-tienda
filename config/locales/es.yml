@@ -1,5 +1,43 @@
 es:
+  errors:
+    attributes:
+      run:
+        invalid: "no es un RUT válido"
+  activerecord:
+    attributes:
+      spree/address:
+        run: RUT
+      spree/county:
+        name: Nombre
+    models:
+      spree/county:
+        one: Comuna.
+        other: Comunas
+      spree/address:
+        one: Direccion.
+        other: Direcciones
+      
   spree:
+    checkout_page:
+      header: Checkout
+      go_back_to_store: Volver a la tienda
+      description: ''
+      subtotal: Subtotal
+      order_total: Total de la Orden
+    select_delivery_port: 'Selecciona Puesto de Descarga'
+    select_a_state: 'Selecciona una región'
+    select_a_county: 'Selecciona una comuna'
+    name_receiver: 'Nombre Destinatario'
+    name_requester: 'Nombre Solicitante'
+    street: 'Calle'
+    rut: "Rut"
+    invalid_rut: "Rut Invalido"
+    office: 'Oficina'
+    region: 'Región'
+    counties: "Comunas"
+    county: "Comuna"
+    new_county: "Nueva comuna"
+    county_based: "Basado en Comuna"
     login: 'Inicio de sesión'
     login_success: 'Acceso al sitio exitoso'
     error_contacting_cenabast_services: 'Error contactando servicios de cenabast. Por favor intente mas tarde.'
@@ -12,6 +50,7 @@ es:
       mercado_publico_id: 'ID Mercado público'
       atc_code: 'Código ATC'
       standard_denomination: 'Denominación estándar'
+    delivery_method_for_products_of_vendor: 'Método de entrega %{name}'
     no_laboratory: 'Sin Laboratorio'
     send_order: 'Enviar orden'
     order_total: 'Total de la orden'

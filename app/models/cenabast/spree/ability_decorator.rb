@@ -2,7 +2,7 @@ module Cenabast
   module Spree
     module AbilityDecorator
       def abilities_to_register
-        [OrderReceiverAbility]
+        [OrderReceiverAbility, CountyAbility]
       end
     end
   end

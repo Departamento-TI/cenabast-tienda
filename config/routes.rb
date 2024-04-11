@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   end
   mount Sidekiq::Web, at: '/sidekiq'
 
+  get '/checkout/steps/move_substep', to: 'spree/checkout#move_substep', as: :checkout_move_substep
+
   # User preferences
   post 'user_preferences/toggle_requester/:option_id',
     to: 'cenabast/spree/user_preferences#toggle_requester',
@@ -31,8 +33,16 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: '/letter_opener'
   end
 
+  namespace :admin do
+    resources :counties
+  end
+
   namespace :api, defaults: { format: 'json' } do
     namespace :v2 do
+      namespace :storefront do
+        resources :counties, only: [:index, :show], controller: '/cenabast/spree/api/v2/storefront/counties'
+      end
+
       namespace :platform do
         resources :generic_products, controller: '/cenabast/spree/api/v2/platform/generic_products'
         resources :contracts, controller: '/cenabast/spree/api/v2/platform/contracts'

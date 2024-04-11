@@ -93,6 +93,9 @@ group :test do
   # A library for generating fake data such as names,
   # addresses, and phone numbers.
   gem 'faker'
+
+  # Since we are using a remote selenium install, dont require webdrivers gem
+  gem 'webdrivers', require: false
 end
 
 # Heroku fix

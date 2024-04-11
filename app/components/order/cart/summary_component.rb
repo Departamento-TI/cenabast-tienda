@@ -23,4 +23,8 @@ class Order::Cart::SummaryComponent < ApplicationComponent
   def before_render
     @checkout_url = helpers.spree.checkout_path
   end
+
+  def limit_cart_amount_utm
+    helpers&.current_store&.limit_cart_amount_utm
+  end
 end

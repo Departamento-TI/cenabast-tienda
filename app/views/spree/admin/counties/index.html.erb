@@ -1,0 +1,18 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::County) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_county), new_admin_state_county_path(@state), { :class => "btn-success", :icon => 'add', :id => 'new_county_link' } %>
+<% end if can? :create, Spree::County %>
+
+<div data-hook="state" class="form-group">
+  <%= label_tag :state, Spree.t(:state) %>
+  <select id="state" class='observe_field select2' data-base-url="<%=admin_counties_path(:format => :js) %>?state_id=" data-update="#county-list">
+    <%= options_from_collection_for_select(@states, :id, :name, @state.id) %>
+  </select>
+</div>
+
+<div id="county-list" data-hook>
+  <%= render :partial => 'county_list'%>
+</div>

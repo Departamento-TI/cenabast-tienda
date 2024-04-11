@@ -1,0 +1,51 @@
+<%= render Order::Checkout::StepComponent.new(
+    step_params: {
+      title: '1. Solicitante',
+      active: current?(1),
+      enabled_link: active_link?(1),
+      action_url: '#',
+      format: 'big',
+      details: [
+        @bill_address_data&.dig(:firstname),
+        @bill_address_data&.dig(:run)
+      ].compact
+    }
+  )
+%>
+
+<%= render Order::Checkout::StepComponent.new(
+    step_params: {
+      title: '2. Destinatario',
+      active: current?(2),
+      enabled_link: active_link?(2),
+      action_url: '#',
+      format: 'big',
+      details: [
+        @ship_address_data&.dig(:firstname),
+        @ship_address_data&.dig(:run)
+      ].compact
+    }
+  )
+%>
+
+<%= render Order::Checkout::StepComponent.new(
+    step_params: {
+      title: '3. Puesto de descarga',
+      active: current?(3),
+      enabled_link: active_link?(3),
+      action_url: '#',
+      format: 'small'
+    }
+  )
+%>
+
+<%= render Order::Checkout::StepComponent.new(
+    step_params: {
+      title: '4. Método de Entrega',
+      active: current?(4),
+      enabled_link: active_link?(4),
+      action_url: '#',
+      format: 'small'
+    }
+  )
+%>

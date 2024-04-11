@@ -43,6 +43,8 @@ services:
       DB_HOST: postgres
       DB_PORT: 5432
       DISABLE_SPRING: 1
+    links:
+      - selenium
 
   worker:
     depends_on:
@@ -112,6 +114,15 @@ services:
     - "--proxy=edge"
     - "--hostname-strict=false"
     - "--hostname=login-dev.cenabast.gob.cl"
+
+  selenium:
+    shm_size: '256mb'
+    build:
+      context: .
+      dockerfile: Dockerfile.selenium
+    ports:
+      - '4444:4444'
+      - '7900:7900'
 
 volumes:
   cenabast-postgres:

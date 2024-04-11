@@ -102,6 +102,20 @@ http://localhost:5601/app/discover
 bundle exec rspec
 ```
 
+### JS enabled tests
+
+JS enabled system specs will be run using Selenium Grid with Chrome.
+to see the activity in the browser, a noVNC view can be accessed via:
+
+http://localhost:7900/?autoconnect=1&resize=scale&password=secret
+
+**Assets not loading properly? (CSS, JS)**
+
+Make sure to run precompile before running JS enabled system specs:
+```
+RAILS_ENV=test bundle exec rake assets:precompile
+```
+
 ## Run rubocop
 
 ```

@@ -20,7 +20,6 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
-require 'webdrivers/chromedriver'
 require 'capybara/rspec'
 require 'capybara/dsl'
 require 'spree_dev_tools/rspec/spec_helper'

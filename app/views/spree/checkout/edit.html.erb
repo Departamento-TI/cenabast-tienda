@@ -1,0 +1,67 @@
+<% @body_id = 'checkout-page' %>
+
+<%
+content_for :head do
+  agent = request.env['HTTP_USER_AGENT']
+  if agent =~ /Safari/ && !(agent =~ /Chrome/)
+%>
+  <script>
+    if (!!window.performance && window.performance.navigation.type === 2) {
+      window.location.reload();
+    }
+    window.onpageshow = function(event) {
+      if (event.persisted) {
+        window.location.reload()
+      }
+    }
+  </script>
+<%
+  end
+end
+%>
+
+<div id="checkout" class="container checkout" data-hook>
+  <%= render Order::Checkout::HeaderComponent.new(
+    subtotal: @order.display_total.to_s,
+    total: @order.display_total.to_s
+  ) %>
+
+  <div class="row checkout-content" data-hook="checkout_content">
+    <%= form_for @order, url: spree.update_checkout_path(@order.state), html: { id: "checkout_form_#{@order.state}", class: "w-100 d-lg-flex align-items-lg-baseline  flex-wrap position-relative", data: { turbo: false } } do |form| %>
+      <div class="<%= if @order.state != 'confirm' then 'col-lg-6' else 'col-md-12' end %>" data-hook="checkout_form_wrapper">
+        
+      </div>
+
+      <div class="w-full flex flex-row gap-4">
+        <div id="steps-component-container" class="w-[300px]">
+          <%= render Order::Checkout::StepsComponent.new(
+            state: @order.state,
+            order_substep: @order.order_substep,
+            bill_address_data: {
+              firstname: @order&.bill_address&.firstname,
+              run: (Chilean::Rutify.format_rut(@order&.bill_address&.run) if @order&.bill_address&.run)
+            },
+            ship_address_data: {
+              firstname: @order&.ship_address&.firstname,
+              run: (Chilean::Rutify.format_rut(@order&.ship_address&.run) if @order&.ship_address&.run)
+            }
+          ) %>
+        </div>
+
+        <div class="flex-1">
+          <!-- Render a different partial depending on the order state -->
+          <!-- Component to render is tied on each partial -->
+          <%= form.hidden_field :state_lock_version %>
+          <%= render @order.state, form: form %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    Spree.current_order_id = "<%= @order.number %>"
+    Spree.current_order_token = "<%= @order.token %>"
+  })
+</script>

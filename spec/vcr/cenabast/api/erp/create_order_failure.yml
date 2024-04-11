@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/tienda/api/v1/auth
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/auth"
     body:
       encoding: UTF-8
       string: '{"user":"tienda","password":"tienda#2024"}'
@@ -18,7 +18,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
-      - testaplicacionesweb.cenabast.cl:7001
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
       code: 200
@@ -42,7 +42,7 @@ http_interactions:
   recorded_at: Wed, 03 Apr 2024 13:59:56 GMT
 - request:
     method: post
-    uri: https://testaplicacionesweb.cenabast.cl:7001/interoperabilidad/tienda/api/v1/pedido
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/pedido"
     body:
       encoding: UTF-8
       string: '{"RutSolicitante":null,"DetalleProductos":null}'
@@ -60,7 +60,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
-      - testaplicacionesweb.cenabast.cl:7001
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
       code: 400

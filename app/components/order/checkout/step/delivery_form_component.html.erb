@@ -1,0 +1,198 @@
+<%= hidden_field_tag 'save_user_address', true, data: { hook: "save_user_address" } %>
+
+<div class="w-full h-[800px] relative">
+  <div id="delivery_port_form" class="absolute left-0 right-0 transition-opacity mx-auto p-3 maw-w-full max-h-full bg-white rounded-lg border border-gray-200 mb-[24px] shadow-sm font-medium text-left flex flex-col">
+    <fieldset disabled>
+      <%= fields_for "order", @order do |delivery_form| %>
+        <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-base">
+          <!-- Collapsable header -->
+          <div class="item-parent mx-auto p-0 w-full max-h-full bg-white rounded-lg border border-gray-300 mb-[24px] shadow-sm">
+            <!-- Section header -->
+            <div class="border-b-2 border-gray-200 px-4 py-3 text-gray-700 toggle-item">
+              <span class="font-semibold"><%= Spree.t(:select_delivery_port) %></span>
+
+              <svg class="mx-2 w-[22px] h-[16px] item-icon float-right transition-all" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+
+            <!-- Table of delivery port selection -->
+            <div class="item grid grid-rows-[1fr] transition-all">
+              <div class="overflow-hidden">
+                <div class="m-3 px-2 gap-4 flex flex-row text-gray-400 text-sm">
+                  <%= delivery_form.radio_button :selected_delivery_port,
+                    delivery_port_address,
+                    checked: true,
+                    class: 'w-4 h-4 self-center text-primary-600 bg-gray-100 border-gray-300 focus:ring-primary-500 focus:ring-2'
+                  %>
+                  <span class="rate-name"><%= delivery_port_address %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% unless @order.confirm? %>
+          <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
+            <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
+            <div class="delivery-next w-full">
+              <%= link_to '', checkout_move_substep_path(format: :js, order_substep: 1, state: 'delivery'), remote: true, class: 'hidden' %>
+              <%= render Common::Button::BaseComponent.new(
+                button_params: {
+                  text: Spree.t(submit_label_key),
+                  size: 'lg',
+                  hierarchy: 'primary',
+                  additional_styles: 'w-full'
+                })
+              %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </fieldset>
+  </div>
+
+  <div id="shipments_form" class="absolute left-0 right-0 transition-opacity opacity-0 mx-auto p-3 maw-w-full max-h-full bg-white rounded-lg border border-gray-200 mb-[24px] shadow-sm font-medium text-left flex flex-col">
+    <fieldset disabled>
+      <% @order.shipments.each&.with_index do |shipment, index| %>
+        <%= fields_for "order[shipments_attributes][#{index}]", shipment do |ship_form| %>
+          <%= ship_form.hidden_field :id %>
+          <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-base">
+            <!-- Collapsable header -->
+            <div class="item-parent mx-auto p-0 w-full max-h-full bg-white rounded-lg border border-gray-300 mb-[24px] shadow-sm">
+              <!-- Section header -->
+              <div class="border-b-2 border-gray-200 px-4 py-3 text-gray-700 toggle-item">
+                <span class="font-semibold"><%= Spree.t(:delivery_method_for_products_of_vendor, name: shipment&.stock_location&.vendor&.name || Spree.t(:no_laboratory)) %></span>
+
+                <svg class="mx-2 w-[22px] h-[16px] item-icon float-right transition-all" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+              </div>
+
+              <!-- Table of shipping rate selection -->
+              <div class="item grid grid-rows-[1fr] transition-all">
+                <div class="overflow-hidden">
+                  <div class="m-3 px-2 gap-4 flex flex-row text-gray-400 text-sm">
+                    <% ship_form.object.shipping_rates.each do |rate| %>
+                      <%= ship_form.radio_button :selected_shipping_rate_id,
+                        rate.id,
+                        class: 'w-4 h-4 self-center text-primary-600 bg-gray-100 border-gray-300 focus:ring-primary-500 focus:ring-2'
+                      %>
+                      <span><%= rate.name %></span>
+                      <p><%= rate.display_cost %></span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% unless @order.confirm? %>
+        <div class="m-3 mt-[120px] px-2 gap-6 flex flex-row text-gray-400 text-sm">
+          <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>
+          <div class="delivery-next w-full">
+            <%= render Common::Button::BaseComponent.new(
+              button_params: {
+                text: Spree.t(submit_label_key),
+                size: 'lg',
+                hierarchy: 'primary',
+                additional_styles: 'w-full'
+              })
+            %>
+          </div>
+        </div>
+      <% end %>
+    </fieldset>
+  </div>
+</div>
+
+<script>
+  function toggleSubstep(step) {
+    let delivery_port_form_container = document.querySelector('#delivery_port_form')
+    
+    let shipments_form_container = document.querySelector('#shipments_form')
+
+    // Hide all steps, disable fieldsets
+    delivery_port_form_container.classList.add('opacity-0')
+    delivery_port_form_container.classList.add('pointer-events-none')
+    delivery_port_form_container.querySelector('fieldset').disabled = true
+    delivery_port_form_container.querySelector('fieldset').classList.remove('z-50')
+
+    shipments_form_container.classList.add('opacity-0')
+    shipments_form_container.classList.add('pointer-events-none')
+    shipments_form_container.querySelector('fieldset').disabled = true
+    shipments_form_container.querySelector('fieldset').classList.remove('z-50')
+
+    // Show particular step
+    switch (step) {
+      case "0":
+        delivery_port_form_container.classList.toggle('opacity-0')
+        delivery_port_form_container.classList.toggle('pointer-events-none')
+        delivery_port_form_container.querySelector('fieldset').disabled = false
+        delivery_port_form_container.querySelector('fieldset').classList.add('z-50')
+        break;
+      case "1":
+        shipments_form_container.classList.toggle('opacity-0')
+        shipments_form_container.classList.toggle('pointer-events-none')
+        shipments_form_container.querySelector('fieldset').disabled = false
+        shipments_form_container.querySelector('fieldset').classList.add('z-50')
+        break;
+      default:
+        break;
+    }
+  }
+
+  function validateForm(form) {
+    return form.checkValidity()
+  }
+
+  function initializeAddressFormComponent() {
+    toggleSubstep("<%= @order.order_substep %>")
+
+    let buttons = document.querySelectorAll('.delivery-next button')
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", function(event) {
+        event.preventDefault()
+        var form = document.getElementById("checkout_form_delivery");
+        if (validateForm(form)) {
+          // Enable all fieldsets, to send all info
+          document.querySelectorAll('fieldset').forEach((fieldset) => { fieldset.disabled = false; })
+          let link = button.parentNode.querySelector('a')
+          if (link) {
+            link.click()
+          }
+          else {
+            form.submit()
+          }
+          // Disable button to prevent reclicking, add feedback
+          button.disabled = true
+          button.querySelector('[data-role="button-spinner"]').classList.remove('hidden')
+        }
+      });
+    });
+  }
+
+  function setToggleItemCallbacks() {
+    let items = document.querySelectorAll('.toggle-item')
+    items.forEach((item) => {
+      if (!item.hasAttribute('data-event-listener')) {
+        // Add a custom attribute to mark that the event listener has been added
+        item.setAttribute('data-event-listener', 'added')
+
+        item.addEventListener('click', (e) => {
+          e.currentTarget.querySelector('.item-icon').classList.toggle('rotate-180')
+          e.currentTarget.closest('.item-parent').querySelector('.item').classList.toggle('grid-rows-[1fr]')
+          e.currentTarget.closest('.item-parent').querySelector('.item').classList.toggle('grid-rows-[0fr]')
+        })
+      }
+    })
+  }
+
+  document.addEventListener("turbo:load", function() {
+    initializeAddressFormComponent()
+    setToggleItemCallbacks()
+  });
+</script>

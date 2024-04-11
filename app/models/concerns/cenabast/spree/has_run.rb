@@ -4,10 +4,19 @@
 module Cenabast
   module Spree
     module HasRun
+      class CenabastRunValidator < ActiveModel::EachValidator
+        def validate_each(record, attribute, value)
+          return if value.blank?
+          return if Chilean::Rutify.valid_rut?(value)
+
+          record.errors.add(attribute, :invalid)
+        end
+      end
+
       extend ActiveSupport::Concern
 
       included do
-        validates :run, presence: true, rut: true
+        validates :run, presence: true, cenabast_run: true
 
         def self.raw_run_to_formatted(value)
           Chilean::Rutify.normalize_rut(value.to_s + Chilean::Rutify.get_verifier(value))

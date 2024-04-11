@@ -1,6 +1,13 @@
 module Helpers
   module StoreHelper
     def create_cenabast_stores
+      # Ensure Chile exists as a country
+      Spree::Country.find_or_create_by(
+        name: 'Chile', iso_name: 'CHILE',
+        iso: 'CL', iso3: 'CHL', numcode: 152,
+        states_required: true, zipcode_required: false
+      )
+
       ecommerce_store = create(:store, code: 'spree-ecommerce', name: 'E-commerce')
       ecommerce_store.default = false
       ecommerce_store.checkout_zone = nil
@@ -24,6 +31,24 @@ module Helpers
       intermediation_store.save!
 
       [ecommerce_store, intermediation_store]
+    end
+
+    # Create some sample values to use
+    def create_states_and_counties
+      country = Spree::Country.find_by(iso: 'CL')
+      state = create(:state, country:, name: 'Región Metropolitana de Santiago')
+      create(:county, state:, name: 'Renca')
+      create(:county, state:, name: 'Santiago')
+      create(:county, state:, name: 'San Bernardo')
+    end
+
+    # Create shipping methods to use
+    def create_shipping_methods
+      load Rails.root.join('db/seeds/005_shipping_methods.rb')
+    end
+
+    def act_with_current_store(store)
+      allow_any_instance_of(Spree::StoreController).to receive_messages current_store: store
     end
   end
 end

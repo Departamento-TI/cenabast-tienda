@@ -1,0 +1,6 @@
+FROM selenium/standalone-chrome:4.19
+
+RUN sudo apt-get update && sudo apt-get install -y wget bzip2 \
+    libxtst6 libgtk-3-0 libx11-xcb-dev libdbus-glib-1-2 \
+    libxt6 libpci-dev \
+    && sudo rm -rf /var/lib/apt/lists/*

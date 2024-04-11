@@ -17,3 +17,8 @@ end
 
 # Add fonts
 Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+
+# Give priority to the local vendor bootstrap path
+# This allows us to override bootstrap CSS behaviour
+Rails.application.config.assets.paths.unshift Rails.root.join('vendor', 'bootstrap-cenabast', 'javascript')
+Rails.application.config.assets.paths.unshift Rails.root.join('vendor', 'bootstrap-cenabast', 'stylesheets')
