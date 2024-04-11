@@ -42,11 +42,7 @@
       <% end %>
 
       <div class="float-left pl-[26px]">
-        <%= link_to 'Medicamentos', '#', class: 'font-semibold text-base text-gray-500 px-[12px]' %>
-
-        <%= link_to 'Fármacos', '#', class: 'font-semibold text-base text-gray-500 px-[12px]' %>
-
-        <%= link_to 'Insumos', '#', class: 'font-semibold text-base text-gray-500 px-[12px]' %>
+        <%= render Common::Layout::MainCategoriesComponent.new(categories: Spree::Taxonomy.all) %>
       </div>
 
       <!-- Cart -->
