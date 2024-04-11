@@ -1,0 +1,16 @@
+// Additional badges for Cenabast statuses
+
+// Green
+.badge-sent {
+  @include badge-variant(theme-color('success'));
+}
+
+// Orange
+.badge-nullified {
+  @include badge-variant(theme-color('warning'));
+}
+
+// light
+.badge-initial {
+  @include badge-variant(theme-color('light'));
+}

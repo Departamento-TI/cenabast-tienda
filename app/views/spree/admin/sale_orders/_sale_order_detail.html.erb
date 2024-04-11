@@ -1,0 +1,30 @@
+<% sale_order.line_items.each do |line_item| %>
+  <tr class="sale-order-line-item" data-item-quantity="<%= line_item.quantity %>">
+    <td class="item-image image text-center">
+      <%= link_to small_image(line_item.variant), edit_admin_product_path(line_item.variant.product) %>
+    </td>
+
+    <td class="item-name">
+      <%= link_to line_item.variant.product.name, edit_admin_product_path(line_item.variant.product) %>
+      <br>
+      <%= "(#{line_item.variant.options_text})" if line_item.variant.options_text.present? %>
+      <% if line_item.variant.sku.present? %>
+        <strong><%= Spree.t(:sku) %>:</strong> <%= line_item.variant.sku %>
+      <% end %>
+    </td>
+
+    <td class="item-vendor">
+      <%= line_item&.variant&.vendor&.name || Spree.t(:no_laboratory) %>
+    </td>
+
+    <td class="item-price text-center"><%= line_item.single_money.to_html %></td>
+
+    <td class="item-qty-show text-center">
+      <%= line_item.quantity %>
+    </td>
+
+    <td class="item-total text-center">
+      <%= line_item_shipment_price(line_item, line_item.quantity) %>
+    </td>
+  </tr>
+<% end %>

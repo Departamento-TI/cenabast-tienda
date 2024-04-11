@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # Spree User routes
   instance_eval(File.read(Rails.root.join("config/routes/spree_user_routes.rb")))
 
+  # Spree admin routes
+  instance_eval(File.read(Rails.root.join("config/routes/spree_admin_routes.rb")))
+
   # sidekiq web UI
   require 'sidekiq/web'
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|

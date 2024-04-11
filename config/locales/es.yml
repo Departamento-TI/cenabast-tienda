@@ -63,3 +63,15 @@ es:
     stock_validator:
       not_enough_stock: 'No hay suficiente stock para el producto "%{sku}".'
       information_retrieve_error: 'Error al validar stock del producto "%{sku}".'
+    sale_order_statuses:
+      initial: 'Inicial'
+      sent: 'Enviado'
+      failed: 'Fallido'
+      nullified: 'Anulado'
+    erp_pedido_id: 'ERP Id de Pedido'
+    erp_pv_id: 'ERP ID de PV'
+    erp_fecha_creacion: 'ERP Fecha de creación'
+    state_changes: 'Cambios de estado'
+    sale_orders: 'ERP Pedidos de Venta'
+    sent_at: 'Fecha Envío'
+    nullified_at: 'Fecha Anulación'
