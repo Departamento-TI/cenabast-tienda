@@ -14,6 +14,11 @@ module Cenabast
         injector.send_order self
       end
 
+      def after_cancel
+        super
+        Cenabast::Spree::Erp::OrderCanceller.new(self).call
+      end
+
       # There's currently not payment step in Cenabast checkout, skip it.
       def payment_required?
         false

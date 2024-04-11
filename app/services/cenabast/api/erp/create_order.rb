@@ -12,6 +12,8 @@ module Cenabast
           @line_items = line_items
         end
 
+        private
+
         def url
           URI.join(base_url, "#{base_path}/pedido").to_s
         end

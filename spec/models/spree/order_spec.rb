@@ -78,4 +78,16 @@ RSpec.describe Spree::Order, type: :model do
       order.next
     end
   end
+
+  describe '#after_cancel' do
+    let(:order) { create(:order, state: 'complete') }
+
+    it 'calls OrderCanceller after canceling the order' do
+      canceller_double = instance_double(Cenabast::Spree::Erp::OrderCanceller)
+      expect(Cenabast::Spree::Erp::OrderCanceller).to receive(:new).with(order).and_return(canceller_double)
+      expect(canceller_double).to receive(:call)
+
+      order.after_cancel
+    end
+  end
 end
