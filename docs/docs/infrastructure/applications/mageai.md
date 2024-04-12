@@ -1,7 +1,18 @@
 # Mage.ai
 
+:::tip
+Check the [Mage.ai Implementation](../../2_Store%20Project/development-functionalities/mage-ai.md) for more info.\
+Also check the [Mage.ai Product Syncronization](../../2_Store%20Project/development-functionalities/product-sync.md) for running sync.
+:::
+
 :::info
 [Mage.ai](https://github.com/mage-ai/mage-ai) will being used as a data pipeline for data sincronization.
+:::
+
+# Web Access
+
+:::info
+Within the VPN network, Mage.ai development is available at [http://10.8.0.44:6789/](http://10.8.0.44:6789/)
 :::
 
 # SSH port forwarding
