@@ -1,0 +1,64 @@
+<div id="<%= "sale_order_#{sale_order.id}" %>" data-hook="admin_sale_order_form" class="card mb-3">
+  <div class="card-header sale-order no-borderb" data-hook="sale-order">
+    <div class="flex flex-col">
+      <div class="flex flex-row justify-between">
+        <div class="d-inline-block">
+          <h5 class="flex-wrap align-items-center card-title mb-0 h6">
+            <span class="sale_order-number"><%= sale_order.number %></span>
+            -
+            <span class="sale-order-status">Estado:</span>
+            <span class="badge badge-pill badge-<%= sale_order.status %>">
+              <%= Spree.t("sale_order_statuses.#{sale_order.status}") %>
+            </span>
+          </h5>
+        </div>
+
+        <div class="float-right">
+          <% if sale_order.sent? && can?(:edit, sale_order) %>
+            <!-- Placeholder, here it should be placed the nullify button action -->
+            <!-- More info on how link_to_edit works can be seen in spree_backend navigation_helper.rb -->
+            <%= link_to_edit(sale_order) %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="flex flex-row">
+        <strong><%= Spree.t(:erp_pedido_id) %>:</strong>
+        <span><%= sale_order.erp_pedido_id || '--' %></span>
+      </div>
+
+      <div class="flex flex-row">
+        <strong><%= Spree.t(:erp_pv_id) %>:</strong>
+        <span><%= sale_order.erp_pv_id || '--' %></span>
+      </div>
+
+      <div class="flex flex-row">
+        <strong><%= Spree.t(:sent_at) %>:</strong>
+        <span><%= sale_order.sent_at || '--' %></span>
+      </div>
+
+      <div class="flex flex-row">
+        <strong><%= Spree.t(:nullified_at) %>:</strong>
+        <span><%= sale_order.nullified_at || '--' %></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive bg-white">
+    <table class="table stock-contents" data-hook="stock-contents">
+      <thead class="text-muted">
+        <tr>
+          <th colspan="2"><%= Spree.t(:item_description) %></th>
+          <th width="15%"><%= Spree.t(:vendor) %></th>
+          <th width="15%" class="text-center"><%= Spree.t(:price) %></th>
+          <th width="15%" class="text-center"><%= Spree.t(:quantity) %></th>
+          <th width="15%" class="text-center"><%= Spree.t(:total) %></th>
+        </tr>
+      </thead>
+
+      <tbody data-sale-order-number="<%= sale_order.number %>">
+        <%= render 'sale_order_detail', sale_order: sale_order %>
+      </tbody>
+    </table>
+  </div>
+</div>

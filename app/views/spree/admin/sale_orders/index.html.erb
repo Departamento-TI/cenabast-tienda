@@ -1,0 +1,16 @@
+<%= render partial: 'spree/admin/shared/order_tabs', locals: { current: :sale_orders } %>
+
+<% if @sale_orders.present? %>
+  <%= render partial: "sale_order", collection: @sale_orders %>
+<% else %>
+  <div class="text-center m-5">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Cenabast::Spree::Erp::SaleOrder)) %>
+  </div>
+<% end %>
+
+<script>
+  var order_number = '<%= @order.number %>';
+  var order_id = '<%= @order.id %>';
+</script>
+
+<%= render partial: 'spree/admin/shared/order_summary' %>
