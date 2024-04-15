@@ -33,7 +33,7 @@ module Cenabast
           [
             :user_exists?,
             :user_has_valid_roles?,
-            :user_buyer_is_valid?
+            :user_is_valid?
           ]
         end
 
@@ -44,19 +44,27 @@ module Cenabast
         end
 
         def user_has_valid_roles?
-          if user&.has_spree_role?('buyer')
+          if user&.has_spree_role?('buyer') || user&.has_spree_role?('provider')
             true
           else
             error_messages << ::Spree.t(:user_does_not_has_valid_roles)
           end
         end
 
-        def user_buyer_is_valid?
-          if user&.has_spree_role?('buyer') && user&.receivers&.any? && user&.requesters&.any?
+        def user_is_valid?
+          if valid_buyer? || valid_provider?
             true
           else
-            error_messages << ::Spree.t(:buyer_user_not_valid)
+            error_messages << ::Spree.t(:user_not_valid)
           end
+        end
+
+        def valid_provider?
+          user&.has_spree_role?('provider') && user.vendors&.any?
+        end
+
+        def valid_buyer?
+          user&.has_spree_role?('buyer') && user&.receivers&.any? && user&.requesters&.any?
         end
       end
     end

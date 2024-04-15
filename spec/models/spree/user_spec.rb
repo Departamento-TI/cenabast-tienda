@@ -30,8 +30,6 @@ RSpec.describe Spree::User, type: :model, search: true do
       it { should have_many(:receiver_users) }
       it { should have_many(:receivers).through(:receiver_users) }
       it { should have_many(:requesters).through(:receivers) }
-      it { should have_many(:company_users) }
-      it { should have_many(:companies).through(:company_users) }
 
       it 'has receivers association with scope distinct' do
         association = described_class.reflect_on_association(:receivers)
@@ -63,21 +61,6 @@ RSpec.describe Spree::User, type: :model, search: true do
         end
 
         expect(user.requesters.count).to eq requesters_number
-      end
-
-      it 'has companies association with scope distinct' do
-        association = described_class.reflect_on_association(:companies)
-        expect(association.options[:through]).to eq(:company_users)
-        expect(association.options[:class_name]).to eq('Cenabast::Spree::Company')
-
-        # Test that relationship doesnt include repeated values
-        companies_number = rand(4..10)
-        companies = create_list(:company, companies_number)
-        user = create(:user, current_receiver: nil)
-        companies.each do |company|
-          create_list(:company_user, 10, company:, user:)
-        end
-        expect(user.companies.count).to eq companies_number
       end
     end
 

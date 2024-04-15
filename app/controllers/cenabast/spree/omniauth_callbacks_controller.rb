@@ -24,6 +24,15 @@ class Cenabast::Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksCo
     redirect_to spree.new_spree_user_session_path
   end
 
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) ||
+      if resource.is_a?(::Spree::User) && resource.has_spree_role?('provider')
+        Spree.admin_path
+      else
+        super
+      end
+  end
+
   private
 
   def set_run

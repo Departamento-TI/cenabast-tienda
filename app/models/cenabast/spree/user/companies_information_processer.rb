@@ -49,35 +49,31 @@ module Cenabast
         def process_company(company)
           Rails.logger.debug { "Processing company info #{company}" }
 
-          company_run = Cenabast::Spree::Company.raw_run_to_formatted(company[:rutProveedor])
+          company_run = ::Spree::Vendor.raw_run_to_formatted(company[:rutProveedor])
+          company_name = company[:nombreProveedor].strip
+          company_active = company[:activo]
 
-          company_name = company[:nombreProveedor]
-          active = company[:activo]
+          vendor = ::Spree::Vendor.find_or_initialize_by(run: company_run)
 
-          company = Cenabast::Spree::Company.find_or_initialize_by(run: company_run)
-          company.update!(
-            name: company_name,
-            active:
-          )
-
-          added_companies << company
-
-          if user
-            Cenabast::Spree::CompanyUser.find_or_create_by(
-              company:,
-              user:
-            )
+          if vendor.name != company_name
+            vendor.name = company_name
+            vendor.save
           end
+
+          company_active ? vendor.activate : vendor.block
+          vendor.users << user if user && vendor.users.exclude?(user)
+
+          added_companies << vendor
         end
 
         def process_unused_companies
           return unless user
 
           # Unlink relationships that werent found
-          Cenabast::Spree::CompanyUser.where(
+          ::Spree::VendorUser.where(
             user:
           ).where.not(
-            company_id: added_companies.map(&:id)
+            vendor_id: added_companies.map(&:id)
           ).destroy_all
         end
 
