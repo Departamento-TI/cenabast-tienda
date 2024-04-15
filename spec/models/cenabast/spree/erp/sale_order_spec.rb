@@ -37,4 +37,17 @@ RSpec.describe Cenabast::Spree::Erp::SaleOrder, type: :model do
       expect(Cenabast::Spree::Erp::SendSaleOrderToErp).to have_received(:perform_later).with(subject)
     end
   end
+
+  describe '#cancel_in_erp!' do
+    before do
+      allow(Cenabast::Spree::Erp::CancelSaleOrderInErp).to receive(:perform_later).and_return(
+        double(true)
+      )
+    end
+
+    it 'calls CancelSaleOrderInErp perform_later' do
+      subject.cancel_in_erp!
+      expect(Cenabast::Spree::Erp::CancelSaleOrderInErp).to have_received(:perform_later).with(subject)
+    end
+  end
 end

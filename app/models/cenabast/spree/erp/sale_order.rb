@@ -37,4 +37,9 @@ class Cenabast::Spree::Erp::SaleOrder < Spree::Base
     # Send to erp using job
     Cenabast::Spree::Erp::SendSaleOrderToErp.perform_later(self)
   end
+
+  def cancel_in_erp!
+    # Cancel in erp using job
+    Cenabast::Spree::Erp::CancelSaleOrderInErp.perform_later(self)
+  end
 end

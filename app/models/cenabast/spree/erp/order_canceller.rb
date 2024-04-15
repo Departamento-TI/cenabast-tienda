@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Cenabast::Spree::Erp
+  # Cancels all sale orders of a certain Spree::Order
   class OrderCanceller
     attr_reader :order
 
@@ -9,9 +10,7 @@ module Cenabast::Spree::Erp
     end
 
     def call
-      order.erp_order_ids.each do |erp_order_id|
-        Cenabast::Api::Erp::CancelOrder.new(erp_order_id).call
-      end
+      order.sale_orders.each(&:cancel_in_erp!)
     end
   end
 end
