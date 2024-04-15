@@ -15,9 +15,19 @@
 
         <div class="float-right">
           <% if sale_order.sent? && can?(:edit, sale_order) %>
-            <!-- Placeholder, here it should be placed the nullify button action -->
-            <!-- More info on how link_to_edit works can be seen in spree_backend navigation_helper.rb -->
-            <%= link_to_edit(sale_order) %>
+            <!-- Nullify button action -->
+            <%=
+              url = nullify_admin_order_sale_order_path(@order, sale_order)
+              options = {}
+              options[:class] = 'btn btn-light btn-sm'
+              options[:method] = :post
+              link_to_with_icon('cancel.svg', Spree.t('admin.orders.cancel_sale_order'), url, options)
+            %>
+          <% end %>
+          <% if sale_order.cancellation_pending? %>
+            <a class="btn btn-light btn-sm disabled" href="#">
+              <%= Spree.t('admin.orders.nullify_pending') %>
+            </a>
           <% end %>
         </div>
       </div>

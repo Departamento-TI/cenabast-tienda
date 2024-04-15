@@ -4,10 +4,10 @@ module Cenabast
       module SaleOrders
         # Service that takes an existing SaleOrder model and cancels it in the ERP.
         # After the result, it will change the state of the given SaleOrder
-        class SendToErp
+        class CancelInErp
           attr_accessor :sale_order
 
-          delegate :order, :line_items, :number, to: :sale_order
+          delegate :erp_pedido_id, :number, to: :sale_order
 
           def initialize(sale_order)
             @sale_order = sale_order

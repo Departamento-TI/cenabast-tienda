@@ -7,7 +7,7 @@ RSpec.describe Cenabast::Spree::Erp::SaleOrder, type: :model do
   end
 
   describe 'Enums' do
-    it { is_expected.to define_enum_for(:status).with_values(initial: 0, sent: 1, failed: 2, nullified: 3) }
+    it { is_expected.to define_enum_for(:status).with_values(initial: 0, sent: 1, failed: 2, nullified: 3, cancellation_pending: 4) }
   end
 
   describe '.create_with_line_items!' do
@@ -39,6 +39,8 @@ RSpec.describe Cenabast::Spree::Erp::SaleOrder, type: :model do
   end
 
   describe '#cancel_in_erp!' do
+    subject { create(:erp_sale_order, order: create(:order)) }
+
     before do
       allow(Cenabast::Spree::Erp::CancelSaleOrderInErp).to receive(:perform_later).and_return(
         double(true)
@@ -48,6 +50,11 @@ RSpec.describe Cenabast::Spree::Erp::SaleOrder, type: :model do
     it 'calls CancelSaleOrderInErp perform_later' do
       subject.cancel_in_erp!
       expect(Cenabast::Spree::Erp::CancelSaleOrderInErp).to have_received(:perform_later).with(subject)
+    end
+
+    it 'sets state as cancellation_pending' do
+      subject.cancel_in_erp!
+      expect(subject.reload.status).to eq('cancellation_pending')
     end
   end
 end

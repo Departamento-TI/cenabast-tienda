@@ -40,7 +40,13 @@ RSpec.describe Spree::Order, type: :model do
         expect(order.erp_send_status).to eq(:partially_nullified)
       end
 
-      it 'returns sent if some are all are sent' do
+      it 'returns cancellation_pending if all are cancellation_pending' do
+        order.sale_orders.each(&:cancellation_pending!)
+
+        expect(order.erp_send_status).to eq(:cancellation_pending)
+      end
+
+      it 'returns sent if all sale_orders are sent' do
         order.sale_orders.each(&:sent!)
 
         expect(order.erp_send_status).to eq(:sent)

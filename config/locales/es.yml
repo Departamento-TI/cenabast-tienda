@@ -68,6 +68,7 @@ es:
       sent: 'Enviado'
       failed: 'Fallido'
       nullified: 'Anulado'
+      cancellation_pending: 'Pendiente de cancelación'
     erp_pedido_id: 'ERP Id de Pedido'
     erp_pv_id: 'ERP ID de PV'
     erp_fecha_creacion: 'ERP Fecha de creación'
@@ -80,6 +81,9 @@ es:
     search_order_number: 'Numero de Orden'
     admin:
       orders:
+        nullify_pending: 'Pendiente de cancelación'
+        nullify_sale_order_sent_message: 'Pedido de venta %{number} mandado a cancelar al ERP. Se actualizará su estado en algunos momentos.'
+        cancel_sale_order: 'Cancelar pedido de venta'
         all: 'Todas las ordenes'
     order:
       erp_send_statuses:
@@ -89,4 +93,5 @@ es:
         with_errors: 'Con errores'
         partially_nullified: 'Parcialmente nulo'
         nullified: 'Anulado'
+        cancellation_pending: 'Pendiente de cancelación'
         sent: 'Enviado'

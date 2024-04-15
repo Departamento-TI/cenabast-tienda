@@ -26,6 +26,7 @@ module Cenabast
           [:with_errors, :erp_send_status_failed?],
           [:partially_nullified, :erp_send_status_partially_nullified?],
           [:nullified, :erp_send_status_nullified?],
+          [:cancellation_pending, :erp_send_status_cancellation_pending?],
           [:sent, :erp_send_status_sent?],
         ]
       end
@@ -54,6 +55,10 @@ module Cenabast
 
       def erp_send_status_sent?
         sale_orders.all?(&:sent?)
+      end
+
+      def erp_send_status_cancellation_pending?
+        sale_orders.any?(&:cancellation_pending?)
       end
     end
   end
