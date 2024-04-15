@@ -1,6 +1,6 @@
 # Module that exposes the methods for handling the current_receiver Cenabast::Spree::Receiver, which
 # receivers/stores/requesters are allowed for the user,
-# This also defines relations with receivers, requesters, companies for the user.
+# This also defines relations with receivers, requesters for the user.
 # sets the default receiver when the record is created, and allows to toggle the store
 module Cenabast
   module Spree
@@ -21,8 +21,6 @@ module Cenabast
           has_many :receiver_users, class_name: 'Cenabast::Spree::ReceiverUser', dependent: :destroy
           has_many :receivers, -> { distinct }, through: :receiver_users, class_name: 'Cenabast::Spree::Receiver'
           has_many :requesters, -> { distinct }, through: :receivers, class_name: 'Cenabast::Spree::Requester'
-          has_many :company_users, class_name: 'Cenabast::Spree::CompanyUser', dependent: :destroy
-          has_many :companies, -> { distinct }, through: :company_users, class_name: 'Cenabast::Spree::Company'
 
           before_create :set_current_receiver
         end

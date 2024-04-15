@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Processes companies user information from the api
-# Creates, and updates Cenabast::Spree::Company model(s) if necessary
+# Creates, and updates Spree::Vendor model(s) if necessary
 module Cenabast
   module Spree
     module User

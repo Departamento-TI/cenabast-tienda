@@ -80,7 +80,7 @@ RSpec.describe Cenabast::Spree::User::CompaniesInformationProcesser, type: :mode
     let(:formatted_run) { Spree::User.raw_run_to_formatted(run) }
     let!(:user) { create(:user, run: formatted_run) }
 
-    it 'mantains the count ::Spree::Vendor as the same, no companies were created' do
+    it 'mantains the count Spree::Vendor as the same, no vendors were created' do
       expect do
         described_class.new(run).call
       end.to change(Spree::Vendor, :count).by(0)
