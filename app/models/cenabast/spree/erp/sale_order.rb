@@ -15,7 +15,8 @@ class Cenabast::Spree::Erp::SaleOrder < Spree::Base
     initial: 0,
     sent: 1,
     failed: 2,
-    nullified: 3
+    nullified: 3,
+    cancellation_pending: 4
   }
 
   def self.create_with_line_items!(line_items)
@@ -36,5 +37,11 @@ class Cenabast::Spree::Erp::SaleOrder < Spree::Base
   def send_to_erp!
     # Send to erp using job
     Cenabast::Spree::Erp::SendSaleOrderToErp.perform_later(self)
+  end
+
+  def cancel_in_erp!
+    # Cancel in erp using job
+    cancellation_pending!
+    Cenabast::Spree::Erp::CancelSaleOrderInErp.perform_later(self)
   end
 end

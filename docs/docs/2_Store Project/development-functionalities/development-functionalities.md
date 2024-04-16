@@ -17,3 +17,4 @@ Here we will place documents related to detailing implementation of functionalit
 - [Login Process](login-process.md)
 - [MageAI](mage-ai.md)
 - [Product Sync](./product-sync.md)
+- [Interaction with ERP](./interaction-with-erp.md)
