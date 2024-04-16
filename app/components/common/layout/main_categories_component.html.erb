@@ -1,0 +1,4 @@
+<% @categories.each do |category| %>
+  <% root = category.root %>
+  <%= link_to root.name, taxon_link(root), class: 'font-semibold text-base text-gray-500 px-[12px]' %>
+<% end %>
