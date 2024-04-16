@@ -55,10 +55,10 @@ RSpec.describe Cenabast::Spree::User::InformationUpdater, type: :model do
       end.to change(Cenabast::Spree::Requester, :count).by(1)
     end
 
-    it 'doesnt create companies' do
+    it 'doesnt create vendors' do
       expect do
         described_class.new(run).call
-      end.to change(Cenabast::Spree::Company, :count).by(0)
+      end.to change(Spree::Vendor, :count).by(0)
     end
 
     it 'creates receiver user associations' do
@@ -107,17 +107,17 @@ RSpec.describe Cenabast::Spree::User::InformationUpdater, type: :model do
       end.to change(Spree::User, :count).by(1)
     end
 
-    it 'creates companies' do
+    it 'creates vendors' do
       expect do
         described_class.new(run).call
-      end.to change(Cenabast::Spree::Company, :count).by(1)
+      end.to change(Spree::Vendor, :count).by(1)
     end
 
-    it 'creates company user associations' do
+    it 'creates vendor user associations' do
       described_class.new(run).call
 
       user = Spree::User.last
-      expect(user.companies.count).to eq 1
+      expect(user.vendors.count).to eq 1
     end
   end
 end

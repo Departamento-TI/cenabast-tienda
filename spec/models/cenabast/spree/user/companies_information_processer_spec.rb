@@ -18,51 +18,51 @@ RSpec.describe Cenabast::Spree::User::CompaniesInformationProcesser, type: :mode
     let(:formatted_run) { Spree::User.raw_run_to_formatted(run) }
     let!(:user) { create(:user, run: formatted_run) }
 
-    it 'creates a model Spree::Company that links to the given user RUN' do
+    it 'creates a model Spree::Vendor that links to the given user RUN' do
       described_class.new(run).call
 
-      company = Cenabast::Spree::Company.last
-      expect(company.users.first.run).to eq formatted_run
+      vendor = Spree::Vendor.last
+      expect(vendor.users).to include(user)
     end
 
-    it 'increases the count Spree::Company for the user by 1' do
+    it 'increases the count Spree::Vendor for the user by 1' do
       expect do
         described_class.new(run).call
-      end.to change(user.reload.companies, :count).by(1)
+      end.to change(user.reload.vendors, :count).by(1)
     end
 
-    describe 'companies already exists' do
+    describe 'Vendors already exists' do
       before(:each) do
-        create(:company, run: '761913891')
+        create(:vendor, run: '761913891')
       end
 
-      it 'mantains the count Spree::Company as the same' do
+      it 'mantains the count Spree::Vendor as the same' do
         expect do
           described_class.new(run).call
-        end.to change(Cenabast::Spree::Company, :count).by(0)
+        end.to change(Spree::Vendor, :count).by(0)
       end
 
-      it 'stills increases the count Cenabast::Spree::CompanyUser as it wasnt linked' do
+      it 'stills increases the count ::Spree::VendorUser as it wasnt linked' do
         expect do
           described_class.new(run).call
-        end.to change(Cenabast::Spree::CompanyUser, :count).by(1)
+        end.to change(Spree::VendorUser, :count).by(1)
       end
     end
 
-    describe 'company exists, is not on the response' do
-      let!(:company) { create(:company, run: '631249833') }
-      let!(:company_user) { create(:company_user, company:, user:) }
+    describe 'vendor exists, is not on the response' do
+      let!(:vendor) { create(:vendor, run: '631249833') }
+      let!(:vendor_user) { create(:vendor_user, vendor:, user:) }
 
-      it 'destroys the Cenabast::Spree::CompanyUser record as its no longer valid' do
+      it 'destroys the ::Spree::VendorUser record as its no longer valid' do
         described_class.new(run).call
 
-        expect(Cenabast::Spree::CompanyUser.exists?(company_user.id)).to eq false
+        expect(Spree::VendorUser.exists?(vendor_user.id)).to eq false
       end
 
-      it 'mantains the Spree::Company record' do
+      it 'mantains the Spree::Vendor record' do
         described_class.new(run).call
 
-        expect(Cenabast::Spree::Company.exists?(company.id)).to eq true
+        expect(Spree::Vendor.exists?(vendor.id)).to eq true
       end
     end
   end
@@ -80,16 +80,16 @@ RSpec.describe Cenabast::Spree::User::CompaniesInformationProcesser, type: :mode
     let(:formatted_run) { Spree::User.raw_run_to_formatted(run) }
     let!(:user) { create(:user, run: formatted_run) }
 
-    it 'mantains the count Cenabast::Spree::Company as the same, no companies were created' do
+    it 'mantains the count Spree::Vendor as the same, no vendors were created' do
       expect do
         described_class.new(run).call
-      end.to change(Cenabast::Spree::Company, :count).by(0)
+      end.to change(Spree::Vendor, :count).by(0)
     end
 
-    it 'mantains the count Cenabast::Spree::CompanyUser as the same, no companies-user links were created' do
+    it 'mantains the count ::Spree::VendorUser as the same, no vendors-user links were created' do
       expect do
         described_class.new(run).call
-      end.to change(Cenabast::Spree::CompanyUser, :count).by(0)
+      end.to change(Spree::VendorUser, :count).by(0)
     end
   end
 end
