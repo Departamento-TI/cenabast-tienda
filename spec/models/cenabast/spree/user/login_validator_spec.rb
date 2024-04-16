@@ -10,12 +10,13 @@ module Cenabast
 
           subject { described_class.new(run) }
 
-          context 'when user is provider' do
+          context 'when user is provider and belongs to valid vendor' do
             before do
               user = create(:user, run: formatted_run)
-              vendor = create(:vendor, run: '631249833')
 
+              vendor = create(:vendor, run: '631249833', state: 'active')
               create(:vendor_user, vendor:, user:)
+
               role = ::Spree::Role.find_or_create_by!(name: 'provider')
               ::Spree::RoleUser.find_or_create_by!(role:, user:)
             end
@@ -28,6 +29,28 @@ module Cenabast
 
             it 'does not have error messages' do
               expect(subject.error_messages).to be_empty
+            end
+          end
+
+          context 'when user is provider role, but not belongs to any valid vendor' do
+            before do
+              user = create(:user, run: formatted_run)
+
+              role = ::Spree::Role.find_or_create_by!(name: 'provider')
+              ::Spree::RoleUser.find_or_create_by!(role:, user:)
+
+              vendor = create(:vendor, run: '631249833', state: 'blocked')
+              create(:vendor_user, vendor:, user:)
+            end
+
+            let!(:result) { subject.call }
+
+            it 'does not return a user' do
+              expect(result).to be_nil
+            end
+
+            it 'has an error message' do
+              expect(subject.error_messages).to include(::Spree.t(:user_not_valid))
             end
           end
 
@@ -79,7 +102,7 @@ module Cenabast
             end
           end
 
-          context 'when user is of buyer role, but has not valid receivers to use' do
+          context 'when user is buyer role, but has not valid receivers to use' do
             before do
               user = create(:user, run: formatted_run, receivers: [])
               role = ::Spree::Role.find_or_create_by!(name: 'buyer')

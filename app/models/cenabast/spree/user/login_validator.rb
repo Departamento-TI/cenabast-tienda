@@ -60,7 +60,7 @@ module Cenabast
         end
 
         def valid_provider?
-          user&.has_spree_role?('provider') && user.vendors&.any?
+          user&.has_spree_role?('provider') && user.vendors&.any?(&:active?)
         end
 
         def valid_buyer?
