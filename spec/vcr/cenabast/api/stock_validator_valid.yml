@@ -78,7 +78,8 @@ http_interactions:
       - Tue, 26 Mar 2024 15:35:23 GMT
     body:
       encoding: UTF-8
-      string: '{"code":200,"isSuccessStatusCode":true,"content":{"stockDisponible":5,"estaDisponible":true}}'
+      
+      string: '{"code":200,"isSuccessStatusCode":true,"content": {"documentoCompra": 4500033315,"codigoMaterial": 500016140,"cantidadDisponible": 5}}'
   recorded_at: Tue, 26 Mar 2024 15:35:22 GMT
 - request:
     method: get

@@ -78,6 +78,6 @@ http_interactions:
       - Tue, 26 Mar 2024 15:25:08 GMT
     body:
       encoding: UTF-8
-      string: '{"code":200,"isSuccessStatusCode":true,"content":{"stockDisponible":5,"estaDisponible":true}}'
+      string: '{"code":200,"isSuccessStatusCode":true,"content": {"documentoCompra": 4500028294,"codigoMaterial": 500016140,"cantidadDisponible": 5}}'
   recorded_at: Tue, 26 Mar 2024 15:25:08 GMT
 recorded_with: VCR 6.2.0

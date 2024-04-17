@@ -39,10 +39,9 @@ module Cenabast
 
           if info&.dig(:success)
             stock_content = info[:response_content].deep_symbolize_keys
-            is_available = stock_content[:estaDisponible]
-            available_quantity = stock_content[:stockDisponible]
+            available_quantity = stock_content[:cantidadDisponible]
 
-            if is_available && available_quantity >= line_item.quantity
+            if available_quantity && available_quantity >= line_item.quantity
               true
             else
               error_messages << ::Spree.t('stock_validator.not_enough_stock', sale_order:)
