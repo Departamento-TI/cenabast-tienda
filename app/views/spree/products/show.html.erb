@@ -20,7 +20,10 @@
             <%= @product.generic_product&.denomination %>
           </div>
           <div class="text-sm text-gray-400">
-            SKU: <%= @product.sku %>
+            <%= Spree.t(:zcen) %>: <%= @product&.contract&.code || '--' %>
+          </div>
+          <div class="text-sm text-gray-400">
+            <%= Spree.t(:zgen) %>: <%= @product&.generic_product&.code || '--' %>
           </div>
 
           <div class="mt-7 mb-4">
