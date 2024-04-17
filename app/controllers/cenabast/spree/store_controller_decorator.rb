@@ -3,6 +3,7 @@ module Cenabast
     module StoreControllerDecorator
       def self.prepended(base)
         base.helper 'cenabast/spree/cenabast'
+        base.helper 'cenabast/spree/cenabast_products'
       end
     end
   end
