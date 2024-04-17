@@ -61,8 +61,8 @@ es:
       one: "%{count} artículo en total"
       other: "%{count} artículos en total"
     stock_validator:
-      not_enough_stock: 'No hay suficiente stock para el producto "%{sku}".'
-      information_retrieve_error: 'Error al validar stock del producto "%{sku}".'
+      not_enough_stock: 'No hay suficiente stock para el producto "%{sale_order}".'
+      information_retrieve_error: 'Error al validar stock del producto "%{sale_order}".'
     sale_order_statuses:
       initial: 'Inicial'
       sent: 'Enviado'

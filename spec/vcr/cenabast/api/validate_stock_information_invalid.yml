@@ -42,7 +42,7 @@ http_interactions:
   recorded_at: Tue, 26 Mar 2024 15:25:08 GMT
 - request:
     method: get
-    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/pedido/ValidarStock/500006843"
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/pedido/ValidarStock/4500028294"
     body:
       encoding: US-ASCII
       string: ''

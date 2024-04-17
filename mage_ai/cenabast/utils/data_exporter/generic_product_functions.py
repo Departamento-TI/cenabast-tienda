@@ -1,8 +1,8 @@
 from .date_functions import convert_date
 
 def create_or_update_generic_product(product, api_clients, general_data):
-  # Get code (SKU)
-  codigoProducto = product['codigoProducto']
+  # Get code (SKU, zgen)
+  codigoProducto = product['zgen']
 
   # Get generic product data from Spree API
   existing_generic_product = None
@@ -41,7 +41,7 @@ def create_or_update_generic_product(product, api_clients, general_data):
 def build_generic_product_payload(product):
   return {
     "product_type": 'generic',
-    "code": product['codigoProducto'],
+    "code": product['zgen'],
     "code_atc": product['codigoATC'],
     "code_onu": product['codigoONU'],
     "code_ean": product['codigoEAN'],
