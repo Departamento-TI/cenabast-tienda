@@ -24,8 +24,12 @@ module Cenabast
 
         private
 
+        def sale_order
+          @sale_order ||= line_item&.product&.contract&.sale_order
+        end
+
         def fetch_information_for_line_item
-          return unless (sale_order = line_item&.product&.contract&.sale_order)
+          return unless sale_order
 
           Cenabast::Api::ValidateStockInformationFetcher.new(sale_order).call
         end

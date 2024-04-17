@@ -80,6 +80,6 @@ http_interactions:
       - Wed, 10 Apr 2024 20:26:51 GMT
     body:
       encoding: UTF-8
-      string: '{"code":200,"isSuccessStatusCode":true,"content":[{"pedidoId":30,"fechaCreacion":"2024-04-10T16:26:51.9028924-04:00","zcen":"44220","pedidoVentaId":55005002},{"pedidoId":30,"fechaCreacion":"2024-04-10T16:26:51.9049211-04:00","zcen":"44221","pedidoVentaId":55005002},{"pedidoId":30,"fechaCreacion":"2024-04-10T16:26:51.9067761-04:00","zcen":"44222","pedidoVentaId":55005002}]}'
+      string: '{"code":200,"isSuccessStatusCode":true,"content":[{"pedidoVentaSapId":30,"fechaCreacion":"2024-04-10T16:26:51.9028924-04:00","zcen":"44220"},{"pedidoVentaSapId":30,"fechaCreacion":"2024-04-10T16:26:51.9049211-04:00","zcen":"44221"},{"pedidoVentaSapId":30,"fechaCreacion":"2024-04-10T16:26:51.9067761-04:00","zcen":"44222"}]}'
   recorded_at: Wed, 10 Apr 2024 20:26:51 GMT
 recorded_with: VCR 6.2.0

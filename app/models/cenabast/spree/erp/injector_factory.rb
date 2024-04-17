@@ -5,7 +5,10 @@ module Cenabast
       class InjectorFactory
         # Method to create an instance of Injector based on business logic
         def self.create_injector
-          ByVendorInjector.new
+          # Ensure to split each sale order injection into products
+          # The response of the ERP might bring different pedidoVentaSapId per product
+          # we need to make sure to be saving everything.
+          ByProductInjector.new
         end
       end
     end

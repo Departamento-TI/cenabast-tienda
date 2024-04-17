@@ -43,8 +43,7 @@ module Cenabast
             sale_order.update!(
               status: :sent,
               sent_at: Time.now.in_time_zone,
-              erp_pedido_id: content[:pedidoId],
-              erp_pv_id: content[:pedidoVentaId],
+              erp_pedido_id: content[:pedidoVentaSapId],
               erp_fecha_creacion: content[:fechaCreacion]
             )
           end
