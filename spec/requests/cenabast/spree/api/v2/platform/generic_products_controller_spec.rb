@@ -20,6 +20,7 @@ RSpec.describe Cenabast::Spree::Api::V2::Platform::GenericProductsController, ty
 
       attributes = response.parsed_body['data'][0]['attributes']
 
+      expect(attributes['name']).to eq(generic_product.name)
       expect(attributes['code']).to eq(generic_product.code)
       expect(attributes['code_atc']).to eq(generic_product.code_atc)
       expect(attributes['code_onu']).to eq(generic_product.code_onu)
@@ -57,6 +58,7 @@ RSpec.describe Cenabast::Spree::Api::V2::Platform::GenericProductsController, ty
     let(:generic_product_payload) do
       {
         generic_product: {
+          name: 'NEW generic product',
           code: 'NewCode1asdasd2342',
           code_atc: 'ewcwiy',
           code_onu: 'jxabos',

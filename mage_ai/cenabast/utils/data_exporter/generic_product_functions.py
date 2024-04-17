@@ -41,6 +41,7 @@ def create_or_update_generic_product(product, api_clients, general_data):
 def build_generic_product_payload(product):
   return {
     "product_type": 'generic',
+    "name": product['nombreZGEN'],
     "code": product['zgen'],
     "code_atc": product['codigoATC'],
     "code_onu": product['codigoONU'],

@@ -37,6 +37,8 @@ def transform(data, *args, **kwargs):
     for product in valid_products:
         # Set ZGEN of a product
         product['zgen'] = product['contracts'][0]['zgen']
+        # Set nombreZGEN of a product
+        product['nombreZGEN'] = product['contracts'][0]['nombreZGEN']
 
     logger.info(f'Amount of total products (before filter): {len(data)}')
     logger.info(f'Amount of valid products (after filter): {len(valid_products)}')
