@@ -14,3 +14,8 @@
 :::info
 The following [document](/img/Pruebas_Integrales_Tienda_CENABAST-V3_2024.docx) includes the SAP functional test. 
 :::
+
+## Process
+
+- [Extend Product to Web Channel](SAP/extend-product-to-web-channel.md)
+- [Extend Client to Web Channel](SAP/extend-client-to-web-channel.md)
