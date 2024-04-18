@@ -25,6 +25,9 @@
           <div class="text-sm text-gray-400">
             <%= Spree.t(:zgen) %>: <%= @product&.generic_product&.code || '--' %>
           </div>
+          <div class="text-sm text-gray-400">
+            <%= Spree.t('pdp.sale_unit') %>: <%= @product.contract&.unit_sale || '--' %>
+          </div>
 
           <div class="mt-7 mb-4">
             <span><%= Spree.t('pdp.about_product') %></span>
