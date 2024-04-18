@@ -119,20 +119,36 @@ RSpec.describe Spree::User, type: :model, search: true do
       let(:run) { '111111111' }
       let(:user) { create(:user) }
 
-      it 'gives only stores that match the current_store run' do
-        selected_stores = stores.sample(4)
-        receivers = selected_stores.map do |store|
-          create(:receiver, run:, store:)
+      context 'when user is admin' do
+        it 'returns all stores' do
+          user.spree_roles << Spree::Role.find_or_create_by(name: 'admin')
+          expect(user.available_stores).to match_array(Spree::Store.all)
         end
-        extra_store = (stores - selected_stores).sample
-        extra_receiver = create(:receiver, run: '186059565', store: extra_store)
+      end
 
-        user.receivers = (receivers + [extra_receiver])
-        user.current_receiver = receivers.sample
-        user.save
+      context 'when user is provider' do
+        it 'returns all stores' do
+          user.spree_roles << Spree::Role.find_or_create_by(name: 'provider')
+          expect(user.available_stores).to match_array(Spree::Store.all)
+        end
+      end
 
-        expect(user.available_stores).to eq selected_stores
-        expect(user.available_stores).not_to include(extra_store)
+      context 'when user is buyer' do
+        it 'gives only stores that match the current_store run' do
+          selected_stores = stores.sample(4)
+          receivers = selected_stores.map do |store|
+            create(:receiver, run:, store:)
+          end
+          extra_store = (stores - selected_stores).sample
+          extra_receiver = create(:receiver, run: '186059565', store: extra_store)
+
+          user.receivers = (receivers + [extra_receiver])
+          user.current_receiver = receivers.sample
+          user.save
+
+          expect(user.available_stores).to eq selected_stores
+          expect(user.available_stores).not_to include(extra_store)
+        end
       end
     end
 
@@ -171,50 +187,61 @@ RSpec.describe Spree::User, type: :model, search: true do
       let(:run) { '111111111' }
       let(:user) { create(:user) }
 
-      it 'changes store only if store its under its allowed stores for current run of receiver' do
-        receivers = stores.sample(4).map do |store|
-          create(:receiver, run:, store:)
+      context 'when user is admin' do
+        it 'toggles store successfully' do
+          user.spree_roles << Spree::Role.find_or_create_by(name: 'admin')
+
+          store = stores.sample
+          user.toggle_store(store)
+
+          expect(user.current_store).to eq(store)
         end
-
-        user.receivers = receivers
-        user.current_receiver = user.receivers.sample
-        user.save
-
-        store = (user.available_stores - [user.current_store]).sample
-        user.toggle_store(store)
-
-        expect(user.current_store).to eq store
       end
 
-      it 'doesnt changes store only if store its under its allowed stores' do
-        not_allowed_stores = create_list(:store, 4)
-        receivers = stores.sample(4).map do |store|
-          create(:receiver, run:, store:)
+      context 'when user is provider' do
+        it 'toggles store successfully' do
+          user.spree_roles << Spree::Role.find_or_create_by(name: 'provider')
+
+          store = stores.sample
+          user.toggle_store(store)
+
+          expect(user.current_store).to eq(store)
         end
-
-        user.receivers = receivers
-        user.current_receiver = user.receivers.sample
-        user.save
-
-        last_current_store = user.current_store
-
-        store = not_allowed_stores.sample
-        user.toggle_store(store)
-
-        expect(user.current_store).to eq last_current_store
       end
 
-      it 'can toggle to any receiver if the user is admin' do
-        not_allowed_stores = create_list(:store, 4)
-        receivers = stores.sample(4).map do |store|
-          create(:receiver, run:, store:)
+      context 'when user is buyer' do
+        it 'changes store only if store its under its allowed stores for current run of receiver' do
+          receivers = stores.sample(4).map do |store|
+            create(:receiver, run:, store:)
+          end
+
+          user.receivers = receivers
+          user.current_receiver = user.receivers.sample
+          user.save
+
+          store = (user.available_stores - [user.current_store]).sample
+          user.toggle_store(store)
+
+          expect(user.current_store).to eq store
         end
 
-        admin = create(:admin_user, run: '444444444', receivers:)
-        store = not_allowed_stores.sample
-        admin.toggle_store(store)
+        it 'doesnt changes store only if store its under its allowed stores' do
+          not_allowed_stores = create_list(:store, 4)
+          receivers = stores.sample(4).map do |store|
+            create(:receiver, run:, store:)
+          end
 
-        expect(admin.reload.current_store).to eq store
+          user.receivers = receivers
+          user.current_receiver = user.receivers.sample
+          user.save
+
+          last_current_store = user.current_store
+
+          store = not_allowed_stores.sample
+          user.toggle_store(store)
+
+          expect(user.current_store).to eq last_current_store
+        end
       end
     end
   end

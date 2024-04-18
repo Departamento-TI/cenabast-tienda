@@ -39,7 +39,7 @@ module Cenabast
 
         # For the same receiver run, see what stores has available
         def available_stores
-          return ::Spree::Store.all if admin?
+          return ::Spree::Store.all if admin? || provider?
           return [] unless current_receiver
 
           receivers.where(run: current_receiver.run).map(&:store).uniq
@@ -81,7 +81,7 @@ module Cenabast
         # This will try to change to another receiver that matches the same
         # run but has a different spree store assigned
         def toggle_store(store)
-          return toggle_store_admin(store) if admin?
+          return toggle_store_admin(store) if admin? || provider?
           return unless available_stores.include? store
 
           receiver = receivers.find_by(run: current_receiver.run, store:)
@@ -113,7 +113,7 @@ module Cenabast
         end
 
         def current_store
-          return current_store_admin if admin?
+          return current_store_admin if admin? || provider?
 
           current_receiver&.store
         end
