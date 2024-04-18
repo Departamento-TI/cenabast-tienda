@@ -36,7 +36,6 @@ RSpec.describe Cenabast::Spree::Erp::SaleOrders::SendToErp do
 
       expect(sale_order.sent_at).not_to be_nil
       expect(sale_order.erp_pedido_id).not_to be_nil
-      expect(sale_order.erp_pv_id).not_to be_nil
       expect(sale_order.erp_fecha_creacion).not_to be_nil
     end
   end

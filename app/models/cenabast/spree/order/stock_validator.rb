@@ -24,26 +24,30 @@ module Cenabast
 
         private
 
-        def fetch_information_for_sku(sku)
-          Cenabast::Api::ValidateStockInformationFetcher.new(sku).call
+        def sale_order
+          @sale_order ||= line_item&.product&.contract&.sale_order
+        end
+
+        def fetch_information_for_line_item
+          return unless sale_order
+
+          Cenabast::Api::ValidateStockInformationFetcher.new(sale_order).call
         end
 
         def validate_line_item
-          sku = line_item.sku
-          info = fetch_information_for_sku(sku)
+          info = fetch_information_for_line_item
 
           if info&.dig(:success)
             stock_content = info[:response_content].deep_symbolize_keys
-            is_available = stock_content[:estaDisponible]
-            available_quantity = stock_content[:stockDisponible]
+            available_quantity = stock_content[:cantidadDisponible]
 
-            if is_available && available_quantity >= line_item.quantity
+            if available_quantity && available_quantity >= line_item.quantity
               true
             else
-              error_messages << ::Spree.t('stock_validator.not_enough_stock', sku:)
+              error_messages << ::Spree.t('stock_validator.not_enough_stock', sale_order:)
             end
           else
-            error_messages << ::Spree.t('stock_validator.information_retrieve_error', sku:)
+            error_messages << ::Spree.t('stock_validator.information_retrieve_error', sale_order:)
           end
         end
       end

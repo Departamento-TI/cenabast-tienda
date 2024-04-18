@@ -16,7 +16,7 @@ module Cenabast
           context 'when line item has enough stock' do
             let(:line_item) do
               create(:line_item, quantity: 4) do |line_item|
-                line_item.variant.update(sku: 'At')
+                create(:contract, product: line_item.product, sale_order: 'At')
               end
             end
 
@@ -36,7 +36,7 @@ module Cenabast
           context 'when line item surpass available quantity' do
             let(:line_item) do
               create(:line_item, quantity: 14) do |line_item|
-                line_item.variant.update(sku: 'At')
+                create(:contract, product: line_item.product, sale_order: 'At')
               end
             end
 
@@ -53,10 +53,10 @@ module Cenabast
             end
           end
 
-          context 'when line item contains invalid sku' do
+          context 'when line item contains invalid sale_order' do
             let(:line_item) do
               create(:line_item, quantity: 4) do |line_item|
-                line_item.variant.update(sku: 'Invalidsku')
+                create(:contract, product: line_item.product, sale_order: 'InvalidSaleOrder')
               end
             end
 

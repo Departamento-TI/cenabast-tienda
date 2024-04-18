@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :generic_product, class: 'Cenabast::Spree::GenericProduct' do
+    name { Faker::Alphanumeric.alpha(number: 8) }
     code { Faker::Alphanumeric.alpha(number: 8) }
     code_atc { Faker::Alphanumeric.alpha(number: 6) }
     code_onu { Faker::Alphanumeric.alpha(number: 6) }

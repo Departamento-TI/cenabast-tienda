@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_15_225445) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_17_182421) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -97,7 +97,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_225445) do
     t.string "number"
     t.integer "status", default: 0, null: false
     t.string "erp_pedido_id"
-    t.string "erp_pv_id"
     t.string "erp_fecha_creacion"
     t.datetime "sent_at"
     t.datetime "nullified_at"
@@ -121,6 +120,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_225445) do
     t.string "base_table"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["code"], name: "index_cenabast_spree_generic_products_on_code", unique: true
   end
 

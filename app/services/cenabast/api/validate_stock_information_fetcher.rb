@@ -6,17 +6,17 @@
 module Cenabast
   module Api
     class ValidateStockInformationFetcher < Cenabast::Api::Base
-      attr_accessor :sku
+      attr_accessor :sale_order
 
       def call
         # Avoid usage of cache system, always call the endpoint
         processed_response
       end
 
-      # @param sku [String] SKU of ZCEN to query
-      def initialize(sku)
+      # @param sale_order [String] Sale Order (PedidoId) of ZCEN to query
+      def initialize(sale_order)
         super()
-        @sku = sku
+        @sale_order = sale_order
       end
 
       private
@@ -30,7 +30,7 @@ module Cenabast
       end
 
       def user_path
-        "/pedido/ValidarStock/#{sku}"
+        "/pedido/ValidarStock/#{sale_order}"
       end
     end
   end

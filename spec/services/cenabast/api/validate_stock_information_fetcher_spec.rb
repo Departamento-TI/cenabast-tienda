@@ -10,8 +10,8 @@ RSpec.describe Cenabast::Api::ValidateStockInformationFetcher do
       VCR.eject_cassette
     end
 
-    let(:sku) { '500006843' }
-    let(:response) { described_class.new(sku).call }
+    let(:sale_order) { '4500028294' }
+    let(:response) { described_class.new(sale_order).call }
 
     it 'returns a response with a http_code' do
       expect(response&.dig(:http_code)).to eq 200
@@ -35,8 +35,8 @@ RSpec.describe Cenabast::Api::ValidateStockInformationFetcher do
       VCR.eject_cassette
     end
 
-    let(:sku) { '500006843' }
-    let(:response) { described_class.new(sku).call }
+    let(:sale_order) { '4500028294' }
+    let(:response) { described_class.new(sale_order).call }
 
     it 'returns a response with a http_code' do
       expect(response&.dig(:http_code)).not_to eq 200
