@@ -50,6 +50,7 @@ es:
       mercado_publico_id: 'ID Mercado público'
       atc_code: 'Código ATC'
       standard_denomination: 'Denominación estándar'
+      sale_unit: 'Unidad de Venta'
     delivery_method_for_products_of_vendor: 'Método de entrega %{name}'
     no_laboratory: 'Sin Laboratorio'
     send_order: 'Enviar orden'
