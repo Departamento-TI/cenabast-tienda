@@ -23,7 +23,7 @@
             SKU: <%= @product.sku %>
           </div>
           <div class="text-sm text-gray-400">
-            <%= Spree.t('pdp.sale_unit') %>: <%= @product.contract&.unit_sale %>
+            <%= Spree.t('pdp.sale_unit') %>: <%= @product.contract&.unit_sale || '--' %>
           </div>
 
           <div class="mt-7 mb-4">
