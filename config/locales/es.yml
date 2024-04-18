@@ -79,6 +79,8 @@ es:
     nullified_at: 'Fecha Anulación'
     search_by: 'Buscar por'
     search_order_number: 'Numero de Orden'
+    zcen: 'ZCEN'
+    zgen: 'ZGEN'
     admin:
       orders:
         nullify_pending: 'Pendiente de cancelación'
