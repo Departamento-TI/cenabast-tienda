@@ -17,7 +17,7 @@
             <%= @product.name %>
           </h1>
           <div class="text-sm text-gray-400">
-            <%= @product.generic_product&.denomination %>
+            <%= @product&.generic_product&.name || '--' %>
           </div>
           <div class="text-sm text-gray-400">
             <%= Spree.t(:zcen) %>: <%= @product&.contract&.code || '--' %>

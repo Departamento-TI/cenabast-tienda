@@ -18,6 +18,10 @@ RSpec.describe 'Visiting Product Page', type: :system do
     visit "/products/#{product.slug}"
   end
 
+  it 'should display product`s generic product name' do
+    expect(page).to have_text(product.generic_product.name)
+  end
+
   it 'should display product`s generic product ATC code' do
     expect(page).to have_text(product.generic_product.code_atc)
   end
