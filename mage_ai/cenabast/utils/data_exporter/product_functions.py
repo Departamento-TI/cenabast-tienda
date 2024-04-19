@@ -70,7 +70,6 @@ def build_filter_payload_update(payload):
       'sku',
       'shipping_category_id',
       'status',
-      'generic_product_id',
       'vendor_id'
     ]
     filter_payload = {key: value for key, value in payload.items() if key not in not_allowed_keys }
