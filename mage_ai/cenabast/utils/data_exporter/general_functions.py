@@ -37,11 +37,6 @@ def build_general_data(logger, api_clients):
   stores = stores_client.get_stores_data()
   logger.debug(f"Stores: f{stores}")
 
-  # Get main taxon categories to use
-  taxons_client = api_clients['taxons_client']
-  parent_taxons = taxons_client.get_parent_taxons_data()
-  logger.debug(f"Parent Taxons: {parent_taxons}")
-
   # Get information about (Product) properties to use
   properties_client = api_clients['properties_client']
   properties = properties_client.get_properties_data()
@@ -50,7 +45,6 @@ def build_general_data(logger, api_clients):
   # Build needed information dicts
   return {
     'stores': stores,
-    'parent_taxons': parent_taxons,
     'properties': properties,
     'logger': logger,
     'success_count': 0,
