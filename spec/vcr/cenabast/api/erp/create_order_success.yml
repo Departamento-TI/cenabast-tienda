@@ -45,7 +45,7 @@ http_interactions:
     uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/pedido"
     body:
       encoding: UTF-8
-      string: '{"RutSolicitante":"11.111.111-1","DetalleProductos":[{"DocumentoCompra":4500024661,"CodigoOcChilecompra":"621-222-SE21","CodigoMaterial":0,"CantidadSolicitada":1,"CodigoDestinatario":20457,"PuertoDescarga":"Test
+      string: '{"RutSolicitante":"11111111","DetalleProductos":[{"DocumentoCompra":4500024661,"CodigoOcChilecompra":"621-222-SE21","CodigoMaterial":0,"CantidadSolicitada":1,"CodigoDestinatario":20457,"PuertoDescarga":"Test
         Address #123","FechaEntrega":"2024-03-21T00:00:00"},{"DocumentoCompra":4500024661,"CodigoOcChilecompra":"621-222-SE21","CodigoMaterial":0,"CantidadSolicitada":1,"CodigoDestinatario":20457,"PuertoDescarga":"Test
         Address #123","FechaEntrega":"2024-03-21T00:00:00"}]}'
     headers:

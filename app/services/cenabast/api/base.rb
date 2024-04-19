@@ -39,6 +39,9 @@ module Cenabast
         raise 'subclass must implement this'
       end
 
+      # Params to use in request
+      def params; end
+
       # Should include auth token in headers or not
       def include_auth
         true
@@ -55,7 +58,8 @@ module Cenabast
 
       # Method in charge of actually doing the API call
       def do_request(headers: nil)
-        Rails.logger.debug { "[#{self.class.name}] Doing request: #{url}##{http_method}" }
+        Rails.logger.send(logger_level) { "[#{self.class.name}] Doing request: #{url}##{http_method}" }
+        Rails.logger.send(logger_level) { "[#{self.class.name}] params: #{params}" }
 
         if [:get, :delete].include? http_method
           RestClient.send(http_method, url, headers || default_headers)
@@ -68,6 +72,11 @@ module Cenabast
         Rails.logger.error("[#{self.class.name}] Api request: #{e.message}")
         Rails.logger.debug { "[#{self.class.name}] #{e.backtrace.join("\n")}" }
         nil
+      end
+
+      # logger level to use for showing request/response related messages
+      def logger_level
+        :debug
       end
 
       # Memoization of response value
@@ -103,6 +112,8 @@ module Cenabast
       # Returns a hash containing the response, extracted important
       # information, and response success status
       def processed_response
+        Rails.logger.send(logger_level) { "[#{self.class.name}] Response obtained: #{response}" } if response
+
         {
           response_body:,
           response_content:,
