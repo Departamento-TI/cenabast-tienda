@@ -26,10 +26,10 @@ module Cenabast
         end
       end
 
-      def rut=(value)
-        value = self.class.raw_run_to_formatted(value)
+      def raw_run
+        return unless run
 
-        super(value)
+        run[...-1]
       end
     end
   end

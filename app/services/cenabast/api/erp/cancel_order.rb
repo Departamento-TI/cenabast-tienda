@@ -11,6 +11,11 @@ module Cenabast
           @order = order_id
         end
 
+        def call
+          # Avoid usage of cache system, always call the endpoint
+          processed_response
+        end
+
         private
 
         def url
@@ -21,7 +26,16 @@ module Cenabast
           :patch
         end
 
-        def params; end
+        def logger_level
+          :info
+        end
+
+        def response_successful?
+          response_accepted_http_statuses.include?(response&.code) &&
+            response_body&.dig('isSuccessStatusCode')
+        rescue StandardError
+          nil
+        end
       end
     end
   end

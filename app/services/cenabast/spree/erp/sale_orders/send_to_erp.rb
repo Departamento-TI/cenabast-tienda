@@ -16,6 +16,8 @@ module Cenabast
           def call
             Rails.logger.info { "[#{self.class.name}][#{number}] Sending SaleOrder #{number} to ERP" }
 
+            Rails.logger.info "[#{self.class.name}] Processing ERP order creation response #{response}"
+
             if response&.dig(:success)
               Rails.logger.info { "[#{self.class.name}][#{number}] Successfull response, will save information" }
               save_success_information!
