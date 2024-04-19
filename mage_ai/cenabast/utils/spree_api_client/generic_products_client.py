@@ -21,6 +21,7 @@ class GenericProductsClient(BaseClient):
     attributes = generic_product.get('attributes', {})
     return {
       'id': generic_product.get('id'),
+      'name': attributes.get('name'),
       'code': attributes.get('code'),
       'code_atc': attributes.get('code_atc'),
       'code_onu': attributes.get('code_onu'),
