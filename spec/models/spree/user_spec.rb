@@ -21,6 +21,14 @@ RSpec.describe Spree::User, type: :model, search: true do
       it { should validate_uniqueness_of :run }
       it { should validate_with Cenabast::Spree::HasRun::CenabastRunValidator }
     end
+
+    describe '#raw_run' do
+      let(:user) { create(:user, run: '186059565') }
+
+      it 'returns run without DV' do
+        expect(user.raw_run).to eq '18605956'
+      end
+    end
   end
 
   describe 'Store Preference concern' do

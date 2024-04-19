@@ -22,6 +22,14 @@ RSpec.describe Cenabast::Spree::Receiver, type: :model do
       it { should validate_presence_of :run }
       it { should validate_with Cenabast::Spree::HasRun::CenabastRunValidator }
     end
+
+    describe '#raw_run' do
+      let(:receiver) { create(:receiver, run: '186059565') }
+
+      it 'returns run without DV' do
+        expect(receiver.raw_run).to eq '18605956'
+      end
+    end
   end
 
   describe '#last_incomplete_spree_order' do

@@ -14,5 +14,13 @@ RSpec.describe Cenabast::Spree::Requester, type: :model do
       it { should validate_presence_of :run }
       it { should validate_with Cenabast::Spree::HasRun::CenabastRunValidator }
     end
+
+    describe '#raw_run' do
+      let(:requester) { create(:requester, run: '186059565') }
+
+      it 'returns run without DV' do
+        expect(requester.raw_run).to eq '18605956'
+      end
+    end
   end
 end
