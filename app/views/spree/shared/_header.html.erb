@@ -10,7 +10,8 @@
       available_receivers: available_receivers_to_options,
       current_store_name: current_store&.name,
       current_store_id: current_store&.id,
-      available_stores: available_stores_to_options
+      available_stores: available_stores_to_options,
+      categories: current_store.taxonomies
     },
     user_data: {
       name: spree_current_user&.full_name,
