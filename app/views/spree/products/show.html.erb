@@ -5,7 +5,7 @@
 </div>
 
 <% cache cache_key_for_product do %>
-  <div class="container pt-4 product-details">
+  <div class="container py-4 product-details">
     <div class="row" data-hook="product_show">
       <%= render partial: 'gallery' %>
       <div class="col-12 col-md-5" data-hook="product_right_part">
@@ -51,11 +51,6 @@
             <%= render 'cart_form', variant_change_identifier: 'productCarousel' %>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="pb-4 pt-md-5 row" data-hook="product_description">
-      <div class="col-12 col-md-7 col-lg-6">
-        <%= render partial: 'description' %>
       </div>
     </div>
 
