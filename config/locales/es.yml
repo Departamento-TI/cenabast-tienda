@@ -5,6 +5,8 @@ es:
         invalid: "no es un RUT válido"
   activerecord:
     attributes:
+      spree/product:
+        more_than: 'Mas que'
       spree/address:
         run: RUT
       spree/county:
@@ -77,10 +79,14 @@ es:
     sale_orders: 'ERP Pedidos de Venta'
     sent_at: 'Fecha Envío'
     nullified_at: 'Fecha Anulación'
+    product_name: 'Nombre producto'
+    search: 'Buscar producto'
     search_by: 'Buscar por'
     search_order_number: 'Numero de Orden'
     zcen: 'ZCEN'
     zgen: 'ZGEN'
+    min: 'Minimo'
+    max: 'Máximo'
     admin:
       orders:
         nullify_pending: 'Pendiente de cancelación'
