@@ -17,6 +17,10 @@ module Cenabast
       def full_name
         "#{first_name} #{last_name}".strip
       end
+
+      def provider?
+        has_spree_role?('provider')
+      end
     end
   end
 end

@@ -104,7 +104,7 @@ http_interactions:
       - public
     body:
       encoding: UTF-8
-      string: '{"sub":"b371ea67-c156-4e84-87a6-2ba1d229e02e","email_verified":false,"preferred_username":"88888888"}'
+      string: '{"sub":"b371ea67-c156-4e84-87a6-2ba1d229e02e","email_verified":false,"preferred_username":"99999999"}'
   recorded_at: Thu, 15 Feb 2024 17:04:13 GMT
 - request:
     method: post
@@ -143,14 +143,14 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Mon, 26 Feb 2024 20:55:12 GMT
+      - Mon, 26 Feb 2024 21:06:24 GMT
     body:
       encoding: UTF-8
-      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODk4NDUxMywiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.a9byQmfy8k_bMMRJ2lLGNcooHNKp_TFYreMn1w7qkvg"}'
-  recorded_at: Mon, 26 Feb 2024 20:55:12 GMT
+      string: '{"code":200,"isSuccessStatusCode":true,"content":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODk4NTE4NCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.4uRNaahrvvGn-76QqHUxi-VYxAkg3AaVugXnB5saho8"}'
+  recorded_at: Mon, 26 Feb 2024 21:06:23 GMT
 - request:
     method: get
-    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/establecimiento/usuario/88888888"
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/establecimiento/usuario/99999999"
     body:
       encoding: US-ASCII
       string: ''
@@ -160,7 +160,49 @@ http_interactions:
       User-Agent:
       - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
       Authorization:
-      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODk4NDUxMywiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.a9byQmfy8k_bMMRJ2lLGNcooHNKp_TFYreMn1w7qkvg
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODk4NTE4NCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.4uRNaahrvvGn-76QqHUxi-VYxAkg3AaVugXnB5saho8
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8; version=1.0
+      Server:
+      - Microsoft-IIS/10.0
+      Api-Supported-Versions:
+      - '1.0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Date:
+      - Mon, 26 Feb 2024 21:06:29 GMT
+    body:
+      encoding: UTF-8
+      string: '{"code":404,"isSuccessStatusCode":false,"content":"Usuario no encontrado.","errorMessage":null}'
+  recorded_at: Mon, 26 Feb 2024 21:06:28 GMT
+- request:
+    method: get
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/proveedor/usuario/99999999"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Authorization:
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODk4NTE4NCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.4uRNaahrvvGn-76QqHUxi-VYxAkg3AaVugXnB5saho8
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -170,7 +212,7 @@ http_interactions:
   response:
     status:
       code: 404
-      message: OK
+      message: Not Found
     headers:
       Transfer-Encoding:
       - chunked
@@ -185,14 +227,14 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Mon, 26 Feb 2024 20:55:17 GMT
+      - Mon, 26 Feb 2024 21:06:34 GMT
     body:
       encoding: UTF-8
-      string: '{"code": 404,"isSuccessStatusCode": false,"content": "Usuario no encontrado."}'
-  recorded_at: Mon, 26 Feb 2024 20:55:17 GMT
+      string: '{"code":404,"isSuccessStatusCode":false,"content":"Usuario no encontrado."}'
+  recorded_at: Mon, 26 Feb 2024 21:06:33 GMT
 - request:
     method: get
-    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/proveedor/usuario/88888888"
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/destinatarios/99999999"
     body:
       encoding: US-ASCII
       string: ''
@@ -202,7 +244,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
       Authorization:
-      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODk4NDUxMywiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.a9byQmfy8k_bMMRJ2lLGNcooHNKp_TFYreMn1w7qkvg
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODk4NTE4NCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.4uRNaahrvvGn-76QqHUxi-VYxAkg3AaVugXnB5saho8
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -227,15 +269,14 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Mon, 26 Feb 2024 20:55:23 GMT
+      - Mon, 26 Feb 2024 21:06:39 GMT
     body:
       encoding: UTF-8
-      string: '{"code":200,"isSuccessStatusCode":true,"content":{"rutUsuario":88888888,"dv":"8","nombres":"Prueba","apellidoPaterno":"Prueba","apellidoMaterno":"Prueba","nombreCompleto":"Prueba
-        Prueba Prueba","email":"pzuniga@cenabast.cl","telefono":"73042423","movil":"73042423","activo":false}}'
-  recorded_at: Mon, 26 Feb 2024 20:55:22 GMT
+      string: '{"code":200,"isSuccessStatusCode":true,"content":[],"errorMessage": null}'
+  recorded_at: Mon, 26 Feb 2024 21:06:38 GMT
 - request:
     method: get
-    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/destinatarios/88888888"
+    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/usuario/99999999/proveedor"
     body:
       encoding: US-ASCII
       string: ''
@@ -245,7 +286,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
       Authorization:
-      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODk4NDUxMywiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.a9byQmfy8k_bMMRJ2lLGNcooHNKp_TFYreMn1w7qkvg
+      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODk4NTE4NCwiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.4uRNaahrvvGn-76QqHUxi-VYxAkg3AaVugXnB5saho8
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -254,8 +295,8 @@ http_interactions:
       - "<%= ENV['CENABAST_API_BASE_URL'] %>"
   response:
     status:
-      code: 200
-      message: OK
+      code: 404
+      message: Not Found
     headers:
       Transfer-Encoding:
       - chunked
@@ -270,52 +311,9 @@ http_interactions:
       X-Xss-Protection:
       - 1;mode=block
       Date:
-      - Mon, 26 Feb 2024 20:55:29 GMT
+      - Mon, 26 Feb 2024 21:06:44 GMT
     body:
       encoding: UTF-8
-      string: '{"code": 200,"isSuccessStatusCode": true,"content": []}'
-  recorded_at: Mon, 26 Feb 2024 20:55:28 GMT
-- request:
-    method: get
-    uri: "<%= ENV['CENABAST_API_BASE_URL'] %><%= ENV['CENABAST_API_BASE_PATH'] %>/usuario/88888888/proveedor"
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
-      Authorization:
-      - Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDkvMDkvaWRlbnRpdHkvY2xhaW1zL2FjdG9yIjoiVXNlciIsImV4cCI6MTcwODk4NDUxMywiaXNzIjoiVElFTkRBLVRFU1QtVEkiLCJhdWQiOiJodHRwczovL3Rlc3RhcGxpY2FjaW9uZXN3ZWIuY2VuYWJhc3QuY2w6NzAwMSJ9.a9byQmfy8k_bMMRJ2lLGNcooHNKp_TFYreMn1w7qkvg
-      Content-Type:
-      - application/json
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Host:
-      - "<%= ENV['CENABAST_API_BASE_URL'] %>"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Transfer-Encoding:
-      - chunked
-      Content-Type:
-      - application/json; charset=utf-8; version=1.0
-      Server:
-      - Microsoft-IIS/10.0
-      Api-Supported-Versions:
-      - '1.0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Xss-Protection:
-      - 1;mode=block
-      Date:
-      - Mon, 26 Feb 2024 20:55:33 GMT
-    body:
-      encoding: UTF-8
-      string: '{"code":200,"isSuccessStatusCode":true,"content":{"rutUsuario":"88888888","rutProveedor":"76070033","nombreProveedor":"ARAMA
-        NATURAL PRODUCTS DISTRIBUIDOR","activo":false}}'
-  recorded_at: Mon, 26 Feb 2024 20:55:33 GMT
+      string: '{"code":500,"isSuccessStatusCode":false,"content":"Usuario no encontrado."}'
+  recorded_at: Mon, 26 Feb 2024 21:06:43 GMT
 recorded_with: VCR 6.2.0
