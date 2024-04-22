@@ -24,15 +24,6 @@ class Cenabast::Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksCo
     redirect_to spree.new_spree_user_session_path
   end
 
-  def after_sign_in_path_for(resource)
-    stored_location_for(resource) ||
-      if resource.is_a?(::Spree::User) && resource.provider?
-        '/admin/orders'
-      else
-        super
-      end
-  end
-
   private
 
   def set_run
@@ -40,5 +31,18 @@ class Cenabast::Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksCo
     @run = Chilean::Rutify.normalize_rut(raw_run)
   rescue StandardError => e
     Rails.logger.error "Exception raised obtaining user run: #{e.message}"
+  end
+
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) ||
+      if resource.is_a?(::Spree::User) && resource.provider?
+        spree.admin_orders_path
+      else
+        super
+      end
+  end
+
+  def spree_user_root_path
+    spree.products_path
   end
 end
