@@ -93,6 +93,8 @@ es:
         nullify_sale_order_sent_message: 'Pedido de venta %{number} mandado a cancelar al ERP. Se actualizará su estado en algunos momentos.'
         cancel_sale_order: 'Cancelar pedido de venta'
         all: 'Todas las ordenes'
+    plp:
+      price: 'Precio'
     order:
       erp_send_statuses:
         unknown: 'Desconocido'

@@ -53,8 +53,14 @@ module Cenabast
       def query_where_params
         {
           store_ids: [current_store.id],
-          discontinue_on: { gt: Time.now.in_time_zone },
-          _or: query_or_conditions,
+          _and: [
+            { _or:
+              [
+                { discontinue_on: nil },
+                { discontinue_on: { gt: Time.now.in_time_zone } }
+              ] },
+            { _or: query_or_conditions }
+          ].compact_blank!,
           currency: current_currency,
           taxon_ids: [taxon&.id].compact,
           price:,
@@ -107,10 +113,10 @@ module Cenabast
           high_price = Monetize.parse(price_param.remove("#{less_than_string} ")).to_i
         else
           low_price, high_price = Monetize.parse_collection(price_param).map(&:to_i)
-          high_price = BigDecimal::INFINITY if high_price&.zero?
+          high_price = 99_999_999 if high_price&.zero?
         end
 
-        [low_price, high_price]
+        low_price..high_price
       end
 
       def build_option_value_ids(params)

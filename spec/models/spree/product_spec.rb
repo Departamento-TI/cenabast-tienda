@@ -11,9 +11,9 @@ RSpec.describe Spree::Product, type: :model do
     let!(:store) { create(:store) }
 
     it 'searches' do
-      create(:product, sku: 'Testing', product:)
-      described_class.search_index.refresh
-      assert_equal ['Testing'], described_class.search('testing').map(&:sku)
+      create(:product, name: 'Testing')
+      described_class.reindex
+      assert_equal ['Testing'], described_class.search('testing').map(&:name)
     end
   end
 end
