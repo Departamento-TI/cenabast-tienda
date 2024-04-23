@@ -28,3 +28,15 @@
     visibility: visible;
   }
 }
+
+.footer-spree .logo img {
+  height: 27px;
+  width: auto;
+}
+
+@media (min-width: 1200px) {
+  .footer-spree .logo img {
+    height: auto;
+    width: 200px;
+  }
+}
