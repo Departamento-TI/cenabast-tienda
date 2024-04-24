@@ -1,5 +1,5 @@
 country = Spree::Country.find_by(name: 'Chile', iso_name: 'CHILE', iso: 'CL', iso3: 'CHL', numcode: 152)
-country.update(states_required: true)
+country.update(states_required: false)
 country.update(zipcode_required: false)
 
 # Chilean states
