@@ -16,6 +16,7 @@ class Common::Layout::HeaderComponent < ApplicationComponent
   # => @param current_store_name text
   # => @param current_store_id number
   # => @param available_stores array
+  # => @param categories array
   def initialize(header_data:, user_data:)
     super
     @header_data = header_data
@@ -32,5 +33,7 @@ class Common::Layout::HeaderComponent < ApplicationComponent
     @current_store_name = header_data&.dig(:current_store_name)
     @current_store_id = header_data&.dig(:current_store_id)
     @available_stores = header_data&.dig(:available_stores)
+
+    @categories = header_data&.dig(:categories)
   end
 end

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :vendor, class: Spree::Vendor do
-    name { Faker::Name.first_name }
+    name { Faker::Alphanumeric.alpha(number: 12) }
     about_us { 'About us...' }
     contact_us { 'Contact us...' }
 

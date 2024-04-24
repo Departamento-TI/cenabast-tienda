@@ -88,7 +88,7 @@ username: elastic
 password: elastic_password
 ```
 
-In order to be able to browse data, create an index pattern for `spree_variants_development` on:
+In order to be able to browse data, create an index pattern for `spree_products_development` on:
 
 http://localhost:5601/app/management/kibana/indexPatterns/create
 

@@ -1,7 +1,7 @@
 RSpec.configure do |config|
   config.before(:suite) do
     # reindex models
-    Spree::Variant.reindex
+    Spree::Product.reindex
 
     # and disable callbacks
     Searchkick.disable_callbacks

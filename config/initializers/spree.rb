@@ -18,5 +18,6 @@ Rails.application.config.after_initialize do
   end
 end
 
+Spree.searcher_class = 'Cenabast::Spree::Search'
 Spree.user_class = 'Spree::User'
 Spree::PermittedAttributes.store_attributes << [:limit_cart_amount_utm, :current_utm_value]
