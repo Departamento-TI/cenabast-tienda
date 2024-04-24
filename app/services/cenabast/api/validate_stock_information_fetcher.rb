@@ -21,6 +21,13 @@ module Cenabast
 
       private
 
+      def response_successful?
+        response_accepted_http_statuses.include?(response&.code) &&
+          response_body&.dig('isSuccessStatusCode')
+      rescue StandardError
+        nil
+      end
+
       def cache_expire_time
         0.to_i.minutes
       end
