@@ -23,7 +23,6 @@ module Cenabast
           has_many :requesters, -> { distinct }, through: :receivers, class_name: 'Cenabast::Spree::Requester'
 
           before_create :set_current_receiver
-          after_update :reset_current_order, if: :current_receiver_previously_changed?
         end
 
         # For every requester linked should be pickable
@@ -144,14 +143,6 @@ module Cenabast
           receiver = candidate_current_receiver
 
           self[:current_receiver_id] = receiver&.id
-        end
-
-        def reset_current_order
-          # token set to nil forcing to find a new current_order
-          cookies.signed[:token] = nil
-          current_order(create_order_if_necessary: true)
-
-          cookies[:reset_order] = true
         end
       end
     end
