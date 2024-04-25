@@ -50,9 +50,9 @@ module Cenabast
           return toggle_receiver_admin(receiver) if admin?
           return unless receivers.include? receiver
 
-          reset_current_order
           self.current_receiver = receiver
           save
+          reset_current_order
         end
 
         # Toggle receiver without restrictions
@@ -68,9 +68,9 @@ module Cenabast
           return unless requesters.include? requester
           return unless matching_receivers_for_requester(requester).any?
 
-          reset_current_order
           self.current_receiver = matching_receivers_for_requester(requester).first
           save
+          reset_current_order
         end
 
         # Toggle requester without restrictions
