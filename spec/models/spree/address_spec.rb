@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Spree::Address, type: :model do
+  describe 'Canceled validations' do
+    it 'cancels validation for :state' do
+      expect(described_class._validators[:state]).to be_empty
+    end
+  end
+
   describe 'Has Run concern' do
     describe 'Validations' do
       it { should validate_presence_of :run }
@@ -18,7 +24,7 @@ RSpec.describe Spree::Address, type: :model do
 
   describe 'Has County concern' do
     describe 'Associations' do
-      it { should belong_to(:county).class_name('Spree::County').required }
+      it { should belong_to(:county).class_name('Spree::County').optional }
     end
 
     it 'validates state belongs to country' do

@@ -5,7 +5,7 @@ module Helpers
       Spree::Country.find_or_create_by(
         name: 'Chile', iso_name: 'CHILE',
         iso: 'CL', iso3: 'CHL', numcode: 152,
-        states_required: true, zipcode_required: false
+        states_required: false, zipcode_required: false
       )
 
       ecommerce_store = create(:store, code: 'spree-ecommerce', name: 'E-commerce')
@@ -36,6 +36,7 @@ module Helpers
     # Create some sample values to use
     def create_states_and_counties
       country = Spree::Country.find_by(iso: 'CL')
+
       state = create(:state, country:, name: 'Región Metropolitana de Santiago')
       create(:county, state:, name: 'Renca')
       create(:county, state:, name: 'Santiago')

@@ -51,31 +51,31 @@
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:office) %> *</span>
-            <%= address_form.text_field :office, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+            <span><%= Spree.t(:office) %></span>
+            <%= address_form.text_field :office, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: false %>
           </div>
         </div>
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:region) %> *</span>
+            <span><%= Spree.t(:region) %></span>
 
             <%== address_form.collection_select(:state_id, states,
                                   :id, :name,
                                   { include_blank: Spree.t(:select_a_state) },
                                   { class: 'state-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 min-h-[48px]',
-                                  required: true,
+                                  required: false,
                                   disabled: false}) %>
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:county) %> *</span>
+            <span><%= Spree.t(:county) %></span>
 
             <%== address_form.collection_select(:county_id, counties_for_address(@order&.bill_address),
                                   :id, :name,
                                   { include_blank: Spree.t(:select_a_county) },
                                   { class: 'county-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 min-h-[48px]',
-                                  required: true,
+                                  required: false,
                                   disabled: (!@order&.bill_address&.county) }) %>
           </div>
         </div>
@@ -150,31 +150,31 @@
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:office) %> *</span>
-            <%= address_form.text_field :office, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: true %>
+            <span><%= Spree.t(:office) %></span>
+            <%= address_form.text_field :office, class: 'text-base bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 min-h-[48px]', required: false %>
           </div>
         </div>
 
         <div class="m-3 px-2 gap-6 flex flex-row text-gray-400 text-sm">
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:region) %> *</span>
+            <span><%= Spree.t(:region) %></span>
 
             <%== address_form.collection_select(:state_id, states,
                                   :id, :name,
                                   { include_blank: Spree.t(:select_a_state) },
                                   { class: 'state-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 min-h-[48px]',
-                                  required: true,
+                                  required: false,
                                   disabled: false}) %>
           </div>
 
           <div class="flex flex-1 flex-col gap-1.5">
-            <span><%= Spree.t(:county) %> *</span>
+            <span><%= Spree.t(:county) %></span>
 
             <%== address_form.collection_select(:county_id, counties_for_address(@order&.ship_address),
                                   :id, :name,
                                   { include_blank: Spree.t(:select_a_county) },
                                   { class: 'county-select text-base bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 min-h-[48px]',
-                                  required: true,
+                                  required: false,
                                   disabled: (!@order&.ship_address&.county) }) %>
           </div>
         </div>

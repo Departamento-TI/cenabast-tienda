@@ -82,11 +82,12 @@ es:
     product_name: 'Nombre producto'
     search: 'Buscar producto'
     search_by: 'Buscar por'
-    search_order_number: 'Numero de Orden'
+    search_order_number: 'Número de Orden'
     zcen: 'ZCEN'
     zgen: 'ZGEN'
     min: 'Minimo'
     max: 'Máximo'
+    address1_number: 'Número Dirección'
     admin:
       orders:
         nullify_pending: 'Pendiente de cancelación'
