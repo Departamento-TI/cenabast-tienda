@@ -41,10 +41,10 @@ RSpec.describe Cenabast::Spree::UserPreferencesController, type: :request do
       expect(user.reload.current_store).not_to eq(store)
     end
 
-    it 'redirects back to the fallback location if provided' do
+    it 'redirects back to the spree root path even if location if provided' do
       post toggle_store_path(option_id: 5), headers: { HTTP_REFERER: '/fallback_location' }
 
-      expect(response).to redirect_to('/fallback_location')
+      expect(response).to redirect_to(spree.root_path)
     end
   end
 
