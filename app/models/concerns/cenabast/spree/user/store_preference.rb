@@ -23,6 +23,7 @@ module Cenabast
           has_many :requesters, -> { distinct }, through: :receivers, class_name: 'Cenabast::Spree::Requester'
 
           before_create :set_current_receiver
+          after_update :reset_current_order, if: :current_receiver_previously_changed?
         end
 
         # For every requester linked should be pickable
@@ -52,7 +53,6 @@ module Cenabast
 
           self.current_receiver = receiver
           save
-          reset_current_order
         end
 
         # Toggle receiver without restrictions
@@ -70,7 +70,6 @@ module Cenabast
 
           self.current_receiver = matching_receivers_for_requester(requester).first
           save
-          reset_current_order
         end
 
         # Toggle requester without restrictions
