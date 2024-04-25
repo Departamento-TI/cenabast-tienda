@@ -50,6 +50,7 @@ module Cenabast
           return toggle_receiver_admin(receiver) if admin?
           return unless receivers.include? receiver
 
+          reset_current_order
           self.current_receiver = receiver
           save
         end
@@ -67,6 +68,7 @@ module Cenabast
           return unless requesters.include? requester
           return unless matching_receivers_for_requester(requester).any?
 
+          reset_current_order
           self.current_receiver = matching_receivers_for_requester(requester).first
           save
         end
@@ -143,6 +145,14 @@ module Cenabast
           receiver = candidate_current_receiver
 
           self[:current_receiver_id] = receiver&.id
+        end
+
+        def reset_current_order
+          # token set to nil forcing to find a new current_order
+          cookies.signed[:token] = nil
+          current_order(create_order_if_necessary: true)
+
+          cookies[:reset_order] = true
         end
       end
     end

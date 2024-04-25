@@ -14,11 +14,6 @@ module Cenabast
       def toggle_receiver
         spree_current_user&.toggle_receiver(@receiver)
 
-        # token set to nil forcing to find a new current_order
-        cookies.signed[:token] = nil
-        current_order(create_order_if_necessary: true)
-
-        cookies[:toggle_receiver] = true
         redirect_back_or_to spree.root_path
       end
 
