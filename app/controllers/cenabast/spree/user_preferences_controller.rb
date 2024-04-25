@@ -4,7 +4,7 @@ module Cenabast
       before_action :find_requester, only: [:toggle_requester]
       before_action :find_receiver, only: [:toggle_receiver]
       before_action :find_store, only: [:toggle_store]
-      after_action :reset_current_order, only: [:toggle_receiver, toggle_requester]
+      after_action :reset_current_order, only: [:toggle_receiver, :toggle_requester]
 
       def toggle_requester
         spree_current_user&.toggle_requester(@requester)
