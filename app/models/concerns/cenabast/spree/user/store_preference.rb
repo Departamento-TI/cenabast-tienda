@@ -74,7 +74,9 @@ module Cenabast
         # Toggle requester without restrictions
         # Use only for admin users
         def toggle_requester_admin(requester)
-          self.current_receiver = requester.receivers.first
+          return unless (candidate = requester&.receivers&.first)
+
+          self.current_receiver = candidate
           save
         end
 
