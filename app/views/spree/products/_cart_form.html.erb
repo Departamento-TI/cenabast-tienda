@@ -41,6 +41,8 @@
       <%= Spree.t(:availability) %>:
       <% if !is_product_available_in_currency %>
         <%= render 'cart_form_availability_templates', type: 'not-available-in-currency' %>
+      <% elsif default_variant&.product&.discontinued? %>
+        <%= render 'cart_form_availability_templates', type: 'out-of-stock' %>
       <% elsif default_variant.in_stock? %>
         <%= render 'cart_form_availability_templates', type: 'in-stock' %>
       <% elsif default_variant.backorderable? %>
