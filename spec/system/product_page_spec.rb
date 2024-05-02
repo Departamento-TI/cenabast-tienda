@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Visiting Product Page', type: :system do
   let(:receiver) { create(:receiver) }
   let(:user) { create(:user, receivers: [receiver]) }
-  let(:product) { create(:cenabast_product) }
+  let(:generic_product) { create(:generic_product) }
+  let(:product) { create(:cenabast_product, generic_product:, price: 5_555) }
 
   before(:each) do
     create_cenabast_stores
@@ -32,6 +33,10 @@ RSpec.describe 'Visiting Product Page', type: :system do
 
   it 'should display product`s contract ZCEN code' do
     expect(page).to have_text(product.contract.code)
+  end
+
+  it 'should display product`s price on chilean format' do
+    expect(page).to have_text('$5.555')
   end
 
   it 'should have link to mercado publico licitation page' do
