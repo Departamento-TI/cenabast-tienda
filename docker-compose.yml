@@ -1,9 +1,21 @@
 version: '3.7'
 
-include:
-  - elasticsearch-compose.yml
-
 services:
+  elasticsearch:
+    image: elasticsearch:8.12.2
+    ports:
+      - ${ES_PORT}:9200
+    environment:
+      - node.name=elasticsearch
+      - discovery.type=single-node
+      - network.host=0.0.0.0
+      - xpack.security.enabled=false
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - ELASTIC_PASSWORD=$ELASTIC_PASSWORD
+    volumes:
+      - 'elasticsearch-data:/usr/share/elasticsearch/data'
+
   postgres:
     image: postgres:15-alpine
     environment:
@@ -129,3 +141,4 @@ volumes:
     external: true
   redis:
   bundle_cache:
+  elasticsearch-data:
